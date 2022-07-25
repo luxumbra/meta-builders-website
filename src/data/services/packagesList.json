@@ -1,0 +1,142 @@
+[
+  {
+    "id": "0",
+    "name": "Meta Project Starter",
+    "description": "Make a plan for your NFT project with our dedicated team. This package includes a detailed document with notes taken during the consultation, an NFT receipt, and a project portfolio. Project Development package starts at $249.00 an hour with a 2 hour minimum.",
+    "price": "499",
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/0289/8296/files/meta-project-starter-1.png?v=1490348056",
+    "buyContract": "0x0",
+    "consultingHours": 2,
+    "includedServices": [
+      {
+        "name": "2 hours of consulting",
+        "description": "We will help you get your project up and running in no time"
+      }
+    ]
+  },
+  {
+    "id": "1",
+    "name": "NFT Development",
+    "description": "Your project is about to get real. This package includes the development of your NFT Project with 4 hours of consultation, minting and curated media for all of those cool crypto collectibles you are about to make!",
+    "price": "5999",
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/0289/8296/files/nft-development-1.png?v=1490348056",
+    "buyContract": "0x0",
+    "consultingHours": 4,
+    "includedServices": [
+      {
+        "name": "4 hours of consulting",
+        "description": "We will help you get your project off the ground and ready to go!"
+      },
+      {
+        "name": "NFT Development",
+        "description": "Development of you NFT project!"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "MetaVerse & NFT Development",
+    "description": "Your project has been elevated to a new level! In this package you will receive project development, NFT collection development,social media activation, and a fully functional website. You can also expect 30 days worth of 1 hour consultations (Non-stackable)",
+    "price": "34,999",
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/0289/8296/files/metaverse-nft-development-1.png?v=1490348056",
+    "buyContract": "0x0",
+    "consultingHours": 40,
+    "includedServices": [
+      {
+        "name": "40 hours of consulting",
+        "description": "We will help you get your project off the ground and ready to go!"
+      },
+      {
+        "name": "NFT Development",
+        "description": "Development of you NFT project!"
+      },
+      {
+        "name": "MetaVerse Development",
+        "description": "Development of your MetaVerse project!"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "NFT & Metaverse Development +",
+    "description": "Your project is about to get real. This package includes the development of your NFT Project with 4 hours of consultation, minting and curated media for all of those cool crypto collectibles you are about to make!",
+    "price": "99,999",
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/0289/8296/files/nft-metaverse-development-1.png?v=1490348056",
+    "buyContract": "0x0",
+    "consultingHours": 90,
+    "includedServices": [
+      {
+        "name": "90 hours of consulting",
+        "description": "We will help you get your project off the ground and ready to go!"
+      },
+      {
+        "name": "NFT Development",
+        "description": "Development of you NFT project!"
+      },
+      {
+        "name": "MetaVerse Development",
+        "description": "Development of your MetaVerse project!"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Custom NFT Marketplace",
+    "description": "Your project is about to get real. This package includes the development of your NFT Project with 4 hours of consultation, minting and curated media for all of those cool crypto collectibles you are about to make!",
+    "price": "149,999",
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/0289/8296/files/custom-nft-marketplace-1.png?v=1490348056",
+    "buyContract": "0x0",
+    "consultingHours": 90,
+    "includedServices": [
+      {
+        "name": "90 hours of consulting",
+        "description": "We will help you get your project off the ground and ready to go!"
+      },
+      {
+        "name": "NFT Development",
+        "description": "Development of you NFT project!"
+      },
+      {
+        "name": "MetaVerse Development",
+        "description": "Development of your MetaVerse project!"
+      },
+      {
+        "name": "Smart Contract Development",
+        "description": "Development of your custom smart contracts!"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Custom Development",
+    "description": "We can go above and beyond our established packages, and curate a customized and integrated solution for your web3 needs, from customized NFT marketplaces to smart contracts, tokenomics, and much more.",
+    "price": "TBD",
+    "currency": "USD",
+    "image": "https://cdn.shopify.com/s/files/1/0289/8296/files/custom-development-1.png?v=1490348056",
+    "buyContract": "0x0",
+    "consultingHours": 0,
+    "includedServices": [
+      {
+        "name": "Unlimited hours of consulting",
+        "description": "Development of your custom project!"
+      },
+      {
+        "name": "NFT Development",
+        "description": "Development of your custom project!"
+      },
+      {
+        "name": "MetaVerse Development",
+        "description": "Development of your custom project!"
+      },
+      {
+        "name": "Smart Contract Development",
+        "description": "Development of your custom project!"
+      }
+    ]
+  }
+]

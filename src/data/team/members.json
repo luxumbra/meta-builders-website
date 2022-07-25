@@ -1,0 +1,74 @@
+[
+  {
+    "name": "SmartDigitalPayments",
+    "bio": "SmartDigitalPayments is a company that provides digital payment solutions for businesses. The company was founded in 2017 by a team of developers and business owners. The company is headquartered in San Francisco, California.",
+    "image": "src/data/team/images/smartdigitalpayments.jpg",
+    "linkedIn": "https://www.linkedin.com/in/smartdigitalpayments/",
+    "twitter": "https://twitter.com/system_payment",
+    "role": "Founder/CEO",
+    "email": ""
+  },
+  {
+    "name": "koH",
+    "bio": "",
+    "image": "src/data/team/images/koh.jpg",
+    "linkedIn": "",
+    "twitter": "https://twitter.com/Crypto_koH",
+    "role": "Project Manager",
+    "email": ""
+  },
+  {
+    "name": "Musashi",
+    "bio": "",
+    "image": "src/data/team/images/musashi.jpg",
+    "linkedIn": "",
+    "twitter": "https://twitter.com/Musashi14790940",
+    "role": "Co-Founder",
+    "email": ""
+  },
+  {
+    "name": "luxumbra",
+    "bio": "",
+    "image": "src/data/team/images/luxumbra.gif",
+    "linkedIn": "",
+    "twitter": "https://twitter.com/bdgrdev",
+    "role": "Front-End Developer / Designer",
+    "email": ""
+  },
+  {
+    "name": "SmartDigitalPayments",
+    "bio": "SmartDigitalPayments is a company that provides digital payment solutions for businesses. The company was founded in 2017 by a team of developers and business owners. The company is headquartered in San Francisco, California.",
+    "image": "src/data/team/images/smartdigitalpayments.jpg",
+    "linkedIn": "https://www.linkedin.com/in/smartdigitalpayments/",
+    "twitter": "https://twitter.com/SmartDP",
+    "role": "Founder/CEO",
+    "email": ""
+  },
+  {
+    "name": "koH",
+    "bio": "",
+    "image": "src/data/team/images/koh.jpg",
+    "linkedIn": "",
+    "twitter": "https://twitter.com/Crypto_koH",
+    "role": "Project Manager",
+    "email": ""
+  },
+  {
+    "name": "Musashi",
+    "bio": "",
+    "image": "src/data/team/images/musashi.jpg",
+    "linkedIn": "",
+    "twitter": "https://twitter.com/Musashi14790940",
+    "role": "Co-Founder",
+    "email": ""
+  },
+  {
+    "name": "luxumbra",
+    "bio": "",
+    "image": "src/data/team/images/luxumbra.gif",
+    "linkedIn": "",
+    "twitter": "https://twitter.com/bdgrdev",
+    "role": "Front-End Developer / Designer",
+    "email": ""
+  }
+]

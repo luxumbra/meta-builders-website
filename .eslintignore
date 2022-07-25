@@ -1,0 +1,6 @@
+**/__tests__/*
+**/__mocks__/*
+**/**/__tests__/*
+**/**/__mocks__/*
+**/setupTests.ts
+node_modules

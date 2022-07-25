@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Metaverse",
+    "title": "Metaverse",
+    "description": "The metaverse is the social digital experience which is quickly reframing how we engage and interact with brands, products and services.",
+    "icon": "mdi:globe"
+  },
+  {
+    "name": "NFTs",
+    "title": "Non-Fungible Tokens",
+    "description": "Data ownership is the cornerstone of web3 and the metaverse. NFTs fully represent a participants ownership of membership, digital assets, physical assets, access, priviledges, voting rights and more.",
+    "icon": "mdi:dna"
+  },
+  {
+    "name": "Payments",
+    "title": "Payments",
+    "description": "Digital payments enables a broader access to your content and products. We have very in depth knowledge of the payment rails for engaging and interacting on multiple dimensions of digital commerce.",
+    "icon": "mdi:payment"
+  },
+  {
+    "name": "Web3",
+    "title": "Web3",
+    "description": "The multi faceted emergent digital experience - the comibination of metaverse, nfts, tokenomics, daos, and everything inbetween. If it talks to the blockchain, our team can integrate it as a feature for your project.",
+    "icon": "mdi:graph"
+  },
+  {
+    "name": "Smart Contracts",
+    "title": "Smart Contracts",
+    "description": "Self executing applications on the blockchain, defined by the parameters in the code. Building custom smart contracts is an art in itself, Our team of builders can create, audit, and deploy smart contracts based on the requirements of your project.",
+    "icon": "mdi:code"
+  },
+  {
+    "name": "Community",
+    "title": "Community",
+    "description": "Community engagement is the critical mass for any project and organization. With the right integrations and tooling, your community engagement and management can scale with the growth of the ecosystem.",
+    "icon": "mdi:account-group"
+  }
+]

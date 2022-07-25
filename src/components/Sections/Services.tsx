@@ -1,0 +1,45 @@
+import { useEffect } from 'react';
+
+import { Icon } from '@iconify/react'
+import { uuid } from 'uuidv4';
+
+import { handleSectionAnimation } from '~mb/animation/functions'
+import services from "~mb/data/services/services.json";
+import { ContentSection } from "~mb/sections/index";
+
+export function ServicesLead(): JSX.Element {
+  return (
+    <>
+      We provide end to end services for curating <span className="text-primary">Web3</span>
+      and
+      <span className="text-primary">Metaverse </span> environments.
+    </>
+  )
+}
+
+export function ServicesSection(): JSX.Element {
+  const section = 'services'
+  useEffect(() => {
+    handleSectionAnimation(`#${section}`)
+
+    return () => {
+      handleSectionAnimation(`#${section}`, true)
+    }
+  }, []);
+
+  return (
+    <ContentSection title="Services" id={section} lead={<ServicesLead />}>
+      <ul className="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {services.map(({ title, description, icon }) => (
+          <li key={uuid()} className="leadIn flex flex-col items-center gap-4 p-6 border border-default bg-offset">
+            <div className="w-16 h-16 p-3 border-2 border-current rounded-full">
+              <Icon icon={icon} />
+            </div>
+            <p className="text-xl font-extrabold text-center">{title}</p>
+            <p className="text-sm text-center text-offset">{description}</p>
+          </li>
+        ))}
+      </ul>
+    </ContentSection>
+  );
+}
