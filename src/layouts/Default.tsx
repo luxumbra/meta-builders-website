@@ -5,7 +5,6 @@ import { ButtonProps } from 'react-daisyui';
 
 import Footer from '~mb/default/Footer';
 import Header from '~mb/default/Header';
-import { imgixUrl } from '~mb/lib/constants';
 import "~mb/styles/index.css";
 
 export type LayoutProperties = {
@@ -20,11 +19,9 @@ export function Layout({ children, content }: {children: React.ReactNode, conten
   const metaLink = permalink ? `https://metabuilders.luxumbra.dev${permalink}` : ''
   return (
     <>
-      {/** add a `<Head /> component here */}
       <Header />
       {children}
       <Footer />
-      <div id="app-portal" />
     </>
   );
 }

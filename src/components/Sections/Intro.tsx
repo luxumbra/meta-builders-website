@@ -18,7 +18,7 @@ export function IntroSectionLead(): JSX.Element {
   )
 }
 
-export function IntroSection(): JSX.Element {
+export default function IntroSection(): JSX.Element {
   const sectionId = '#intro';
 
   useLayoutEffect (() => {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 
 import { Icon } from "@iconify/react";
-import { uuid } from "uuidv4";
+import { v4 as uuid } from "uuid";
 
 import { handleScrollReveal } from "~mb/animation/functions";
 

@@ -2,8 +2,6 @@
 
 import {
   useMetamask,
-  useWalletConnect,
-  useCoinbaseWallet,
   useNetwork,
   useAddress,
   useDisconnect
@@ -13,9 +11,9 @@ import { TbWallet, TbWalletOff } from 'react-icons/tb/index.js';
 import { shortenAddress } from '~mb/lib/helpers';
 
 export function ButtonWeb3Connect(): JSX.Element {
-  const connectCoinbaseWallet = useCoinbaseWallet();
+  // const connectCoinbaseWallet = useCoinbaseWallet();
   const connectMetamaskWallet = useMetamask();
-  const connectWalletConnectWallet = useWalletConnect();
+  // const connectWalletConnectWallet = useWalletConnect();
   const disconnectWallet = useDisconnect();
   const address = useAddress();
   const network = useNetwork();
@@ -28,13 +26,13 @@ export function ButtonWeb3Connect(): JSX.Element {
     });
   }
 
-  function onClickConnectCoinbase(): void {
-    connectCoinbaseWallet().then(() => {
-      console.log('connectCoinbaseWallet');
-    }).catch(error => {
-      console.log('connectCoinbaseWallet error', { error });
-    });
-  }
+  // function onClickConnectCoinbase(): void {
+  //   connectCoinbaseWallet().then(() => {
+  //     console.log('connectCoinbaseWallet');
+  //   }).catch(error => {
+  //     console.log('connectCoinbaseWallet error', { error });
+  //   });
+  // }
 
   function onClickConnectMetamask(): void {
     connectMetamaskWallet().then(() => {
@@ -44,25 +42,32 @@ export function ButtonWeb3Connect(): JSX.Element {
     });
   }
 
-  function onClickConnectWalletConnect(): void {
-    connectWalletConnectWallet().then(() => {
-      console.log('connectWalletConnectWallet');
-    }).catch(error => {
-      console.log('connectWalletConnectWallet error', { error });
-    });
-  }
+  // function onClickConnectWalletConnect(): void {
+  //   connectWalletConnectWallet().then(() => {
+  //     console.log('connectWalletConnectWallet');
+  //   }).catch(error => {
+  //     console.log('connectWalletConnectWallet error', { error });
+  //   });
+  // }
 
 
   if (address) {
     return (
+      <div className='flex flex-row-reverse items-center justify-center gap-3'>
       <button
         type="button"
-        className="btn btn-primary flex-grow"
+        className="
+        btn
+        btn-link
+        p-0"
+        aria-label='Web3 wallet disconnect'
         onClick={onClickDisconnect}
       >
-        <TbWalletOff className="text-lg" />
-        <span className="ml-2">Disconnect</span>
-      </button>
+        <TbWalletOff className={`text-xl transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-pink-100'}`} />
+        <span className="sr-only">Disconnect</span>
+        </button>
+        <span className='text-xs text-green-500 text-shadow-alt'>{shortenAddress(address)}</span>
+        </div>
     )
   }
   return (
@@ -75,7 +80,6 @@ export function ButtonWeb3Connect(): JSX.Element {
       p-0
       `}
         aria-label='Web3 wallet connect'
-        // disabled={!connectors[0].ready || walletConnectionState.loading}
         onClick={onClickConnectMetamask}
       >
         <TbWallet className={`text-xl transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-pink-100'}`} />

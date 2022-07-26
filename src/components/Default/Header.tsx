@@ -1,18 +1,19 @@
 import { MdClose, MdMenu } from "react-icons/md";
-import { uuid } from "uuidv4";
+import { v4 as uuid } from "uuid";
 
 import { ButtonWeb3Connect, ButtonDarkMode } from "~mb/components/Buttons";
 
 
 
 const navItems = [
+  { title: "Home", url: "" },
   { title: "Services", url: "#services" },
   { title: "Partners", url: "#partners" },
   { title: "Team", url: "#team" },
   { title: "Buy", url: "#buy" },
 ];
 
-export function Header(): JSX.Element {
+export default function Header(): JSX.Element {
 
   return (
 
@@ -97,10 +98,8 @@ export function Header(): JSX.Element {
       </div>
     </header>
   )
-
 }
 
-export default Header;
 
 //   <style>
 //     #open-nav-button {

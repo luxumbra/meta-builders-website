@@ -22,7 +22,7 @@ export function ButtonBuyPackage(properties: IButtonBuyPackage): JSX.Element {
   /** function to call the `buyNow` method of `useBuyNow` with a useCallback hook */
   const onBuyPackage = useCallback((id: string) => {
     buyNow(packageId).then(() => {
-      console.log('buyPackage', { id, isLoading, error });
+      console.log('buyPackage', { id, isLoading, buyNowError });
       // Toast.success("Package purchased!");
     }).catch((error: any) => {
       console.log('buyPackage error', { id, isLoading, error, buyNowError });

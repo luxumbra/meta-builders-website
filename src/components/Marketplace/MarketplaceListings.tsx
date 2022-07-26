@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useMarketplace, useActiveListings } from "@thirdweb-dev/react";
 import type { AuctionListing, DirectListing } from "@thirdweb-dev/sdk";
-import { uuid } from "uuidv4";
+import { v4 as uuid } from "uuid";
 
 
 type MarketplaceProperties = {

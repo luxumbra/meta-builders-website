@@ -12,7 +12,7 @@ export function SectionIntro(): JSX.Element {
   </>
 }
 
-export function BuySection(): JSX.Element {
+export default function BuySection(): JSX.Element {
   const section = 'buy';
   const sectionId = '#buy';
   const ctaId = '#cta-buy';

@@ -14,6 +14,7 @@ specifiers:
   '@types/react-dom': ^18.0.5
   '@types/react-imgix': ^9.4.0
   '@types/react-query': ^1.2.9
+  '@types/uuid': ^8.3.4
   '@typescript-eslint/parser': ^5.30.7
   '@vitejs/plugin-react': ^1.3.2
   '@zag-js/react': ^0.1.13
@@ -54,13 +55,15 @@ specifiers:
   react-useportal: ^1.0.17
   rimraf: ^3.0.2
   stylelint: ^14.9.1
+  stylelint-config-prettier: ^9.0.3
   stylelint-config-recommended: ^8.0.0
+  stylelint-config-standard: ^26.0.0
   tailwindcss: ^3.1.6
   tailwindcss-fluid-type: ^1.3.3
   ts-node: ^10.9.1
   typechain: ^8.1.0
   typescript: ^4.7.2
-  uuidv4: ^6.2.13
+  uuid: ^8.3.2
   vite: ^2.9.9
   vite-imagetools: ^4.0.4
   vite-plugin-image-presets: ^0.3.2
@@ -77,6 +80,7 @@ dependencies:
   '@thirdweb-dev/sdk': 2.3.31_ethers@5.6.9
   '@typechain/ethers-v5': 10.1.0_3a2z4xo3ofaclmnvqkkolsxa2u
   '@types/prop-types': 15.7.5
+  '@types/uuid': 8.3.4
   '@zag-js/react': 0.1.13_react@18.2.0
   '@zag-js/toast': 0.1.11
   autoprefixer: 10.4.7_postcss@8.4.14
@@ -94,7 +98,7 @@ dependencies:
   react-query: 4.0.0_biqbaboplfbrettd7655fr4n2y
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
   react-useportal: 1.0.17_biqbaboplfbrettd7655fr4n2y
-  uuidv4: 6.2.13
+  uuid: 8.3.2
   wagmi: 0.5.11_w3nw2bpaojq3mlwhwp6lup3gdy
   zod: 3.17.9
   zustand: 4.0.0-rc.4_react@18.2.0
@@ -130,7 +134,9 @@ devDependencies:
   prettier: 2.7.1
   rimraf: 3.0.2
   stylelint: 14.9.1
+  stylelint-config-prettier: 9.0.3_stylelint@14.9.1
   stylelint-config-recommended: 8.0.0_stylelint@14.9.1
+  stylelint-config-standard: 26.0.0_stylelint@14.9.1
   tailwindcss: 3.1.6_ts-node@10.9.1
   tailwindcss-fluid-type: 1.3.3_tailwindcss@3.1.6
   ts-node: 10.9.1_tdn3ypgnfy6bmey2q4hu5jonwi
@@ -6969,12 +6975,31 @@ packages:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
     dev: true
 
+  /stylelint-config-prettier/9.0.3_stylelint@14.9.1:
+    resolution: {integrity: sha512-5n9gUDp/n5tTMCq1GLqSpA30w2sqWITSSEiAWQlpxkKGAUbjcemQ0nbkRvRUa0B1LgD3+hCvdL7B1eTxy1QHJg==}
+    engines: {node: '>= 12'}
+    hasBin: true
+    peerDependencies:
+      stylelint: '>=11.0.0'
+    dependencies:
+      stylelint: 14.9.1
+    dev: true
+
   /stylelint-config-recommended/8.0.0_stylelint@14.9.1:
     resolution: {integrity: sha512-IK6dWvE000+xBv9jbnHOnBq01gt6HGVB2ZTsot+QsMpe82doDQ9hvplxfv4YnpEuUwVGGd9y6nbaAnhrjcxhZQ==}
     peerDependencies:
       stylelint: ^14.8.0
     dependencies:
       stylelint: 14.9.1
+    dev: true
+
+  /stylelint-config-standard/26.0.0_stylelint@14.9.1:
+    resolution: {integrity: sha512-hUuB7LaaqM8abvkOO84wh5oYSkpXgTzHu2Zza6e7mY+aOmpNTjoFBRxSLlzY0uAOMWEFx0OMKzr+reG1BUtcqQ==}
+    peerDependencies:
+      stylelint: ^14.9.0
+    dependencies:
+      stylelint: 14.9.1
+      stylelint-config-recommended: 8.0.0_stylelint@14.9.1
     dev: true
 
   /stylelint/14.9.1:
@@ -7498,13 +7523,6 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
-    dev: false
-
-  /uuidv4/6.2.13:
-    resolution: {integrity: sha512-AXyzMjazYB3ovL3q051VLH06Ixj//Knx7QnUSi1T//Ie3io6CpsPu9nVMOx5MoLWh6xV0B9J0hIaxungxXUbPQ==}
-    dependencies:
-      '@types/uuid': 8.3.4
-      uuid: 8.3.2
     dev: false
 
   /v8-compile-cache-lib/3.0.1:

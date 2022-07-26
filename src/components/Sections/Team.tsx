@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 
-import { uuid } from "uuidv4";
+import { v4 as uuid } from "uuid";
 
 import { handleSectionAnimation } from '~mb/animation/functions'
 import { TeamMemberCard } from '~mb/cards/index';
@@ -15,7 +15,7 @@ export function TeamSectionLead(): JSX.Element {
   )
 }
 
-export function TeamSection(): JSX.Element {
+export default function TeamSection(): JSX.Element {
   const sectionId = '#team';
 
   useLayoutEffect(() => {

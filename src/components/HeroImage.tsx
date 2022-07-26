@@ -1,6 +1,5 @@
 import Imgix from 'react-imgix'
 
-import heroImage from '~mb/assets/images/moon.jpg'
 import { buildImgUrl } from '~mb/lib/helpers'
 
 export function HeroImage(): JSX.Element {
@@ -11,7 +10,7 @@ export function HeroImage(): JSX.Element {
     <picture>
       <Imgix
         className='h-full w-full object-cover'
-        src={buildImgUrl(heroImage)}
+        src={buildImgUrl('/assets/images/moon.jpg')}
         width={1200}
         height={800}
         htmlAttributes={{

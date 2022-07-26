@@ -21,7 +21,7 @@ export function PartnersCard(properties: PartnersCardProperties): JSX.Element {
       <picture>
         <Imgix
           className="object-cover w-full h-full transition-all duration-300 bg-cover group-hover:scale-110 group-hover:opacity-20 group-focus:scale-110 group-focus:opacity-20"
-          src={buildImgUrl(image)}
+          src={buildImgUrl(image, 'assets/partners/images')}
           width={300}
           height={220}
           htmlAttributes={{

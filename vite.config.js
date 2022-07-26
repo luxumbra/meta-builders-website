@@ -1,3 +1,4 @@
+/** @type {import('vite').UserConfig} */
 import * as path from 'node:path'
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
@@ -11,6 +12,7 @@ const root = path.resolve(__dirname, 'src')
 const outdir = path.resolve(__dirname, 'dist')
 
 const defaultConfig = {
+  base: './',
   plugins: [
     tsconfigPaths(),
     react(),

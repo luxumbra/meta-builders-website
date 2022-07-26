@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 
-import { uuid } from "uuidv4";
+import { v4 as uuid } from "uuid";
 
 import { handleSectionAnimation } from '~mb/animation/functions';
 import { PartnersCard  } from  '~mb/cards/index';
@@ -17,7 +17,7 @@ export function PartnerSectionLead(): JSX.Element {
   )
 }
 
-export function PartnersSection(): JSX.Element {
+export default function PartnersSection(): JSX.Element {
   const sectionId = '#partners';
 
   useLayoutEffect(() => {

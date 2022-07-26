@@ -4,12 +4,11 @@ import { useLayoutEffect } from "react";
 import Imgix from "react-imgix";
 
 import { handleSplashContentAnimation, handleSplashCharacterAnimation } from "~mb/animation/functions";
-import Astronaut from '~mb/assets/images/astronaut.png';
 import {HeroImage} from "~mb/components/HeroImage";
 import { Starfield } from "~mb/components/Starfield";
 import { buildImgUrl } from "~mb/lib/helpers";
 
-export function SplashSection(): JSX.Element {
+export default function SplashSection(): JSX.Element {
 
   // const widths = [450, 800];
   const sizes = "(min-width: 640px) 42vw, 67vw";
@@ -57,7 +56,7 @@ export function SplashSection(): JSX.Element {
 
           <Imgix
             className="object-cover w-full h-full invisible leadIn"
-            src={buildImgUrl(Astronaut)}
+            src={buildImgUrl('assets/images/astronaut.png')}
             width={450}
             htmlAttributes={{
               alt: "A floating astronaut in a space suit",
@@ -69,52 +68,3 @@ export function SplashSection(): JSX.Element {
     </section>
   )
 }
-
-// <!-- https://github.com/withastro/compiler/issues/395 -->
-// <!-- <noscript>
-//   <style>
-//     #splash-bg-fallback {
-//       @apply block;
-//     }
-//   </style>
-// </noscript> -->
-
-// <script>
-//   import { handleSplashContentAnimation, handleSplashCharacterAnimation } from "~mb/animation/functions";
-//   const elSelector = "#splash-content > .leadIn";
-//   const triggerSelector = "#splash-wrapper";
-//   const charSelector = "#splash-character .leadIn";
-//   const charTriggerSelector = "#splash-character";
-//   handleSplashContentAnimation(elSelector, triggerSelector);
-//   handleSplashCharacterAnimation(charSelector, triggerSelector);
-// </script>
-
-// <style>
-//   @keyframes float {
-//     0% {
-//       transform: translate3d(0, 0, 0);
-//     }
-
-//     100% {
-//       transform: translate3d(0, 30px, 0);
-//     }
-//   }
-
-//   picture {
-//     animation: float linear 2.5s infinite alternate;
-//   }
-
-//   @media (prefers-reduced-motion: reduce) {
-//     picture {
-//       @apply animate-none;
-//     }
-
-//     :global(#starfield) {
-//       @apply hidden;
-//     }
-
-//     #splash-bg-fallback {
-//       @apply block;
-//     }
-//   }
-// </style>

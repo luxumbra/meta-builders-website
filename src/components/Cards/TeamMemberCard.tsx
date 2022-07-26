@@ -1,18 +1,20 @@
 import Imgix from 'react-imgix';
 
-import {
-  imgixUrl
-} from '~mb/lib/constants';
+import { buildImgUrl } from '~mb/lib/helpers';
 import type { ITeamMember } from '~mb/types';
 
 
 export type TeamMember = ITeamMember
 
-const buildImgUrl = (imgPath: string): string => `${imgixUrl}/team/${imgPath}.webp`;
-
 export function TeamMemberCard(properties: TeamMember): JSX.Element {
   const { image, name, role } = properties;
   const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
+  console.log('image', image);
+  const isProduction = import.meta.env.VITE_NODE_ENV === 'production';
+  const siteUrl = import.meta.env.VITE_SITE_URL as string;
+  const avatar = new URL(image, `${siteUrl}/assets/team/images`);
+  const avatarUrl = avatar.toString();
+  console.log('avatarUrl', avatarUrl);
 
   return (
     <div className="group">
@@ -24,16 +26,20 @@ export function TeamMemberCard(properties: TeamMember): JSX.Element {
         h-[150px]
         overflow-hidden`}
           >
-            <Imgix
-              className="object-cover w-full h-full transition-all duration-300 bg-cover group-hover:scale-110 group-hover:opacity-20 group-focus:scale-110 group-focus:opacity-20"
-              src={buildImgUrl(image)}
-              sizes={sizes}
-              width={150}
-              height={150}
-              htmlAttributes={{
-                alt: `${name}'s avatar`
-              }}
-            />
+            {isProduction ? (
+              <Imgix
+                className="object-cover w-full h-full transition-all duration-300 bg-cover group-hover:scale-110 group-hover:opacity-20 group-focus:scale-110 group-focus:opacity-20"
+                src={buildImgUrl(image, 'assets/team/images')}
+                sizes={sizes}
+                width={150}
+                height={150}
+                htmlAttributes={{
+                  alt: `${name}'s avatar`
+                }}
+              />
+            ) : (
+              <img src={`/assets/team/images/${image}`} alt={`${name}'s avatar`} />
+            )}
           </picture>
         </div>
         <figcaption className="text-center flex flex-col gap-0">

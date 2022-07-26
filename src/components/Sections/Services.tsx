@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { Icon } from '@iconify/react'
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from "uuid";
 
 import { handleSectionAnimation } from '~mb/animation/functions'
 import services from "~mb/data/services/services.json";
@@ -17,7 +17,7 @@ export function ServicesLead(): JSX.Element {
   )
 }
 
-export function ServicesSection(): JSX.Element {
+export default function ServicesSection(): JSX.Element {
   const section = 'services'
   useEffect(() => {
     handleSectionAnimation(`#${section}`)

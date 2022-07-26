@@ -3,18 +3,19 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-  /* body {
-    @apply bg-slate-100 dark:bg-blue-900
-  } */
-  a,
+  * body {
+    @apply bg-slate-100 dark:bg-blue-900;
+  }
+  * a,
   .btn {
     @apply transition-colors duration-200;
     @apply hover:text-secondary;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-secondary;
+    @apply focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-transparent;
   }
 
-  h1, h2 {
-    @apply uppercase
+  h1,
+  h2 {
+    @apply uppercase;
   }
 
   header {
@@ -22,31 +23,37 @@
       @apply opacity-100;
     }
   }
+
   .fixed-header {
-    @apply dark:bg-blue-900;
+    @apply fixed top-0 bottom-auto;
+    @apply text-default dark:bg-blue-900;
+  }
+
+  #mobile-menu {
+    &.is-open {
+      @apply block bg-slate-400 dark:bg-pink-200 ;
+    }
   }
 }
 
 @layer utilities {
-
   .gradient-text {
-    @apply text-transparent bg-clip-text;
+    @apply bg-clip-text text-transparent;
     @apply bg-gradient-to-br from-slate-500 via-slate-400 to-slate-600 dark:from-cyan-300 dark:via-fuchsia-200 dark:to-pink-400;
   }
 
   .gradient-text-alt {
-    @apply text-transparent bg-clip-text;
+    @apply bg-clip-text text-transparent;
     @apply bg-gradient-to-br from-slate-400 via-slate-200 to-slate-500;
   }
 
   .bg-default {
-    @apply bg-slate-100 dark:bg-blue-900
+    @apply bg-slate-100 dark:bg-blue-900;
   }
 
   .bg-default-offset {
-    @apply bg-slate-50 dark:bg-blue-800
+    @apply bg-slate-50 dark:bg-blue-800;
   }
-
 
   .text-shadow {
     text-shadow: none;
@@ -93,4 +100,34 @@
     filter: none;
   }
 
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(0, 30px, 0);
+    }
+  }
+
+  #splash-character {
+    picture {
+      animation: float linear 2.5s infinite alternate;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #splash-character {
+      picture {
+        @apply animate-none;
+      }
+    }
+    :global(#starfield) {
+      @apply hidden;
+    }
+
+    #splash-bg-fallback {
+      @apply block;
+    }
+  }
 }
