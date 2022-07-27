@@ -1,0 +1,75 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+  .package-card {
+    @apply bg-glass-secondary-800 shadow-inner border-none;
+
+    backdrop-filter: blur(7px);
+  }
+
+  .floating {
+    @keyframes float {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      100% {
+        transform: translate3d(0, 30px, 0);
+      }
+    }
+
+
+      animation: float linear 2.5s infinite alternate;
+
+
+    @media (prefers-reduced-motion: reduce) {
+        @apply animate-none;
+    }
+  }
+
+  #splash-bg-fallback {
+    @apply block;
+  }
+}
+
+@layer utilities {
+  .interactive {
+    &-shadow {
+      --x-shadow: 0;
+      --y-shadow: 0;
+      --x: 50%;
+      --y: 50%;
+      @apply relative p-5 text-pink-400;
+
+      /* transition: all 0.2s ease; */
+
+      &:hover{
+        @apply cursor-pointer;
+
+        /* transition: all 0.2s ease; */
+
+        text-shadow: var(--x-shadow) var(--y-shadow) 10px var(--color-shadow-alt);
+      }
+
+      & > .i-shadow-text {
+        @apply absolute top-0 left-0 w-full h-full;
+
+        background-image: radial-gradient(circle closest-side, rgba(white, 0.05), transparent);
+        background-position: var(--x) var(--y);
+        background-repeat: no-repeat;
+        text-shadow: none;
+
+        --webkit-background-clip: text;
+        --webkit-text-fill-color: transparent;
+
+        /* transition: all 0.1s ease; */
+      }
+    }
+
+    &-mouseglow {
+      @apply absolute top-0 left-0 shadow-2xl blur shadow-teal-400 w-[300px] h-[300px] bg-teal-400 rounded-full z-[1000];
+    }
+  }
+}

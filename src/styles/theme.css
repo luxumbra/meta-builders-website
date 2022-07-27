@@ -1,6 +1,7 @@
+/* stylelint-disable function-no-unknown */
 [data-theme="light"] {
-  --color-primary: theme("colors.pink.500");
-  --color-secondary: theme("colors.indigo.500");
+  --color-primary: theme("colors.violet.900");
+  --color-secondary: theme("colors.teal.900");
   --color-text: theme("colors.slate.600");
   --color-text-offset: theme("colors.slate.600");
   --color-background: theme("colors.slate.200");
@@ -8,16 +9,18 @@
   --color-border: rgb(17 24 39/0.1); /* gray.900 */
   --color-shadow: theme("colors.slate.700");
   --color-shadow-alt: theme("colors.cyan.300");
+  --color-shadow-teal: theme("colors.teal.300");
 }
 
 [data-theme="dark"] {
-  --color-primary: theme("colors.pink.400");
-  --color-secondary: theme("colors.cyan.400");
-  --color-text: theme("colors.gray.50");
+  --color-primary: theme("colors.violet.500");
+  --color-secondary: theme("colors.teal.500");
+  --color-text: theme("colors.slate.100");
   --color-text-offset: theme("colors.gray.400");
-  --color-background: theme("colors.blue.900");
-  --color-background-offset: theme("colors.blue.800");
+  --color-background: theme("colors.slate.900");
+  --color-background-offset: theme("colors.slate.800");
   --color-border: rgb(249 250 251/0.1); /* gray.50 */
   --color-shadow: theme("colors.black");
-  --color-shadow-alt: theme("colors.pink.500");
+  --color-shadow-alt: theme("colors.pink.300");
+  --color-shadow-teal: theme("colors.teal.300");
 }

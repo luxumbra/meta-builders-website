@@ -1,8 +1,9 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 import { Icon } from "@iconify/react";
+import {useIsClient} from "usehooks-ts"
 
-import { handleSectionAnimation } from '~mb/animation/functions'
+import { useSectionAnimation } from '~mb/hooks/animation'
 import {ContentSection} from "~mb/sections/index";
 
 
@@ -20,14 +21,7 @@ export function IntroSectionLead(): JSX.Element {
 
 export default function IntroSection(): JSX.Element {
   const sectionId = '#intro';
-
-  useLayoutEffect (() => {
-    handleSectionAnimation(sectionId);
-
-    return () => {
-      handleSectionAnimation(sectionId, true);
-    }
-  }, [])
+  useSectionAnimation(sectionId);
 
   return (
     <ContentSection

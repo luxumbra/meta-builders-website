@@ -1,10 +1,8 @@
-import { useEffect } from 'react';
-
 import { Icon } from '@iconify/react'
 import { v4 as uuid } from "uuid";
 
-import { handleSectionAnimation } from '~mb/animation/functions'
 import services from "~mb/data/services/services.json";
+import { useSectionAnimation } from '~mb/hooks/animation';
 import { ContentSection } from "~mb/sections/index";
 
 export function ServicesLead(): JSX.Element {
@@ -19,13 +17,7 @@ export function ServicesLead(): JSX.Element {
 
 export default function ServicesSection(): JSX.Element {
   const section = 'services'
-  useEffect(() => {
-    handleSectionAnimation(`#${section}`)
-
-    return () => {
-      handleSectionAnimation(`#${section}`, true)
-    }
-  }, []);
+   useSectionAnimation(`#${section}`)
 
   return (
     <ContentSection title="Services" id={section} lead={<ServicesLead />}>

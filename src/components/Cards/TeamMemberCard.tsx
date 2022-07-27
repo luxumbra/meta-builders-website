@@ -9,12 +9,11 @@ export type TeamMember = ITeamMember
 export function TeamMemberCard(properties: TeamMember): JSX.Element {
   const { image, name, role } = properties;
   const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
-  console.log('image', image);
   const isProduction = import.meta.env.VITE_NODE_ENV === 'production';
   const siteUrl = import.meta.env.VITE_SITE_URL as string;
   const avatar = new URL(image, `${siteUrl}/assets/team/images`);
   const avatarUrl = avatar.toString();
-  console.log('avatarUrl', avatarUrl);
+  const isDevelopment = import.meta.env.VITE_NODE_ENV === 'development';
 
   return (
     <div className="group">
@@ -26,7 +25,7 @@ export function TeamMemberCard(properties: TeamMember): JSX.Element {
         h-[150px]
         overflow-hidden`}
           >
-            {isProduction ? (
+            {!isDevelopment ? (
               <Imgix
                 className="object-cover w-full h-full transition-all duration-300 bg-cover group-hover:scale-110 group-hover:opacity-20 group-focus:scale-110 group-focus:opacity-20"
                 src={buildImgUrl(image, 'assets/team/images')}

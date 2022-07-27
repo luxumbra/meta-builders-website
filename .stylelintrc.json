@@ -1,4 +1,9 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
-  "rules": {}
+  "rules": {
+    "selector-nested-pattern": null,
+    "max-nesting-depth": [3, {
+      "ignore": ["pseudo-classes"]
+    }]
+  }
 }

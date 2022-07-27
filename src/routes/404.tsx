@@ -12,7 +12,7 @@ const meta = {
   previewImageSrc: new URL('social.png', imgixUrl)
 }
 
-export function PageNotFound(): JSX.Element {
+export default function PageNotFound(): JSX.Element {
   return (
     <Layout content={meta}>
       <ContentSection>

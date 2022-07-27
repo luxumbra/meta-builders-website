@@ -1,58 +1,85 @@
+/* stylelint-disable property-no-unknown */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
 @layer base {
-  * body {
-    @apply bg-slate-100 dark:bg-blue-900;
+  body {
+    @apply font-body bg-gradient-to-bl dark:from-slate-700 dark:to-slate-900;
+
+    &.menu-open {
+      @apply overflow-y-hidden;
+    }
+
   }
-  * a,
+
+  a,
   .btn {
     @apply transition-colors duration-200;
     @apply hover:text-secondary;
-    @apply focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-transparent;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-secondary;
   }
 
-  h1,
-  h2 {
+  h1, h2, h3, h4 {
+    @apply font-heading font-black print:font-bold tracking-tighter;
+  }
+
+  h1, h2 {
     @apply uppercase;
   }
 
   header {
+    @apply backdrop-blur-lg;
+
     &:hover {
       @apply opacity-100;
     }
   }
 
   .fixed-header {
-    @apply fixed top-0 bottom-auto;
-    @apply text-default dark:bg-blue-900;
+    @apply bg-transparent dark:bg-glass-primary-900 !fixed top-0 bottom-auto;
   }
+}
 
-  #mobile-menu {
-    &.is-open {
-      @apply block bg-slate-400 dark:bg-pink-200 ;
+@layer components {
+  .package-card {
+    @apply rounded-t-2xl rounded-b-sm dark:bg-violet-900;
+
+    .package-popup {
+      @apply bg-transparent dark:bg-glass-primary-900;
     }
   }
+
+  footer {
+    .mb-urls {
+      a {
+        @apply w-16 h-16 p-4 border-2 border-violet-500 dark:hover:border-teal-400 transition-all shadow shadow-violet-400 rounded-full;
+
+        svg {
+          @apply h-full dark:text-violet-500  transition-colors text-shadow-alt;
+        }
+
+        &:hover {
+          svg {
+            @apply dark:hover:text-teal-400;
+          }
+        }
+      }
+
+    }
+  }
+
 }
 
 @layer utilities {
   .gradient-text {
-    @apply bg-clip-text text-transparent;
-    @apply bg-gradient-to-br from-slate-500 via-slate-400 to-slate-600 dark:from-cyan-300 dark:via-fuchsia-200 dark:to-pink-400;
+    @apply text-transparent bg-clip-text;
+    @apply bg-gradient-to-br from-slate-500 via-slate-400 to-slate-600 dark:from-pink-300 dark:via-teal-300 dark:to-violet-700;
   }
 
   .gradient-text-alt {
-    @apply bg-clip-text text-transparent;
+    @apply text-transparent bg-clip-text;
     @apply bg-gradient-to-br from-slate-400 via-slate-200 to-slate-500;
-  }
-
-  .bg-default {
-    @apply bg-slate-100 dark:bg-blue-900;
-  }
-
-  .bg-default-offset {
-    @apply bg-slate-50 dark:bg-blue-800;
   }
 
   .text-shadow {
@@ -60,6 +87,7 @@
     filter: drop-shadow(0 0 2px var(--color-shadow));
     text-fill-color: transparent;
     background-clip: text;
+
     --webkit-text-fill-color: transparent;
   }
 
@@ -68,7 +96,36 @@
     filter: drop-shadow(0 0 8px var(--color-shadow-alt));
     text-fill-color: transparent;
     background-clip: text;
+
     --webkit-text-fill-color: transparent;
+
+    &-teal {
+      filter: drop-shadow(0 0 8px var(--color-shadow-teal));
+    }
+
+    &-sm {
+      filter: drop-shadow(0 0 4px var(--color-shadow-alt));
+    }
+
+    &-2xl {
+      filter: drop-shadow(0 0 30px var(--color-shadow-alt));
+
+      &-teal {
+        filter: drop-shadow(0 0 30px var(--color-shadow-teal));
+      }
+
+      &-combo {
+        filter: drop-shadow(0 0 30px var(--color-shadow-teal)), drop-shadow(0 0 30px var(--color-shadow-alt));
+      }
+    }
+
+    &-4xl {
+      filter: drop-shadow(0 0 50px var(--color-shadow-alt));
+
+      &-teal {
+        filter: drop-shadow(0 0 50px var(--color-shadow-teal));
+      }
+    }
   }
 
   .text-shadow-sm {
@@ -76,6 +133,7 @@
     filter: drop-shadow(0 0 4px var(--color-shadow));
     text-fill-color: transparent;
     background-clip: text;
+
     --webkit-text-fill-color: transparent;
   }
 
@@ -84,6 +142,7 @@
     filter: drop-shadow(0 0 8px var(--color-shadow));
     text-fill-color: transparent;
     background-clip: text;
+
     --webkit-text-fill-color: transparent;
   }
 
@@ -92,6 +151,7 @@
     filter: drop-shadow(0 0 30px var(--color-shadow));
     text-fill-color: transparent;
     background-clip: text;
+
     --webkit-text-fill-color: transparent;
   }
 
@@ -100,34 +160,4 @@
     filter: none;
   }
 
-  @keyframes float {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-
-    100% {
-      transform: translate3d(0, 30px, 0);
-    }
-  }
-
-  #splash-character {
-    picture {
-      animation: float linear 2.5s infinite alternate;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    #splash-character {
-      picture {
-        @apply animate-none;
-      }
-    }
-    :global(#starfield) {
-      @apply hidden;
-    }
-
-    #splash-bg-fallback {
-      @apply block;
-    }
-  }
 }

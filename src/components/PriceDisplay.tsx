@@ -1,3 +1,4 @@
+import accounting from "accounting";
 
 export type IPriceDisplayProperties = {
   price: string;
@@ -6,11 +7,18 @@ export type IPriceDisplayProperties = {
 
 /** Displays the price of an asset in a pretty way */
 export function PriceDisplay({ price, currency }: IPriceDisplayProperties): JSX.Element {
+  const cost = Number.parseFloat(price);
+  const formatted = accounting.formatMoney(price, '$', 2)
+
   return (
-    <div className="flex flex-row items-center justify-between">
-      <span>{price}</span>
-      <span>{currency}</span>
-    </div>
+      <p className="price inline-flex gap-3 text-lg font-normal">
+      {cost > 0 ? formatted : 'TBD'}
+      {cost > 0 ?
+        (
+          <span className="text-violet-400">{currency}</span>
+        ) : undefined
+      }
+    </p>
   )
 }
 

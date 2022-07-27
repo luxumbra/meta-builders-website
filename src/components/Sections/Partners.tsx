@@ -2,9 +2,9 @@ import { useLayoutEffect } from "react";
 
 import { v4 as uuid } from "uuid";
 
-import { handleSectionAnimation } from '~mb/animation/functions';
 import { PartnersCard  } from  '~mb/cards/index';
 import partners from "~mb/data/partners/partners.json";
+import { useSectionAnimation } from "~mb/hooks/animation";
 import {ContentSection} from "~mb/sections/index";
 
 
@@ -19,14 +19,7 @@ export function PartnerSectionLead(): JSX.Element {
 
 export default function PartnersSection(): JSX.Element {
   const sectionId = '#partners';
-
-  useLayoutEffect(() => {
-    handleSectionAnimation(sectionId);
-
-    return () => {
-      handleSectionAnimation(sectionId, true);
-    };
-  }, [])
+  useSectionAnimation(sectionId);
 
   return (
     <ContentSection title="MB Partners" id="partners" lead={<PartnerSectionLead />}>

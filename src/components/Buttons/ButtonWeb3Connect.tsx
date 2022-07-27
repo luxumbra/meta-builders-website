@@ -10,7 +10,12 @@ import { TbWallet, TbWalletOff } from 'react-icons/tb/index.js';
 
 import { shortenAddress } from '~mb/lib/helpers';
 
-export function ButtonWeb3Connect(): JSX.Element {
+export type ButtonWeb3ConnectProps = {
+  size?: number | string | undefined;
+}
+
+export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Element {
+  const {size} = properties;
   // const connectCoinbaseWallet = useCoinbaseWallet();
   const connectMetamaskWallet = useMetamask();
   // const connectWalletConnectWallet = useWalletConnect();
@@ -53,7 +58,7 @@ export function ButtonWeb3Connect(): JSX.Element {
 
   if (address) {
     return (
-      <div className='flex flex-row-reverse items-center justify-center gap-3'>
+      <div className='flex flex-row-reverse items-center justify-center gap-0 lg:gap-3'>
       <button
         type="button"
         className="
@@ -63,11 +68,11 @@ export function ButtonWeb3Connect(): JSX.Element {
         aria-label='Web3 wallet disconnect'
         onClick={onClickDisconnect}
       >
-        <TbWalletOff className={`text-xl transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-pink-100'}`} />
+        <TbWalletOff className={`text-${size ?? 'xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
         <span className="sr-only">Disconnect</span>
         </button>
-        <span className='text-xs text-green-500 text-shadow-alt'>{shortenAddress(address)}</span>
-        </div>
+        <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>
+      </div>
     )
   }
   return (
@@ -82,7 +87,8 @@ export function ButtonWeb3Connect(): JSX.Element {
         aria-label='Web3 wallet connect'
         onClick={onClickConnectMetamask}
       >
-        <TbWallet className={`text-xl transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-pink-100'}`} />
+        <TbWallet className={`text-${size ?? 'xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
+        <span className="sr-only">Connect</span>
       </button>
       {address ? <span className='text-xs text-green-500 text-shadow-alt'>{shortenAddress(address)}</span> : undefined}
     </div>
@@ -90,3 +96,7 @@ export function ButtonWeb3Connect(): JSX.Element {
 }
 
 export default ButtonWeb3Connect;
+
+ButtonWeb3Connect.defaultProps = {
+  size: 'xl'
+}

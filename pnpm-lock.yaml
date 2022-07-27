@@ -9,6 +9,7 @@ specifiers:
   '@thirdweb-dev/react': 2.4.1
   '@thirdweb-dev/sdk': ^2.3.31
   '@typechain/ethers-v5': ^10.1.0
+  '@types/accounting': ^0.4.2
   '@types/prop-types': ^15.7.5
   '@types/react': ^18.0.9
   '@types/react-dom': ^18.0.5
@@ -20,8 +21,10 @@ specifiers:
   '@zag-js/react': ^0.1.13
   '@zag-js/toast': ^0.1.11
   '@zag-js/types': ^0.2.3
+  accounting: ^0.4.1
   autoprefixer: ^10.4.7
   axe-core: ^4.4.3
+  buffer: ^6.0.3
   daisyui: ^2.19.1
   eslint: ^8.20.0
   eslint-config-airbnb: 19.0.4
@@ -41,6 +44,7 @@ specifiers:
   jsdom: ^20.0.0
   postcss: ^8.4.14
   postcss-import: ^14.1.0
+  postcss-nesting: ^10.1.10
   prettier: 2.7.1
   prettier-plugin-tailwindcss: ^0.1.12
   prop-types: ^15.8.1
@@ -63,6 +67,7 @@ specifiers:
   ts-node: ^10.9.1
   typechain: ^8.1.0
   typescript: ^4.7.2
+  usehooks-ts: ^2.6.0
   uuid: ^8.3.2
   vite: ^2.9.9
   vite-imagetools: ^4.0.4
@@ -83,10 +88,13 @@ dependencies:
   '@types/uuid': 8.3.4
   '@zag-js/react': 0.1.13_react@18.2.0
   '@zag-js/toast': 0.1.11
+  accounting: 0.4.1
   autoprefixer: 10.4.7_postcss@8.4.14
+  buffer: 6.0.3
   daisyui: 2.19.1_fgqzvxpz7ngmev6eakog5djgby
   ethers: 5.6.9
   gsap: 3.10.4
+  postcss-nesting: 10.1.10_postcss@8.4.14
   prettier-plugin-tailwindcss: 0.1.12_prettier@2.7.1
   prop-types: 15.8.1
   react: 18.2.0
@@ -98,6 +106,7 @@ dependencies:
   react-query: 4.0.0_biqbaboplfbrettd7655fr4n2y
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
   react-useportal: 1.0.17_biqbaboplfbrettd7655fr4n2y
+  usehooks-ts: 2.6.0_react@18.2.0
   uuid: 8.3.2
   wagmi: 0.5.11_w3nw2bpaojq3mlwhwp6lup3gdy
   zod: 3.17.9
@@ -107,6 +116,7 @@ devDependencies:
   '@nabla/vite-plugin-eslint': 1.4.1_eslint@8.20.0+vite@2.9.14
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.6
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.6
+  '@types/accounting': 0.4.2
   '@types/react': 18.0.15
   '@types/react-dom': 18.0.6
   '@types/react-imgix': 9.4.0
@@ -1401,7 +1411,6 @@ packages:
     dependencies:
       postcss: 8.4.14
       postcss-selector-parser: 6.0.10
-    dev: true
 
   /@cush/relative/1.0.0:
     resolution: {integrity: sha512-RpfLEtTlyIxeNPGKcokS+p3BZII/Q3bYxryFRglh5H3A3T8q9fsLYm72VYAMEOOIBLEa8o93kFLiBDUWKrwXZA==}
@@ -2079,6 +2088,10 @@ packages:
       typescript: 4.7.4
     dev: false
 
+  /@types/accounting/0.4.2:
+    resolution: {integrity: sha512-M8W6tsLZguGdRaSQMmg58PUM/5HgoDuBGVyMiYNGi0FZkLzJDjUBGGYRYj1J9OWELCTqfux+ogVyKObCzfWJgg==}
+    dev: true
+
   /@types/bn.js/4.11.6:
     resolution: {integrity: sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg==}
     dependencies:
@@ -2626,6 +2639,10 @@ packages:
   /abab/2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
     dev: true
+
+  /accounting/0.4.1:
+    resolution: {integrity: sha512-RU6KY9Y5wllyaCNBo1W11ZOTnTHMMgOZkIwdOOs6W5ibMTp72i4xIbEA48djxVGqMNTUNbvrP/1nWg5Af5m2gQ==}
+    dev: false
 
   /acorn-globals/6.0.0:
     resolution: {integrity: sha512-ZQl7LOWaF5ePqqcX4hLuv/bLXYQNfNWw2c0/yX/TsPRKamzHcTGQnlCjHT3TsmkOUVEPS3crCxiPfdzE/Trlhg==}
@@ -6037,6 +6054,17 @@ packages:
       postcss: 8.4.14
       postcss-selector-parser: 6.0.10
 
+  /postcss-nesting/10.1.10_postcss@8.4.14:
+    resolution: {integrity: sha512-lqd7LXCq0gWc0wKXtoKDru5wEUNjm3OryLVNRZ8OnW8km6fSNUuFrjEhU3nklxXE2jvd4qrox566acgh+xQt8w==}
+    engines: {node: ^12 || ^14 || >=16}
+    peerDependencies:
+      postcss: ^8.2
+    dependencies:
+      '@csstools/selector-specificity': 2.0.2_444rcjjorr3kpoqtvoodsr46pu
+      postcss: 8.4.14
+      postcss-selector-parser: 6.0.10
+    dev: false
+
   /postcss-resolve-nested-selector/0.1.1:
     resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
     dev: true
@@ -7505,6 +7533,14 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
+
+  /usehooks-ts/2.6.0_react@18.2.0:
+    resolution: {integrity: sha512-Kj/4oc2nOxRDGTDb2v1ZulF7+tpeXFuqI6cUesM0Vic7TPPDlFORxKh4ivsYg+NTvX/YbM+lhqqkfFTiIt23eg==}
+    peerDependencies:
+      react: '>=16.9.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}

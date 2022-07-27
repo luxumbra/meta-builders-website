@@ -1,3 +1,7 @@
+import type { Json } from "@thirdweb-dev/sdk";
+import { JsonObject } from "@thirdweb-dev/sdk";
+import type { BigNumber } from "ethers"
+
 export interface ITeamMember {
   name: string;
   image: string;
@@ -25,10 +29,17 @@ export interface IPackage {
   id: string;
   name: string;
   description: string;
-  price: string;
+  displayPrice: string;
+  value: BigNumber;
+  address: string;
   currency: string;
+  currencySymbol: string;
   image: string;
-  buyContract: string;
-  consultingHours: number;
-  includedServices: IService[];
+  type: string;
+  attributes: Json;
+}
+
+export interface IPackAttribute {
+  value: string;
+  trait_type: string;
 }

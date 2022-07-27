@@ -18,8 +18,15 @@ export function PartnersCard(properties: PartnersCardProperties): JSX.Element {
   return (
     <a className="group aspect-video hover:!text-default leadIn" href={url}>
     <figure className="relative w-full h-full overflow-hidden">
-      <picture>
-        <Imgix
+        <picture
+          className={`
+          relative
+          rounded-full
+        w-[150px]
+        h-[150px]
+        overflow-hidden`}
+        >
+        {/* <Imgix
           className="object-cover w-full h-full transition-all duration-300 bg-cover group-hover:scale-110 group-hover:opacity-20 group-focus:scale-110 group-focus:opacity-20"
           src={buildImgUrl(image, 'assets/partners/images')}
           width={300}
@@ -28,11 +35,12 @@ export function PartnersCard(properties: PartnersCardProperties): JSX.Element {
             alt: `A screenshot of ${url}`,
             sizes,
           }}
-        />
+        /> */}
+          <img src="assets/partners/images/placeholder.png" alt="Meta-Builders" className='object-cover w-full h-full transition-all duration-300 bg-cover group-hover:scale-110 group-hover:opacity-20 group-focus:scale-110 group-focus:opacity-20' />
       </picture>
       <figcaption className="absolute inset-0">
         <div
-          className="flex flex-col items-center justify-center h-full gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100"
+          className="group flex flex-col items-center justify-center h-full gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100"
         >
           <h3 className="text-xl font-extrabold text-center uppercase">
             {name}

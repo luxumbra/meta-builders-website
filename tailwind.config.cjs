@@ -6,7 +6,7 @@ const daisyUIPlugin = require('daisyui')
 const fluidTypePlugin = require('tailwindcss-fluid-type')
 
 module.exports = {
-  content: ["./src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}"],
+  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   darkMode: ['class', '[data-theme="dark"]'],
   theme: {
     extend: {
@@ -16,10 +16,35 @@ module.exports = {
         dark: '#242f3e',
         darkish: '#17263c',
         background: '#17263c',
-        blueGlassAlpha: '#00233385',
-        greenGlassAlpha: '#37491D95',
         white: '#ffffff',
         black: '#000000',
+        glass: {
+          primary: {
+            50: "#f8fafc99",
+            100: "#f1f5f999",
+            200: "#e2e8f099",
+            300: "#cbd5e199",
+            400: "#94a3b899",
+            500: "#64748b99",
+            600: "#47556999",
+            700: "#33415599",
+            800: "#1e293b99",
+            900: "#0f172a99"
+          },
+          secondary: {
+            50: "#f5f3ff85",
+            100: "#ede9fe85",
+            200: "#ddd6fe85",
+            300: "#c4b5fd85",
+            400: "#a78bfa85",
+            500: "#8b5cf685",
+            600: "#7c3aed85",
+            700: "#6d28d985",
+            800: "#5b21b685",
+            900: "#4c1d9585"
+          },
+          light: '#85A0D685',
+        },
         cyan: {
           50: "#E5F7FF",
           100: "#B8E8FF",
@@ -68,18 +93,6 @@ module.exports = {
           800: "#510462",
           900: "#280231"
         },
-        purple: {
-          50: "#F1EAFA",
-          100: "#D9C5F1",
-          200: "#C1A0E8",
-          300: "#A97BE0",
-          400: "#9056D7",
-          500: "#7831CE",
-          600: "#6027A5",
-          700: "#481D7C",
-          800: "#301452",
-          900: "#180A29"
-        },
         yellow: {
           50: "#FAF9EA",
           100: "#F1EFC5",
@@ -93,9 +106,19 @@ module.exports = {
           900: "#29280A"
         },
       },
+      dropShadow: {
+        inset: {
+          '5': '0 0 5px 0 rgba(0, 0, 0, 0.25) inset',
+          '10': '0 0 10px 0 rgba(0, 0, 0, 0.25) inset',
+          '25': '0 0 25px 0 rgba(0, 0, 0, 0.25) inset',
+        }
+      },
       fontFamily: {
-        sans: ['"Exo 2"', 'Ubuntu', 'sans-serif'],
-        serif: ['serif']
+        'sans': ['Exo\\ 2', 'Ubuntu'],
+        'display': ['Alegreya\\ Sans', 'Ubuntu', 'sans-serif'],
+        'heading': ['Exo\\ 2', 'Ubuntu'],
+        'body': ['Ubuntu'],
+        'serif': ['serif']
       },
       textColor: {
         default: "var(--color-text)",

@@ -1,10 +1,8 @@
-import { useLayoutEffect } from "react";
-
 import { v4 as uuid } from "uuid";
 
-import { handleSectionAnimation } from '~mb/animation/functions'
 import { TeamMemberCard } from '~mb/cards/index';
 import members from "~mb/data/team/members.json";
+import { useSectionAnimation } from '~mb/hooks/animation';
 import {ContentSection} from "~mb/sections/index";
 
 export function TeamSectionLead(): JSX.Element {
@@ -18,13 +16,7 @@ export function TeamSectionLead(): JSX.Element {
 export default function TeamSection(): JSX.Element {
   const sectionId = '#team';
 
-  useLayoutEffect(() => {
-    handleSectionAnimation(sectionId);
-
-    return () => {
-      handleSectionAnimation(sectionId, true);
-    }
-  }, [])
+  useSectionAnimation(sectionId);
 
   return (
     <ContentSection title="Meet your team" id="team" lead={<TeamSectionLead />}>

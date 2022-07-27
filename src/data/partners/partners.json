@@ -2,11 +2,16 @@
   {
     "name": "Moloch Cloudship",
     "image": "src/data/showcase/images/polinations.png",
-    "url": "https://polinations.com/"
+    "url": "https://soon.tm/"
   },
   {
     "name": "Shill Hill",
     "image": "src/data/showcase/images/astro-docs.png",
-    "url": "https://docs.astro.build/"
+    "url": "https://soon.tm/"
+  },
+  {
+    "name": "Blockchain Consultants",
+    "image": "src/data/showcase/images/astro-docs.png",
+    "url": "https://soon.tm/"
   }
 ]

@@ -1,9 +1,8 @@
-import { useCallback, useEffect } from "react";
 
 import { Icon } from "@iconify/react";
 import { v4 as uuid } from "uuid";
 
-import { handleScrollReveal } from "~mb/animation/functions";
+import { useScrollReveal } from "~mb/hooks/animation";
 
 export const links = [
   {
@@ -32,17 +31,18 @@ export function Footer(): JSX.Element {
   const elementId = ".leadIn";
   const triggerId = "footer";
 
-  const scrollRevealCallback = useCallback((element: string, trigger: string) => {
-    handleScrollReveal(element, trigger);
-  }, []);
+  useScrollReveal(elementId, triggerId);
+  // const scrollRevealCallback = useCallback((element: string, trigger: string) => {
+  //   handleScrollReveal(element, trigger);
+  // }, []);
 
-  useEffect(() => {
-    scrollRevealCallback(elementId, triggerId);
+  // useEffect(() => {
+  //   scrollRevealCallback(elementId, triggerId);
 
-    return ():void => {
-      console.log("unmounting footer");
-    }
-  }, [scrollRevealCallback])
+  //   return ():void => {
+  //     console.log("unmounting footer");
+  //   }
+  // }, [scrollRevealCallback])
 
 
   return (
