@@ -29,8 +29,9 @@ export function LoadingRipple(): ReactElement {
 type Properties = {
   error?: Error
   isInline?: boolean
+  message?: string
 }
-export default function LoadingOrError({ error, isInline }: Properties): ReactElement {
+export default function LoadingOrError({ error, isInline, message }: Properties): ReactElement {
 
   if (isInline) {
     return (
@@ -39,10 +40,12 @@ export default function LoadingOrError({ error, isInline }: Properties): ReactEl
           <p className='text-inherit text-red-500'>error.message</p>
         ) : (
           <div className='flex flex-col flex-wrap items-center gap-3'>
-            <LoadingGrid />
-            <p className='text-inherit font-bold text-teal-500 dark:text-teal-500'>
-              Loading...<span className="gradient-text">🐌</span>
-            </p>
+              <LoadingGrid />
+              {message && message.length > 0 ? (
+                <p className='text-inherit font-bold text-teal-500 dark:text-teal-500'>
+                  {message}
+                </p>
+              ) : undefined }
           </div>
         )}
       </div>
@@ -58,7 +61,7 @@ export default function LoadingOrError({ error, isInline }: Properties): ReactEl
         <div className='flex flex-col flex-wrap items-center gap-3'>
           <LoadingGrid />
           <p className='text-6xl font-bold text-teal-500 dark:text-teal-500'>
-            Loading...<span className="gradient-text transform -scale-[1]">🐌</span>
+              {message} <span className="gradient-text transform -scale-[1]">🐌</span>
           </p>
         </div>
       )}
@@ -67,5 +70,6 @@ export default function LoadingOrError({ error, isInline }: Properties): ReactEl
 }
 LoadingOrError.defaultProps = {
   error: undefined,
-  isInline: false
+  isInline: false,
+  message: undefined
 }

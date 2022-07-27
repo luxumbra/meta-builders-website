@@ -52,7 +52,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
 
 
   if (isLoading) {
-    return <LoadingOrError isInline />;
+    return <LoadingOrError isInline message="Loading package NFTs" />;
   }
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -70,10 +70,12 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
             currencySymbol: buyoutCurrencyValuePerToken.symbol,
             image: asset.image,
             type: asset.type,
-            attributes: asset.attributes
+            attributes: asset.attributes,
+            marketplace,
           } as IPackage
 
-          return <PackageCard key={uuid()} pack={pack} />
+            return <PackageCard key={uuid()} pack={pack} />
+
         })
         ) : (
           <div className="flex flex-col items-center justify-center">

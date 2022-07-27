@@ -25,7 +25,7 @@ function App(): ReactElement {
   });
 
   return (
-    <Suspense fallback={<LoadingOrError />}>
+    <Suspense fallback={<LoadingOrError message="Loading..." />}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/404" element={<PageNotFound />} />

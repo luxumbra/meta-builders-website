@@ -23,9 +23,9 @@ export function TeamMemberCard(properties: TeamMember): JSX.Element {
             className={`rounded-full
         w-[150px]
         h-[150px]
-        overflow-hidden`}
+        overflow-hidden box-shadow-[0_0_10px_5px_rgba(0,0,0,0.8)_inset]`}
           >
-            {!isDevelopment ? (
+            {/* {!isDevelopment ? (
               <Imgix
                 className="object-cover w-full h-full transition-all duration-300 bg-cover group-hover:scale-110 group-hover:opacity-20 group-focus:scale-110 group-focus:opacity-20"
                 src={buildImgUrl(image, 'assets/team/images')}
@@ -36,9 +36,9 @@ export function TeamMemberCard(properties: TeamMember): JSX.Element {
                   alt: `${name}'s avatar`
                 }}
               />
-            ) : (
-              <img src={`/assets/team/images/${image}`} alt={`${name}'s avatar`} />
-            )}
+            ) : ( */}
+              <img src={`/assets/team/images/${image}`} alt={`${name}'s avatar`} className="object-cover w-full h-full transition-all duration-200 bg-cover group-hover:scale-110 group-hover:blur-0 group-focus:scale-110 group-focus:hue-rotate-0" />
+            {/* )} */}
           </picture>
         </div>
         <figcaption className="text-center flex flex-col gap-0">

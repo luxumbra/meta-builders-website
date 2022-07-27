@@ -1,4 +1,4 @@
-import type { Json } from "@thirdweb-dev/sdk";
+import type { Json, Marketplace } from "@thirdweb-dev/sdk";
 import { JsonObject } from "@thirdweb-dev/sdk";
 import type { BigNumber } from "ethers"
 
@@ -37,6 +37,7 @@ export interface IPackage {
   image: string;
   type: string;
   attributes: Json;
+  marketplace: Marketplace;
 }
 
 export interface IPackAttribute {

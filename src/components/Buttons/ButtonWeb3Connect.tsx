@@ -68,7 +68,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
         aria-label='Web3 wallet disconnect'
         onClick={onClickDisconnect}
       >
-        <TbWalletOff className={`text-${size ?? 'xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
+        <TbWallet className={`text-${size ?? 'xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
         <span className="sr-only">Disconnect</span>
         </button>
         <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>

@@ -17,6 +17,7 @@ export function useSectionAnimation(
   // if (section.length === 0) return ;
   const { isBrowser } = useSsr()
   const wrapper = document.querySelector(section)
+  // const entry = useIntersectionObserver(section, {})
   const tl = gsap.timeline({
     defaults: {
       duration: 1,
@@ -68,11 +69,11 @@ export function useSectionAnimation(
   }
 
   useEffect(() => {
-    if (isBrowser) {
+    // if (isBrowser) {
       init()
-    }
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isBrowser])
+  })
 }
 
 /**
@@ -203,7 +204,8 @@ export function useSplashContentAnimation(
     tl.from(element, {
       autoAlpha: 0,
       // y: 0,
-      scale: 1,
+      scale: 0.8,
+      transformOrigin: 'center',
       stagger: 0.1
     })
 
@@ -211,12 +213,14 @@ export function useSplashContentAnimation(
       element,
       {
         opacity: 1,
-        // y: 0,
+        xPercent: 0,
         scale: 1
       },
       {
-        opacity: 0,
+        opacity: 1,
         scale: 0.5,
+        transformOrigin: 'center',
+        xPercent: 50,
         scrollTrigger: {
           trigger,
           start: '15% top',
@@ -229,8 +233,9 @@ export function useSplashContentAnimation(
   }
 
   useEffect(() => {
-    if (isBrowser) init()
-  });
+    if (isBrowser && isVisible) init()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible]);
 }
 
 export function useScrollReveal(element: string, trigger: string): void {

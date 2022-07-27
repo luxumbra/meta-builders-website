@@ -1,6 +1,6 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
-import { useBuyCtaAnimation,useSectionAnimation } from '~mb/hooks/animation';
+import { useBuyCtaAnimation, useSectionAnimation } from '~mb/hooks/animation';
 import { marketPlaceContract } from "~mb/lib/constants";
 import {MarketplaceListings} from "~mb/marketplace/index";
 import { ContentSection } from "~mb/sections/index";
@@ -13,17 +13,13 @@ export function SectionIntro(): JSX.Element {
 }
 
 export default function BuySection(): JSX.Element {
+  const sectionReference = useRef<HTMLDivElement>(null);
   const section = 'buy';
   const sectionId = '#buy';
   const ctaId = '#cta-buy';
+  useSectionAnimation(sectionId);
+  // useBuyCtaAnimation(ctaId, sectionId);
 
-  // useEffect(() => {
-  //   console.log('buySection ule');
-
-  //   handleSectionAnimation(sectionId);
-  //   handleBuyCtaAnimation(ctaId, sectionId);
-  // }
-  // , []);
 
   return (
     <ContentSection
