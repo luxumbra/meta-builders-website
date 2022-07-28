@@ -34,7 +34,7 @@ export default function SplashSection(): JSX.Element {
       id="splash-wrapper"
       className="relative h-screen w-full bg-black"
     >
-      <Starfield />
+      {/* <Starfield /> */}
       <div
         id="splash-bg-fallback"
         className="absolute inset-0 hidden"

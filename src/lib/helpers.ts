@@ -26,4 +26,4 @@ export const shortenAddress = (address: string): string => {
 }
 
 
-export const buildImgUrl = (img: string, path: string): string => `${imgixUrl}/${path}/${img}.webp`;
+export const buildImgUrl = (img: string, path: string): string => `${imgixUrl}/${path}/${img}`;

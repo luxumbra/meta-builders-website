@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export * from '../animation/starfield'
 
+/** Handle the scroll triggers for page sections */
 export function useSectionAnimation(
   section: string,
   clear?: boolean | undefined
@@ -130,6 +131,7 @@ export function useBuyCtaAnimation(
   }, [isBrowser]);
 }
 
+/** Animations & triggers for the extra content (rhs) on the splash screen */
 export function useSplashCharacterAnimation(
   element: string,
   triggerReference: RefObject<HTMLElement>,
@@ -183,6 +185,7 @@ export function useSplashCharacterAnimation(
 
 }
 
+/** Animations for the splash screen content */
 export function useSplashContentAnimation(
   element: string,
   triggerReference: RefObject<HTMLElement>,
@@ -193,8 +196,10 @@ export function useSplashContentAnimation(
   const isVisible = !!entry?.isIntersecting
 
   const tl = gsap.timeline({
+    paused: true,
+    reversed: true,
     defaults: {
-      duration: 0.5,
+      duration: 1.5,
       delay: 0,
       ease: 'power3.inOut'
     }
@@ -204,7 +209,8 @@ export function useSplashContentAnimation(
     tl.from(element, {
       autoAlpha: 0,
       // y: 0,
-      scale: 0.8,
+      xPercent: 0,
+      scale: 1,
       transformOrigin: 'center',
       stagger: 0.1
     })
@@ -217,23 +223,34 @@ export function useSplashContentAnimation(
         scale: 1
       },
       {
-        opacity: 1,
+        opacity: 0,
         scale: 0.5,
         transformOrigin: 'center',
-        xPercent: 50,
+        xPercent: -10,
         scrollTrigger: {
           trigger,
-          start: '15% top',
-          end: '+=500',
-          scrub: 1
-          // markers: true,
+          start: '15% center',
+          end: '+=1000',
+          scrub: 1,
         }
       }
     )
+
+    // if (isVisible) {
+      if (tl.reversed()) {
+        tl.play()
+      }
+
+    // }
   }
 
   useEffect(() => {
     if (isBrowser && isVisible) init()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      tl.clear()
+    }
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
 }

@@ -26,7 +26,7 @@ export default function Header(): JSX.Element {
   const isVisible = !!entry?.isIntersecting;
   const [isFixed, setIsFixed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
+  const wrapper = mobileMenuWrapper.current;
   // define the default for the timeline
   const tl = gsap.timeline({ paused: true, reversed: true });
 
@@ -68,7 +68,7 @@ export default function Header(): JSX.Element {
     // if (typeof window === "undefined") return;
     console.log('toggleMobileMenu');
 
-    const wrapper = mobileMenuWrapper.current;
+
     const body = document.querySelector("body") as HTMLElement;
     if (tl.reversed()) {
       tl.play()
@@ -91,6 +91,8 @@ export default function Header(): JSX.Element {
     } else {
       mobileMenuWrapper.current?.classList.add("hidden");
     }
+    if (wrapper) wrapper.ariaHidden = wrapper.classList.contains("hidden") ? 'false' : 'true';
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   /** Changes the header from `absolute` to `fixed` when the user first scrolls,
@@ -117,8 +119,7 @@ export default function Header(): JSX.Element {
   // Effect to give the header a bounce effect on page load.
   useEffect(() => {
     const headerTl = gsap.timeline({ paused: true, reversed: true });
-    // if (isVisible) {
-    gsap.from(header, {
+    headerTl.from(header, {
       duration: 1,
       opacity: 0,
       yPercent: -100,
@@ -127,10 +128,20 @@ export default function Header(): JSX.Element {
     // if (headerTl.reversed()) {
     //   headerTl.play()
     // } else {
-    //   headerTl.reverse();
-    // }
-    // }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+      //   headerTl.reverse();
+      // }
+      // }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (isVisible) {
+      if (headerTl.reversed()) {
+        headerTl.play()
+      } else {
+        headerTl.reverse();
+      }
+    }
+    return () => {
+      // headerTl.clear();
+    }
   }, [header, isVisible]);
 
   // Listener to close the mobile menu when the user clicks a menu item.
@@ -152,19 +163,19 @@ export default function Header(): JSX.Element {
       <header
         ref={header}
         id="page-header"
-        className="absolute bottom-0 z-10 h-12 lg:h-20 flex items-center justify-between w-full p-4 md:px-8 text-white border-transparent bg-glass-primary-900 shadow-xs shadow-violet-600 overflow-visible"
+        className="absolute bottom-0 z-10 h-12 lg:h-20 flex items-center justify-between w-full p-4 md:px-8 text-white border-transparent shadow-xs shadow-violet-600 overflow-visible"
       >
         <a
-          className="flex items-center gap-3 hover:text-default"
+          className="flex items-center gap-3 hover:text-default justify-start"
           href="/"
         >
           <h1 className="sr-only">Meta-Builders</h1>
           <span
-            className="font-heading inline-flex items-center text-lg text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
+            className="brand font-heading inline-flex items-center text-lg text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
           ><span>Meta-Builders</span></span>
         </a>
 
-        <div className="desktop-menu hidden sm:flex items-center">
+        <div className="desktop-menu hidden sm:flex items-center self-end ">
           <nav className="hidden sm:block">
             <ul className="flex items-center gap-6">
               {navItems.map(({ title, url }) => (
@@ -179,7 +190,7 @@ export default function Header(): JSX.Element {
               ))}
             </ul>
           </nav>
-          <div className="flex items-center gap-3 px-0">
+          <div className="flex items-center gap-0 px-0">
             <ButtonDarkMode />
             <ButtonWeb3Connect />
           </div>
@@ -233,7 +244,7 @@ export default function Header(): JSX.Element {
       <div
         className="mobile-tools w-full h-12 fixed bottom-0 py-3 flex flex-row items-center justify-end gap-1 lg:gap-1 lg:hidden z-[1000]"
       >
-        <ButtonWeb3Connect size="3xl" />
+        <ButtonWeb3Connect size="text-2xl lg:text-3xl" />
         <ButtonDarkMode />
         <button
           type="button"
@@ -241,7 +252,7 @@ export default function Header(): JSX.Element {
           aria-label="Open navigation"
         >
           <Icon
-            icon="mdi:menu"
+            icon="heroicons-solid:menu"
             className="h-8 w-8"
           />
         </button>

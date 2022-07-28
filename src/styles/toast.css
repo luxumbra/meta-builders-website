@@ -3,7 +3,61 @@
 @import 'tailwindcss/utilities';
 
 @layer components {
-  .toastLayer {
+  .portal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+  }
 
+  .toast {
+    @apply rounded-md shadow-md w-full !max-w-xs absolute;
+
+    .toast-header {
+      @apply flex items-start justify-between;
+    }
+
+    h3 {
+      @apply break-words max-w-xs mr-5;
+    }
+
+    .btn {
+      @apply p-0 text-slate-800 absolute right-2 top-0;
+    }
+
+    &[data-part="root"][data-type="info"] {
+      @apply bg-white text-blue-600;
+    }
+
+    &[data-part="root"][data-type="error"] {
+      @apply bg-red-300 text-red-700 max-w-sm;
+    }
+
+    &[data-part="root"][data-type="success"] {
+      @apply bg-green-200 text-green-800;
+    }
+
+    &[data-part="root"][data-type="custom"] {
+      @apply bg-glass-primary-700 text-white;
+    }
+
+    &[data-part="root"][data-type="loading"] {
+      @apply bg-slate-800 text-teal-400;
+
+      .btn {
+        @apply text-teal-300;
+      }
+    }
+
+    &[data-part="progressbar"] {
+      @apply bg-violet-500;
+    }
+
+    &[data-part="root"]:not([data-open]) {
+      animation-duration: 0.3s;
+      animation-name: fadeout;
+    }
   }
 }

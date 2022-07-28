@@ -7,8 +7,8 @@ import { ContentSection } from "~mb/sections/index";
 
 export function SectionIntro(): JSX.Element {
   return <>
-    Wherever you are with your project, <span className="text-primary">our packages</span> will help you get to <span
-  className="text-primary">your desired goal</span> and exceed your expectations.
+    Wherever you are with your project, <span className="text-primary">our packages will help you</span> get to your desired goal and <span
+  className="text-primary">exceed your expectations</span>.
   </>
 }
 
@@ -31,7 +31,7 @@ export default function BuySection(): JSX.Element {
         <MarketplaceListings address={marketPlaceContract}  />
       </div>
 
-      <div
+      {/* <div
         id="cta-buy"
         className="fixed bottom-3/4 right-0 w-1/4 translate-x-full opacity-0 sr-only:opacity-100"
       >
@@ -39,7 +39,7 @@ export default function BuySection(): JSX.Element {
           <h4 className="text-lg font-bold text-blue-300">Chat to us</h4>
           <p className="font-sm text-slate-600 dark:text-slate-500">Jump in our Discord and ask any questions you have, or just say &apos;gm&apos; 👋</p>
         </div>
-      </div>
+      </div> */}
     </ContentSection>
   )
 }

@@ -42,6 +42,7 @@ specifiers:
   ethers: ^5.6.8
   gsap: ^3.10.4
   jsdom: ^20.0.0
+  lodash: ^4.17.21
   postcss: ^8.4.14
   postcss-import: ^14.1.0
   postcss-nesting: ^10.1.10
@@ -94,6 +95,7 @@ dependencies:
   daisyui: 2.19.1_fgqzvxpz7ngmev6eakog5djgby
   ethers: 5.6.9
   gsap: 3.10.4
+  lodash: 4.17.21
   postcss-nesting: 10.1.10_postcss@8.4.14
   prettier-plugin-tailwindcss: 0.1.12_prettier@2.7.1
   prop-types: 15.8.1

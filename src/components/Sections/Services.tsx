@@ -17,7 +17,7 @@ export function ServicesLead(): JSX.Element {
 
 export default function ServicesSection(): JSX.Element {
   const section = 'services'
-   useSectionAnimation(`#${section}`)
+  useSectionAnimation(`#${section}`)
 
   return (
     <ContentSection title="Services" id={section} lead={<ServicesLead />}>

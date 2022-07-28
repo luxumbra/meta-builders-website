@@ -29,24 +29,38 @@
   }
 
   header {
-    @apply backdrop-blur-lg;
+    /* @apply backdrop-blur-lg; */
+
+    .brand {
+      @apply opacity-0 transition-opacity duration-500 ease-in-out;
+    }
 
     &:hover {
-      @apply opacity-100;
+      @apply opacity-100 -translate-x-32;
+    }
+
+    &.fixed-header {
+      @apply bg-transparent dark:bg-glass-primary-900 !fixed top-0 bottom-auto;
+
+      .brand {
+        @apply opacity-100 translate-x-0
+      }
     }
   }
 
-  .fixed-header {
-    @apply bg-transparent dark:bg-glass-primary-900 !fixed top-0 bottom-auto;
-  }
+
 }
 
 @layer components {
+  #portal-root {
+    @apply bg-transparent -z-10;
+  }
+
   .package-card {
     @apply rounded-t-2xl rounded-b-sm dark:bg-violet-900;
 
-    .package-popup {
-      @apply bg-transparent dark:bg-glass-primary-900;
+    .buy-popup {
+      @apply rounded-t-2xl bg-transparent dark:bg-glass-primary-900 overflow-hidden rounded-b-sm;
     }
   }
 

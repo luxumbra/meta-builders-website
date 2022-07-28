@@ -1,5 +1,6 @@
 
 
+import { Icon } from '@iconify/react';
 import {
   useMetamask,
   useNetwork,
@@ -11,7 +12,7 @@ import { TbWallet, TbWalletOff } from 'react-icons/tb/index.js';
 import { shortenAddress } from '~mb/lib/helpers';
 
 export type ButtonWeb3ConnectProps = {
-  size?: number | string | undefined;
+  size?: string;
 }
 
 export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Element {
@@ -58,7 +59,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
 
   if (address) {
     return (
-      <div className='flex flex-row-reverse items-center justify-center gap-0 lg:gap-3'>
+      <div className='flex flex-row-reverse items-center justify-between content-between gap-0 lg:gap-1'>
       <button
         type="button"
         className="
@@ -68,7 +69,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
         aria-label='Web3 wallet disconnect'
         onClick={onClickDisconnect}
       >
-        <TbWallet className={`text-${size ?? 'xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
+        <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
         <span className="sr-only">Disconnect</span>
         </button>
         <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>
@@ -82,15 +83,14 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
         className={`
       btn
       btn-link
-      p-0
+      px-1
       `}
         aria-label='Web3 wallet connect'
         onClick={onClickConnectMetamask}
       >
-        <TbWallet className={`text-${size ?? 'xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
+        <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-3xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
         <span className="sr-only">Connect</span>
       </button>
-      {address ? <span className='text-xs text-green-500 text-shadow-alt'>{shortenAddress(address)}</span> : undefined}
     </div>
   )
 }
@@ -98,5 +98,5 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
 export default ButtonWeb3Connect;
 
 ButtonWeb3Connect.defaultProps = {
-  size: 'xl'
+  size: 'text-2xl'
 }

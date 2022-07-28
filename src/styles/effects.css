@@ -30,7 +30,7 @@
   }
 
   #splash-bg-fallback {
-    @apply block;
+    @apply block opacity-50;
   }
 }
 

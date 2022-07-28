@@ -1,4 +1,5 @@
 
+import { Icon } from "@iconify/react";
 import type { ButtonProps } from "react-daisyui";
 import { Button } from "react-daisyui"
 import { MdDarkMode, MdLightMode } from "react-icons/md"
@@ -23,7 +24,7 @@ export function ButtonDarkMode(): JSX.Element {
   const { theme, toggleTheme }: UseDarkModeType = useDarkMode()
   const isDark: boolean = theme === 'dark'
   const onHandleClick = (): void => toggleTheme()
-  const ModeIcon = isDark ? MdDarkMode : MdLightMode
+  const modeIcon = isDark ? 'ic:baseline-dark-mode' : 'ic:baseline-light-mode'
   return (
     <Button
       aria-label='Toggle dark/light mode'
@@ -31,7 +32,7 @@ export function ButtonDarkMode(): JSX.Element {
       variant='link'
       className='border-0 bg-transparent hover:border-0 hover:bg-transparent'
     >
-      <ModeIcon className='delay-0 text-xl scale-100 transition-all origin-[right_center] duration-500  text-slate-600 hover:text-slate-700 dark:text-violet-300' />
+      <Icon icon={modeIcon} className='delay-0 text-2xl animate-spin scale-100 transition-all origin-[right_center] duration-500  text-slate-600 hover:text-slate-700 dark:text-violet-300' />
     </Button>
   )
 }

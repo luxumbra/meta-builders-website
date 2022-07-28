@@ -28,9 +28,10 @@
       "~mb/animation/*": ["src/lib/animation/*"],
       "~mb/hooks/*": ["src/lib/hooks/*"],
     },
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "typeRoots": ["./types", "./node_modules/@types"],
   },
   "include": ["src", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "typings"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

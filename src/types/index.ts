@@ -36,7 +36,7 @@ export interface IPackage {
   currencySymbol: string;
   image: string;
   type: string;
-  attributes: Json;
+  attributes: Json | Json[];
   marketplace: Marketplace;
 }
 

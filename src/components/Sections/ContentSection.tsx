@@ -39,14 +39,13 @@ export function ContentSection({ title, id, justify, children, lead }: IContentS
       w-full
       my-24
       items-center
-
       ">
         <div className="flex flex-col items-center gap-4">
           <h2 className="leadIn text-6xl font-extrabold tracking-tight text-center gradient-text text-shadow-alt">
             {title}
           </h2>
         </div>
-        <p className="leadIn max-w-3xl text-2xl font-extrabold text-center">
+        <p className="leadIn max-w-3xl text-2xl font-extrabold text-center dark:text-slate-50">
           {lead}
         </p>
         {children}

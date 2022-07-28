@@ -52,13 +52,14 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
 
 
   if (isLoading) {
-    return <LoadingOrError isInline message="Loading package NFTs" />;
+    return <LoadingOrError isInline message="Loading NFTs..." />;
   }
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {(marketplaceListings && marketplaceListings.length > 0) ? (
         marketplaceListings.map((listing: AuctionListing | DirectListing) => {
           const {asset, id, assetContractAddress, buyoutCurrencyValuePerToken, currencyContractAddress} = listing;
+          const cardKey = uuid();
           const pack = {
             id,
             name: asset.name,
@@ -74,7 +75,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
             marketplace,
           } as IPackage
 
-            return <PackageCard key={uuid()} pack={pack} />
+            return <PackageCard key={cardKey} pack={pack} />
 
         })
         ) : (
