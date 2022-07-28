@@ -39,7 +39,7 @@ const checkTheme = (existing: string): void => {
     const isDark = existing === 'dark'
     // const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)')
     // console.log('checkTheme', isDark, userMedia.matches)
-
+    root.dataset.theme = isDark ? 'dark' : 'light'
     root.classList.remove(isDark ? 'light' : 'dark')
     root.classList.add(existing)
 
