@@ -1,65 +1,88 @@
+import { useEffect, useRef } from 'react'
 
+import { useIntersectionObserver } from 'usehooks-ts'
 
 export interface IContentSectionProperties {
-  title?: string;
-  id?: string;
-  justify?: string;
-  children: React.ReactNode;
-  lead?: React.ReactNode;
+  title?: string
+  id?: string
+  justify?: string
+  children: React.ReactNode
+  lead?: React.ReactNode
 }
 /**
  * **ContentSection** - Wraps each page section in a `section` element
  * @param param0 {title: string, id: string, justify?: string, children: React.ReactNode, lead: React.ReactNode}
  * @returns JSX.Element
  */
-export function ContentSection({ title, id, justify, children, lead }: IContentSectionProperties): JSX.Element  {
+export function ContentSection({
+  title,
+  id,
+  justify,
+  children,
+  lead
+}: IContentSectionProperties): JSX.Element {
+  const sectionReference = useRef<HTMLDivElement>(null)
+  const animatedElementReference = useRef<HTMLDivElement>(null)
+  const entry = useIntersectionObserver(animatedElementReference, {})
+  const isVisible = !!entry?.isIntersecting
+
+  useEffect(() => {
+    console.log(`Render section ${title ?? 'undefined'}`, { isVisible })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible]);
+
+
+
 
   return (
     <section
       id={id}
+      ref={sectionReference}
       className={`
       flex
       flex-col
       items-center
-      justify-${justify ?? "start"}
-      scroll-mt-24
-      w-full
+      justify-${justify ?? 'start'}
       min-h-screen
-      overflow-y-hidden
+      w-full
+      scroll-mt-24
       overflow-x-hidden
+      overflow-y-hidden
       bg-slate-200
       dark:bg-blue-900
       `}
     >
-      <div className="
-      flex
-      flex-col
-      gap-4
-      space-y-8
-      w-full
-      my-24
-      items-center
-      ">
-        <div className="flex flex-col items-center gap-4">
-          <h2 className="leadIn text-6xl font-extrabold tracking-tight text-center gradient-text text-shadow-alt">
+      <div
+        ref={animatedElementReference}
+        className='
+          my-24
+          flex
+          w-full
+          flex-col
+          items-center
+          gap-4
+          space-y-8
+          '
+      >
+        <div className='flex flex-col items-center gap-4'>
+          <h2 className='gradient-text text-shadow-alt text-center font-extrabold tracking-tight text-6xl'>
             {title}
           </h2>
         </div>
-        <p className="leadIn max-w-3xl text-2xl font-extrabold text-center dark:text-slate-50">
+        <p className='max-w-3xl text-center font-extrabold text-2xl dark:text-slate-50'>
           {lead}
         </p>
         {children}
       </div>
     </section>
-
   )
 }
 
 export default ContentSection
 
 ContentSection.defaultProps = {
-  title: "",
-  id: "",
+  title: '',
+  id: '',
   justify: 'start',
-  lead: <div className="hidden" />
+  lead: <div className='hidden' />
 }

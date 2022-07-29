@@ -2,14 +2,12 @@
 import { Buffer } from 'buffer';
 
 import type { ReactElement } from 'react';
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect } from 'react';
 
 import gsap from 'gsap';
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { useEventListener } from 'usehooks-ts';
 
-import LoadingOrError from '~mb/components/LoadingOrError';
 import PageNotFound from '~mb/routes/404';
 import Home from '~mb/routes/Home';
 
@@ -21,7 +19,7 @@ function App(): ReactElement {
   const location = useLocation();
 
   /**
-   * Effect to set the Buffer global variable due to a Coinbase Wallet bug
+   * Effect to set the Buffer global variable due to a Coinbase Wallet bug (a dep of ThirdWeb sdk)
    * See: https://stackoverflow.com/a/71953677/5721585
     */
   useEffect(() => {
@@ -29,13 +27,13 @@ function App(): ReactElement {
       window.Buffer = Buffer;
     }
   });
-  function onLoad(): void {
+
+  function onLocation(): void {
     if (typeof window === 'undefined') return;
     if (location.hash === '') return;
     const tl = gsap.timeline({ paused: true, reversed: true });
     const fallback = document.documentElement;
     const element = document.querySelector(location.hash);
-    console.log('onLoad', location.hash, element, fallback);
     // eslint-disable-next-line no-debugger
     // debugger;
 
@@ -57,7 +55,7 @@ function App(): ReactElement {
   }
 
   useEffect(() => {
-    onLoad();
+    onLocation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.hash, location.pathname]);
 

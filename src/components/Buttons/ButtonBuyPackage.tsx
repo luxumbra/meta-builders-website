@@ -238,11 +238,11 @@ export function BuyPackackagePopUp(
         </div>
         <div
           ref={overlayBg1Reference}
-          className='absolute -inset-1/2 h-[200%] w-[200%] origin-center z-30 flex items-center content-center justify-center'
+          className='absolute -inset-1/2 h-[200%] w-[200%] text-center origin-center z-30 flex items-center content-center justify-center'
         >
-          <div className='text-teal-300 opacity-[5%] text-[10rem] font-black leading-tight tracking-tighter uppercase font-sans transform -rotate-45'>{name}</div>
+          <div className='text-violet-50 dark:text-teal-300 opacity-[5%] text-[10rem] text-center font-black leading-tight tracking-tighter uppercase font-sans transform -rotate-45'>{name}</div>
         </div>
-        <div className='absolute inset-px z-10 origin-top items-center justify-center dark:bg-slate-800' />
+        <div className='absolute inset-px z-10 origin-top items-center justify-center bg-violet-900 dark:bg-slate-800' />
       </div>
 
       <Portal>
@@ -293,7 +293,7 @@ export function ButtonBuyPackage(properties: IButtonBuyPackage): JSX.Element {
         type='button'
         aria-label='Buy Package'
         className={`btn transition-colors ${!address
-            ? 'bg-slate-800 text-violet-400'
+            ? 'bg-teal-700 text-violet-100'
             : 'bg-teal-400 text-slate-900'
           }  flex-grow transition-all duration-200 ease-in-out`}
         data-package={pack.listingId}

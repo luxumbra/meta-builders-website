@@ -54,27 +54,15 @@
     @apply rounded-t-2xl rounded-b-md dark:bg-violet-900;
 
     .buy-popup {
-      @apply rounded-t-2xl rounded-b-md bg-transparent dark:bg-glass-primary-900 overflow-hidden;
+      @apply rounded-t-2xl rounded-b-md bg-glass-secondary-900 dark:bg-glass-primary-900 overflow-hidden;
     }
   }
 
   footer {
-    .mb-urls {
-      a {
-        @apply w-16 h-16 p-4 border-2 border-violet-500 dark:hover:border-teal-400 transition-all shadow shadow-violet-400 rounded-full;
-
-        svg {
-          @apply h-full dark:text-violet-500  transition-colors text-shadow-alt;
-        }
-
-        &:hover {
-          svg {
-            @apply dark:hover:text-teal-400;
-          }
-        }
-      }
-
+    a {
+      @apply text-violet-800 dark:text-teal-300 opacity-70 font-bold;
     }
+
   }
 
 }

@@ -11,15 +11,14 @@ import { buildImgUrl } from "~mb/lib/helpers";
 export default function SplashSection(): JSX.Element {
   const sectionReference = useRef<HTMLDivElement>(null);
   // const widths = [450, 800];
-  const sizes = "(min-width: 640px) 42vw, 67vw";
   const isDevelopment = import.meta.env.VITE_NODE_ENV === "development"; // this doesn't work
 
-  const elementSelector = "#splash-content > .leadIn";
+  const elementSelector = ".leadIn";
   const triggerSelector = sectionReference;
-  const charSelector = "#splash-character .leadIn";
+  // const charSelector = "#splash-character .leadIn";
 
   useSplashContentAnimation(elementSelector, triggerSelector);
-  useSplashCharacterAnimation(charSelector, triggerSelector);
+  // useSplashCharacterAnimation(charSelector, triggerSelector);
 
   useEffect(() => {
     if (isDevelopment) {
@@ -31,23 +30,23 @@ export default function SplashSection(): JSX.Element {
     <section
       ref={sectionReference}
       id="home"
-      className="splash-wrapper relative h-screen w-full bg-black"
+      className="splash-wrapper relative h-screen w-full bg-black overflow-x-hidden"
     >
       {/* <Starfield /> */}
       <div
         id="splash-bg-fallback"
-        className="absolute inset-0 hidden"
+        className="absolute inset-0 w-screen h-screen"
       >
         <HeroImage />
       </div>
       <div className="relative grid h-full sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-20 lg:pb-0">
-        <div id="splash-content">
-          <h1 className="leadIn invisible flex flex-col self-start lg:self-end gap-2 sm:gap-4 sm:self-auto sm:justify-self-end">
+        <div id="splash-content" className="leadIn invisible">
+          <h1 className="flex flex-col self-start lg:self-end gap-2 sm:gap-4 sm:self-auto sm:justify-self-end">
             <div className="shadow-font-heading font-black tracking-tighter text-center text-8xl gradient-text text-shadow-alt-4xl-teal">
               Meta-Builders
             </div>
           </h1>
-          <p className="leadIn invisible font-bold text-xl lg:text-3xl gradient-text-alt text-fill tracking-tight text-center lg:text-right -translate-y-3 lg:-translate-y-8 text-shadow">
+          <p className="font-bold text-xl lg:text-3xl gradient-text-alt text-fill tracking-tight text-center lg:text-right -translate-y-3 lg:-translate-y-8 text-shadow">
             Welcome to The Metaverse.</p>
         </div>
 

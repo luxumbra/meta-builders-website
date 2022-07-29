@@ -18,11 +18,10 @@ export function PartnerSectionLead(): JSX.Element {
 }
 
 export default function PartnersSection(): JSX.Element {
-  const sectionId = '#partners';
-  useSectionAnimation(sectionId);
+  const sectionId = 'partners';
 
   return (
-    <ContentSection title="MB Partners" id="partners" lead={<PartnerSectionLead />}>
+    <ContentSection title="MB Partners" id={sectionId} lead={<PartnerSectionLead />}>
       <div className="max-w-6xl space-y-2">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {partners.map(({ name, image, url }) => <PartnersCard key={uuid()} name={name} image={image} url={url} />)}

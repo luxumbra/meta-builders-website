@@ -13,11 +13,14 @@ export function TeamMemberCard(properties: TeamMember): JSX.Element {
   const siteUrl = import.meta.env.VITE_SITE_URL as string;
   const avatar = new URL(image, `${siteUrl}/assets/team/images`);
   const avatarUrl = avatar.toString();
-  const isDevelopment = import.meta.env.VITE_NODE_ENV === 'development';
+  const isDevelopment = import.meta.env.DEV
+
+  console.log('isDevelopment', isDevelopment);
+
 
   return (
     <div className="group">
-      <figure className="flex flex-col space-y-3 items-center leadIn">
+      <figure className="flex flex-col space-y-3 items-center ">
         <div className="avatar">
           <picture
             className={`rounded-full
@@ -30,9 +33,11 @@ export function TeamMemberCard(properties: TeamMember): JSX.Element {
                 src={buildImgUrl(image, 'assets/team/images')}
                 sizes={sizes}
                 width={150}
-                height={150}
+              height={150}
+
                 htmlAttributes={{
-                  alt: `${name}'s avatar`
+                  alt: `${name}'s avatar`,
+                  loading: 'lazy',
                 }}
               />
               {/* <img src={`/assets/team/images/${image}`} alt={`${name}'s avatar`} className="object-cover w-full h-full transition-all duration-200 bg-cover group-hover:scale-110 group-hover:blur-0 group-focus:scale-110 group-focus:hue-rotate-0" /> */}
@@ -41,7 +46,7 @@ export function TeamMemberCard(properties: TeamMember): JSX.Element {
         </div>
         <figcaption className="text-center flex flex-col gap-0">
           <h3 className="text-xl font-bold text-slate-600 dark:text-slate-400 leadIn">{name}</h3>
-          <p className="text-sm leadIn">{role}</p>
+          <p className="text-sm ">{role}</p>
         </figcaption>
       </figure>
     </div>

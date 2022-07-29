@@ -17,20 +17,25 @@ export function useSectionAnimation(
 ): void {
   // if (section.length === 0) return ;
   const { isBrowser } = useSsr()
+
+
   const wrapper = document.querySelector(section)
+  console.log('useSectionAnimation', wrapper);
+
   // const entry = useIntersectionObserver(section, {})
   const tl = gsap.timeline({
+    paused: true,
+    reversed: true,
     defaults: {
-      duration: 1,
-      delay: 0.5,
+      duration: 0.3,
+      delay: 0.3,
       ease: 'power3.inOut'
     },
     scrollTrigger: {
       trigger: wrapper,
       start: 'top center',
       end: '+=200',
-      scrub: 1
-      // markers: true,
+      scrub: 1,
     }
   })
 
@@ -44,12 +49,12 @@ export function useSectionAnimation(
       {
         opacity: 0,
         y: 20,
-        stagger: 0.5
+        stagger: 0.2
       },
       {
         opacity: 1,
         y: 0,
-        stagger: 0.5
+        stagger: 0.2
       }
     )
 
@@ -67,21 +72,23 @@ export function useSectionAnimation(
     //     }
     //   }
     // )
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    tl.play()
   }
 
   useEffect(() => {
-    // if (isBrowser) {
+    // if (!isBrowser) return ;
       init()
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  })
+  }, [isBrowser])
 }
 
 /**
  * Reveals the CTA for buying a package
  *
  * Takes a `string` containing the selector for the CTA element and one for the trigger
- * @param el string
+ * @param element string
  * @param trigger string
  */
 export function useBuyCtaAnimation(
@@ -249,43 +256,31 @@ export function useSplashContentAnimation(
   useEffect(() => {
     if (isBrowser && isVisible) init()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-    return () => {
-      tl.clear()
-    }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isVisible]);
+  }, [isBrowser, isVisible]);
 }
 
 export function useScrollReveal(element: string, trigger: string): void {
-  const { isBrowser } = useSsr()
-  // const page = document.documentElement;
-  // const revealElement = document.querySelector(element);
-  // const triggerElement = document.querySelector(trigger);
-  // const isOnScreen = ScrollTrigger.isInViewport(element);
 
-  // Function to toggle `fixed` class to the `triggerEl` when the user scrolls to the bottom of the page
-  // const toggleFixed = () => {
-  //   if (page.scrollTop + page.clientHeight >= page.offsetHeight - 100) {
-  //     triggerEl.classList.add("fixed");
-  //   } else {
-  //     triggerEl.classList.remove("fixed");
-  //   }
-  // }
-  const tl = gsap.timeline({
-    defaults: {
-      duration: 1,
-      delay: 0.5,
-      ease: 'power3.inOut'
-    }
-  })
   function init(): void {
+    if (typeof window === 'undefined') return
+    console.log('init scroll reveal', {trigger, element});
+
+    const tl = gsap.timeline({
+      defaults: {
+        duration: 0.3,
+        delay: 0.5,
+        ease: 'power3.inOut'
+      }
+    })
     tl.fromTo(
       `${trigger} ${element}`,
       {
         opacity: 0,
         y: 10,
-        stagger: 0.2
+        stagger: 0.2,
+        autoAlpha: 1
       },
       {
         opacity: 1,
@@ -294,12 +289,15 @@ export function useScrollReveal(element: string, trigger: string): void {
         scrollTrigger: {
           trigger,
           start: 'top 85%',
-          end: '+=100px',
-          scrub: 1
+          end: '+=25px',
+          scrub: 1,
+          }
         }
-      }
-    )
-  }
+      )
+
+    }
+
+
 
   useEffect(() => {
     if (element.length === 0) return

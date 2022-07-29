@@ -17,20 +17,19 @@ export function IntroSectionLead(): JSX.Element {
 }
 
 export default function IntroSection(): JSX.Element {
-  const sectionId = '#intro';
-  useSectionAnimation(sectionId);
+  const sectionId = 'intro';
 
   return (
     <ContentSection
       title="The Metaverse"
-      id="intro"
+      id={sectionId}
       justify="center" lead={<IntroSectionLead />}>
       <div
-        className="grid grid-cols-1 gap-2 sm:grid-cols-2"
+        className=" grid grid-cols-1 gap-2 sm:grid-cols-2"
       >
         <a
           href="#team"
-          className="leadIn group flex items-center justify-center gap-3 px-6 py-4 border-2 border-violet-500 hover:border-teal-500 rounded-md"
+          className="group flex items-center justify-center gap-3 px-6 py-4 border-2 border-violet-500 hover:border-teal-500 rounded-md"
         >
           <Icon
             icon="fa:group"
@@ -40,7 +39,7 @@ export default function IntroSection(): JSX.Element {
         </a>
         <a
           href="#services"
-          className="leadIn group flex items-center justify-center gap-3 px-6 py-4 border-2 border-violet-500 hover:border-teal-500  border-current rounded-md"
+          className="group flex items-center justify-center gap-3 px-6 py-4 border-2 border-violet-500 hover:border-teal-500  border-current rounded-md"
         >
           <Icon
             icon="mdi:rocket"

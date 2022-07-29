@@ -83,7 +83,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
         className={`
       btn
       btn-link
-      px-1
+      p-0
       `}
         aria-label='Web3 wallet connect'
         onClick={onClickConnectMetamask}

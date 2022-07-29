@@ -13,18 +13,12 @@ export function SectionIntro(): JSX.Element {
 }
 
 export default function BuySection(): JSX.Element {
-  const sectionReference = useRef<HTMLDivElement>(null);
-  const section = 'buy';
-  const sectionId = '#buy';
-  const ctaId = '#cta-buy';
-  useSectionAnimation(sectionId);
-  // useBuyCtaAnimation(ctaId, sectionId);
-
+  const sectionId = 'buy';
 
   return (
     <ContentSection
       title="Buy a package"
-      id={section}
+      id={sectionId}
       lead={<SectionIntro />}
     >
       <div className="max-w-6xl">

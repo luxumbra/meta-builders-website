@@ -61,7 +61,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
 
   return (
     <div
-      className="package-card group relative flex flex-col items-center justify-start h-full space-y-5 p-5 leadIn overflow-hidden  z-10"
+      className="package-card group relative flex flex-col items-center justify-start h-full space-y-5 p-5  overflow-hidden  z-10"
     >
       <Imgix
         src={image}
@@ -77,6 +77,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
         }}
         htmlAttributes={{
           alt: name,
+          loading: "lazy",
         }}
       />
       <div className="absolute inset-0 bg-slate-800 opacity-[97%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />

@@ -35,7 +35,7 @@ export default function LoadingOrError({ error, isInline, message }: Properties)
 
   if (isInline) {
     return (
-      <div className='leadIn relative flex h-auto w-full items-center justify-center bg-transparent'>
+      <div className='relative flex h-auto w-full items-center justify-center bg-transparent'>
         {error ? (
           <p className='text-inherit text-red-500'>error.message</p>
         ) : (
