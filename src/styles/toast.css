@@ -13,9 +13,9 @@
   }
 
   .toast {
-    @apply rounded-md shadow-md w-full !max-w-xs absolute overflow-hidden px-5;
+    @apply rounded-md shadow-md !max-w-xs overflow-hidden px-5;
 
-    h3 {
+    h3, p {
       @apply break-words max-w-xs mr-5;
     }
 
@@ -86,7 +86,7 @@
 
 
     &[data-part="root"]:not([data-open]) {
-      animation-duration: 0.5s;
+      animation-duration: 0.3s;
       animation-name: fadeout;
     }
   }

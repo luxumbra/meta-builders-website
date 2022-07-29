@@ -51,10 +51,10 @@
   }
 
   .package-card {
-    @apply rounded-t-2xl rounded-b-sm dark:bg-violet-900;
+    @apply rounded-t-2xl rounded-b-md dark:bg-violet-900;
 
     .buy-popup {
-      @apply rounded-t-2xl bg-transparent dark:bg-glass-primary-900 overflow-hidden rounded-b-sm;
+      @apply rounded-t-2xl rounded-b-md bg-transparent dark:bg-glass-primary-900 overflow-hidden;
     }
   }
 

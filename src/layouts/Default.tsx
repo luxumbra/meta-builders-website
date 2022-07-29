@@ -22,22 +22,23 @@ export type LayoutProperties = {
   previewImageSrc?: URL;
 };
 
-export function useScrollOnLoad(): void {
+export function scrollOnLoad(): void {
   const tl = gsap.timeline();
+  console.log("useScrollOnLoad");
 
-  useEffect(() => {
-    // if (typeof window === "undefined") return;
+  // useEffect(() => {
+    if (typeof window === "undefined") return;
 
-    if (window.location.hash) {
+    if (window.location.hash !== "") {
       console.log('scroll to hash', window.location.hash);
 
       const element = document.querySelector(window.location.hash);
-      if (element ) {
+      if (element !== null) {
         // TODO: not sure why the easing & timing are not working
         tl.to(
           window,
           {
-            duration: 0,
+            duration: 0.4,
             delay: 0.1,
             scrollTo: {
               y: element,
@@ -47,9 +48,11 @@ export function useScrollOnLoad(): void {
         );
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [window.location]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [window.location.hash]);
+  // }, [window.location.hash]);
 }
 
 export function Layout({ children, content }: {children: React.ReactNode, content: LayoutProperties}): JSX.Element {
@@ -58,11 +61,6 @@ export function Layout({ children, content }: {children: React.ReactNode, conten
   const metaLink = permalink ? `https://metabuilders.luxumbra.dev${permalink}` : ''
 
 
-
-  // scroll to the hash in the url if there is one
-
-
-  useEventListener("load", useScrollOnLoad);
   return (
     <div className="wrapper bg-gradient-to-b dark:from-slate-900 dark:to-slate-800">
       <Header />

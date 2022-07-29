@@ -12,8 +12,7 @@ export default function SplashSection(): JSX.Element {
   const sectionReference = useRef<HTMLDivElement>(null);
   // const widths = [450, 800];
   const sizes = "(min-width: 640px) 42vw, 67vw";
-  const isDevelopment = import.meta.env.VITE_NODE_ENV === "development";
-  console.log('isDevelopment', isDevelopment, import.meta.env.VITE_NODE_ENV);
+  const isDevelopment = import.meta.env.VITE_NODE_ENV === "development"; // this doesn't work
 
   const elementSelector = "#splash-content > .leadIn";
   const triggerSelector = sectionReference;

@@ -1,7 +1,9 @@
 
+import { Icon } from "@iconify/react";
 import { useMarketplace } from "@thirdweb-dev/react";
 import type { Json } from "@thirdweb-dev/sdk";
 import Imgix from "react-imgix";
+import { v4 as uuid } from "uuid";
 
 import type { BuyPackOptions } from "~mb/buttons/index";
 import { ButtonBuyPackage } from "~mb/buttons/index";
@@ -16,22 +18,26 @@ export interface PackTrait {
   value: string;
   trait_type: string;
 }
+
+export type PackageService = {
+  value: number | string;
+  trait_type: string;
+}
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 const includedServices = (traits: IPackage['attributes']):
-  Record<string, Json> | Record<string, Json>[] | undefined => {
+  PackageService[] => {
+    const services: PackageService[] = [];
 
   if (traits) {
-    console.log('traits', traits);
-    /** create an array from the `traits` Json array */
-    // const traitsArray = traits.map((trait: Json) => {
-    //   return trait;
-    // }
-    // const includedServices = traits.filter(trait => trait.trait_type === 'service_0');
-    // if (includedServices.length > 0) {
-    //   return includedServices[0].value;
-    // }
+    for (const element of traits) {
+      if (element.trait_type.includes('service_')) {
+        services.push(element as PackageService);
+      }
+    }
+
+    return services;
   }
-  return undefined
+  return services
 }
 
 
@@ -40,9 +46,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const { id, name, description, displayPrice, currency, currencySymbol, image, type, attributes } = pack;
   const marketplace = useMarketplace(marketPlaceContract);
   const services = includedServices(attributes);
-
-  console.log('services', services);
-
+  // const attributeJson = JSON.parse(attributes);
 
   const buyPackInfo = {
     listingId: id,
@@ -57,7 +61,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
 
   return (
     <div
-      className="package-card group relative flex flex-col items-center justify-start h-full space-y-5  duration-300 p-5 leadIn overflow-hidden"
+      className="package-card group relative flex flex-col items-center justify-start h-full space-y-5 p-5 leadIn overflow-hidden  z-10"
     >
       <Imgix
         src={image}
@@ -75,22 +79,22 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
           alt: name,
         }}
       />
-
-      <div className="flex flex-col space-x-3 flex-grow w-full px-0 text-violet-50 z-10 backdrop-blur-lg ">
+      <div className="absolute inset-0 bg-slate-800 opacity-[97%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />
+      <div className="relative flex flex-col space-x-5 flex-grow w-full px-0 text-violet-50 z-[1]">
         <h3 className="text-lg font-extrabold text-center uppercase py-3 text-violet-50">
           {name}
         </h3>
         <PriceDisplay price={displayPrice} currency={currencySymbol} />
-        <p className="py-2 text-xs">{description}</p>
+        <p className="py-2 text-sm">{description}</p>
         <ul>
-          {/* {attributes?.length > 0 && attributes.map(attr => (
-      <li className="inline-flex items-center space-x-3">
-        <Icon name="ic:baseline-check" className="text-green-600 text-sm w-5 h-5" />
-        <span className="text-sm font-normal text-left capitalize">
-          {attr.}
-        </span>
-      </li>
-      ))} */}
+          {services.length > 0 ? services.map(service => (
+              <li key={uuid()} className="flex items-center space-x-3">
+              <Icon icon="ic:baseline-check" className="text-teal-400 text-sm w-5 h-5" />
+              <span className="text-md text-violet-100 font-normal text-left">
+                {service.value}
+              </span>
+              </li>
+            )) : undefined}
         </ul>
       </div>
       <div className="items-center justify-center flex-shrink min-w-full w-full text-center z-10">

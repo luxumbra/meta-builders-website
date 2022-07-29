@@ -166,15 +166,15 @@ export default function Header(): JSX.Element {
         id="page-header"
         className="absolute bottom-0 z-10 h-12 lg:h-20 flex items-center justify-between w-full p-4 md:px-8 text-white border-transparent shadow-xs shadow-violet-600 overflow-visible"
       >
-        <a
+        <HashLink
           className="flex items-center gap-3 hover:text-default justify-start"
-          href="/#home"
+          to="/#home"
         >
           <h1 className="sr-only">Meta-Builders</h1>
           <span
             className="brand font-heading inline-flex items-center text-lg text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
           ><span>Meta-Builders</span></span>
-        </a>
+        </HashLink>
 
         <div className="desktop-menu hidden sm:flex items-center self-end ">
           <nav className="hidden sm:block">

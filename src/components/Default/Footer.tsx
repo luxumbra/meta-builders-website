@@ -48,19 +48,32 @@ export function Footer(): JSX.Element {
   return (
     <footer id="footer" className="relative overflow-y-hidden bg-slate-300 dark:bg-slate-900 flex flex-col items-center justify-center h-64 w-full transition-colors">
       <div className="footer-main leadIn w-3/4">
-        <h5 className="font-black gradient-text-alt">Meta-Builders</h5>
+        <h5 className="font-black text-lg text-shadow-alt gradient-text">Meta-Builders</h5>
       </div>
       <div className="footer-aside w-3/4 flex flex-row items-center justify-between">
-        <p className="text-xs leadIn">Copyright &copy; 2022 Meta-Builders</p>
+        <p className="text-xs leadIn self-end">Copyright &copy; 2022 Meta-Builders</p>
+        <div>
+          <ul className="grid grid-cols-3 gap-x-6 gap-y-1">
+            <li className="leadIn"><a href="/#">Link to somewhere</a></li>
+            <li className="leadIn"><a href="/#">Link to somewhere</a></li>
+            <li className="leadIn"><a href="/#">Link to somewhere</a></li>
+            <li className="leadIn"><a href="/#">Link to somewhere</a></li>
+            <li className="leadIn"><a href="/#">Link to somewhere</a></li>
+            <li className="leadIn"><a href="/#">Link to somewhere</a></li>
+            <li className="leadIn"><a href="/#">Link to somewhere</a></li>
+            <li className="leadIn"><a href="/#">Link to somewhere</a></li>
+            <li className="leadIn"><a href="/#">Link to somewhere</a></li>
+          </ul>
+        </div>
         <ul className="relative grid grid-cols-2 gap-4 sm:grid-cols-4 w-1/4">
           {links.map((link) => (
             <li key={uuid()} className="leadIn">
               <a
-                className="flex items-center justify-center w-16 h-16 p-4 border-2 border-current rounded-full"
+                className="group w-16 h-16 p-3 border-2 border-teal-200 rounded-full inline-flex items-center justify-center text-shadow-alt-sm-teal hover:animate-pulse"
                 href={link.url}
               >
                 <span className="sr-only">{link.description}</span>
-                <Icon className="h-full" icon={link.icon} />
+                <Icon className="text-6xl text-teal-300 " icon={link.icon} />
               </a>
             </li>
           ))}

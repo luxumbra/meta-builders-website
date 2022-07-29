@@ -17,10 +17,6 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
   const [marketplaceListings, setMarketplaceListings] = useState<AuctionListing[] | DirectListing[] | undefined>();
   const marketplace = useMarketplace(address);
   const [isLoading, setIsLoading] = useState(true);
-  console.log('marketplace', marketplace);
-
-  // const { listings, isLoading, error } = useActiveListings(marketplace);
-  // console.log('listings', listings, isLoading, error);
 
 
   /** A callback function  to `getActiveListings` from the `marketplace` and then store them in `marketplaceListings` */
@@ -34,6 +30,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
         throw new Error("Error fetching listings");
       }
       setIsLoading(false);
+      listings.sort((a, b) => Number.parseFloat(a.buyoutCurrencyValuePerToken.displayValue) - Number.parseFloat(b.buyoutCurrencyValuePerToken.displayValue));
       return listings;
     } catch (error) {
       console.error("Error fetching listings", error);

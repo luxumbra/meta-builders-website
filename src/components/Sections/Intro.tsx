@@ -10,8 +10,8 @@ import {ContentSection} from "~mb/sections/index";
 export function IntroSectionLead(): JSX.Element {
   return (
     <>
-      Our services help you navigate this <span className="text-primary text-shadow">new paradigm</span>,
-      and take <span className="text-primary text-shadow">your brand</span> to new heights.
+      <span className="text-primary text-shadow">Our services help you</span> navigate this new paradigm
+      and <span className="text-primary text-shadow">take your brand to new heights</span>.
     </>
   )
 }

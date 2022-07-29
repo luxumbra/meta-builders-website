@@ -49,10 +49,9 @@ export function BuyPackackagePopUp(
   const { marketplace, name, price, currencySymbol, listingId } = pack
   const [isLoading, setIsLoading] = useState(false)
   const [value, copy] = useCopyToClipboard()
-  const toastId = uuid()
   const [state, send] = useMachine(
     toast.group.machine({
-      id: toastId,
+      id: uuid(),
       pauseOnInteraction: true,
       pauseOnPageIdle: true,
       gutter: '1rem',
@@ -61,7 +60,7 @@ export function BuyPackackagePopUp(
         right: '2rem',
         bottom: '2rem',
         left: '2rem'
-      }
+      },
     })
   )
   const apiToast = toast.group.connect(state, send, normalizeProps)
@@ -76,44 +75,13 @@ export function BuyPackackagePopUp(
   })
   function onCopy(toCopy: string): void {
     copy(toCopy).then(() => {
+      console.log('copied', {toCopy, value});
+
       const copyToastId = apiToast.upsert({
         id: uuid(),
         type: 'success',
-        title: `Copied to clipboard: ${value as string}`,
-
+        title: `Copied to clipboard: ${toCopy}`,
       })
-      console.log('copied to clipboard', copyToastId);
-      if (copyToastId !== undefined) {
-        // apiToast.promise(copyToastId, {
-        //   loading: {
-        //     title: 'Copying to clipboard...',
-        //     description: 'Hang tight!',
-        //   },
-        //   success: (data: any) => ({
-        //     title: 'Copied to clipboard',
-        //     description: data.title,
-        //   }),
-        //   error: (error: any) => ({
-        //     title: 'Error copying to clipboard',
-        //     description: error,
-        //   }),
-        // }).then(() => {
-        //   console.log('copied to clipboard', copyToastId);
-        // }).catch((error: any) => {
-        //   console.log('error copying to clipboard', copyToastId, error);
-        // });
-
-        apiToast.update(copyToastId, {
-          type: 'success',
-          title: `Sweet success!`,
-          duration: 7000,
-        }
-        )
-      }
-      setTimeout(() => {
-        apiToast.remove(copyToastId)
-
-      }, 500)
     }).catch((_error: unknown) => {
       apiToast.create({
         type: 'error',
@@ -128,46 +96,47 @@ export function BuyPackackagePopUp(
     (id: string) => {
       setIsLoading(true)
       const buyToastId = apiToast.create({
-        type: 'loading',
+        id: uuid(),
+        type: 'info',
         title: `Buying ${name}`,
         description: 'Please sign the transaction in your wallet.',
         placement: 'bottom-end',
       })
+      apiToast.pause()
       marketplace
         .buyoutListing(id, 1)
         .then(data => {
-          if (buyToastId !== undefined) {
-            console.log('buyPackage', { data })
-            apiToast.update(buyToastId, {
+
+          apiToast.create({
+              id: uuid(),
               type: 'success',
               title: 'W00t! You bought the package!',
               description: `You have successfully bought ${name} for ${currencySymbol}${price}. \n\n Your receipt: ${data.receipt.transactionHash}`,
               duration: 7000
             })
-          }
+
           setIsLoading(false)
           // setTimeout(() => { apiToast.dismiss() }, 7000)
         })
         .catch((error: any) => {
-          apiToast.resume()
           console.log('buyPackage error', { error })
           const errorMessage =
             (error.message as string) || (error.toString() as string)
           setIsLoading(false)
-          if (buyToastId !== undefined) {
-            console.log('toastId', { buyToastId });
+          // if (buyToastId !== undefined) {
 
-            apiToast.update(buyToastId, {
-              type: 'error',
-              title: `Something went wrong!\n ${errorMessage}`,
-            })
-          }
+          const errorToastId = apiToast.create({
+            id: uuid(),
+            type: 'error',
+            title: `Something went wrong!\n ${errorMessage}`,
+            duration: 7000
+          })
+          // }
         }).finally(() => {
           setIsLoading(false)
-          setTimeout(() => { apiToast.dismiss() }, 3000)
         })
     },
-    [apiToast, currencySymbol, marketplace, name, price, toastId]
+    [apiToast, currencySymbol, marketplace, name, price]
   )
 
   const onOpenBuyCallback = useCallback((open: boolean) => {
@@ -205,8 +174,6 @@ export function BuyPackackagePopUp(
   }, [])
 
   useEffect(() => {
-    console.log('BuyPackackagePopUp efect', { isOpen })
-
     onOpenBuyCallback(isOpen)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, onOpenBuyCallback])
@@ -217,18 +184,18 @@ export function BuyPackackagePopUp(
     <>
       <div
         ref={popUpReference}
-        className='buy-popup l-0 r-0 b-0 hidden fixed inset-0 h-full w-full origin-top items-center justify-center overflow-hidden border-2 border-violet-300 p-3 shadow-violet-400'
+        className='buy-popup l-0 r-0 b-0 hidden fixed inset-0 h-full w-full origin-top items-center justify-center overflow-hidden border-2 border-violet-300 p-6 shadow-violet-400 z-30 text-slate-50'
       >
         <div
           ref={contentReference}
-          className='relative z-10 flex flex-col items-center justify-center text-left'
+          className='relative flex flex-col items-center justify-center text-left z-[100]'
         >
           <div className='flex-grow'>
             <h3 className='text-teal-400 uppercase font-bold text-md text-left inline-flex flex-wrap flex-col space-0 gap-0 mb-3'>
               <span className='badge badge-outline text-xs leading-3 uppercase text-violet-400 font-normal'>Edition {`#${listingId}`}</span>
               <strong className='text-lg leading-3'>{name}</strong>
             </h3>
-            <p>Let&apos;s do this! Hit &apos;confirm&apos; below to buy this NFT, and the <span className='gradient-text font-bold'>Meta-Builders</span> services locked up inside it.</p>
+            <p>Let&apos;s do this! Hit &apos;Confirm&apos; below to buy this NFT, and the <span className='gradient-text font-bold'>Meta-Builders</span> services locked up inside it.</p>
             <div className='flex flex-col items-start justify-center space-y-2 my-3'>
               <p className='inline-flex flex-col gap-0 space-0'>
                 <span className='text-sm'>Price:</span> <span className='text-xl'> {accounting.formatMoney(price, '$', 2)} <span className='text-violet-400'>{currencySymbol}</span></span>
@@ -256,7 +223,7 @@ export function BuyPackackagePopUp(
                   disabled={isLoading}
                   aria-disabled={isLoading}
                 >
-                  {!isLoading ? 'Buy now' : <LoadingOrError isInline message="Transaction in progress..." />}
+                  {!isLoading ? 'Confirm' : <LoadingOrError isInline message="Transaction in progress..." />}
                 </button>
               ) : (
                 <span>Contact us</span>
@@ -271,11 +238,11 @@ export function BuyPackackagePopUp(
         </div>
         <div
           ref={overlayBg1Reference}
-          className='absolute  inset-0 h-[200%] w-[200%] origin-center '
+          className='absolute -inset-1/2 h-[200%] w-[200%] origin-center z-30 flex items-center content-center justify-center'
         >
-          <span className='text-purple-500 text-6xl'>{name}</span>
+          <div className='text-teal-300 opacity-[5%] text-[10rem] font-black leading-tight tracking-tighter uppercase font-sans transform -rotate-45'>{name}</div>
         </div>
-        <div className='absolute inset-px z-0 origin-top items-center justify-center bg-slate-800' />
+        <div className='absolute inset-px z-10 origin-top items-center justify-center dark:bg-slate-800' />
       </div>
 
       <Portal>
