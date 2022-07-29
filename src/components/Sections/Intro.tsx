@@ -10,11 +10,8 @@ import {ContentSection} from "~mb/sections/index";
 export function IntroSectionLead(): JSX.Element {
   return (
     <>
-      Our services help you navigate this
-      <span className="text-primary text-shadow">new paradigm</span>,
-      and take
-      <span className="text-primary text-shadow">your brand</span>
-      to new heights.
+      Our services help you navigate this <span className="text-primary text-shadow">new paradigm</span>,
+      and take <span className="text-primary text-shadow">your brand</span> to new heights.
     </>
   )
 }
@@ -33,23 +30,23 @@ export default function IntroSection(): JSX.Element {
       >
         <a
           href="#team"
-          className="leadIn flex items-center justify-center gap-3 px-6 py-4 border-2 border-current"
+          className="leadIn group flex items-center justify-center gap-3 px-6 py-4 border-2 border-violet-500 hover:border-teal-500 rounded-md"
         >
           <Icon
-            icon="mdi:telescope"
-            className="h-8"
+            icon="fa:group"
+            className="text-6xl"
           />
-          <span>The Team</span>
+          <span className="gradient-text-alt text-2xl group-hover:text-teal-500 transition-colors">The Team</span>
         </a>
         <a
           href="#services"
-          className="leadIn flex items-center justify-center gap-3 px-6 py-4 border-2 border-current"
+          className="leadIn group flex items-center justify-center gap-3 px-6 py-4 border-2 border-violet-500 hover:border-teal-500  border-current rounded-md"
         >
           <Icon
             icon="mdi:rocket"
-            className="h-8"
+            className="text-6xl"
           />
-          <span>Services</span>
+          <span className="gradient-text-alt text-2xl group-hover:text-teal-500 transition-colors">Services</span>
         </a>
       </div>
     </ContentSection>

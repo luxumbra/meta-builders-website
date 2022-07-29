@@ -29,21 +29,15 @@
   }
 
   header {
-    /* @apply backdrop-blur-lg; */
-
     .brand {
-      @apply opacity-0 transition-opacity duration-500 ease-in-out;
-    }
-
-    &:hover {
-      @apply opacity-100 -translate-x-32;
+      @apply opacity-0 transition-all duration-200 ease-in-out scale-0;
     }
 
     &.fixed-header {
       @apply bg-transparent dark:bg-glass-primary-900 !fixed top-0 bottom-auto;
 
       .brand {
-        @apply opacity-100 translate-x-0
+        @apply opacity-100 scale-100
       }
     }
   }
@@ -119,6 +113,34 @@
 
     &-sm {
       filter: drop-shadow(0 0 4px var(--color-shadow-alt));
+
+      &-teal {
+        filter: drop-shadow(0 0 4px var(--color-shadow-teal));
+      }
+    }
+
+    &-md {
+      filter: drop-shadow(0 0 8px var(--color-shadow-alt));
+
+      &-teal {
+        filter: drop-shadow(0 0 8px var(--color-shadow-teal));
+      }
+    }
+
+    &-lg {
+      filter: drop-shadow(0 0 12px var(--color-shadow-alt));
+
+      &-teal {
+        filter: drop-shadow(0 0 12px var(--color-shadow-teal));
+      }
+    }
+
+    &-xl {
+      filter: drop-shadow(0 0 18px var(--color-shadow-alt));
+
+      &-teal {
+        filter: drop-shadow(0 0 18px var(--color-shadow-teal));
+      }
     }
 
     &-2xl {

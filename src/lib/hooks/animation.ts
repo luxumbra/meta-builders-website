@@ -212,33 +212,35 @@ export function useSplashContentAnimation(
       xPercent: 0,
       scale: 1,
       transformOrigin: 'center',
-      stagger: 0.1
+      stagger: 0.1,
     })
 
-    tl.fromTo(
-      element,
-      {
-        opacity: 1,
-        xPercent: 0,
-        scale: 1
-      },
-      {
-        opacity: 0,
-        scale: 0.5,
-        transformOrigin: 'center',
-        xPercent: -10,
-        scrollTrigger: {
-          trigger,
-          start: '15% center',
-          end: '+=1000',
-          scrub: 1,
-        }
-      }
-    )
+    // tl.fromTo(
+    //   element,
+    //   {
+    //     opacity: 1,
+    //     xPercent: 0,
+    //     scale: 1
+    //   },
+    //   {
+    //     opacity: 0,
+    //     scale: 0.5,
+    //     transformOrigin: 'center',
+    //     xPercent: -10,
+    //     scrollTrigger: {
+    //       trigger,
+    //       start: '15% center',
+    //       end: '+=1000',
+    //       scrub: 1,
+    //     }
+    //   }
+    // )
 
     // if (isVisible) {
       if (tl.reversed()) {
         tl.play()
+      } else {
+        tl.reverse()
       }
 
     // }

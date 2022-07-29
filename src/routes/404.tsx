@@ -5,7 +5,7 @@ import { ContentSection } from '~mb/sections/index'
 import '~mb/styles/index.css'
 
 const meta = {
-  title: 'Page not found',
+  title: 'Meta-Builders: Page not found',
   description:
     'Welcome to the Metaverse. Our Services Help You Navigate this New Paradigm, and Take Your Brand to New Heights',
   permaLink: '',

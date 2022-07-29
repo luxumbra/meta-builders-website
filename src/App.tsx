@@ -25,10 +25,10 @@ function App(): ReactElement {
   });
 
   return (
-    <Suspense fallback={<LoadingOrError message="Loading..." />}>
+    <Suspense fallback={<LoadingOrError message="Loading Meta-Builders" />}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
-        <Route path="/404" element={<PageNotFound />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
   );

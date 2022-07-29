@@ -13,50 +13,80 @@
   }
 
   .toast {
-    @apply rounded-md shadow-md w-full !max-w-xs absolute;
-
-    .toast-header {
-      @apply flex items-start justify-between;
-    }
+    @apply rounded-md shadow-md w-full !max-w-xs absolute overflow-hidden px-5;
 
     h3 {
       @apply break-words max-w-xs mr-5;
     }
 
     .btn {
-      @apply p-0 text-slate-800 absolute right-2 top-0;
+      @apply p-0 text-slate-800 ;
     }
 
-    &[data-part="root"][data-type="info"] {
-      @apply bg-white text-blue-600;
-    }
+    &[data-part="root"] {
+      @apply bg-slate-800;
 
-    &[data-part="root"][data-type="error"] {
-      @apply bg-red-300 text-red-700 max-w-sm;
-    }
-
-    &[data-part="root"][data-type="success"] {
-      @apply bg-green-200 text-green-800;
-    }
-
-    &[data-part="root"][data-type="custom"] {
-      @apply bg-glass-primary-700 text-white;
-    }
-
-    &[data-part="root"][data-type="loading"] {
-      @apply bg-slate-800 text-teal-400;
+      animation-name: fadein;
+      animation-fill-mode: forwards;
+      animation-duration: 0.3s;
 
       .btn {
-        @apply text-teal-300;
+        @apply text-inherit;
+      }
+
+      [data-part="progressbar"] {
+        @apply bg-violet-600 h-1;
+
+        animation-delay: 0.3s;
+        animation-name: shrink;
       }
     }
 
-    &[data-part="progressbar"] {
-      @apply bg-violet-500;
+    &[data-part="root"][data-type="info"] {
+      @apply  text-cyan-300;
+
+      [data-part="progressbar"] {
+        @apply bg-cyan-600;
+      }
     }
 
+    &[data-part="root"][data-type="error"] {
+      @apply text-red-300;
+
+      [data-part="progressbar"] {
+        @apply bg-red-600;
+      }
+
+    }
+
+    &[data-part="root"][data-type="success"] {
+      @apply  text-green-200;
+
+      [data-part="progressbar"] {
+        @apply bg-green-600;
+      }
+    }
+
+    &[data-part="root"][data-type="custom"] {
+      @apply bg-glass-primary-700 text-teal-300;
+
+      [data-part="progressbar"] {
+        @apply bg-teal-600;
+      }
+    }
+
+    &[data-part="root"][data-type="loading"] {
+      @apply  text-violet-300;
+
+      [data-part="progressbar"] {
+        @apply bg-violet-600;
+      }
+    }
+
+
+
     &[data-part="root"]:not([data-open]) {
-      animation-duration: 0.3s;
+      animation-duration: 0.5s;
       animation-name: fadeout;
     }
   }

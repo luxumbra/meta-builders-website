@@ -2,6 +2,7 @@ import { MutableRefObject, RefObject, useEffect, useRef, useState } from "react"
 
 import { Icon } from "@iconify/react";
 import gsap from "gsap";
+import { HashLink } from "react-router-hash-link";
 import {useEventListener, useMediaQuery, useIntersectionObserver } from 'usehooks-ts'
 import { v4 as uuid } from "uuid";
 
@@ -9,7 +10,7 @@ import { ButtonWeb3Connect, ButtonDarkMode } from "~mb/components/Buttons";
 
 
 const navItems = [
-  { title: "Home", url: "#" },
+  { title: "Home", url: "#home" },
   { title: "Services", url: "#services" },
   { title: "Partners", url: "#partners" },
   { title: "Team", url: "#team" },
@@ -167,7 +168,7 @@ export default function Header(): JSX.Element {
       >
         <a
           className="flex items-center gap-3 hover:text-default justify-start"
-          href="/"
+          href="/#home"
         >
           <h1 className="sr-only">Meta-Builders</h1>
           <span
@@ -180,12 +181,12 @@ export default function Header(): JSX.Element {
             <ul className="flex items-center gap-6">
               {navItems.map(({ title, url }) => (
                 <li key={uuid()}>
-                  <a
+                  <HashLink
                     className="text-lg font-bold font-heading text-slate-500 dark:text-violet-300 hover:text-slate-700 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors"
-                    href={`/${url}`}
+                    to={`/${url}`}
                   >
                     {title}
-                  </a>
+                  </HashLink>
                 </li>
               ))}
             </ul>
@@ -214,7 +215,6 @@ export default function Header(): JSX.Element {
                     className="close-nav-button btn btn-link p-0 transition-all origin-[right_center] duration-200  text-slate-600 hover:text-slate-700 dark:text-violet-300 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal"
                     aria-label="Close navigation"
                     onClick={(): void => console.log('clicked')}
-
                   >
                     <Icon
                       icon="mdi:close"
@@ -227,12 +227,13 @@ export default function Header(): JSX.Element {
                 <ul ref={mobileMenu} className="flex flex-col items-center justify-center gap-6">
                   {navItems.map(({ title, url }) => (
                     <li key={uuid()}>
-                      <a
+                      <HashLink
                         className="text-lg font-light font-heading text-slate-500 dark:text-violet-300 hover:text-slate-700 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors"
-                        href={`/${url}`}
+                        smooth
+                        to={`/${url}`}
                       >
                         {title}
-                      </a>
+                      </HashLink>
                     </li>
                   ))}
                 </ul>

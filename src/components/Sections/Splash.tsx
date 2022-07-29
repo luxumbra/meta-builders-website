@@ -31,8 +31,8 @@ export default function SplashSection(): JSX.Element {
   return (
     <section
       ref={sectionReference}
-      id="splash-wrapper"
-      className="relative h-screen w-full bg-black"
+      id="home"
+      className="splash-wrapper relative h-screen w-full bg-black"
     >
       {/* <Starfield /> */}
       <div

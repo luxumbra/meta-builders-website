@@ -9,8 +9,9 @@ import accounting from 'accounting'
 import gsap from 'gsap'
 import { FaSpinner } from 'react-icons/fa/index.js'
 import { TbMacro } from 'react-icons/tb'
-import { useEventListener, useOnClickOutside } from 'usehooks-ts'
+import { useEventListener, useOnClickOutside, useCopyToClipboard } from 'usehooks-ts'
 import { v4 as uuid } from 'uuid'
+import { promise } from 'zod'
 
 import LoadingOrError from '../LoadingOrError'
 
@@ -47,10 +48,11 @@ export function BuyPackackagePopUp(
   const { forAddress, pack, isOpen, setIsOpen } = properties
   const { marketplace, name, price, currencySymbol, listingId } = pack
   const [isLoading, setIsLoading] = useState(false)
-
+  const [value, copy] = useCopyToClipboard()
   const toastId = uuid()
   const [state, send] = useMachine(
     toast.group.machine({
+      id: toastId,
       pauseOnInteraction: true,
       pauseOnPageIdle: true,
       gutter: '1rem',
@@ -59,8 +61,7 @@ export function BuyPackackagePopUp(
         right: '2rem',
         bottom: '2rem',
         left: '2rem'
-      },
-      id: toastId
+      }
     })
   )
   const apiToast = toast.group.connect(state, send, normalizeProps)
@@ -73,50 +74,97 @@ export function BuyPackackagePopUp(
     ease: 'power2.out',
     autoAlpha: 1
   })
+  function onCopy(toCopy: string): void {
+    copy(toCopy).then(() => {
+      const copyToastId = apiToast.upsert({
+        id: uuid(),
+        type: 'success',
+        title: `Copied to clipboard: ${value as string}`,
+
+      })
+      console.log('copied to clipboard', copyToastId);
+      if (copyToastId !== undefined) {
+        // apiToast.promise(copyToastId, {
+        //   loading: {
+        //     title: 'Copying to clipboard...',
+        //     description: 'Hang tight!',
+        //   },
+        //   success: (data: any) => ({
+        //     title: 'Copied to clipboard',
+        //     description: data.title,
+        //   }),
+        //   error: (error: any) => ({
+        //     title: 'Error copying to clipboard',
+        //     description: error,
+        //   }),
+        // }).then(() => {
+        //   console.log('copied to clipboard', copyToastId);
+        // }).catch((error: any) => {
+        //   console.log('error copying to clipboard', copyToastId, error);
+        // });
+
+        apiToast.update(copyToastId, {
+          type: 'success',
+          title: `Sweet success!`,
+          duration: 7000,
+        }
+        )
+      }
+      setTimeout(() => {
+        apiToast.remove(copyToastId)
+
+      }, 500)
+    }).catch((_error: unknown) => {
+      apiToast.create({
+        type: 'error',
+        title: `Failed to copy to clipboard: ${value as string}`,
+        duration: 3000
+      })
+    })
+  }
 
   /** function to call the `buyNow` method of `useBuyNow` with a useCallback hook */
   const onBuyPackage = useCallback(
     (id: string) => {
       setIsLoading(true)
-      apiToast.upsert({
-        id: toastId,
+      const buyToastId = apiToast.create({
         type: 'loading',
-        title: 'Buy package.',
+        title: `Buying ${name}`,
         description: 'Please sign the transaction in your wallet.',
         placement: 'bottom-end',
       })
       marketplace
         .buyoutListing(id, 1)
         .then(data => {
-          console.log('buyPackage', { data })
-          apiToast.upsert({
-            id: toastId,
-            type: 'loading',
+          if (buyToastId !== undefined) {
+            console.log('buyPackage', { data })
+            apiToast.update(buyToastId, {
+              type: 'success',
               title: 'W00t! You bought the package!',
               description: `You have successfully bought ${name} for ${currencySymbol}${price}. \n\n Your receipt: ${data.receipt.transactionHash}`,
               duration: 7000
             })
-
+          }
           setIsLoading(false)
+          // setTimeout(() => { apiToast.dismiss() }, 7000)
         })
         .catch((error: any) => {
+          apiToast.resume()
           console.log('buyPackage error', { error })
           const errorMessage =
             (error.message as string) || (error.toString() as string)
           setIsLoading(false)
-          apiToast.upsert({
-            id: toastId,
-            type: 'error',
-            title: `Something went wrong!\n\n ${errorMessage}`,
-            duration: 7000
-          })
+          if (buyToastId !== undefined) {
+            console.log('toastId', { buyToastId });
 
+            apiToast.update(buyToastId, {
+              type: 'error',
+              title: `Something went wrong!\n ${errorMessage}`,
+            })
+          }
         }).finally(() => {
-          setTimeout(() => {
-            apiToast.dismiss()
-          }, 7000)
           setIsLoading(false)
-          // setTimeout(() => { apiToast.dismiss() }, 5000)
+          setTimeout(() => { apiToast.dismiss() }, 3000)
         })
     },
     [apiToast, currencySymbol, marketplace, name, price, toastId]
@@ -133,9 +181,10 @@ export function BuyPackackagePopUp(
       popUpReference.current,
       {
         opacity: 1,
+        display: 'flex',
         yPercent: 0,
         duration: 0.3,
-        ease: 'power2.out'
+        ease: 'power3',
       }
     )
       .to(contentReference.current, {
@@ -168,25 +217,34 @@ export function BuyPackackagePopUp(
     <>
       <div
         ref={popUpReference}
-        className='buy-popup l-0 r-0 b-0 fixed inset-0 h-full w-full origin-top items-center justify-center overflow-hidden border-2 border-violet-300 p-3 shadow-violet-400'
+        className='buy-popup l-0 r-0 b-0 hidden fixed inset-0 h-full w-full origin-top items-center justify-center overflow-hidden border-2 border-violet-300 p-3 shadow-violet-400'
       >
         <div
           ref={contentReference}
-          className='relative z-10 flex flex-col items-center justify-center'
+          className='relative z-10 flex flex-col items-center justify-center text-left'
         >
           <div className='flex-grow'>
-            <h3 className='font-bold text-purple-400'>
-              Pack {`#${listingId}`}
+            <h3 className='text-teal-400 uppercase font-bold text-md text-left inline-flex flex-wrap flex-col space-0 gap-0 mb-3'>
+              <span className='badge badge-outline text-xs leading-3 uppercase text-violet-400 font-normal'>Edition {`#${listingId}`}</span>
+              <strong className='text-lg leading-3'>{name}</strong>
             </h3>
-            <p>{name}</p>
-            <p>
-              {accounting.formatMoney(price, '$', 2)} {currencySymbol}
-            </p>
-            {forAddress ? (
-              <p className='mb-3 text-sm'>
-                Active wallet {shortenAddress(forAddress)}
+            <p>Let&apos;s do this! Hit &apos;confirm&apos; below to buy this NFT, and the <span className='gradient-text font-bold'>Meta-Builders</span> services locked up inside it.</p>
+            <div className='flex flex-col items-start justify-center space-y-2 my-3'>
+              <p className='inline-flex flex-col gap-0 space-0'>
+                <span className='text-sm'>Price:</span> <span className='text-xl'> {accounting.formatMoney(price, '$', 2)} <span className='text-violet-400'>{currencySymbol}</span></span>
               </p>
-            ) : undefined}
+              {forAddress ? (
+                <p className='mb-3 text-sm'>
+                  <span className='text-md'>Active wallet</span>
+                  <span className='text-violet-400 ml-3'
+                    tabIndex={0}
+                    role="button"
+                    onClick={(): void => onCopy(forAddress)}
+                    onKeyPress={(): void => onCopy(forAddress)}
+                  >{shortenAddress(forAddress)}</span>
+                </p>
+              ) : undefined}
+            </div>
           </div>
           <div className='z-10 flex-shrink'>
             {forAddress ? (
@@ -227,7 +285,7 @@ export function BuyPackackagePopUp(
           className='pointer-events-none fixed inset-0 h-full w-full'
         >
           {apiToast.toasts.map(actor => (
-            <Toast key={actor.id} actor={actor} />
+            <Toast key={actor.id} actor={actor} id={actor.id} />
           ))}
         </div>
       </Portal>
@@ -267,11 +325,10 @@ export function ButtonBuyPackage(properties: IButtonBuyPackage): JSX.Element {
         ref={reference}
         type='button'
         aria-label='Buy Package'
-        className={`btn transition-colors ${
-          !address
+        className={`btn transition-colors ${!address
             ? 'bg-slate-800 text-violet-400'
             : 'bg-teal-400 text-slate-900'
-        }  flex-grow transition-all duration-200 ease-in-out`}
+          }  flex-grow transition-all duration-200 ease-in-out`}
         data-package={pack.listingId}
         onClick={!address ? onConnectMetamask : onToggleOpen}
       >
