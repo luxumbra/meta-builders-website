@@ -6,12 +6,13 @@ import { ReactElement, useEffect } from 'react';
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ButtonProps } from 'react-daisyui';
+import { HashLink } from 'react-router-hash-link';
+import { useEventListener } from 'usehooks-ts';
 
 import Footer from '~mb/default/Footer';
 import Header from '~mb/default/Header';
 
 import "~mb/styles/index.css";
-import { useEventListener } from 'usehooks-ts';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -66,6 +67,7 @@ export function Layout({ children, content }: {children: React.ReactNode, conten
       <Header />
       {children}
       <Footer />
+      <HashLink to="/#home" className="back-to-top hidden py-3 text-lg text-normal  transition-all motion-safe:animate-pulse-min uppercase font-sans fixed bottom-16 right-16 z-[100]"><span className="gradient-text text-shadow-alt-md-teal ">Back to top</span></HashLink>
     </div>
   );
 }

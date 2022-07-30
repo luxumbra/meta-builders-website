@@ -19,6 +19,7 @@
     "@thirdweb-dev/sdk": "^2.3.31",
     "@typechain/ethers-v5": "^10.1.0",
     "@types/prop-types": "^15.7.5",
+    "@types/react-router-hash-link": "^2.4.5",
     "@types/uuid": "^8.3.4",
     "@zag-js/react": "^0.1.13",
     "@zag-js/toast": "^0.1.11",

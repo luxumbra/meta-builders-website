@@ -131,6 +131,10 @@ module.exports = {
       borderColor: {
         default: "var(--color-border)",
       },
+      animation: {
+        'ping-once': 'ping 0.5s cubic-bezier(0, 0, 0.2, 1) 2',
+        'pulse-min': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 3'
+      }
     },
   },
   experimental: { optimizeUniversalDefaults: true },

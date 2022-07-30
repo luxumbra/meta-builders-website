@@ -42,13 +42,12 @@
 
 
     &.fixed-header {
-      @apply bg-transparent  !fixed top-0 bottom-auto;
+      @apply bg-transparent !fixed top-0 bottom-auto;
 
       &::after {
         content: '';
-        @apply absolute invisible dark:visible inset-0 bg-transparent dark:bg-glass-primary-900 z-0;
-
-        backdrop-filter: blur(7px);
+        @apply absolute invisible dark:visible inset-0 bg-transparent md:dark:bg-glass-primary-900 z-0;
+        @apply md:filter md:backdrop-blur-md
       }
 
       .brand {
@@ -111,6 +110,8 @@
   }
 
   footer {
+    @apply bg-transparent dark:bg-transparent;
+
     a {
       @apply text-violet-800 dark:text-teal-300 opacity-70 font-bold;
     }

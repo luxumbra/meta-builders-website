@@ -1,37 +1,44 @@
 [
   {
     "name": "Moloch Cloudship",
-    "image": "undefined",
+    "bio": "Some bio text about this partner...",
+    "image": "",
     "url": "https://soon.tm/"
   },
   {
     "name": "NFT Movie",
-    "image": "src/data/partners/images/nftmovie.svg",
+    "bio": "Some bio text about this partner...",
+    "image": "nftmovie.svg",
     "url": "https://soon.tm/"
   },
   {
     "name": "Blockchain Consultants",
-    "image": "src/data/partners/images/btcconsultants.svg",
+    "bio": "Some bio text about this partner...",
+    "image": "btcconsultants.svg",
     "url": "https://soon.tm/"
   },
   {
     "name": "Metaverse Realtor",
-    "image": "src/data/partners/images/mverserealtor.svg",
+    "bio": "Some bio text about this partner...",
+    "image": "mverserealtor.svg",
     "url": "https://soon.tm/"
   },
   {
     "name": "MetaJax",
-    "image": "src/data/partners/images/metajax.svg",
+    "bio": "Some bio text about this partner...",
+    "image": "metajax.svg",
     "url": "https://soon.tm/"
   },
   {
     "name": "The Uplift",
-    "image": "src/data/partners/images/uplift-logo.png",
+    "bio": "Some bio text about this partner...",
+    "image": "uplift-logo.png",
     "url": "https://soon.tm/"
   },
   {
     "name": "Masters Of The Bitcoin",
-    "image": "src/data/partners/images/masters.png",
+    "bio": "Some bio text about this partner...",
+    "image": "masters.png",
     "url": "https://soon.tm/"
   }
 ]

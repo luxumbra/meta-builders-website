@@ -14,6 +14,7 @@ export interface ITeamMember {
 
 export interface IPartner {
   name: string;
+  bio: string;
   image: string;
   url: string;
 }

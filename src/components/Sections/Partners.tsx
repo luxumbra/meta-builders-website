@@ -24,7 +24,7 @@ export default function PartnersSection(): JSX.Element {
     <ContentSection title="MB Partners" id={sectionId} lead={<PartnerSectionLead />}>
       <div className="max-w-3/4 w-full md:max-w-6xl space-y-2">
         <div className="grid grid-cols-3 gap-2 lg:gap-4 md:grid-cols-2 lg:grid-cols-4 text-center">
-          {partners.map(({ name, image, url }) => <PartnersCard key={uuid()} name={name} image={image} url={url} />)}
+          {partners.map((partner) => <PartnersCard key={uuid()} partner={partner} />)}
         </div>
       </div>
     </ContentSection>

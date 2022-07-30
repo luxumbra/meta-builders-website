@@ -7,7 +7,7 @@ import {useEventListener, useMediaQuery, useIntersectionObserver } from 'usehook
 import { v4 as uuid } from "uuid";
 
 import { ButtonWeb3Connect, ButtonDarkMode } from "~mb/components/Buttons";
-
+import {links} from "~mb/components/Default/Footer";
 
 const navItems = [
   { title: "Home", url: "#home" },
@@ -71,14 +71,12 @@ export default function Header(): JSX.Element {
 
     const body = document.querySelector("body") as HTMLElement;
     if (isOpen) {
-      console.log('isOpen');
       body.classList.add("menu-open");
       tl.play()
 
       // wrapper?.classList.remove("hidden");
       // mobileMenuWrapper.classList.remove("hidden");
     } else {
-      console.log('isClosed');
       body.classList.remove("menu-open");
       tl.reverse();
     }
@@ -89,9 +87,7 @@ export default function Header(): JSX.Element {
 
   /** Show `mobileMenuWrapper` when the `isOpen` const is set to true */
   useEffect(() => {
-    console.log('useEffect toggleMobileMenu');
     if (typeof window === "undefined") return;
-    // onToggleMobileMenu();
     if (wrapper) wrapper.ariaHidden = wrapper.classList.contains("hidden") ? 'false' : 'true';
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
@@ -182,12 +178,12 @@ export default function Header(): JSX.Element {
 
         <div
           ref={mobileMenuWrapper}
-          className="mobile-menu inset-0 top-0 fixed invisible md:hidden h-screen w-screen bg-slate-900 bg-gradient-to-bl dark:from-slate-700 dark:to-slate-900 !z-100"
+          className="mobile-menu inset-0 top-0 fixed invisible md:hidden h-screen w-screen  bg-gradient-to-bl dark:from-glass-primary-700 dark:to-glass-primary-900 filter backdrop-blur-lg !z-100"
           aria-hidden="true"
         >
           <div className="fixed flex flex-col items-center justify-between w-full h-full inset-0 px-3 pt-0">
             <div
-              className="flex flex-col justify-start space-y-4 w-full h-full"
+              className="flex flex-col justify-center space-y-4 w-full h-3/4"
               role="dialog"
               aria-modal="true"
             >
@@ -196,7 +192,7 @@ export default function Header(): JSX.Element {
                   {navItems.map(({ title, url }) => (
                     <li key={uuid()}>
                       <HashLink
-                        className="text-lg font-light font-heading text-slate-500 dark:text-violet-300 hover:text-slate-700 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors"
+                        className="text-lg font-bold font-heading text-slate-500 dark:text-violet-300 hover:text-slate-700 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors"
                         smooth
                         to={`/${url}`}
                       >
@@ -205,7 +201,23 @@ export default function Header(): JSX.Element {
                     </li>
                   ))}
                 </ul>
-              </nav>
+               </nav>
+            </div>
+            <div className="flex flex-col justify-center items-start space-y-4 w-full h-auto flex-grow">
+            <ul className="relative grid grid-cols-4 w-full gap-6 md:gap-4 sm:grid-cols-4 lg:w-1/4">
+              {links.map((link) => (
+                <li key={uuid()} className="text-center">
+                  <a
+                    className="group p-3 border-2 border-violet-800 dark:border-teal-200 rounded-full inline-flex items-center justify-center text-shadow-alt-sm dark:text-shadow-alt-sm-teal hover:animate-pulse w-3/4 h-auto"
+                    href={link.url}
+                  >
+                    <span className="sr-only">{link.description}</span>
+                    <Icon className="h-full text-violet-800  transition-colors text-6xl dark:text-teal-300 " icon={link.icon} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+
             </div>
           </div>
         </div>

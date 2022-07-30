@@ -31,8 +31,8 @@ function Toast({actor, id}: {actor: toast.Service, id: string}): JSX.Element {
           <span className="sr-only">Dismiss</span>
         </button>
       </div>
-      {toastApi.description ? <p>{toastApi.description}</p> : undefined}
-      <div className="h-1 absolute bottom-0 left-0 right-0" {...toastApi.progressbarProps} />
+      {/* {toastApi.description ? <p>{toastApi.description}</p> : undefined} */}
+      <div className="h-1 absolute bottom-0" {...toastApi.progressbarProps} />
     </div>
   )
 }

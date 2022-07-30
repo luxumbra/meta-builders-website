@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { useEventListener } from 'usehooks-ts';
 
 import PageNotFound from '~mb/routes/404';
 import Home from '~mb/routes/Home';
@@ -27,6 +28,33 @@ function App(): ReactElement {
       window.Buffer = Buffer;
     }
   });
+
+  useEventListener('scroll', () => {
+    if (typeof window === 'undefined') return;
+    const tl = gsap.timeline({paused: true, reversed: true});
+    const page = document.documentElement;
+    const offset = page.scrollTop;
+    const backToTop = document.querySelector('.back-to-top') as HTMLElement;
+    // gsap.set(backToTop, {opacity: 0, xPercent: 125});
+    // tl.from(backToTop, {
+    //   opacity: 0,
+    //   xPercent: 125,
+    //   duration: 0.4,
+    //   ease: 'elastic',
+    // }).to(backToTop, {
+    //   opacity: 1,
+    //   xPercent: 0,
+    //   duration: 0.4,
+    // })
+
+    if (offset > 1200) {
+      backToTop.classList.remove('hidden');
+    } else {
+      backToTop.classList.add('hidden');
+    }
+    // tl.play();
+  });
+
 
   function onLocation(): void {
     if (typeof window === 'undefined') return;
