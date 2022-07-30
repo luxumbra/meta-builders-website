@@ -19,38 +19,45 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
 
 
   return (
-    <div className="group relative hover:cursor-pointer">
-      <figure className="flex flex-col space-y-3 items-center ">
-        <div className="avatar">
+    <div className="group relative hover:cursor-pointer pt-0">
+      <figure className="flex flex-col space-y-3 items-center text-center ">
+        <div className="
+            avatar
+            flex
+            flex-row
+            items-center
+            justify-center">
           <picture
-            className={`rounded-full
-        w-[150px]
-        h-[150px]
-        overflow-hidden box-shadow-[0_0_10px_5px_rgba(0,0,0,0.8)_inset]`}
+            className={`
+            relative
+            rounded-full
+            w-3/4
+            lg:w-1/2
+            h-auto
+            lg:h-auto
+            overflow-hidden box-shadow-[0_0_10px_5px_rgba(0,0,0,0.8)_inset] text-center
+          `}
           >
             {!isDevelopment ? (
               <Imgix
                 className="object-cover w-full h-full transition-all duration-300 opacity-50 bg-cover group-hover:scale-110 group-hover:opacity-100 group-focus:scale-110 group-focus:opacity-100"
                 src={buildImgUrl(avatar, 'assets/team/images')}
                 sizes={sizes}
-                width={150}
-                height={150}
-
                 htmlAttributes={{
                   alt: `${name}'s avatar`,
                   loading: 'lazy',
                 }}
               />
             ) : (
-              <img src={`src/static/assets/team/images/${avatar}`} alt={`${name}'s avatar`} className="object-cover w-full h-full transition-all duration-200 bg-cover group-hover:scale-110 group-hover:blur-0 group-focus:scale-110 group-focus:hue-rotate-0" />
+              <img src={`src/static/assets/team/images/${avatar}`} alt={`${name}'s avatar`} className="object-cover w-full h-full transition-all duration-200 bg-cover group-hover:scale-110 group-hover:blur-0 group-focus:scale-110 group-focus:hue-rotate-0 self-center" />
             )}
           </picture>
         </div>
         <figcaption className="text-center flex flex-col gap-0">
-          <h3 className="text-lg font-normal text-slate-600 dark:text-slate-400 leadIn">{name}</h3>
-          <p className="text-sm ">{role}</p>
+          <h3 className="text-sm md:text-lg font-normal text-slate-600 dark:text-slate-400 leadIn">{name}</h3>
+          <p className="text-xs md:text-sm ">{role}</p>
         </figcaption>
-        <div className="absolute bottom-0 flex flex-col items-start text-left justify-center content-center w-full flex-grow min-h-[120%] h-auto gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100 scale-50 group-hover:scale-100 group-focus:scale-100 group-hover:-translate-y-[0%] group-focus:translate-y-0 translate-y-10 origin-center z-50  filter backdrop-blur-xl">
+        <div className="absolute bottom-0 flex flex-col items-start text-left justify-center content-center min-w-full md:w-[125%] flex-grow min-h-[120%] h-auto gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100 scale-50 group-hover:scale-100 group-focus:scale-100 group-hover:-translate-y-[0%] group-focus:translate-y-0 translate-y-10 origin-center z-50  filter backdrop-blur-xl">
           <div className="relative bio-content flex flex-col gap-y-2 p-3 flex-grow z-10">
             <h4 className='text-md font-bold gradient-text'>{name}</h4>
             {bio ? <p className="text-xs text-white leading-tight ">{bio}</p> : undefined}

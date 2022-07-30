@@ -21,7 +21,7 @@ export default function BuySection(): JSX.Element {
       id={sectionId}
       lead={<SectionIntro />}
     >
-      <div className="max-w-6xl">
+      <div className="max-w-full md:max-w-6xl">
         <MarketplaceListings address={marketPlaceContract}  />
       </div>
 

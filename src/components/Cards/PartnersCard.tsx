@@ -19,13 +19,15 @@ export function PartnersCard(properties: PartnersCardProperties): JSX.Element {
   // eslint-disable-next-line unicorn/no-null
 
   return (
-    <a className="partners-card group aspect-video leadIn" href={url}>
+    <a className="partners-card group aspect-video leadIn flex-shrink" href={url}>
     <figure className="relative w-full h-full items-center text-center flex flex-row content-center justify-center">
         <picture
           className={`
           relative
           w-auto
-          h-full
+          lg:w-auto
+          h-3/4
+          lg:h-full
         `}
         >
         {/* <Imgix
@@ -43,7 +45,7 @@ export function PartnersCard(properties: PartnersCardProperties): JSX.Element {
       </picture>
       <figcaption className="absolute inset-0">
         <div
-          className="group flex flex-col items-center justify-center h-full gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100
+          className="hidden md:flex group flex-col items-center justify-center h-full gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100
            group-hover:translate-y-0 group-focus:translate-y-0 translate-y-3"
         >
           <h3 className="text-xl font-extrabold text-teal-400 text-center uppercase">

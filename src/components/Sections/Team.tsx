@@ -20,7 +20,7 @@ export default function TeamSection(): JSX.Element {
   return (
     <ContentSection title="Meet your team" id={sectionId} lead={<TeamSectionLead />}>
       <div className="max-w-6xl space-y-2">
-        <div className="grid grid-cols-1 gap-4 space-y-2 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-6 space-y-0 md:gap-5 md:grid-cols-2 lg:grid-cols-5">
           {members.map((member) => (
             <TeamMemberCard key={uuid()} member={member} />
           ))}

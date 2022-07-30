@@ -61,7 +61,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
 
   return (
     <div
-      className="package-card group relative flex flex-col items-center justify-start h-full space-y-5 p-5  overflow-hidden  z-10"
+      className="package-card group relative flex flex-col items-center justify-start h-full space-y-2 md:space-y-5 p-2 md:p-5  overflow-hidden  z-10"
     >
       <Imgix
         src={image}
@@ -81,15 +81,15 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
         }}
       />
       <div className="absolute inset-0 bg-slate-800 opacity-[97%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />
-      <div className="relative flex flex-col space-x-5 flex-grow w-full px-0 text-violet-50 z-[1]">
-        <h3 className="text-lg font-extrabold text-center uppercase py-3 text-violet-50">
+      <div className="relative flex flex-col space-x-2 md:space-x-5 space-y-2 md:space-y-3 flex-grow w-full px-0 text-violet-50 mb-5 z-[1]">
+        <h3 className="text-lg font-extrabold text-center uppercase text-violet-50">
           {name}
         </h3>
         <PriceDisplay price={displayPrice} currency={currencySymbol} />
-        <p className="py-2 text-sm">{description}</p>
-        <ul>
+        <p className="text-sm leading-tight">{description}</p>
+        <ul className="flex flex-col space-y-3">
           {services.length > 0 ? services.map(service => (
-              <li key={uuid()} className="flex items-center space-x-3">
+              <li key={uuid()} className="flex items-center space-x-3 ">
               <Icon icon="ic:baseline-check" className="text-teal-400 text-sm w-5 h-5" />
               <span className="text-md text-violet-100 font-normal text-left">
                 {service.value}

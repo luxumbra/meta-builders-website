@@ -184,7 +184,7 @@ export function BuyPackackagePopUp(
     <>
       <div
         ref={popUpReference}
-        className='buy-popup l-0 r-0 b-0 hidden fixed inset-0 h-full w-full origin-top items-center justify-center overflow-hidden border-2 border-violet-300 p-6 shadow-violet-400 z-30 text-slate-50'
+        className='buy-popup l-0 r-0 b-0 hidden fixed inset-0 h-full w-full origin-top items-center justify-center overflow-hidden border-2 border-violet-300 p-5 shadow-violet-400 z-30 text-slate-50'
       >
         <div
           ref={contentReference}

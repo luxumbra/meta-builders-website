@@ -72,7 +72,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
             marketplace,
           } as IPackage
 
-            return <PackageCard key={cardKey} pack={pack} />
+          return <PackageCard key={cardKey} pack={pack} />
 
         })
         ) : (
