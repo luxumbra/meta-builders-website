@@ -5,7 +5,7 @@ import type { BigNumber } from "ethers"
 export interface ITeamMember {
   name: string;
   image: string;
-  role: string;
+  role?: string;
   bio?: string;
   twitter?: string;
   linkedin?: string;

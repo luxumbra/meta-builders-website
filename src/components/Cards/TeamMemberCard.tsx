@@ -11,7 +11,8 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
   const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
   const isProduction = import.meta.env.VITE_NODE_ENV === 'production';
   const siteUrl = import.meta.env.VITE_SITE_URL as string;
-  const avatar = new URL(image, `${siteUrl}/assets/team/images`);
+  // const avatar = new URL(image ?? 'missing-image.png', `${siteUrl}/assets/team/images`);
+  const avatar = image !== ''? image : 'missing-image.png';
   const avatarUrl = avatar.toString();
   const isDevelopment = import.meta.env.DEV
   console.log('bio', bio);
@@ -30,7 +31,7 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
             {!isDevelopment ? (
               <Imgix
                 className="object-cover w-full h-full transition-all duration-300 opacity-50 bg-cover group-hover:scale-110 group-hover:opacity-100 group-focus:scale-110 group-focus:opacity-100"
-                src={buildImgUrl(image, 'assets/team/images')}
+                src={buildImgUrl(avatar, 'assets/team/images')}
                 sizes={sizes}
                 width={150}
                 height={150}
@@ -41,7 +42,7 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
                 }}
               />
             ) : (
-              <img src={`src/static/assets/team/images/${image}`} alt={`${name}'s avatar`} className="object-cover w-full h-full transition-all duration-200 bg-cover group-hover:scale-110 group-hover:blur-0 group-focus:scale-110 group-focus:hue-rotate-0" />
+              <img src={`src/static/assets/team/images/${avatar}`} alt={`${name}'s avatar`} className="object-cover w-full h-full transition-all duration-200 bg-cover group-hover:scale-110 group-hover:blur-0 group-focus:scale-110 group-focus:hue-rotate-0" />
             )}
           </picture>
         </div>
@@ -53,11 +54,12 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
           <div className="relative bio-content flex flex-col gap-y-2 p-3 flex-grow z-10">
             <h4 className='text-md font-bold gradient-text'>{name}</h4>
             {bio ? <p className="text-xs text-white leading-tight ">{bio}</p> : undefined}
+
             <div className="inline-flex gap-2 flex-row items-center translate-y-5 transition-transform  group-hover:translate-y-0 -translate-x-6 group-hover:translate-x-0 scale-0 group-hover:scale-100">
-              {twitter ? <a href={twitter} title={`${name} on Twitter`} className="text-xs text-teal-200 badge badge-primary">Twitter</a> : undefined}
-              {linkedin ? <a href={linkedin} title={`${name} on Twitter`} className="text-xs text-teal-200 badge badge-info">LinkedIn</a> : undefined}
-              {email ? <a href={email} title={`${name} on Email`} className="text-xs text-teal-200 badge badge-primary">Email</a> : undefined}
-              </div>
+              {twitter ? <a href={twitter} title={`${name} on Twitter`} className="text-xs text-white badge badge-link">Twitter</a> : undefined}
+              {linkedin ? <a href={linkedin} title={`${name} on Twitter`} className="text-xs text-white badge badge-link">LinkedIn</a> : undefined}
+              {email ? <a href={email} title={`${name} on Email`} className="text-xs text-white badge badge-link">Email</a> : undefined}
+            </div>
           </div>
           <div className='absolute inset-0 bg-slate-900 dark:bg-slate-900 opacity-80 filter backdrop-blur-xl blur-md rounded-lg shadow-lg p-4 w-full h-full z-0'/>
         </div>

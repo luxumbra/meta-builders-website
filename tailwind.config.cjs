@@ -130,7 +130,7 @@ module.exports = {
       },
       borderColor: {
         default: "var(--color-border)",
-      }
+      },
     },
   },
   experimental: { optimizeUniversalDefaults: true },

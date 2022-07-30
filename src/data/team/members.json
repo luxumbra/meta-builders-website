@@ -3,16 +3,16 @@
     "name": "SmartDigitalPayments",
     "bio": "SmartDigitalPayments is a company that provides digital payment solutions for businesses. The company was founded in 2017 by a team of developers and business owners. The company is headquartered in San Francisco, California.",
     "image": "smartdigitalpayments.jpg",
-    "linkedIn": "https://www.linkedin.com/in/smartdigitalpayments/",
+    "linkedin": "https://www.linkedin.com/in/smartdigitalpayments/",
     "twitter": "https://twitter.com/system_payment",
     "role": "Founder/CEO",
-    "email": ""
+    "email": "mailto:hello@meta-builders.com"
   },
   {
     "name": "koH",
     "bio": "I can haz bio?",
     "image": "koh.jpg",
-    "linkedIn": "",
+    "linkedin": "",
     "twitter": "https://twitter.com/Crypto_koH",
     "role": "Project Manager",
     "email": ""
@@ -21,7 +21,7 @@
     "name": "Musashi",
     "bio": "I can haz bio?",
     "image": "musashi.jpg",
-    "linkedIn": "",
+    "linkedin": "",
     "twitter": "https://twitter.com/Musashi14790940",
     "role": "Co-Founder",
     "email": ""
@@ -30,7 +30,7 @@
     "name": "luxumbra",
     "bio": "Many years working as a front-end developer, lux has been full-on Web3 for 2 years. Loves working with TypeScript, React, Three.js, and other fun things.",
     "image": "luxumbra.gif",
-    "linkedIn": "",
+    "linkedin": "",
     "twitter": "https://twitter.com/bdgrdev",
     "role": "Front-End Developer / Designer",
     "email": ""
@@ -39,7 +39,7 @@
     "name": "b0gie",
     "bio": "I can haz bio?",
     "image": "b0gie.png",
-    "linkedIn": "",
+    "linkedin": "",
     "twitter": "",
     "role": "3D Artist / Designer / Developer",
     "email": ""
@@ -47,8 +47,8 @@
   {
     "name": "Aperion",
     "bio": "I can haz bio?",
-    "image": "aperion.png",
-    "linkedIn": "",
+    "image": "",
+    "linkedin": "",
     "twitter": "",
     "role": "Wears many hats",
     "email": ""
@@ -56,26 +56,35 @@
   {
     "name": "Misanth",
     "bio": "I can haz bio?",
-    "image": "misanth.png",
-    "linkedIn": "",
+    "image": "",
+    "linkedin": "",
     "twitter": "",
     "role": "Designer",
     "email": ""
   },
   {
-    "name": "Misanth",
+    "name": "The_Elzz",
     "bio": "I can haz bio?",
-    "image": "misanth.png",
-    "linkedIn": "",
+    "image": "",
+    "linkedin": "",
     "twitter": "",
     "role": "Designer",
     "email": ""
   },
   {
-    "name": "Moar peeple, plz",
-    "bio": "Who else is on the rosta?",
-    "image": "misanth.png",
-    "linkedIn": "",
+    "name": "bobcat",
+    "bio": "I can haz bio?",
+    "image": "",
+    "linkedin": "",
+    "twitter": "",
+    "role": "Designer",
+    "email": ""
+  },
+  {
+    "name": "The others",
+    "bio": "Who else is on the rosta? What are their roles?",
+    "image": "",
+    "linkedin": "",
     "twitter": "",
     "role": "Designer",
     "email": ""
