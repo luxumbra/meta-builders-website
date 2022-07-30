@@ -5,6 +5,7 @@ import { ThemeContext } from '~mb/contexts'
 
 
 export type UseDarkModeType = {
+  isDarkMode: boolean
   theme: string
   toggleTheme: () => void
 }
@@ -20,6 +21,8 @@ export function useDarkMode(): UseDarkModeType {
   const toggleTheme = (): void => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
-  return { theme, toggleTheme }
+  const isDarkMode = theme === 'dark'
+
+  return { isDarkMode, theme, toggleTheme }
 }
 export default useDarkMode;

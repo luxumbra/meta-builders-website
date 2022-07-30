@@ -10,7 +10,7 @@
   },
   {
     "name": "koH",
-    "bio": "",
+    "bio": "I can haz bio?",
     "image": "koh.jpg",
     "linkedIn": "",
     "twitter": "https://twitter.com/Crypto_koH",
@@ -19,7 +19,7 @@
   },
   {
     "name": "Musashi",
-    "bio": "",
+    "bio": "I can haz bio?",
     "image": "musashi.jpg",
     "linkedIn": "",
     "twitter": "https://twitter.com/Musashi14790940",
@@ -28,7 +28,7 @@
   },
   {
     "name": "luxumbra",
-    "bio": "",
+    "bio": "Many years working as a front-end developer, lux has been full-on Web3 for 2 years. Loves working with TypeScript, React, Three.js, and other fun things.",
     "image": "luxumbra.gif",
     "linkedIn": "",
     "twitter": "https://twitter.com/bdgrdev",
@@ -36,39 +36,48 @@
     "email": ""
   },
   {
-    "name": "SmartDigitalPayments",
-    "bio": "SmartDigitalPayments is a company that provides digital payment solutions for businesses. The company was founded in 2017 by a team of developers and business owners. The company is headquartered in San Francisco, California.",
-    "image": "smartdigitalpayments.jpg",
-    "linkedIn": "https://www.linkedin.com/in/smartdigitalpayments/",
-    "twitter": "https://twitter.com/SmartDP",
-    "role": "Founder/CEO",
+    "name": "b0gie",
+    "bio": "I can haz bio?",
+    "image": "b0gie.png",
+    "linkedIn": "",
+    "twitter": "",
+    "role": "3D Artist / Designer / Developer",
     "email": ""
   },
   {
-    "name": "koH",
-    "bio": "",
-    "image": "koh.jpg",
+    "name": "Aperion",
+    "bio": "I can haz bio?",
+    "image": "aperion.png",
     "linkedIn": "",
-    "twitter": "https://twitter.com/Crypto_koH",
-    "role": "Project Manager",
+    "twitter": "",
+    "role": "Wears many hats",
     "email": ""
   },
   {
-    "name": "Musashi",
-    "bio": "",
-    "image": "musashi.jpg",
+    "name": "Misanth",
+    "bio": "I can haz bio?",
+    "image": "misanth.png",
     "linkedIn": "",
-    "twitter": "https://twitter.com/Musashi14790940",
-    "role": "Co-Founder",
+    "twitter": "",
+    "role": "Designer",
     "email": ""
   },
   {
-    "name": "luxumbra",
-    "bio": "",
-    "image": "luxumbra.gif",
+    "name": "Misanth",
+    "bio": "I can haz bio?",
+    "image": "misanth.png",
     "linkedIn": "",
-    "twitter": "https://twitter.com/bdgrdev",
-    "role": "Front-End Developer / Designer",
+    "twitter": "",
+    "role": "Designer",
+    "email": ""
+  },
+  {
+    "name": "Moar peeple, plz",
+    "bio": "Who else is on the rosta?",
+    "image": "misanth.png",
+    "linkedIn": "",
+    "twitter": "",
+    "role": "Designer",
     "email": ""
   }
 ]

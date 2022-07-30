@@ -1,24 +1,28 @@
-import { CSSProperties } from 'react'
+import { CSSProperties, lazy } from 'react'
 
 import Imgix from 'react-imgix'
 import { useImageOnLoad, useMediaQuery } from 'usehooks-ts'
 
 import { buildImgUrl } from '~mb/lib/helpers'
+import { useDarkMode } from '~mb/lib/hooks'
 
 export function HeroImage(): JSX.Element {
   const { handleImageOnLoad, css } = useImageOnLoad()
+  const { isDarkMode } = useDarkMode()
   const widths = [450, 768, 1366, 1920]
   const sizes = '100vw'
-  const isMobile = useMediaQuery('(max-width: 768px)')
-  const isDesktop = useMediaQuery('(min-width: 768px)')
+  const deviceXs = useMediaQuery('(min-width: 0px)')
+  const deviceSm = useMediaQuery('(min-width: 640px)')
+  const deviceMd = useMediaQuery('(min-width: 1024px)')
+  const deviceLg = useMediaQuery('(min-width: 1280px)')
+  const deviceXl = useMediaQuery('(min-width: 1536px)')
+
 
   return (
     <picture className="relative inset-0 w-screen h-screen m-auto" >
-      <Imgix
-        className='h-screen w-screen object-cover'
+      {/* <Imgix
+        className='fixed inset-0 h-screen w-screen object-cover'
         src={buildImgUrl('synthwave-outrun-1920.png', 'assets/images')}
-        width={isDesktop ? widths[3] : widths[1]}
-        height={800}
         sizes={sizes}
         htmlAttributes={{
           alt: 'Synthwave landscape with a Metaverse city in the distance',
@@ -27,20 +31,26 @@ export function HeroImage(): JSX.Element {
         imgixParams={{
           fit: "crop",
           fm: "png",
+          ar: '16:9',
+          sat: isDarkMode ? 0 : -100,
         }}
-      />
-      {/* <img
-        className='absolute inset-0 h-full w-full object-cover'
-        src={buildImgUrl('synthwave-outrun-1920.png', 'assets/images')}
-        alt='Thumb: The ridged surface of the moon'
-        />
+      /> */}
+
       <img
-        className='absolute inset-0 h-full w-full object-cover'
+        className='fixed inset-0 h-full w-full object-cover'
+        src='assets/images/synthwave-outrun-fallback.jpg'
+        alt='Thumb: The ridged surface of the moon'
+        loading='eager'
+        />
+
+      <img
+        className='fixed inset-0 h-screen w-screen object-cover'
         // eslint-disable-next-line react/jsx-handler-names
         onLoad={handleImageOnLoad}
-        src={buildImgUrl('synthwave-outrun-1920.png', 'assets/images')}
+        src='assets/images/synthwave-outrun-1920.png'
         alt='The ridged surface of the moon'
-      /> */}
+        loading='lazy'
+      />
     </picture>
   )
 }

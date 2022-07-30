@@ -30,7 +30,7 @@
   }
 
   #splash-bg-fallback {
-    @apply block opacity-50;
+    @apply block opacity-20 dark:opacity-100 -backdrop-hue-rotate-0;
   }
 }
 

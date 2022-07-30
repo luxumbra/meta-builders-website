@@ -48,13 +48,15 @@ export function ContentSection({
       scroll-mt-24
       overflow-x-hidden
       overflow-y-hidden
-      bg-slate-200
+      bg-transparent
       dark:bg-blue-900
+      transition-colors duration-300
       `}
     >
       <div
         ref={animatedElementReference}
         className='
+        relative
           my-24
           flex
           w-full
@@ -62,6 +64,8 @@ export function ContentSection({
           items-center
           gap-4
           space-y-8
+          px-3
+          md:px-0
           '
       >
         <div className='flex flex-col items-center gap-4'>

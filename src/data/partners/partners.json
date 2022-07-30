@@ -1,17 +1,37 @@
 [
   {
     "name": "Moloch Cloudship",
-    "image": "src/data/showcase/images/polinations.png",
+    "image": "undefined",
     "url": "https://soon.tm/"
   },
   {
-    "name": "Shill Hill",
-    "image": "src/data/showcase/images/astro-docs.png",
+    "name": "NFT Movie",
+    "image": "src/data/partners/images/nftmovie.svg",
     "url": "https://soon.tm/"
   },
   {
     "name": "Blockchain Consultants",
-    "image": "src/data/showcase/images/astro-docs.png",
+    "image": "src/data/partners/images/btcconsultants.svg",
+    "url": "https://soon.tm/"
+  },
+  {
+    "name": "Metaverse Realtor",
+    "image": "src/data/partners/images/mverserealtor.svg",
+    "url": "https://soon.tm/"
+  },
+  {
+    "name": "MetaJax",
+    "image": "src/data/partners/images/metajax.svg",
+    "url": "https://soon.tm/"
+  },
+  {
+    "name": "The Uplift",
+    "image": "src/data/partners/images/uplift-logo.png",
+    "url": "https://soon.tm/"
+  },
+  {
+    "name": "Masters Of The Bitcoin",
+    "image": "src/data/partners/images/masters.png",
     "url": "https://soon.tm/"
   }
 ]

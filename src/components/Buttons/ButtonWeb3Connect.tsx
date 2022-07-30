@@ -69,7 +69,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
         aria-label='Web3 wallet disconnect'
         onClick={onClickDisconnect}
       >
-        <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
+        <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-teal-200 dark:text-violet-300'}`} />
         <span className="sr-only">Disconnect</span>
         </button>
         <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>
@@ -88,7 +88,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
         aria-label='Web3 wallet connect'
         onClick={onClickConnectMetamask}
       >
-        <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-3xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-slate-600 dark:text-violet-300'}`} />
+        <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-3xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-teal-200 dark:text-violet-300'}`} />
         <span className="sr-only">Connect</span>
       </button>
     </div>

@@ -13,11 +13,12 @@
 
   }
 
+
   a,
   .btn {
     @apply transition-colors duration-200;
     @apply hover:text-secondary;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-secondary;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-inherit;
   }
 
   h1, h2, h3, h4 {
@@ -33,12 +34,34 @@
       @apply opacity-0 transition-all duration-200 ease-in-out scale-0;
     }
 
+      nav {
+        a {
+          @apply text-teal-200 dark:text-violet-300 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors
+        }
+      }
+
+
     &.fixed-header {
-      @apply bg-transparent dark:bg-glass-primary-900 !fixed top-0 bottom-auto;
+      @apply bg-transparent  !fixed top-0 bottom-auto;
+
+      &::after {
+        content: '';
+        @apply absolute invisible dark:visible inset-0 bg-transparent dark:bg-glass-primary-900 z-0;
+
+        backdrop-filter: blur(7px);
+      }
 
       .brand {
         @apply opacity-100 scale-100
       }
+
+
+      nav {
+        a {
+          @apply text-teal-900 dark:text-violet-300
+        }
+      }
+
     }
   }
 
@@ -55,6 +78,29 @@
 
     .buy-popup {
       @apply rounded-t-2xl rounded-b-md bg-glass-secondary-900 dark:bg-glass-primary-900 overflow-hidden;
+    }
+  }
+
+  .partners-card {
+    @apply relative;
+
+    & > * {
+      @apply z-20;
+    }
+
+    figure {
+      @apply z-0;
+    }
+
+    picture {
+      @apply z-0;
+
+      filter: drop-shadow(0 0 2px rgba(255 255 255 / 1%))
+    }
+
+    &::after {
+      content: '';
+      @apply absolute invisible  inset-0 bg-transparent dark:bg-teal-400 opacity-20 filter bg-blend-overlay  blur-none rounded-full z-10 group-hover:animate-ping;
     }
   }
 

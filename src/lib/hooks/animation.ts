@@ -305,7 +305,7 @@ export function useScrollReveal(element: string, trigger: string): void {
   })
 }
 
-export function handleHeaderAnimation(): void {
+export function useHeaderAnimation(): void {
   if (typeof window === 'undefined') return
 
   const mobileMenuId = 'mobile-menu'

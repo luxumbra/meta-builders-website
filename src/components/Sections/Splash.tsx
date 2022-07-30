@@ -30,12 +30,12 @@ export default function SplashSection(): JSX.Element {
     <section
       ref={sectionReference}
       id="home"
-      className="splash-wrapper relative h-screen w-full bg-black overflow-x-hidden"
+      className="splash-wrapper relative h-screen w-full bg-violet-900 dark:bg-slate-900 overflow-x-hidden"
     >
       {/* <Starfield /> */}
       <div
         id="splash-bg-fallback"
-        className="absolute inset-0 w-screen h-screen"
+        className="absolute inset-0 w-screen h-screen z-0"
       >
         <HeroImage />
       </div>

@@ -39,7 +39,7 @@ export default function IntroSection(): JSX.Element {
         </a>
         <a
           href="#services"
-          className="group flex items-center justify-center gap-3 px-6 py-4 border-2 border-violet-500 hover:border-teal-500  border-current rounded-md"
+          className="group flex items-center justify-center gap-3 px-6 py-4 border-2 border-violet-500 hover:border-teal-500 rounded-md"
         >
           <Icon
             icon="mdi:rocket"

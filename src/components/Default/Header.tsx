@@ -35,9 +35,11 @@ export default function Header(): JSX.Element {
   gsap.set(mobileMenuWrapper.current,
     {
       opacity: 0,
+      scale: 0.9,
       yPercent: 100,
     }
   )
+
 
   // gsap.set(header.current,
   //   {
@@ -48,15 +50,11 @@ export default function Header(): JSX.Element {
   tl.to(mobileMenuWrapper.current,
     {
       opacity: 1,
+      scale: 1,
       yPercent: 0,
       duration: 0.5,
       ease: "power3.inOut",
-      // autoAlpha: 1,
-    }
-  ).to(header.current,
-    {
-      position: "fixed",
-      top: 0,
+      autoAlpha: 1,
     }
   );
 
@@ -69,16 +67,20 @@ export default function Header(): JSX.Element {
     // if (typeof window === "undefined") return;
     console.log('toggleMobileMenu');
 
+    setIsOpen(!isOpen);
 
     const body = document.querySelector("body") as HTMLElement;
-    if (tl.reversed()) {
-      tl.play()
-      wrapper?.classList.remove("hidden");
+    if (isOpen) {
+      console.log('isOpen');
       body.classList.add("menu-open");
+      tl.play()
+
+      // wrapper?.classList.remove("hidden");
       // mobileMenuWrapper.classList.remove("hidden");
     } else {
-      tl.reverse();
+      console.log('isClosed');
       body.classList.remove("menu-open");
+      tl.reverse();
     }
     if (wrapper) {
       wrapper.ariaHidden = wrapper.classList.contains("hidden") ? 'true' : 'false';
@@ -87,63 +89,43 @@ export default function Header(): JSX.Element {
 
   /** Show `mobileMenuWrapper` when the `isOpen` const is set to true */
   useEffect(() => {
-    if (isOpen) {
-      mobileMenuWrapper.current?.classList.remove("hidden");
-    } else {
-      mobileMenuWrapper.current?.classList.add("hidden");
-    }
+    console.log('useEffect toggleMobileMenu');
+    if (typeof window === "undefined") return;
+    // onToggleMobileMenu();
     if (wrapper) wrapper.ariaHidden = wrapper.classList.contains("hidden") ? 'false' : 'true';
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  /** Changes the header from `absolute` to `fixed` when the user first scrolls,
-   *
-   * gsap is used to animate the header
-   */
+  /** Changes the header from `absolute` to `fixed` when the user first scrolls */
   function onScroll(): void {
-    // if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
     const page = document.documentElement;
     const offset = header.current?.offsetHeight ?? 0;
     const d = page.clientHeight - page.scrollTop - offset;
-
     header.current?.classList.toggle("fixed-header", d < 0);
-    // if (d < 0) {
-    //   setIsFixed(true);
-    //   gsap.from(header.current, {
-    //     duration: 0.5,
-    //     // opacity: d < 0 ? 1 : 0.5,
-    //     ease: "power3.inOut",
-    //   });
-    // }
   }
 
   // Effect to give the header a bounce effect on page load.
-  useEffect(() => {
-    const headerTl = gsap.timeline({ paused: true, reversed: true });
-    headerTl.from(header, {
-      duration: 1,
-      opacity: 0,
-      yPercent: -100,
-      ease: "bounce",
-    });
-    // if (headerTl.reversed()) {
-    //   headerTl.play()
-    // } else {
-      //   headerTl.reverse();
-      // }
-      // }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    if (isVisible) {
-      if (headerTl.reversed()) {
-        headerTl.play()
-      } else {
-        headerTl.reverse();
-      }
-    }
-    return () => {
-      // headerTl.clear();
-    }
-  }, [header, isVisible]);
+  // useEffect(() => {
+  //   const headerTl = gsap.timeline({ paused: true, reversed: true });
+  //   headerTl.from(header, {
+  //     duration: 1,
+  //     opacity: 0,
+  //     yPercent: -100,
+  //     ease: "bounce",
+  //   });
+  //   // if (headerTl.reversed()) {
+  //   //   headerTl.play()
+  //   // } else {
+  //     //   headerTl.reverse();
+  //     // }
+  //     // }
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   // if (isVisible) {
+  //       headerTl.play()
+
+  //   // }
+  // }, [isVisible]);
 
   // Listener to close the mobile menu when the user clicks a menu item.
   useEventListener("click", (e: MouseEvent) => {
@@ -164,7 +146,7 @@ export default function Header(): JSX.Element {
       <header
         ref={header}
         id="page-header"
-        className="absolute bottom-0 z-10 h-12 lg:h-20 flex items-center justify-between w-full p-4 md:px-8 text-white border-transparent shadow-xs shadow-violet-600 overflow-visible"
+        className="absolute bottom-0 z-[100] h-12 lg:h-20 flex items-center justify-between w-full p-4 md:px-8 text-white border-transparent overflow-visible"
       >
         <HashLink
           className="flex items-center gap-3 hover:text-default justify-start"
@@ -176,13 +158,13 @@ export default function Header(): JSX.Element {
           ><span>Meta-Builders</span></span>
         </HashLink>
 
-        <div className="desktop-menu hidden sm:flex items-center self-end ">
+        <div className="desktop-menu hidden sm:flex items-center self-end z-10 ">
           <nav className="hidden sm:block">
             <ul className="flex items-center gap-6">
               {navItems.map(({ title, url }) => (
                 <li key={uuid()}>
                   <HashLink
-                    className="text-lg font-bold font-heading text-slate-500 dark:text-violet-300 hover:text-slate-700 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors"
+                    className="text-lg font-bold font-heading "
                     to={`/${url}`}
                   >
                     {title}
@@ -197,9 +179,10 @@ export default function Header(): JSX.Element {
           </div>
         </div>
 
+
         <div
           ref={mobileMenuWrapper}
-          className="mobile-menu inset-0 top-0 fixed hidden md:hidden h-screen w-screen bg-slate-900 bg-gradient-to-bl dark:from-slate-700 dark:to-slate-900 z-50"
+          className="mobile-menu inset-0 top-0 fixed invisible md:hidden h-screen w-screen bg-slate-900 bg-gradient-to-bl dark:from-slate-700 dark:to-slate-900 !z-100"
           aria-hidden="true"
         >
           <div className="fixed flex flex-col items-center justify-between w-full h-full inset-0 px-3 pt-0">
@@ -208,21 +191,6 @@ export default function Header(): JSX.Element {
               role="dialog"
               aria-modal="true"
             >
-              <header className="text-right py-2">
-                <div className="inline-flex justify-end">
-                  <button
-                    type="button"
-                    className="close-nav-button btn btn-link p-0 transition-all origin-[right_center] duration-200  text-slate-600 hover:text-slate-700 dark:text-violet-300 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal"
-                    aria-label="Close navigation"
-                    onClick={(): void => console.log('clicked')}
-                  >
-                    <Icon
-                      icon="mdi:close"
-                      className="h-8"
-                    />
-                  </button>
-                </div>
-              </header>
               <nav className="flex flex-row flex-grow items-center justify-center">
                 <ul ref={mobileMenu} className="flex flex-col items-center justify-center gap-6">
                   {navItems.map(({ title, url }) => (
@@ -251,9 +219,10 @@ export default function Header(): JSX.Element {
           type="button"
           className="open-nav-button btn btn-link sm:hidden p-0 text-slate-600 hover:text-slate-700 dark:text-violet-300 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal"
           aria-label="Open navigation"
+          onClick={onToggleMobileMenu}
         >
           <Icon
-            icon="heroicons-solid:menu"
+            icon={!isOpen ? 'mdi:close' : 'heroicons-solid:menu'}
             className="h-8 w-8"
           />
         </button>
