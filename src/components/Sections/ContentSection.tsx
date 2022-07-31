@@ -70,7 +70,7 @@ export function ContentSection({
           '
       >
         <div className='flex flex-col items-center'>
-          <h2 className='gradient-text text-shadow-alt text-center font-extrabold tracking-tight text-4xl 2xl:text-6xl'>
+          <h2 className='gradient-text text-shadow dark:text-shadow-alt text-center font-extrabold tracking-tight text-4xl 2xl:text-6xl'>
             {title}
           </h2>
         </div>

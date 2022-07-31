@@ -19,7 +19,7 @@ export function HeroImage(): JSX.Element {
 
 
   return (
-    <picture className="relative inset-0 w-screen h-screen m-auto" >
+    <picture className="relative inset-0 w-screen h-screen m-auto opacity-100 dark:opacity-50" >
       {/* <Imgix
         className='fixed inset-0 h-screen w-screen object-cover'
         src={buildImgUrl('synthwave-outrun-1920.png', 'assets/images')}
@@ -44,7 +44,7 @@ export function HeroImage(): JSX.Element {
         />
 
       <img
-        className='fixed inset-0 h-screen w-full object-cover'
+        className='fixed inset-0 h-screen w-full object-cover filter grayscale invert dark:grayscale-0 dark:invert-0'
         // eslint-disable-next-line react/jsx-handler-names
         onLoad={handleImageOnLoad}
         src='assets/images/synthwave-outrun-1920.png'

@@ -23,22 +23,22 @@ export default function Header(): JSX.Element {
   const header = useRef<HTMLElement>(null);
   const mobileMenu = useRef<HTMLUListElement>(null)
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const entry = useIntersectionObserver(header, {});
-  const isVisible = !!entry?.isIntersecting;
-  const [isFixed, setIsFixed] = useState(false);
+  // const entry = useIntersectionObserver(header, {});
+  // const isVisible = !!entry?.isIntersecting;
+  // const [isFixed, setIsFixed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const wrapper = mobileMenuWrapper.current;
   // define the default for the timeline
   const tl = gsap.timeline({ paused: true, reversed: true });
 
   // Set defaults for the mobile menu
-  gsap.set(mobileMenuWrapper.current,
-    {
-      opacity: 0,
-      scale: 0.9,
-      yPercent: 100,
-    }
-  )
+  // gsap.set(mobileMenuWrapper.current,
+  //   {
+  //     opacity: 0,
+  //     scale: 0.9,
+  //     yPercent: 100,
+  //   }
+  // )
 
 
   // gsap.set(header.current,
@@ -47,16 +47,16 @@ export default function Header(): JSX.Element {
   //   }
   // )
   // setup, but don't play the timeline animations
-  tl.to(mobileMenuWrapper.current,
-    {
-      opacity: 1,
-      scale: 1,
-      yPercent: 0,
-      duration: 0.5,
-      ease: "power3.inOut",
-      autoAlpha: 1,
-    }
-  );
+  // tl.to(mobileMenuWrapper.current,
+  //   {
+  //     opacity: 1,
+  //     scale: 1,
+  //     yPercent: 0,
+  //     duration: 0.5,
+  //     ease: "power3.inOut",
+  //     autoAlpha: 1,
+  //   }
+  // );
 
   /**
    * Use GSAP timeline to animate the menu open and closed
@@ -65,21 +65,11 @@ export default function Header(): JSX.Element {
    */
   function onToggleMobileMenu(): void {
     // if (typeof window === "undefined") return;
-    console.log('toggleMobileMenu');
-
+    console.log('toggleMobileMenu', { isOpen });
     setIsOpen(!isOpen);
-
     const body = document.querySelector("body") as HTMLElement;
-    if (isOpen) {
-      body.classList.add("menu-open");
-      tl.play()
+    body.classList.toggle("menu-open");
 
-      // wrapper?.classList.remove("hidden");
-      // mobileMenuWrapper.classList.remove("hidden");
-    } else {
-      body.classList.remove("menu-open");
-      tl.reverse();
-    }
     if (wrapper) {
       wrapper.ariaHidden = wrapper.classList.contains("hidden") ? 'true' : 'false';
     }
@@ -91,6 +81,8 @@ export default function Header(): JSX.Element {
     if (wrapper) wrapper.ariaHidden = wrapper.classList.contains("hidden") ? 'false' : 'true';
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
+
+
 
   /** Changes the header from `absolute` to `fixed` when the user first scrolls */
   function onScroll(): void {
@@ -178,12 +170,12 @@ export default function Header(): JSX.Element {
 
         <div
           ref={mobileMenuWrapper}
-          className="mobile-menu inset-0 top-0 fixed invisible md:hidden h-screen w-screen  bg-gradient-to-bl dark:from-glass-primary-700 dark:to-glass-primary-900 filter backdrop-blur-lg !z-100"
+          className={`mobile-menu inset-0 top-0 fixed transition-all ${isOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-full opacity-0 scale-70'} md:hidden h-screen w-screen  bg-gradient-to-bl dark:from-glass-primary-700 dark:to-glass-primary-900 filter backdrop-blur-lg !z-100`}
           aria-hidden="true"
         >
           <div className="fixed flex flex-col items-center justify-between w-full h-full inset-0 px-3 pt-0">
             <div
-              className="flex flex-col justify-center space-y-4 w-full h-3/4"
+              className="flex flex-col justify-center space-y-4 w-full h-2/3"
               role="dialog"
               aria-modal="true"
             >
@@ -201,9 +193,9 @@ export default function Header(): JSX.Element {
                     </li>
                   ))}
                 </ul>
-               </nav>
+              </nav>
             </div>
-            <div className="flex flex-col justify-center items-start space-y-4 w-full h-auto flex-grow">
+            <div className="flex flex-col justify-start items-center space-y-4 w-full flex-grow">
             <ul className="relative grid grid-cols-4 w-full gap-6 md:gap-4 sm:grid-cols-4 lg:w-1/4">
               {links.map((link) => (
                 <li key={uuid()} className="text-center">
@@ -234,7 +226,7 @@ export default function Header(): JSX.Element {
           onClick={onToggleMobileMenu}
         >
           <Icon
-            icon={!isOpen ? 'mdi:close' : 'heroicons-solid:menu'}
+            icon={isOpen ? 'mdi:close' : 'heroicons-solid:menu'}
             className="h-8 w-8"
           />
         </button>

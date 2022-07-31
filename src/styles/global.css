@@ -36,7 +36,7 @@
 
       nav {
         a {
-          @apply text-teal-200 dark:text-violet-300 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors
+          @apply text-slate-500 dark:text-violet-300 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors
         }
       }
 
@@ -57,7 +57,7 @@
 
       nav {
         a {
-          @apply text-teal-900 dark:text-violet-300
+          @apply text-slate-500 dark:text-violet-300
         }
       }
 
@@ -123,12 +123,12 @@
 @layer utilities {
   .gradient-text {
     @apply text-transparent bg-clip-text;
-    @apply bg-gradient-to-br from-slate-500 via-slate-400 to-slate-600 dark:from-pink-300 dark:via-teal-300 dark:to-violet-700;
+    @apply bg-gradient-to-br from-pink-300 via-teal-300 to-violet-700;
   }
 
   .gradient-text-alt {
     @apply text-transparent bg-clip-text;
-    @apply bg-gradient-to-br from-slate-400 via-slate-200 to-slate-500;
+    @apply bg-gradient-to-br from-slate-600 via-slate-400 to-slate-500 dark:from-slate-400 dark:via-slate-200 dark:to-slate-400;
   }
 
   .text-shadow {
