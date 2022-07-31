@@ -74,7 +74,6 @@ export function BuyPackackagePopUp(
   })
   function onCopy(toCopy: string): void {
     copy(toCopy).then(() => {
-      console.log('copied', { toCopy, value });
 
       const copyToastId = apiToast.upsert({
         id: uuid(),
