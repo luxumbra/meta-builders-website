@@ -13,6 +13,7 @@ specifiers:
   '@types/prop-types': ^15.7.5
   '@types/react': ^18.0.9
   '@types/react-dom': ^18.0.5
+  '@types/react-helmet': ^6.1.5
   '@types/react-imgix': ^9.4.0
   '@types/react-query': ^1.2.9
   '@types/react-router-hash-link': ^2.4.5
@@ -54,6 +55,7 @@ specifiers:
   react-daisyui: ^2.1.0
   react-dom: ^18.1.0
   react-gsap: ^3.2.1
+  react-helmet: ^6.1.0
   react-icons: ^4.4.0
   react-imgix: ^9.5.1
   react-query: ^4.0.0
@@ -88,6 +90,7 @@ dependencies:
   '@thirdweb-dev/sdk': 2.3.32_ethers@5.6.9
   '@typechain/ethers-v5': 10.1.0_3a2z4xo3ofaclmnvqkkolsxa2u
   '@types/prop-types': 15.7.5
+  '@types/react-helmet': 6.1.5
   '@types/react-router-hash-link': 2.4.5
   '@types/uuid': 8.3.4
   '@zag-js/react': 0.1.13_react@18.2.0
@@ -106,6 +109,7 @@ dependencies:
   react-daisyui: 2.1.0_5lwcbdp55qzojnftuowawhkxyi
   react-dom: 18.2.0_react@18.2.0
   react-gsap: 3.2.1_kscv7c6wxwdpmd3emwcoxmkscq
+  react-helmet: 6.1.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
   react-imgix: 9.5.2_biqbaboplfbrettd7655fr4n2y
   react-query: 4.0.0_biqbaboplfbrettd7655fr4n2y
@@ -2161,6 +2165,12 @@ packages:
     dependencies:
       '@types/react': 18.0.15
     dev: true
+
+  /@types/react-helmet/6.1.5:
+    resolution: {integrity: sha512-/ICuy7OHZxR0YCAZLNg9r7I9aijWUWvxaPR6uTuyxe8tAj5RL4Sw1+R6NhXUtOsarkGYPmaHdBDvuXh2DIN/uA==}
+    dependencies:
+      '@types/react': 18.0.15
+    dev: false
 
   /@types/react-imgix/9.4.0:
     resolution: {integrity: sha512-p80OK11EzOjZ4qAGtoX6FxLaqAyblWFnO0bkDNd/hmlmseshRiSdGD7TGkXfSjXonb1ehEPaFllF8rug83FMNw==}
@@ -6316,6 +6326,10 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
+  /react-fast-compare/3.2.0:
+    resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
+
   /react-gsap/3.2.1_kscv7c6wxwdpmd3emwcoxmkscq:
     resolution: {integrity: sha512-IX6XiN1a74hmU385yNZAYV1cFe3/Xmbg8eT99VCjmz7yzQq1qIsR47gkX5rkWeml9KmyEgiIzqArYaipPkKIbw==}
     engines: {node: '>=10'}
@@ -6328,6 +6342,18 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-is: 16.13.1
+    dev: false
+
+  /react-helmet/6.1.0_react@18.2.0:
+    resolution: {integrity: sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==}
+    peerDependencies:
+      react: '>=16.3.0'
+    dependencies:
+      object-assign: 4.1.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-fast-compare: 3.2.0
+      react-side-effect: 2.1.2_react@18.2.0
     dev: false
 
   /react-icons/4.4.0_react@18.2.0:
@@ -6444,6 +6470,14 @@ packages:
       react: '>=16.8'
     dependencies:
       history: 5.3.0
+      react: 18.2.0
+    dev: false
+
+  /react-side-effect/2.1.2_react@18.2.0:
+    resolution: {integrity: sha512-PVjOcvVOyIILrYoyGEpDN3vmYNLdy1CajSFNt4TDsVQC5KpTijDvWVoR+/7Rz2xT978D8/ZtFceXxzsPwZEDvw==}
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.0 || ^18.0.0
+    dependencies:
       react: 18.2.0
     dev: false
 

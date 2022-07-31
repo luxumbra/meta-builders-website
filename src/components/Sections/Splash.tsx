@@ -68,3 +68,6 @@ export default function SplashSection(): JSX.Element {
     </section>
   )
 }
+
+/**  */
+export const SplashGL = (): Error => { throw new Error("SplashSection: SplashGL component is not implemented") };

@@ -62,8 +62,7 @@ export function ContentSection({
           flex
           w-full
           flex-col
-          items-center
-          space-y-4
+          items-center space-y-7
           2xl:space-y-8
           px-3
           md:px-0
