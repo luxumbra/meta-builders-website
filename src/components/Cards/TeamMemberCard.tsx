@@ -51,8 +51,8 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
           </picture>
         </div>
         <figcaption className="text-center flex flex-col gap-0">
-          <h3 className="text-sm md:text-lg font-normal text-slate-600 dark:text-slate-400 leadIn">{name}</h3>
-          <p className="text-xs md:text-sm ">{role}</p>
+          <h3 className="text-sm 2xl:text-lg font-bold 2xl:font-normal text-slate-600 dark:text-slate-400 leadIn">{name}</h3>
+          <p className="text-xs 2xl:text-sm ">{role}</p>
         </figcaption>
         <div className="absolute rounded-lg bottom-0 flex flex-col items-start text-left justify-start content-center min-w-full md:w-[135%] flex-grow min-h-[120%] h-auto gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100 scale-50 group-hover:scale-100 group-focus:scale-100 group-hover:-translate-y-[0%] group-focus:translate-y-0 translate-y-10 origin-center z-50  filter backdrop-blur-xl ">
           <div className="relative bio-content flex flex-col gap-y-2 p-3 flex-grow-0 z-10 w-full">

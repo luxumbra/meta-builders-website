@@ -65,12 +65,12 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
   if (address) {
     return (
       <div className='flex flex-row-reverse items-center justify-between content-between gap-0 lg:gap-1'>
-        {isNetworkMismatch ? (
+        {/* {isNetworkMismatch ? (
           <div className='tooltip tooltip-bottom tooltip-warning' data-tip="Testnet only rn">
             <span className='text-orange-500 font-sans'>Change to Mumbai network</span>
             </div>
         ) : (
-          <>
+          <> */}
             <button
               type="button"
               className="
@@ -80,13 +80,19 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
               aria-label='Web3 wallet disconnect'
               onClick={onClickDisconnect}
             >
-              <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-teal-200 dark:text-violet-300'}`} />
+          <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address && !isNetworkMismatch ? 'text-green-500 text-shadow-alt' : (isNetworkMismatch ? 'text-orange-500 font-sans' : 'text-teal-200 dark:text-violet-300')}`} />
               <span className="sr-only">Disconnect</span>
-            </button>
-              <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>
-          </>
+              </button>
+              {isNetworkMismatch ? (
+                <div className='tooltip tooltip-bottom tooltip-warning' data-tip="Testnet only rn">
+                  <span className='text-orange-500 font-sans text-xs lg:text-md'>Switch to Mumbai network</span>
+                </div>
+              ) : (
+                <span className='text-xs lg:text-md text-green-500 text-shadow-alt inline'>{shortenAddress(address)}</span>
+              )}
+          {/* </>
         )
-        }
+        } */}
       </div >
     )
   }

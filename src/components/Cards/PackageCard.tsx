@@ -86,12 +86,12 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
           {name}
         </h3>
         <PriceDisplay price={displayPrice} currency={currencySymbol} />
-        <p className="text-sm leading-tight">{description}</p>
+        <p className="text-xs 2xl:text-sm leading-tight">{description}</p>
         <ul className="flex flex-col space-y-3">
           {services.length > 0 ? services.map(service => (
               <li key={uuid()} className="flex items-center space-x-3 ">
-              <Icon icon="ic:baseline-check" className="text-teal-400 text-sm w-5 h-5" />
-              <span className="text-md text-violet-100 font-normal text-left">
+              <Icon icon="ic:baseline-check" className="text-teal-400 text-xs 2xl:text-sm w-5 h-5" />
+              <span className="text-xs 2xl:text-md text-violet-100 font-normal text-left">
                 {service.value}
               </span>
               </li>

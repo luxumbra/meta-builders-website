@@ -142,7 +142,7 @@ export default function Header(): JSX.Element {
         >
           <h1 className="sr-only">Meta-Builders</h1>
           <span
-            className="brand font-heading inline-flex items-center text-lg text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
+            className="brand font-heading inline-flex items-center text-md 2xl:text-lg text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
           ><span>Meta-Builders</span></span>
         </HashLink>
 
@@ -152,7 +152,7 @@ export default function Header(): JSX.Element {
               {navItems.map(({ title, url }) => (
                 <li key={uuid()}>
                   <HashLink
-                    className="text-lg font-bold font-heading "
+                    className="text-md 2xl:text-lg font-normal 2xl:font-bold uppercase xl:font-heading "
                     to={`/${url}`}
                   >
                     {title}
@@ -215,7 +215,7 @@ export default function Header(): JSX.Element {
         </div>
       </header>
       <div
-        className="mobile-tools w-full h-12 fixed bottom-0 py-3 flex flex-row items-center justify-end gap-1 lg:gap-1 lg:hidden z-[1000]"
+        className="mobile-tools w-full h-12 fixed bottom-0 right-2 py-3 flex flex-row items-center justify-end gap-1 lg:gap-1 lg:hidden z-[1000]"
       >
         <ButtonWeb3Connect size="text-2xl lg:text-3xl" />
         <ButtonDarkMode />
