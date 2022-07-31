@@ -26,6 +26,7 @@ export function ButtonDarkMode(): JSX.Element {
   const onHandleClick = (): void => toggleTheme()
   const modeIcon = isDark ? 'ic:baseline-dark-mode' : 'ic:baseline-light-mode'
   return (
+    <div className="tooltip tooltip-info tooltip-bottom" role="tooltip" data-tip="⚠️ Light mode is WIP">
     <Button
       aria-label='Toggle dark/light mode'
       onClick={onHandleClick}
@@ -33,6 +34,7 @@ export function ButtonDarkMode(): JSX.Element {
       className='border-0 bg-transparent hover:border-0 hover:bg-transparent'
     >
       <Icon icon={modeIcon} className='delay-0 text-2xl animate-spin scale-100 transition-all origin-[right_center] duration-500  text-teal-200 hover:text-orange-400 dark:text-violet-300 dark:hover:text-blue-500' />
-    </Button>
+      </Button>
+      </div>
   )
 }

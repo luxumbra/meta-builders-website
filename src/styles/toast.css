@@ -13,7 +13,7 @@
   }
 
   .toast {
-    @apply rounded-md shadow-md !max-w-xs overflow-hidden px-5;
+    @apply rounded-md shadow-md min-w-max !max-w-xs overflow-hidden px-5;
 
     h3, p {
       @apply break-words max-w-xs mr-5;
@@ -27,7 +27,6 @@
       @apply bg-slate-800;
 
       animation-name: fadein;
-      animation-fill-mode: forwards;
       animation-duration: 0.3s;
 
       .btn {
@@ -35,10 +34,8 @@
       }
 
       [data-part="progressbar"] {
-        @apply bg-violet-600 h-1;
+        @apply bg-violet-600 h-1 absolute origin-left bottom-0 left-0 w-full;
 
-        animation-delay: 0.3s;
-        animation-name: shrink;
       }
     }
 

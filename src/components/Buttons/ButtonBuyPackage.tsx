@@ -74,12 +74,13 @@ export function BuyPackackagePopUp(
   })
   function onCopy(toCopy: string): void {
     copy(toCopy).then(() => {
-      console.log('copied', {toCopy, value});
+      console.log('copied', { toCopy, value });
 
       const copyToastId = apiToast.upsert({
         id: uuid(),
         type: 'success',
         title: `Copied to clipboard: ${toCopy}`,
+        duration: 3000,
       })
     }).catch((_error: unknown) => {
       apiToast.create({
@@ -93,11 +94,12 @@ export function BuyPackackagePopUp(
   /** function to call the `buyNow` method of `useBuyNow` with a useCallback hook */
   const onBuyPackage = useCallback(
     (id: string) => {
+      if (isNetworkMismatch) return
       setIsLoading(true)
       const buyToastId = apiToast.create({
         id: uuid(),
         type: 'info',
-        title: `Buying ${name}`,
+        title: `Buying ${name} package for ${currencySymbol}${price}`,
         description: 'Please sign the transaction in your wallet.',
         placement: 'bottom-end',
       })
@@ -105,14 +107,14 @@ export function BuyPackackagePopUp(
       marketplace
         .buyoutListing(id, 1)
         .then(data => {
-
+          apiToast.resume()
           apiToast.create({
-              id: uuid(),
-              type: 'success',
-              title: 'W00t! You bought the package!',
-              description: `You have successfully bought ${name} for ${currencySymbol}${price}. \n\n Your receipt: ${data.receipt.transactionHash}`,
-              duration: 7000
-            })
+            id: uuid(),
+            type: 'success',
+            title: `W00t! You bought ${name}! Your receipt: ${data.receipt.transactionHash}`,
+            description: `You have successfully bought ${name} for ${currencySymbol}${price}. \n\n Your receipt: ${data.receipt.transactionHash}`,
+            duration: 7000
+          })
 
           setIsLoading(false)
           // setTimeout(() => { apiToast.dismiss() }, 7000)
@@ -123,7 +125,7 @@ export function BuyPackackagePopUp(
             (error.message as string) || (error.toString() as string)
           setIsLoading(false)
           // if (buyToastId !== undefined) {
-
+          apiToast.resume()
           const errorToastId = apiToast.create({
             id: uuid(),
             type: 'error',
@@ -135,7 +137,7 @@ export function BuyPackackagePopUp(
           setIsLoading(false)
         })
     },
-    [apiToast, currencySymbol, marketplace, name, price]
+    [apiToast, currencySymbol, isNetworkMismatch, marketplace, name, price]
   )
 
   const onOpenBuyCallback = useCallback((open: boolean) => {
@@ -201,13 +203,15 @@ export function BuyPackackagePopUp(
               </p>
               {forAddress ? (
                 <p className='mb-3 text-sm'>
-                  <span className='text-md'>Active wallet</span>
-                  <span className='text-violet-400 ml-3'
-                    tabIndex={0}
-                    role="button"
-                    onClick={(): void => onCopy(forAddress)}
-                    onKeyPress={(): void => onCopy(forAddress)}
-                  >{shortenAddress(forAddress)}</span>
+                    <span className='text-md'>Active wallet</span>
+                  <div className='tooltip tooltip-primary' data-tip='Click to copy'>
+                    <span className='text-violet-400 ml-3'
+                      tabIndex={0}
+                      role="button"
+                      onClick={(): void => onCopy(forAddress)}
+                      onKeyPress={(): void => onCopy(forAddress)}
+                    >{shortenAddress(forAddress)}</span>
+                  </div>
                 </p>
               ) : undefined}
             </div>
@@ -217,16 +221,16 @@ export function BuyPackackagePopUp(
               Number.parseFloat(price) > 0 ? (
                 <>
                   <span className={`text-md text-orange-500 ${isNetworkMismatch ? 'block' : 'hidden'}`}>Switch to <strong>Polygon Mumbai</strong>.</span>
-                <button
-                  type='button'
-                  className='btn btn-primary disabled:btn-disabled disabled:overflow-visible disabled:bg-transparent flex-grow overflow-hidden text-center transition-all duration-200 ease-in-out'
-                  onClick={(): void => onBuyPackage(listingId)}
-                  disabled={isLoading || isNetworkMismatch}
-                  aria-disabled={isLoading}
-                >
-                  {!isLoading ? 'Confirm' : <LoadingOrError isInline message="Transaction in progress..." />}
+                  <button
+                    type='button'
+                    className='btn btn-primary disabled:btn-disabled disabled:overflow-visible disabled:bg-transparent flex-grow overflow-hidden text-center transition-all duration-200 ease-in-out'
+                    onClick={(): void => onBuyPackage(listingId)}
+                    disabled={isLoading || isNetworkMismatch}
+                    aria-disabled={isLoading}
+                  >
+                    {!isLoading ? 'Confirm' : <LoadingOrError isInline message="Transaction in progress..." />}
                   </button>
-                  </>
+                </>
               ) : (
                 <span>Contact us</span>
               )
@@ -257,6 +261,7 @@ export function BuyPackackagePopUp(
             <Toast key={actor.id} actor={actor} id={actor.id} />
           ))}
         </div>
+
       </Portal>
     </>
   )
@@ -295,8 +300,8 @@ export function ButtonBuyPackage(properties: IButtonBuyPackage): JSX.Element {
         type='button'
         aria-label='Buy Package'
         className={`btn transition-colors ${!address
-            ? 'bg-teal-700 text-violet-100'
-            : 'bg-teal-400 text-slate-900'
+          ? 'bg-teal-700 text-violet-100'
+          : 'bg-teal-400 text-slate-900'
           }  flex-grow transition-all duration-200 ease-in-out`}
         data-package={pack.listingId}
         onClick={!address ? onConnectMetamask : onToggleOpen}

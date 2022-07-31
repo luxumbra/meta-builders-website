@@ -7,7 +7,6 @@ import {
   useAddress,
   useDisconnect, useNetworkMismatch
 } from '@thirdweb-dev/react'
-import { TbWallet, TbWalletOff } from 'react-icons/tb/index.js';
 
 import { shortenAddress } from '~mb/lib/helpers';
 
@@ -43,10 +42,10 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
   function onClickConnectMetamask(): void {
     connectMetamaskWallet().then(() => {
       console.log('connectMetamaskWallet', address, network);
-        if (isNetworkMismatch) {
-          console.log('connectMetamaskWallet isNetworkMismatch', network);
-          // TODO: show network mismatch toast and-or network switcher
-        }
+      if (isNetworkMismatch) {
+        console.log('connectMetamaskWallet isNetworkMismatch', network);
+        // TODO: show network mismatch toast and-or network switcher
+      }
 
 
     }).catch(error => {
@@ -67,7 +66,9 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
     return (
       <div className='flex flex-row-reverse items-center justify-between content-between gap-0 lg:gap-1'>
         {isNetworkMismatch ? (
-          <span className='text-orange-500 font-sans'>Change to Mumbai network</span>
+          <div className='tooltip tooltip-bottom tooltip-warning' data-tip="Testnet only rn">
+            <span className='text-orange-500 font-sans'>Change to Mumbai network</span>
+            </div>
         ) : (
           <>
             <button
@@ -82,7 +83,9 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
               <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-teal-200 dark:text-violet-300'}`} />
               <span className="sr-only">Disconnect</span>
             </button>
-            <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>
+            <div className='tooltip' data-tip={address}>
+              <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>
+            </div>
           </>
         )
         }

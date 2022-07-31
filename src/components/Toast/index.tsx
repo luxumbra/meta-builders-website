@@ -1,6 +1,8 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 
+import { useEffect } from "react";
+
 import { Icon } from "@iconify/react"
 import { normalizeProps, useActor } from "@zag-js/react"
 import * as toast from '@zag-js/toast'
@@ -15,12 +17,13 @@ function Toast({actor, id}: {actor: toast.Service, id: string}): JSX.Element {
   const toastApi = toast.connect<PropTypes>(state, send, normalizeProps)
 
   function onToastDismiss(): void {
-      toastApi.dismiss()
+    toastApi.dismiss()
   }
+  console.log('toastApi', toastApi.progressbarProps);
 
   return (
-    <div id={id} className="toast pointer-events-auto" {...toastApi.rootProps}>
-      <div className="toast-header inline-flex items-start justify-between">
+    <div id={id} className="toast pointer-events-auto px-0" {...toastApi.rootProps}>
+      <div className="toast-header inline-flex items-start justify-between px-5">
         <h3 className="m-0 font-normal" {...toastApi.titleProps}>{toastApi.title}</h3>
         <span>{toastApi.type === "loading" ? <Icon icon="mdi:spinner" className="animate-spin" /> : undefined}</span>
         <button
@@ -31,8 +34,8 @@ function Toast({actor, id}: {actor: toast.Service, id: string}): JSX.Element {
           <span className="sr-only">Dismiss</span>
         </button>
       </div>
+      <div {...toastApi.progressbarProps} />
       {/* {toastApi.description ? <p>{toastApi.description}</p> : undefined} */}
-      <div className="h-1 absolute bottom-0" {...toastApi.progressbarProps} />
     </div>
   )
 }
