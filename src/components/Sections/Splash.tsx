@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 
 
-import {HeroImage} from "~mb/components/HeroImage";
+import { HeroImage } from "~mb/components/HeroImage";
 import { useSplashContentAnimation } from "~mb/hooks/animation";
 
 export default function SplashSection(): JSX.Element {
@@ -36,19 +36,19 @@ export default function SplashSection(): JSX.Element {
       >
         <HeroImage />
       </div>
-      <div className="relative grid h-full grid-cols-1 sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-20 lg:pb-0">
+      <div className="relative grid h-full grid-cols-1 sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-32 lg:pb-0">
         <div id="splash-content" className="leadIn invisible justify-self-center self-end lg:self-center">
           <h1 className="flex flex-col self-start lg:self-end gap-2 sm:gap-4 xl:self-auto xl:justify-self-end">
             <div className="shadow-font-heading font-black tracking-tighter text-center text-5xl 2xl:text-8xl gradient-text text-shadow-alt-4xl-teal">
               Meta-Builders
             </div>
           </h1>
-          <p className="font-bold text-xl 2xl:text-3xl gradient-text-alt text-fill tracking-tight text-center xl:text-right -translate-y-6 2xl:-translate-y-8 text-shadow">
+          <p className="font-bold text-xl 2xl:text-3xl gradient-text-alt text-fill tracking-tight text-center xl:text-right -translate-y-4 lg:-translate-y-6 2xl:-translate-y-8 text-shadow">
             Welcome to The Metaverse.</p>
         </div>
 
         {/* <picture id="splash-character" className="floating self-start w-2/3 max-w-3xl sm:w-10/12 sm:self-auto sm:justify-self-start"> */}
-          {/* {!isDevelopment ? (
+        {/* {!isDevelopment ? (
           <Imgix
             className="object-cover w-full h-full invisible leadIn"
             src={buildImgUrl('astronaut2.png', 'assets/images')}
@@ -59,10 +59,10 @@ export default function SplashSection(): JSX.Element {
             }}
             />
           ) : ( */}
-              {/* <img src="assets/images/astronaut2.png" alt="A floating astronaut in a space suit" width={450}
+        {/* <img src="assets/images/astronaut2.png" alt="A floating astronaut in a space suit" width={450}
                 className="object-cover w-full h-full invisible leadIn"
               /> */}
-          {/* )} */}
+        {/* )} */}
         {/* </picture> */}
       </div>
     </section>
