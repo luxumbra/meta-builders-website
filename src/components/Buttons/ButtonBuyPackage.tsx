@@ -99,9 +99,10 @@ export function BuyPackackagePopUp(
       const buyToastId = apiToast.create({
         id: uuid(),
         type: 'info',
-        title: `Buying ${name} package for ${currencySymbol}${price}`,
+        title: `Buying ${name} package for ${price} ${currencySymbol}`,
         description: 'Please sign the transaction in your wallet.',
         placement: 'bottom-end',
+        duration: 7000
       })
       apiToast.pause()
       marketplace
@@ -112,7 +113,7 @@ export function BuyPackackagePopUp(
             id: uuid(),
             type: 'success',
             title: `W00t! You bought ${name}! Your receipt: ${data.receipt.transactionHash}`,
-            description: `You have successfully bought ${name} for ${currencySymbol}${price}. \n\n Your receipt: ${data.receipt.transactionHash}`,
+            description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${data.receipt.transactionHash}`,
             duration: 7000
           })
 

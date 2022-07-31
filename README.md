@@ -1,4 +1,4 @@
-## Meta-Builers Getting Started
+## Meta-Builders Getting Started
 
 `pnpm i` to install the dependencies.
 `pnpm dev` to run the dev server.
