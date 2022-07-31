@@ -1,8 +1,9 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useCallback, useRef, useState } from 'react'
 
-import { useAddress, useMetamask } from '@thirdweb-dev/react'
-import type { Marketplace } from '@thirdweb-dev/sdk'
+import { useAddress, useMetamask, useNetworkMismatch } from '@thirdweb-dev/react'
+import type { Marketplace } from '@thirdweb-dev/sdk';
+import { ChainId } from '@thirdweb-dev/sdk'
 import { useMachine, normalizeProps } from '@zag-js/react'
 import * as toast from '@zag-js/toast'
 import accounting from 'accounting'
@@ -42,6 +43,7 @@ export function BuyPackackagePopUp(
   const popUpReference = useRef<HTMLDivElement>(null)
   const contentReference = useRef<HTMLDivElement>(null)
   const overlayBg1Reference = useRef<HTMLDivElement>(null)
+  const isNetworkMismatch = useNetworkMismatch()
   const { forAddress, pack, isOpen, setIsOpen } = properties
   const { marketplace, name, price, currencySymbol, listingId } = pack
   const [isLoading, setIsLoading] = useState(false)
@@ -210,18 +212,21 @@ export function BuyPackackagePopUp(
               ) : undefined}
             </div>
           </div>
-          <div className='z-10 flex-shrink'>
+          <div className='z-10 flex-shrink text-center'>
             {forAddress ? (
               Number.parseFloat(price) > 0 ? (
+                <>
+                  <span className={`text-md text-orange-500 ${isNetworkMismatch ? 'block' : 'hidden'}`}>Switch to <strong>Polygon Mumbai</strong>.</span>
                 <button
                   type='button'
                   className='btn btn-primary disabled:btn-disabled disabled:overflow-visible disabled:bg-transparent flex-grow overflow-hidden text-center transition-all duration-200 ease-in-out'
                   onClick={(): void => onBuyPackage(listingId)}
-                  disabled={isLoading}
+                  disabled={isLoading || isNetworkMismatch}
                   aria-disabled={isLoading}
                 >
                   {!isLoading ? 'Confirm' : <LoadingOrError isInline message="Transaction in progress..." />}
-                </button>
+                  </button>
+                  </>
               ) : (
                 <span>Contact us</span>
               )

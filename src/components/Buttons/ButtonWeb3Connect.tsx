@@ -5,7 +5,7 @@ import {
   useMetamask,
   useNetwork,
   useAddress,
-  useDisconnect
+  useDisconnect, useNetworkMismatch
 } from '@thirdweb-dev/react'
 import { TbWallet, TbWalletOff } from 'react-icons/tb/index.js';
 
@@ -16,14 +16,14 @@ export type ButtonWeb3ConnectProps = {
 }
 
 export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Element {
-  const {size} = properties;
+  const { size } = properties;
   // const connectCoinbaseWallet = useCoinbaseWallet();
   const connectMetamaskWallet = useMetamask();
   // const connectWalletConnectWallet = useWalletConnect();
   const disconnectWallet = useDisconnect();
   const address = useAddress();
   const network = useNetwork();
-
+  const isNetworkMismatch = useNetworkMismatch();
   function onClickDisconnect(): void {
     disconnectWallet().then(() => {
       console.log('disconnectWallet');
@@ -43,6 +43,12 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
   function onClickConnectMetamask(): void {
     connectMetamaskWallet().then(() => {
       console.log('connectMetamaskWallet', address, network);
+        if (isNetworkMismatch) {
+          console.log('connectMetamaskWallet isNetworkMismatch', network);
+          // TODO: show network mismatch toast and-or network switcher
+        }
+
+
     }).catch(error => {
       console.log('connectMetamaskWallet error', { error });
     });
@@ -60,20 +66,27 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
   if (address) {
     return (
       <div className='flex flex-row-reverse items-center justify-between content-between gap-0 lg:gap-1'>
-      <button
-        type="button"
-        className="
-        btn
-        btn-link
-        p-0"
-        aria-label='Web3 wallet disconnect'
-        onClick={onClickDisconnect}
-      >
-        <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-teal-200 dark:text-violet-300'}`} />
-        <span className="sr-only">Disconnect</span>
-        </button>
-        <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>
-      </div>
+        {isNetworkMismatch ? (
+          <span className='text-orange-500 font-sans'>Change to Mumbai network</span>
+        ) : (
+          <>
+            <button
+              type="button"
+              className="
+                btn
+                btn-link
+                p-0"
+              aria-label='Web3 wallet disconnect'
+              onClick={onClickDisconnect}
+            >
+              <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-teal-200 dark:text-violet-300'}`} />
+              <span className="sr-only">Disconnect</span>
+            </button>
+            <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>
+          </>
+        )
+        }
+      </div >
     )
   }
   return (
