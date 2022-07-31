@@ -18,13 +18,10 @@ const ServicesSection = lazy(async () => import('~mb/sections/Services'))
 
 
 export function Home(): JSX.Element {
-  const location = useLocation()
-
   const meta = {
     title: 'Welcome to the Metaverse',
     description:
-      'Meta-Builders will help you navigate this new paradigm, and take your brand to new heights',
-    permaLink: location,
+      'We the Meta-Builders will help you navigate this new paradigm, and take your brand to new heights',
     previewImageSrc: new URL('social.png', imgixUrl)
   }
 
