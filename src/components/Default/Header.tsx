@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Icon } from "@iconify/react";
 import gsap from "gsap";
@@ -14,7 +14,7 @@ const navItems = [
   { title: "Services", url: "#services" },
   { title: "Partners", url: "#partners" },
   { title: "Team", url: "#team" },
-  { title: "Buy", url: "#buy" },
+  { title: "Pricing", url: "#pricing" },
 ];
 
 export default function Header(): JSX.Element {

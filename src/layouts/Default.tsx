@@ -3,6 +3,7 @@
 import type React from 'react';
 import { ReactElement, useEffect } from 'react';
 
+import { Icon } from '@iconify/react';
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ButtonProps } from 'react-daisyui';
@@ -67,7 +68,7 @@ export function Layout({ children, content }: {children: React.ReactNode, conten
       <Header />
       {children}
       <Footer />
-      <HashLink to="/#home" className="back-to-top hidden py-3 text-lg text-normal  transition-all motion-safe:animate-pulse-min uppercase font-sans fixed bottom-16 right-16 z-[100]"><span className="gradient-text text-shadow-alt-md-teal ">Back to top</span></HashLink>
+      <HashLink to="/#home" className="group inline-flex items-center back-to-top invisible py-3 text-sm 2xl:text-lg text-normal transition-all motion-safe:animate-pulse-min uppercase font-sans fixed bottom-5 right-4 2xl:bottom-16 2xl:right-16 z-[100]"><span className="gradient-text text-shadow-alt-md-teal ">Top </span> <Icon icon="emojione-monotone:index-pointing-up" className='h-8 w-8 text-violet-500 '/></HashLink>
     </div>
   );
 }

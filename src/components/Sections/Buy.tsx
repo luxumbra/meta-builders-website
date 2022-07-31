@@ -1,6 +1,3 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
-
-import { useBuyCtaAnimation, useSectionAnimation } from '~mb/hooks/animation';
 import { marketPlaceContract } from "~mb/lib/constants";
 import {MarketplaceListings} from "~mb/marketplace/index";
 import { ContentSection } from "~mb/sections/index";
@@ -13,11 +10,11 @@ export function SectionIntro(): JSX.Element {
 }
 
 export default function BuySection(): JSX.Element {
-  const sectionId = 'buy';
+  const sectionId = 'pricing';
 
   return (
     <ContentSection
-      title="Buy a package"
+      title="Pricing"
       id={sectionId}
       lead={<SectionIntro />}
     >

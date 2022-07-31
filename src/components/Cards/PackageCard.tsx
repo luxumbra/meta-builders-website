@@ -81,8 +81,8 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
         }}
       />
       <div className="absolute inset-0 bg-slate-800 opacity-[97%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />
-      <div className="relative flex flex-col space-x-2 md:space-x-5 space-y-2 md:space-y-3 flex-grow w-full px-0 text-violet-50 mb-5 z-[1]">
-        <h3 className="text-lg font-extrabold text-center uppercase text-violet-50">
+      <div className="relative flex flex-col space-x-2 2xl:space-x-5 space-y-2 2xl:space-y-3 flex-grow w-full px-0 text-violet-50 mb-5 z-[1]">
+        <h3 className="text-md 2xl:text-lg font-extrabold text-center uppercase text-violet-50">
           {name}
         </h3>
         <PriceDisplay price={displayPrice} currency={currencySymbol} />

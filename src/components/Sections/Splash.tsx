@@ -1,12 +1,9 @@
 
-import { MutableRefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-import Imgix from "react-imgix";
 
 import {HeroImage} from "~mb/components/HeroImage";
-import { Starfield } from "~mb/components/Starfield";
-import { useSplashContentAnimation, useSplashCharacterAnimation } from "~mb/hooks/animation";
-import { buildImgUrl } from "~mb/lib/helpers";
+import { useSplashContentAnimation } from "~mb/hooks/animation";
 
 export default function SplashSection(): JSX.Element {
   const sectionReference = useRef<HTMLDivElement>(null);
@@ -42,7 +39,7 @@ export default function SplashSection(): JSX.Element {
       <div className="relative grid h-full sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-20 lg:pb-0">
         <div id="splash-content" className="leadIn invisible">
           <h1 className="flex flex-col self-start lg:self-end gap-2 sm:gap-4 sm:self-auto sm:justify-self-end">
-            <div className="shadow-font-heading font-black tracking-tighter text-center text-8xl gradient-text text-shadow-alt-4xl-teal">
+            <div className="shadow-font-heading font-black tracking-tighter text-center text-3xl 2xl:text-8xl gradient-text text-shadow-alt-4xl-teal">
               Meta-Builders
             </div>
           </h1>

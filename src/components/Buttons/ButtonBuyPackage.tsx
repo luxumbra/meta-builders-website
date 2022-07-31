@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react'
-import { useEffect, StrictMode, useCallback, useRef, useState } from 'react'
+import { useEffect, useCallback, useRef, useState } from 'react'
 
 import { useAddress, useMetamask } from '@thirdweb-dev/react'
 import type { Marketplace } from '@thirdweb-dev/sdk'
@@ -7,11 +7,8 @@ import { useMachine, normalizeProps } from '@zag-js/react'
 import * as toast from '@zag-js/toast'
 import accounting from 'accounting'
 import gsap from 'gsap'
-import { FaSpinner } from 'react-icons/fa/index.js'
-import { TbMacro } from 'react-icons/tb'
-import { useEventListener, useOnClickOutside, useCopyToClipboard } from 'usehooks-ts'
+import { useOnClickOutside, useCopyToClipboard } from 'usehooks-ts'
 import { v4 as uuid } from 'uuid'
-import { promise } from 'zod'
 
 import LoadingOrError from '../LoadingOrError'
 

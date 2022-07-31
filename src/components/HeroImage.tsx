@@ -37,19 +37,20 @@ export function HeroImage(): JSX.Element {
       /> */}
 
       <img
-        className='fixed inset-0 h-full w-full object-cover'
+        className='fixed inset-0 h-full w-full object-cover filter blur-lg'
         src='assets/images/synthwave-outrun-fallback.jpg'
-        alt='Thumb: The ridged surface of the moon'
+        alt='Thumbnail: Synthwave landscape with a Metaverse city in the distance'
         loading='eager'
         />
 
       <img
-        className='fixed inset-0 h-screen w-screen object-cover'
+        className='fixed inset-0 h-screen w-full object-cover'
         // eslint-disable-next-line react/jsx-handler-names
         onLoad={handleImageOnLoad}
         src='assets/images/synthwave-outrun-1920.png'
-        alt='The ridged surface of the moon'
-        loading='lazy'
+        alt='Synthwave landscape with a Metaverse city in the distance'
+        width={1920}
+        height={1080}
       />
     </picture>
   )

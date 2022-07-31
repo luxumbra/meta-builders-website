@@ -56,24 +56,25 @@ export function ContentSection({
       <div
         ref={animatedElementReference}
         className='
-        relative
-          my-24
+          relative
+          my-20
+          xl:my-24
           flex
           w-full
           flex-col
           items-center
-          gap-4
-          space-y-8
+          space-y-4
+          2xl:space-y-8
           px-3
           md:px-0
           '
       >
-        <div className='flex flex-col items-center gap-4'>
-          <h2 className='gradient-text text-shadow-alt text-center font-extrabold tracking-tight text-6xl'>
+        <div className='flex flex-col items-center'>
+          <h2 className='gradient-text text-shadow-alt text-center font-extrabold tracking-tight text-4xl 2xl:text-6xl'>
             {title}
           </h2>
         </div>
-        <p className='max-w-3xl text-center font-extrabold text-2xl dark:text-slate-50'>
+        <p className='max-w-xl 2xl:max-w-3xl text-center font-extrabold text-xl 2xl:text-2xl dark:text-slate-50'>
           {lead}
         </p>
         {children}
