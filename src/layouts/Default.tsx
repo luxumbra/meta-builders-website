@@ -64,11 +64,11 @@ export function Layout({ children, content }: {children: React.ReactNode, conten
 
 
   return (
-    <div className="wrapper bg-gradient-to-b dark:from-slate-900 dark:to-slate-800">
+    <div className="wrapper bg-gradient-to-b dark:from-slate-900 dark:to-slate-800 overflow-x-hidden">
       <Header />
       {children}
+      <HashLink to="/#home" className="group items-center back-to-top hidden py-3 text-sm 2xl:text-lg text-normal motion-safe:animate-pulse-min uppercase font-sans fixed bottom-5 right-4 2xl:bottom-16 2xl:right-16 z-[100]"><span className="gradient-text text-shadow-alt-md-teal ">Top </span> <Icon icon="emojione-monotone:index-pointing-up" className='h-8 w-8 text-violet-500 inline '/></HashLink>
       <Footer />
-      <HashLink to="/#home" className="group inline-flex items-center back-to-top invisible py-3 text-sm 2xl:text-lg text-normal transition-all motion-safe:animate-pulse-min uppercase font-sans fixed bottom-5 right-4 2xl:bottom-16 2xl:right-16 z-[100]"><span className="gradient-text text-shadow-alt-md-teal ">Top </span> <Icon icon="emojione-monotone:index-pointing-up" className='h-8 w-8 text-violet-500 '/></HashLink>
     </div>
   );
 }

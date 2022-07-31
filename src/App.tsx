@@ -48,9 +48,9 @@ function App(): ReactElement {
     // })
 
     if (offset > 1200) {
-      backToTop.classList.remove('invisible');
+      backToTop.classList.remove('hidden');
     } else {
-      backToTop.classList.add('invisible');
+      backToTop.classList.add('hidden');
     }
     // tl.play();
   });

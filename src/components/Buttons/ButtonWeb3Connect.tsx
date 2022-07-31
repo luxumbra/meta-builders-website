@@ -83,9 +83,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
               <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address ? 'text-green-500 text-shadow-alt' : 'text-teal-200 dark:text-violet-300'}`} />
               <span className="sr-only">Disconnect</span>
             </button>
-            <div className='tooltip' data-tip={address}>
               <span className='text-md text-green-500 text-shadow-alt hidden lg:inline'>{shortenAddress(address)}</span>
-            </div>
           </>
         )
         }

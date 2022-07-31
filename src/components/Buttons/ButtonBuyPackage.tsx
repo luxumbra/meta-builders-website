@@ -79,6 +79,7 @@ export function BuyPackackagePopUp(
         id: uuid(),
         type: 'success',
         title: `Copied to clipboard: ${toCopy}`,
+        placement: 'bottom-start',
         duration: 3000,
       })
     }).catch((_error: unknown) => {
