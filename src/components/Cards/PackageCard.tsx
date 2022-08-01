@@ -43,21 +43,24 @@ const includedServices = (traits: IPackage['attributes']):
 
 export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const { pack } = properties;
-  const { id, name, description, displayPrice, currency, currencySymbol, image, type, attributes } = pack;
+  const { id, name, description, displayPrice, currency, currencySymbol, image, type, attributes, value } = pack;
   const marketplace = useMarketplace(marketPlaceContract);
   const services = includedServices(attributes);
   // const attributeJson = JSON.parse(attributes);
-
+  const qty = 1
   const buyPackInfo = {
     listingId: id,
     name,
     price: displayPrice,
+    value,
     currency,
     currencySymbol,
     marketplace,
-    quantityToBuy: 1,
+    quantityToBuy: qty,
     contract: marketPlaceContract,
   } as BuyPackOptions
+
+  console.log('buyPackInfo', buyPackInfo);
 
   return (
     <div

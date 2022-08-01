@@ -1,12 +1,12 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useCallback, useRef, useState } from 'react'
 
-import { useAddress, useMetamask, useNetworkMismatch } from '@thirdweb-dev/react'
-import type { Marketplace } from '@thirdweb-dev/sdk';
-import { ChainId } from '@thirdweb-dev/sdk'
+import { useAddress, useBalance, useMetamask, useNetworkMismatch, useToken } from '@thirdweb-dev/react'
+import type { CurrencyValue, Marketplace, Token } from '@thirdweb-dev/sdk';
 import { useMachine, normalizeProps } from '@zag-js/react'
 import * as toast from '@zag-js/toast'
 import accounting from 'accounting'
+import type { BigNumber } from 'ethers';
 import gsap from 'gsap'
 import { useOnClickOutside, useCopyToClipboard } from 'usehooks-ts'
 import { v4 as uuid } from 'uuid'
@@ -27,6 +27,7 @@ export type BuyPackOptions = {
   currency: string
   contract: string
   price: string
+  value: BigNumber
   marketplace: Marketplace
 }
 
@@ -45,8 +46,13 @@ export function BuyPackackagePopUp(
   const overlayBg1Reference = useRef<HTMLDivElement>(null)
   const isNetworkMismatch = useNetworkMismatch()
   const { forAddress, pack, isOpen, setIsOpen } = properties
-  const { marketplace, name, price, currencySymbol, listingId } = pack
+  const { marketplace, name, price, currency, quantityToBuy, currencySymbol, listingId, value: packValue } = pack
   const [isLoading, setIsLoading] = useState(false)
+
+  // const { data: balance, isLoading: balanceLoading, error: balanceError } = useTokenBalance(currency, forAddress);
+  const token = useToken(currency);
+  // const tokenBalance = useBalance(currency);
+  const nativeBalance = useBalance();
   const [value, copy] = useCopyToClipboard()
   const [state, send] = useMachine(
     toast.group.machine({
@@ -72,6 +78,9 @@ export function BuyPackackagePopUp(
     ease: 'power2.out',
     autoAlpha: 1
   })
+
+
+
   function onCopy(toCopy: string): void {
     copy(toCopy).then(() => {
 
@@ -91,10 +100,11 @@ export function BuyPackackagePopUp(
     })
   }
 
-  /** function to call the `buyNow` method of `useBuyNow` with a useCallback hook */
+  /** function to call the `buyNow` method of `useBuyNow`  */
   const onBuyPackage = useCallback(
     (id: string) => {
       if (isNetworkMismatch) return
+
       setIsLoading(true)
       const buyToastId = apiToast.create({
         id: uuid(),
@@ -105,8 +115,66 @@ export function BuyPackackagePopUp(
         duration: 7000
       })
       apiToast.pause()
+
+      console.log('token', {token, nativeBalance});
+
+      // if (token !== undefined) {
+
+      //   getBalance(token).then((balance) => {
+
+      //     if (balance !== undefined) {
+      //       apiToast.resume()
+      //       console.log('currencyBalance', balance.displayValue, price);
+      //       apiToast.create({
+      //         id: uuid(),
+      //         type: 'info',
+      //         title: `You have ${balance.displayValue} ${currencySymbol}`,
+      //         duration: 5000
+      //       })
+
+      //       const v = balance.value;
+      //       console.log({ v, packValue });
+      //       const enoughDosh = v.gte(packValue);
+      //       if (enoughDosh) {
+      //         setHasEnough(enoughDosh)
+      //         apiToast.resume()
+      //         apiToast.create({
+      //           id: uuid(),
+      //           type: 'success',
+      //           title: `You have enough ${currencySymbol} to buy this package`,
+      //           duration: 3000
+      //         })
+      //       } else {
+      //         throw new Error("You don't have enough funds to buy this package");
+      //       }
+      //     }
+      //     // const bigBal = new BigNumber(balance?.value._hex, balance.decimals.toString())
+      //     // const enoughBalance = balance?.value._hex.gt(new BigNumber(price, balance.decimals.toString()))
+
+      //   }).catch((error: Error) => {
+      //     console.error(error)
+      //     apiToast.resume()
+      //     apiToast.create({
+      //       id: uuid(),
+      //       type: 'error',
+      //       title: `${error.message}`,
+      //       duration: 3000
+      //     })
+      //     setIsLoading(false)
+
+      //   });
+      // } else {
+      //   console.log('no token');
+      // }
+
+
+      // if (!hasEnough) {
+      //   setIsLoading(false)
+      //   return
+      // }
+
       marketplace
-        .buyoutListing(id, 1)
+        .buyoutListing(id, quantityToBuy)
         .then(data => {
           apiToast.resume()
           apiToast.create({
@@ -138,7 +206,7 @@ export function BuyPackackagePopUp(
           setIsLoading(false)
         })
     },
-    [apiToast, currencySymbol, isNetworkMismatch, marketplace, name, price]
+    [apiToast, currencySymbol, isNetworkMismatch, marketplace, name, price, token]
   )
 
   const onOpenBuyCallback = useCallback((open: boolean) => {
@@ -205,14 +273,14 @@ export function BuyPackackagePopUp(
               {forAddress ? (
                 <p className='mb-3 text-sm'>
                     <span className='text-md'>Active wallet</span>
-                  <div className='tooltip tooltip-primary' data-tip='Click to copy'>
+                  <span className='tooltip tooltip-primary' data-tip='Click to copy'>
                     <span className='text-violet-400 ml-3'
                       tabIndex={0}
                       role="button"
                       onClick={(): void => onCopy(forAddress)}
                       onKeyPress={(): void => onCopy(forAddress)}
                     >{shortenAddress(forAddress)}</span>
-                  </div>
+                  </span>
                 </p>
               ) : undefined}
             </div>

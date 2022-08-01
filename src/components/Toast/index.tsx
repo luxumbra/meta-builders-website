@@ -19,7 +19,6 @@ function Toast({actor, id}: {actor: toast.Service, id: string}): JSX.Element {
   function onToastDismiss(): void {
     toastApi.dismiss()
   }
-  console.log('toastApi', toastApi.progressbarProps);
 
   return (
     <div id={id} className="toast pointer-events-auto px-0" {...toastApi.rootProps}>
