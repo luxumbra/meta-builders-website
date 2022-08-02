@@ -64,7 +64,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
 
   return (
     <div
-      className="package-card group relative flex flex-col items-center justify-start h-full space-y-2 md:space-y-5 p-2 md:p-5  overflow-hidden  z-10"
+      className="package-card group relative flex flex-col flex-1 items-center justify-start h-full space-y-2 md:space-y-5 p-2 md:p-5 min-h-[400px]  overflow-hidden  z-10"
     >
       <Imgix
         src={image}

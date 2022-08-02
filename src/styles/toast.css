@@ -13,10 +13,11 @@
   }
 
   .toast {
-    @apply rounded-md shadow-lg min-w-max !max-w-xs overflow-hidden px-5;
+    @apply rounded-md shadow-lg min-w-full max-w-full md:min-w-max md:!max-w-xs overflow-hidden px-5;
+    @apply break-all;
 
     h3, p {
-      @apply break-words max-w-xs mr-5;
+      @apply break-all !max-w-xs mr-5;
     }
 
     .btn {
