@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { useMarketplace } from "@thirdweb-dev/react";
+import { useMarketplace, useNetwork } from "@thirdweb-dev/react";
 import type { AuctionListing, DirectListing } from "@thirdweb-dev/sdk";
 import { v4 as uuid } from "uuid";
 
@@ -17,7 +17,6 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
   const [marketplaceListings, setMarketplaceListings] = useState<AuctionListing[] | DirectListing[] | undefined>();
   const marketplace = useMarketplace(address);
   const [isLoading, setIsLoading] = useState(true);
-
 
   /** A callback function  to `getActiveListings` from the `marketplace` and then store them in `marketplaceListings` */
   const fetchListingsCallback = useCallback(async ():Promise<(AuctionListing | DirectListing)[] | undefined>  => {
