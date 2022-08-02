@@ -17,7 +17,6 @@ const queryClient = new QueryClient()
 
 const activeChainId = ChainId.Mumbai;
 const alchemyRpc = "https://polygon-mumbai.g.alchemy.com/v2/N6I1vMx2hiWVsQa7tsg68OqmvejSmj0m"
-console.log('rpc:', alchemyRpc);
 
 const container = document.querySelector("#root");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

@@ -24,13 +24,13 @@
     }
 
     &[data-part="root"] {
-      @apply bg-transparent hover:bg-slate-800 transition-colors duration-200;
+      @apply bg-transparent hover:bg-slate-800 transition-colors duration-200 backdrop-blur-xl;
 
       animation-name: fadein;
       animation-duration: 0.3s;
 
       .toast-bg {
-        @apply  absolute inset-0 z-0 bg-slate-800 backdrop-blur-xl opacity-95 hover:opacity-100 transition-opacity;
+        @apply  absolute inset-0 z-0 bg-slate-800  opacity-10 hover:opacity-50 transition-opacity;
       }
 
       .btn {

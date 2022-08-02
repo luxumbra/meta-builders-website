@@ -41,10 +41,9 @@ export type ButtonBuyPackagePopUp = {
 }
 
 export interface GetTokenBalanceResponse {
-  balance: CurrencyValue | undefined
-  nativeBalance: NativeBalance
+  balance: UserBalance
 }
-export type NativeBalance = {
+export type UserBalance = {
   displayValue: string
   value: BigNumber
 }
@@ -61,11 +60,9 @@ export function BuyPackackagePopUp(
   const { marketplace, name, price, currency, quantityToBuy, currencySymbol, listingId, value: packValue } = pack
   const [isLoading, setIsLoading] = useState(false)
   const network = useNetwork();
-  console.log('network', network[0].data.chain);
   const { chain } = network[0].data;
   // const { data: balance, isLoading: balanceLoading, error: balanceError } = useTokenBalance(currency, forAddress);
-  const token = useToken(currency);
-  const [value, copy] = useCopyToClipboard()
+  const [copyValue, copy] = useCopyToClipboard()
   const [state, send] = useMachine(
     toast.group.machine({
       id: uuid(),
@@ -93,23 +90,22 @@ export function BuyPackackagePopUp(
 
 
 
-  async function getTokenBalance(tokenData: Token, contract: string, symbol: string,  address: string): Promise<GetTokenBalanceResponse | undefined> {
+  async function getTokenBalance(contract: string, symbol: string,  address: string): Promise<UserBalance | undefined> {
     try {
-      // for some reason matic in ThirdWeb uses 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE which isn't a contract address and it doesn't work with balanceOf so i fetch native balance from polygonscan.
-      const balance = symbol !== 'MATIC' ? await tokenData.balanceOf(address) : undefined
+      // for some reason matic in ThirdWeb uses 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE which isn't a contract address and it doesn't work with balanceOf so I'm getting balances from polygonscan.
+      // const balance = symbol !== 'MATIC' ? await tokenData.balanceOf(address) : undefined
       const nativeToken = '0x0000000000000000000000000000000000001010'
-      const nativeBalanceResponse = await fetch(
-        `${polygonScanApiEndpoint}&module=account&action=tokenbalance&contractaddress=${nativeToken}&address=${address}`)
-      const data = await nativeBalanceResponse.json()
-      const nativeBalance = {
+      const tokenToCheck = symbol === 'MATIC' ? nativeToken : contract
+      const balanceResponse = await fetch(
+        `${polygonScanApiEndpoint}&module=account&action=tokenbalance&contractaddress=${tokenToCheck}&address=${address}`)
+      const data = await balanceResponse.json()
+      const balance = {
         displayValue: utils.formatUnits(data.result, chain?.nativeCurrency?.decimals),
         value: BigNumber.from(data.result)
-      }
+      } as UserBalance
 
-      return {
-        balance,
-        nativeBalance
-      }
+      return balance
+
 
     } catch (error) {
       console.log('Balance error', { error });
@@ -130,7 +126,7 @@ export function BuyPackackagePopUp(
     }).catch((_error: unknown) => {
       apiToast.create({
         type: 'error',
-        title: `Failed to copy to clipboard: ${value as string}`,
+        title: `Failed to copy to clipboard: ${copyValue as string}`,
         duration: 3000
       })
     })
@@ -139,20 +135,20 @@ export function BuyPackackagePopUp(
   /** function to call the `buyNow` method of `useBuyNow`  */
   const onBuyPackage = useCallback(
     (id: string) => {
-      if (isNetworkMismatch) return
-
+      // if (isNetworkMismatch) return
+      console.log('buying package', { id, forAddress });
       setIsLoading(true)
-      const buyToastId = apiToast.create({
-        id: uuid(),
-        type: 'info',
-        title: `Buying ${name} package for ${price} ${currencySymbol} - Please wait...`,
-        description: 'Please sign the transaction in your wallet.',
-        placement: 'bottom-end',
-        duration: 7000
-      })
-      apiToast.pause()
 
-      if (token !== undefined && forAddress) {
+      if (forAddress) {
+        const buyToastId = apiToast.create({
+          id: uuid(),
+          type: 'info',
+          title: `Buying ${name} package for ${price} ${currencySymbol} - Please wait...`,
+          description: 'Please sign the transaction in your wallet.',
+          placement: 'bottom-end',
+          duration: 7000
+        })
+        apiToast.pause()
         apiToast.create({
           id: uuid(),
           type: 'info',
@@ -160,11 +156,10 @@ export function BuyPackackagePopUp(
           duration: 3000
         })
 
-        getTokenBalance(token, currency, currencySymbol, forAddress).then(data => {
+        getTokenBalance(currency, currencySymbol, forAddress).then(data => {
           if (data !== undefined) {
             console.log('data', data);
-            const { balance, nativeBalance } = data
-            const checkedBalance = balance ?? nativeBalance
+            const { value, displayValue } = data
             // console.log('currencyBalance', checkedBalance.displayValue, price);
             // apiToast.create({
             //   id: uuid(),
@@ -173,16 +168,45 @@ export function BuyPackackagePopUp(
             //   duration: 5000
             // })
 
-            const v = checkedBalance.value;
-            const enoughFunds = v.gte(packValue);
+
+            const enoughFunds = value.gte(packValue);
             if (enoughFunds) {
               setHasEnough(enoughFunds)
               apiToast.create({
                 id: uuid(),
                 type: 'success',
-                title: `Balance confirmed: ${checkedBalance.displayValue} ${currencySymbol}. `,
+                title: `Balance confirmed: ${displayValue} ${currencySymbol}. `,
                 duration: 3000
               })
+
+              marketplace
+                .buyoutListing(id, quantityToBuy)
+                .then(data => {
+                  apiToast.resume()
+                  apiToast.create({
+                    id: uuid(),
+                    type: 'success',
+                    title: `W00t! You bought ${name}! Your receipt: ${data.receipt.transactionHash}`,
+                    description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${data.receipt.transactionHash}`,
+                    duration: 7000
+                  })
+
+                  setIsLoading(false)
+                })
+                .catch((error: any) => {
+                  console.log('buyPackage error', { error })
+                  const errorMessage =
+                    (error.message as string) || (error.toString() as string)
+                  const errorToastId = apiToast.create({
+                    id: uuid(),
+                    type: 'error',
+                    title: `Something went wrong!\n ${errorMessage}`,
+                    duration: 7000
+                  })
+                  setIsLoading(false)
+                }).finally(() => {
+                  apiToast.resume()
+                })
             } else {
               apiToast.resume()
               apiToast.create({
@@ -208,41 +232,8 @@ export function BuyPackackagePopUp(
         });
       }
 
-
-      if (!hasEnough) {
-        setHasEnough(false)
-        setIsLoading(false)
-        return
-      }
-        marketplace
-          .buyoutListing(id, quantityToBuy)
-          .then(data => {
-            apiToast.resume()
-            apiToast.create({
-              id: uuid(),
-              type: 'success',
-              title: `W00t! You bought ${name}! Your receipt: ${data.receipt.transactionHash}`,
-              description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${data.receipt.transactionHash}`,
-              duration: 7000
-            })
-          })
-          .catch((error: any) => {
-            console.log('buyPackage error', { error })
-            const errorMessage =
-              (error.message as string) || (error.toString() as string)
-            apiToast.resume()
-            const errorToastId = apiToast.create({
-              id: uuid(),
-              type: 'error',
-              title: `Something went wrong!\n ${errorMessage}`,
-              duration: 7000
-            })
-          }).finally(() => {
-            setIsLoading(false)
-          })
-
     },
-    [forAddress, hasEnough, packValue, quantityToBuy, apiToast, currency, currencySymbol, isNetworkMismatch, marketplace, name, price, token]
+    [forAddress, hasEnough, packValue, quantityToBuy, apiToast, currency, currencySymbol, isNetworkMismatch, marketplace, name, price]
   )
 
   const onOpenBuyCallback = useCallback((open: boolean) => {
