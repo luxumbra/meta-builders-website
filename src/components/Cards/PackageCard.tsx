@@ -60,7 +60,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
     contract: marketPlaceContract,
   } as BuyPackOptions
 
-  console.log('buyPackInfo', buyPackInfo);
+  // console.log('buyPackInfo', buyPackInfo);
 
   return (
     <div
@@ -108,7 +108,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
             target="_blank"
             rel="noopener noreferrer"
             className="relative btn bg-violet-700 text-white flex-grow transition-all duration-200 ease-in-out"
-          ><Icon icon="line-md:discord" className="absolute  mr-2 h-20 w-20 opacity-10 -rotate-45 -translate-x-6 z-0" />Talk to us</a>
+          ><Icon icon="line-md:discord" className="absolute mr-2 h-20 w-20 opacity-10 -rotate-45 -translate-x-6 z-0" />Talk to us</a>
           <ButtonBuyPackage pack={buyPackInfo} />
         </div>
       </div>

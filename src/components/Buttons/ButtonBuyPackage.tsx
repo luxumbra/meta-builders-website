@@ -136,7 +136,7 @@ export function BuyPackackagePopUp(
   const onBuyPackage = useCallback(
     (id: string) => {
       // if (isNetworkMismatch) return
-      console.log('buying package', { id, forAddress });
+      // console.log('buying package', { id, forAddress });
       setIsLoading(true)
 
       if (forAddress) {
@@ -158,17 +158,7 @@ export function BuyPackackagePopUp(
 
         getTokenBalance(currency, currencySymbol, forAddress).then(data => {
           if (data !== undefined) {
-            console.log('data', data);
             const { value, displayValue } = data
-            // console.log('currencyBalance', checkedBalance.displayValue, price);
-            // apiToast.create({
-            //   id: uuid(),
-            //   type: 'info',
-            //   title: `You have ${checkedBalance.displayValue} ${currencySymbol}`,
-            //   duration: 5000
-            // })
-
-
             const enoughFunds = value.gte(packValue);
             if (enoughFunds) {
               setHasEnough(enoughFunds)
