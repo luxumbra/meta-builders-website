@@ -6,6 +6,12 @@
     "url": "https://soon.tm/"
   },
   {
+    "name": "Bolt",
+    "bio": "Some bio text about this partner...",
+    "image": "bolt.png",
+    "url": "https://soon.tm/"
+  },
+  {
     "name": "NFT Movie",
     "bio": "Some bio text about this partner...",
     "image": "nftmovie.svg",
