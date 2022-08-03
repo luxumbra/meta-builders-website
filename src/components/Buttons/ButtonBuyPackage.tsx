@@ -56,7 +56,6 @@ export function BuyPackackagePopUp(
   const contentReference = useRef<HTMLDivElement>(null)
   const overlayBg1Reference = useRef<HTMLDivElement>(null)
   const isNetworkMismatch = useNetworkMismatch()
-  const [hasEnough, setHasEnough] = useState(false)
   const { forAddress, pack, isOpen, setIsOpen } = properties
   const { marketplace, name, price, currency, quantityToBuy, currencySymbol, listingId, value: packValue } = pack
   const [isLoading, setIsLoading] = useState(false)
@@ -79,17 +78,6 @@ export function BuyPackackagePopUp(
     })
   )
   const apiToast = toast.group.connect(state, send, normalizeProps)
-
-  const popupTween = gsap.to(popUpReference.current, {
-    opacity: 1,
-    y: 0,
-    delay: 0.1,
-    duration: 0.5,
-    ease: 'power2.out',
-    autoAlpha: 1
-  })
-
-
 
   async function getTokenBalance(contract: string, symbol: string,  address: string): Promise<UserBalance | undefined> {
     try {
@@ -233,33 +221,34 @@ export function BuyPackackagePopUp(
     // gsap.set(popUpReference.current, { yPercent: 100, opacity: 0 });
     // gsap.set(contentReference.current, { opacity: 0, scale: 0.8 });
     // gsap.set(overlayBg1Reference.current, { opacity: 0, yPercent: -100, xPercent: -100 });
-
-    const tl = gsap.timeline({ paused: true, reversed: true })
-    gsap.set(popUpReference.current, { yPercent: 101, opacity: 0 })
-    tl.to(
-      popUpReference.current,
-      {
-        opacity: 1,
-        display: 'flex',
-        yPercent: 0,
-        duration: 0.3,
-        ease: 'power3',
+    if (popUpReference.current) {
+      const tl = gsap.timeline({ paused: true, reversed: true })
+      gsap.set(popUpReference.current, { yPercent: 101, opacity: 0 })
+      tl.to(
+        popUpReference.current,
+        {
+          opacity: 1,
+          display: 'flex',
+          yPercent: 0,
+          duration: 0.3,
+          ease: 'power3',
+        }
+      )
+        .to(contentReference.current, {
+          opacity: 1,
+          scale: 1,
+          delay: 0.05,
+          duration: 0.7
+        })
+        .to(overlayBg1Reference.current, {
+          opacity: 1
+        })
+      if (tl.reversed()) {
+        if (open) tl.play()
+      } else {
+        if (!open) tl.reverse()
+        setTimeout(() => { console.log('close') }, 300)
       }
-    )
-      .to(contentReference.current, {
-        opacity: 1,
-        scale: 1,
-        delay: 0.05,
-        duration: 0.7
-      })
-      .to(overlayBg1Reference.current, {
-        opacity: 1
-      })
-    if (tl.reversed()) {
-      if (open) tl.play()
-    } else {
-      if (!open) tl.reverse()
-      setTimeout(() => { console.log('close') }, 300)
     }
   }, [])
 

@@ -34,7 +34,7 @@ export function ContentSection({
     gsap.to(animatedElementReference.current, {
       opacity: isVisible ? 1 : 0,
       duration: 0.2,
-      delay: 0.3,
+      delay: 0.2,
       ease: "power4.inOut",
     })
   }, [isVisible]);

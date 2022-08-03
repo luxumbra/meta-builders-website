@@ -46,8 +46,6 @@ function App(): ReactElement {
 
 
   function onLocation(): void {
-    console.log('onLocation', location.hash);
-
     if (typeof window === 'undefined') return;
     if (location.hash === '') return;
     const tl = gsap.timeline({ paused: true, reversed: true });
@@ -59,7 +57,7 @@ function App(): ReactElement {
         window,
         {
           duration: 1,
-          delay: 0.1,
+          delay: 0,
           scrollTo: {
             y: element,
           },

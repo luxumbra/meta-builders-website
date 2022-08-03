@@ -265,7 +265,6 @@ export function useScrollReveal(element: string, trigger: string): void {
 
   function init(): void {
     if (typeof window === 'undefined') return
-    console.log('init scroll reveal', {trigger, element});
 
     const tl = gsap.timeline({
       defaults: {

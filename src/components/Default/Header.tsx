@@ -37,8 +37,6 @@ export default function Header(): JSX.Element {
     if (el && !mobileMenuItems.current.includes(el)) {
       mobileMenuItems.current.push(el);
     }
-    console.log('mobileMenuItems', mobileMenuItems.current);
-
   }
 
   /** Handle the open/close button event also adds the `aria-hidden` attribute to the menu wrapper for accessibility */
