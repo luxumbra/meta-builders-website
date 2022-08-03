@@ -13,10 +13,11 @@
   }
 
   .toast {
-    @apply rounded-md shadow-md min-w-max !max-w-xs overflow-hidden px-5;
+    @apply rounded-md shadow-lg min-w-full max-w-full md:min-w-max md:!max-w-xs overflow-hidden px-5;
+    @apply break-all;
 
     h3, p {
-      @apply break-words max-w-xs mr-5;
+      @apply break-all !max-w-xs mr-5;
     }
 
     .btn {
@@ -24,17 +25,21 @@
     }
 
     &[data-part="root"] {
-      @apply bg-slate-800;
+      @apply bg-transparent hover:bg-slate-800 transition-colors duration-200 backdrop-blur-xl;
 
       animation-name: fadein;
       animation-duration: 0.3s;
+
+      .toast-bg {
+        @apply  absolute inset-0 z-0 bg-slate-800  opacity-10 hover:opacity-50 transition-opacity;
+      }
 
       .btn {
         @apply text-inherit;
       }
 
       [data-part="progressbar"] {
-        @apply bg-violet-600 h-1 absolute origin-left bottom-0 left-0 w-full;
+        @apply bg-violet-600 h-1 absolute origin-left bottom-0 left-0 w-full z-10;
 
       }
     }

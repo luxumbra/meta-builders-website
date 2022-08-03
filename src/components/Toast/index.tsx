@@ -19,11 +19,10 @@ function Toast({actor, id}: {actor: toast.Service, id: string}): JSX.Element {
   function onToastDismiss(): void {
     toastApi.dismiss()
   }
-  console.log('toastApi', toastApi.progressbarProps);
 
   return (
     <div id={id} className="toast pointer-events-auto px-0" {...toastApi.rootProps}>
-      <div className="toast-header inline-flex items-start justify-between px-5">
+      <div className="toast-header inline-flex items-start justify-between px-5 z-10">
         <h3 className="m-0 font-normal" {...toastApi.titleProps}>{toastApi.title}</h3>
         <span>{toastApi.type === "loading" ? <Icon icon="mdi:spinner" className="animate-spin" /> : undefined}</span>
         <button
@@ -35,7 +34,9 @@ function Toast({actor, id}: {actor: toast.Service, id: string}): JSX.Element {
         </button>
       </div>
       <div {...toastApi.progressbarProps} />
-      {/* {toastApi.description ? <p>{toastApi.description}</p> : undefined} */}
+        {/* {toastApi.description ? <p>{toastApi.description}</p> : undefined} */}
+
+        <div className="toast-bg" />
     </div>
   )
 }

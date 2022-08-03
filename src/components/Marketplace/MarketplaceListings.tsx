@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { useMarketplace } from "@thirdweb-dev/react";
+import { useMarketplace, useNetwork } from "@thirdweb-dev/react";
 import type { AuctionListing, DirectListing } from "@thirdweb-dev/sdk";
 import { v4 as uuid } from "uuid";
 
@@ -17,7 +17,6 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
   const [marketplaceListings, setMarketplaceListings] = useState<AuctionListing[] | DirectListing[] | undefined>();
   const marketplace = useMarketplace(address);
   const [isLoading, setIsLoading] = useState(true);
-
 
   /** A callback function  to `getActiveListings` from the `marketplace` and then store them in `marketplaceListings` */
   const fetchListingsCallback = useCallback(async ():Promise<(AuctionListing | DirectListing)[] | undefined>  => {
@@ -52,7 +51,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
     return <LoadingOrError isInline message="Loading NFTs..." />;
   }
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="flex flex-col space-y-5 items-stretch justify-items-stretch sm:space-y-0 sm:grid sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
       {(marketplaceListings && marketplaceListings.length > 0) ? (
         marketplaceListings.map((listing: AuctionListing | DirectListing) => {
           const {asset, id, assetContractAddress, buyoutCurrencyValuePerToken, currencyContractAddress} = listing;
@@ -77,7 +76,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
         })
         ) : (
           <div className="flex flex-col items-center justify-center">
-            <span>No listings</span>
+            <p>No listings</p>
           </div>
       )}
     </div>

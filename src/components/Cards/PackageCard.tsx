@@ -1,6 +1,6 @@
 
 import { Icon } from "@iconify/react";
-import { useMarketplace } from "@thirdweb-dev/react";
+import { useMarketplace, useNetwork } from "@thirdweb-dev/react";
 import type { Json } from "@thirdweb-dev/sdk";
 import Imgix from "react-imgix";
 import { v4 as uuid } from "uuid";
@@ -43,25 +43,28 @@ const includedServices = (traits: IPackage['attributes']):
 
 export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const { pack } = properties;
-  const { id, name, description, displayPrice, currency, currencySymbol, image, type, attributes } = pack;
+  const { id, name, description, displayPrice, currency, currencySymbol, image, type, attributes, value } = pack;
   const marketplace = useMarketplace(marketPlaceContract);
   const services = includedServices(attributes);
   // const attributeJson = JSON.parse(attributes);
-
+  const qty = 1
   const buyPackInfo = {
     listingId: id,
     name,
     price: displayPrice,
+    value,
     currency,
     currencySymbol,
     marketplace,
-    quantityToBuy: 1,
+    quantityToBuy: qty,
     contract: marketPlaceContract,
   } as BuyPackOptions
 
+  // console.log('buyPackInfo', buyPackInfo);
+
   return (
     <div
-      className="package-card group relative flex flex-col items-center justify-start h-full space-y-2 md:space-y-5 p-2 md:p-5  overflow-hidden  z-10"
+      className="package-card group relative flex flex-col flex-1 items-center justify-start h-full space-y-2 md:space-y-5 p-2 md:p-5 min-h-[400px]  overflow-hidden  z-10"
     >
       <Imgix
         src={image}
@@ -91,7 +94,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
           {services.length > 0 ? services.map(service => (
               <li key={uuid()} className="flex items-center space-x-3 ">
               <Icon icon="ic:baseline-check" className="text-teal-400 text-xs 2xl:text-sm w-5 h-5" />
-              <span className="text-xs 2xl:text-md text-violet-100 font-normal text-left">
+              <span className="text-violet-100 font-normal text-left">
                 {service.value}
               </span>
               </li>
@@ -100,11 +103,12 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
       </div>
       <div className="items-center justify-center flex-shrink min-w-full w-full text-center z-10">
         <div className="flex justify-between gap-3">
-          <button
-            type="button"
-
-            className="btn bg-violet-700 text-violet-200 flex-grow transition-all duration-200 ease-in-out"
-          >Talk to us</button>
+          <a
+            href="https://discord.gg/MetaBuilders"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative btn bg-violet-700 text-white flex-grow transition-all duration-200 ease-in-out"
+          ><Icon icon="line-md:discord" className="absolute mr-2 h-20 w-20 opacity-10 -rotate-45 -translate-x-6 z-0" />Talk to us</a>
           <ButtonBuyPackage pack={buyPackInfo} />
         </div>
       </div>

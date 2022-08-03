@@ -6,6 +6,7 @@ specifiers:
   '@rollup/plugin-alias': ^3.1.9
   '@tailwindcss/forms': ^0.5.2
   '@tailwindcss/typography': ^0.5.4
+  '@tanstack/react-query': ^4.0.10
   '@thirdweb-dev/react': 2.4.1
   '@thirdweb-dev/sdk': ^2.3.31
   '@typechain/ethers-v5': ^10.1.0
@@ -20,6 +21,7 @@ specifiers:
   '@types/uuid': ^8.3.4
   '@typescript-eslint/parser': ^5.30.7
   '@vitejs/plugin-react': ^1.3.2
+  '@wagmi/core': ^0.5.0
   '@zag-js/react': ^0.1.13
   '@zag-js/toast': ^0.1.11
   '@zag-js/types': ^0.2.3
@@ -58,7 +60,6 @@ specifiers:
   react-helmet: ^6.1.0
   react-icons: ^4.4.0
   react-imgix: ^9.5.1
-  react-query: ^4.0.0
   react-router-dom: ^6.3.0
   react-router-hash-link: ^2.4.3
   react-useportal: ^1.0.17
@@ -87,6 +88,7 @@ specifiers:
 dependencies:
   '@iconify/react': 3.2.2_react@18.2.0
   '@rollup/plugin-alias': 3.1.9_rollup@2.77.2
+  '@tanstack/react-query': 4.0.10_biqbaboplfbrettd7655fr4n2y
   '@thirdweb-dev/react': 2.4.1_owfp6zlbfy5di5rzzwnj37vewy
   '@thirdweb-dev/sdk': 2.3.32_ethers@5.6.9
   '@typechain/ethers-v5': 10.1.0_3a2z4xo3ofaclmnvqkkolsxa2u
@@ -94,6 +96,7 @@ dependencies:
   '@types/react-helmet': 6.1.5
   '@types/react-router-hash-link': 2.4.5
   '@types/uuid': 8.3.4
+  '@wagmi/core': 0.5.0_ethers@5.6.9+react@18.2.0
   '@zag-js/react': 0.1.13_react@18.2.0
   '@zag-js/toast': 0.1.11
   accounting: 0.4.1
@@ -113,7 +116,6 @@ dependencies:
   react-helmet: 6.1.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
   react-imgix: 9.5.2_biqbaboplfbrettd7655fr4n2y
-  react-query: 4.0.0_biqbaboplfbrettd7655fr4n2y
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
   react-router-hash-link: 2.4.3_gghooq75xnjwyznt6ahhkj73mi
   react-useportal: 1.0.17_biqbaboplfbrettd7655fr4n2y
@@ -2007,6 +2009,25 @@ packages:
   /@tanstack/query-core/4.0.10:
     resolution: {integrity: sha512-9LsABpZXkWZHi4P1ozRETEDXQocLAxVzQaIhganxbNuz/uA3PsCAJxJTiQrknG5htLMzOF5MqM9G10e6DCxV1A==}
 
+  /@tanstack/react-query/4.0.10_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Wn5QhZUE5wvr6rGClV7KeQIUsdTmYR9mgmMZen7DSRWauHW2UTynFg3Kkf6pw+XlxxOLsyLWwz/Q6q1lSpM3TQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.0.10
+      '@types/use-sync-external-store': 0.0.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
+
   /@thirdweb-dev/contracts/3.0.3:
     resolution: {integrity: sha512-TQRrML5SwbTb0VA1nu7VLxqIXrqMfvaXOBFT//yA9Jdd7GNsG4zSQHlHpkU4KWG1r766poG/AuXwz8KQ1A9IBg==}
     dev: false
@@ -2401,6 +2422,26 @@ packages:
     dependencies:
       '@coinbase/wallet-sdk': 3.4.0_@babel+core@7.18.9
       '@walletconnect/ethereum-provider': 1.7.8
+      ethers: 5.6.9
+      eventemitter3: 4.0.7
+      zustand: 4.0.0-rc.4_react@18.2.0
+    transitivePeerDependencies:
+      - immer
+      - react
+    dev: false
+
+  /@wagmi/core/0.5.0_ethers@5.6.9+react@18.2.0:
+    resolution: {integrity: sha512-bh4cI7WaBDtEM8E7KPCLnK5PfmBPg5iIUydTw5DTX2yo6BiRhcFIflRn/Bg9IJCFq3SGhW6Zmpu+jHHeH9ZELQ==}
+    peerDependencies:
+      '@coinbase/wallet-sdk': '>=3.3.0'
+      '@walletconnect/ethereum-provider': '>=1.7.5'
+      ethers: '>=5.5.1'
+    peerDependenciesMeta:
+      '@coinbase/wallet-sdk':
+        optional: true
+      '@walletconnect/ethereum-provider':
+        optional: true
+    dependencies:
       ethers: 5.6.9
       eventemitter3: 4.0.7
       zustand: 4.0.0-rc.4_react@18.2.0

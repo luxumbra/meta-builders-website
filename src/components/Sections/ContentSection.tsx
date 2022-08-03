@@ -27,7 +27,7 @@ export function ContentSection({
   const isVisible = !!entry?.isIntersecting
 
   useEffect(() => {
-    console.log(`Render section ${title ?? 'undefined'}`, { isVisible })
+    // console.log(`Render section ${title ?? 'undefined'}`, { isVisible })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
 

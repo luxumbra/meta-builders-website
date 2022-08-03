@@ -1,12 +1,12 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useCallback, useRef, useState } from 'react'
 
-import { useAddress, useMetamask, useNetworkMismatch } from '@thirdweb-dev/react'
-import type { Marketplace } from '@thirdweb-dev/sdk';
-import { ChainId } from '@thirdweb-dev/sdk'
+import { useAddress, useBalance, useMetamask, useNetwork, useNetworkMismatch, useToken } from '@thirdweb-dev/react'
+import { ChainId, CurrencyValue, Marketplace, Token } from '@thirdweb-dev/sdk';
 import { useMachine, normalizeProps } from '@zag-js/react'
 import * as toast from '@zag-js/toast'
 import accounting from 'accounting'
+import { BigNumber, utils } from 'ethers';
 import gsap from 'gsap'
 import { useOnClickOutside, useCopyToClipboard } from 'usehooks-ts'
 import { v4 as uuid } from 'uuid'
@@ -18,7 +18,9 @@ import { ButtonWeb3Connect } from './ButtonWeb3Connect'
 import { Portal } from '~mb/components/Portal'
 import Toast from '~mb/components/Toast'
 import { shortenAddress } from '~mb/lib/helpers'
-
+import { Icon } from '@iconify/react';
+import { polygonScanApiEndpoint } from '~mb/lib/constants';
+import PriceDisplay from '../PriceDisplay';
 export type BuyPackOptions = {
   name: string
   currencySymbol: string
@@ -27,6 +29,7 @@ export type BuyPackOptions = {
   currency: string
   contract: string
   price: string
+  value: BigNumber
   marketplace: Marketplace
 }
 
@@ -37,6 +40,14 @@ export type ButtonBuyPackagePopUp = {
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
+export interface GetTokenBalanceResponse {
+  balance: UserBalance
+}
+export type UserBalance = {
+  displayValue: string
+  value: BigNumber
+}
+
 export function BuyPackackagePopUp(
   properties: ButtonBuyPackagePopUp
 ): JSX.Element {
@@ -44,10 +55,14 @@ export function BuyPackackagePopUp(
   const contentReference = useRef<HTMLDivElement>(null)
   const overlayBg1Reference = useRef<HTMLDivElement>(null)
   const isNetworkMismatch = useNetworkMismatch()
+  const [hasEnough, setHasEnough] = useState(false)
   const { forAddress, pack, isOpen, setIsOpen } = properties
-  const { marketplace, name, price, currencySymbol, listingId } = pack
+  const { marketplace, name, price, currency, quantityToBuy, currencySymbol, listingId, value: packValue } = pack
   const [isLoading, setIsLoading] = useState(false)
-  const [value, copy] = useCopyToClipboard()
+  const network = useNetwork();
+  const { chain } = network[0].data;
+  // const { data: balance, isLoading: balanceLoading, error: balanceError } = useTokenBalance(currency, forAddress);
+  const [copyValue, copy] = useCopyToClipboard()
   const [state, send] = useMachine(
     toast.group.machine({
       id: uuid(),
@@ -72,6 +87,32 @@ export function BuyPackackagePopUp(
     ease: 'power2.out',
     autoAlpha: 1
   })
+
+
+
+  async function getTokenBalance(contract: string, symbol: string,  address: string): Promise<UserBalance | undefined> {
+    try {
+      // for some reason matic in ThirdWeb uses 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE which isn't a contract address and it doesn't work with balanceOf so I'm getting balances from polygonscan.
+      // const balance = symbol !== 'MATIC' ? await tokenData.balanceOf(address) : undefined
+      const nativeToken = '0x0000000000000000000000000000000000001010'
+      const tokenToCheck = symbol === 'MATIC' ? nativeToken : contract
+      const balanceResponse = await fetch(
+        `${polygonScanApiEndpoint}&module=account&action=tokenbalance&contractaddress=${tokenToCheck}&address=${address}`)
+      const data = await balanceResponse.json()
+      const balance = {
+        displayValue: utils.formatUnits(data.result, chain?.nativeCurrency?.decimals),
+        value: BigNumber.from(data.result)
+      } as UserBalance
+
+      return balance
+
+
+    } catch (error) {
+      console.log('Balance error', { error });
+      return undefined
+    }
+  }
+
   function onCopy(toCopy: string): void {
     copy(toCopy).then(() => {
 
@@ -85,60 +126,104 @@ export function BuyPackackagePopUp(
     }).catch((_error: unknown) => {
       apiToast.create({
         type: 'error',
-        title: `Failed to copy to clipboard: ${value as string}`,
+        title: `Failed to copy to clipboard: ${copyValue as string}`,
         duration: 3000
       })
     })
   }
 
-  /** function to call the `buyNow` method of `useBuyNow` with a useCallback hook */
+  /** function to call the `buyNow` method of `useBuyNow`  */
   const onBuyPackage = useCallback(
     (id: string) => {
-      if (isNetworkMismatch) return
+      // if (isNetworkMismatch) return
+      // console.log('buying package', { id, forAddress });
       setIsLoading(true)
-      const buyToastId = apiToast.create({
-        id: uuid(),
-        type: 'info',
-        title: `Buying ${name} package for ${price} ${currencySymbol}`,
-        description: 'Please sign the transaction in your wallet.',
-        placement: 'bottom-end',
-        duration: 7000
-      })
-      apiToast.pause()
-      marketplace
-        .buyoutListing(id, 1)
-        .then(data => {
-          apiToast.resume()
+
+      if (forAddress) {
+        const buyToastId = apiToast.create({
+          id: uuid(),
+          type: 'info',
+          title: `Buying ${name} package for ${price} ${currencySymbol} - Please wait...`,
+          description: 'Please sign the transaction in your wallet.',
+          placement: 'bottom-end',
+          duration: 7000
+        })
+        apiToast.pause()
+        apiToast.create({
+          id: uuid(),
+          type: 'info',
+          title: `Checking ${currencySymbol} balance...`,
+          duration: 3000
+        })
+
+        getTokenBalance(currency, currencySymbol, forAddress).then(data => {
+          if (data !== undefined) {
+            const { value, displayValue } = data
+            const enoughFunds = value.gte(packValue);
+            if (enoughFunds) {
+              setHasEnough(enoughFunds)
+              apiToast.create({
+                id: uuid(),
+                type: 'success',
+                title: `Balance confirmed: ${displayValue} ${currencySymbol}. `,
+                duration: 3000
+              })
+
+              marketplace
+                .buyoutListing(id, quantityToBuy)
+                .then(data => {
+                  apiToast.resume()
+                  apiToast.create({
+                    id: uuid(),
+                    type: 'success',
+                    title: `W00t! You bought ${name}! Your receipt: ${data.receipt.transactionHash}`,
+                    description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${data.receipt.transactionHash}`,
+                    duration: 7000
+                  })
+
+                  setIsLoading(false)
+                })
+                .catch((error: any) => {
+                  console.log('buyPackage error', { error })
+                  const errorMessage =
+                    (error.message as string) || (error.toString() as string)
+                  const errorToastId = apiToast.create({
+                    id: uuid(),
+                    type: 'error',
+                    title: `Something went wrong!\n ${errorMessage}`,
+                    duration: 7000
+                  })
+                  setIsLoading(false)
+                }).finally(() => {
+                  apiToast.resume()
+                })
+            } else {
+              apiToast.resume()
+              apiToast.create({
+                id: uuid(),
+                type: 'error',
+                title: `You do not have sufficient ${currencySymbol} to buy this package`,
+                duration: 3000
+              })
+              setHasEnough(enoughFunds)
+              setIsLoading(false)
+            }
+          }
+
+        }).catch((error: Error) => {
+          console.error('tokenBalance error', error);
           apiToast.create({
             id: uuid(),
-            type: 'success',
-            title: `W00t! You bought ${name}! Your receipt: ${data.receipt.transactionHash}`,
-            description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${data.receipt.transactionHash}`,
-            duration: 7000
-          })
-
-          setIsLoading(false)
-          // setTimeout(() => { apiToast.dismiss() }, 7000)
-        })
-        .catch((error: any) => {
-          console.log('buyPackage error', { error })
-          const errorMessage =
-            (error.message as string) || (error.toString() as string)
-          setIsLoading(false)
-          // if (buyToastId !== undefined) {
-          apiToast.resume()
-          const errorToastId = apiToast.create({
-            id: uuid(),
             type: 'error',
-            title: `Something went wrong!\n ${errorMessage}`,
-            duration: 7000
+            title: `${error.message}`,
+            duration: 3000
           })
-          // }
-        }).finally(() => {
           setIsLoading(false)
-        })
+        });
+      }
+
     },
-    [apiToast, currencySymbol, isNetworkMismatch, marketplace, name, price]
+    [forAddress, hasEnough, packValue, quantityToBuy, apiToast, currency, currencySymbol, isNetworkMismatch, marketplace, name, price]
   )
 
   const onOpenBuyCallback = useCallback((open: boolean) => {
@@ -200,19 +285,19 @@ export function BuyPackackagePopUp(
             <p>Let&apos;s do this! Hit &apos;Confirm&apos; below to buy this NFT, and the <span className='gradient-text font-bold'>Meta-Builders</span> services locked up inside it.</p>
             <div className='flex flex-col items-start justify-center space-y-2 my-3'>
               <p className='inline-flex flex-col gap-0 space-0'>
-                <span className='text-sm'>Price:</span> <span className='text-xl'> {accounting.formatMoney(price, '$', 2)} <span className='text-violet-400'>{currencySymbol}</span></span>
+                <span className='text-sm'>Price:</span> <PriceDisplay price={price} currency={currencySymbol} />
               </p>
               {forAddress ? (
                 <p className='mb-3 text-sm'>
                     <span className='text-md'>Active wallet</span>
-                  <div className='tooltip tooltip-primary' data-tip='Click to copy'>
+                  <span className='tooltip tooltip-primary' data-tip='Click to copy'>
                     <span className='text-violet-400 ml-3'
                       tabIndex={0}
                       role="button"
                       onClick={(): void => onCopy(forAddress)}
                       onKeyPress={(): void => onCopy(forAddress)}
                     >{shortenAddress(forAddress)}</span>
-                  </div>
+                  </span>
                 </p>
               ) : undefined}
             </div>
@@ -307,6 +392,7 @@ export function ButtonBuyPackage(properties: IButtonBuyPackage): JSX.Element {
         data-package={pack.listingId}
         onClick={!address ? onConnectMetamask : onToggleOpen}
       >
+        <Icon icon="emojione-monotone:rocket" className="absolute text-teal-200 mr-2 h-20 w-20 opacity-10 -translate-x-8" />
         {!address ? 'Connect to buy' : 'Buy Package'}
       </button>
 
