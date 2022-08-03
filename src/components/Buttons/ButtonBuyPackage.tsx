@@ -223,7 +223,7 @@ export function BuyPackackagePopUp(
       }
 
     },
-    [forAddress, hasEnough, packValue, quantityToBuy, apiToast, currency, currencySymbol, isNetworkMismatch, marketplace, name, price]
+    [forAddress, packValue, quantityToBuy, apiToast, currency, currencySymbol, marketplace, name, price, getTokenBalance]
   )
 
   const onOpenBuyCallback = useCallback((open: boolean) => {

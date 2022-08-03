@@ -7,6 +7,7 @@
   body {
     @apply font-body bg-gradient-to-bl dark:from-slate-700 dark:to-slate-900;
 
+
     &.menu-open {
       @apply overflow-y-hidden;
     }

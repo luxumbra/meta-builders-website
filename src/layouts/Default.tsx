@@ -14,6 +14,7 @@ import Header from '~mb/default/Header';
 import { imgixUrl } from '~mb/lib/constants'
 
 import "~mb/styles/index.css";
+import { useRef } from 'react';
 
 gsap.registerPlugin(ScrollToPlugin);
 

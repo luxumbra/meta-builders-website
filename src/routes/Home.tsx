@@ -26,6 +26,7 @@ export function Home(): JSX.Element {
   }
 
   return (
+    <Suspense fallback={<LoadingOrError message='Loading...' />}>
     <Layout content={meta}>
       <SplashSection />
       <IntroSection />
@@ -33,7 +34,8 @@ export function Home(): JSX.Element {
       <PartnersSection />
       <TeamSection />
       <BuySection />
-    </Layout>
+      </Layout>
+      </Suspense>
   )
 }
 

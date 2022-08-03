@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-
+import gsap from 'gsap'
 import { useIntersectionObserver } from 'usehooks-ts'
 
 export interface IContentSectionProperties {
@@ -27,8 +27,23 @@ export function ContentSection({
   const isVisible = !!entry?.isIntersecting
 
   useEffect(() => {
-    // console.log(`Render section ${title ?? 'undefined'}`, { isVisible })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    const tl = gsap.timeline()
+    // gsap.set(animatedElementReference.current, { opacity: 0, xPercent: -10 })
+    if (!animatedElementReference.current) return
+    // tl.from(animatedElementReference.current, {
+    //   duration: 0.3,
+    //   delay: 0.1,
+    //   opacity: 0,
+    //   xPercent: -10,
+    // })
+    gsap.to(animatedElementReference.current, {
+      opacity: isVisible ? 1 : 0,
+      xPercent: isVisible ? 0 : -1,
+      duration: 0.3,
+      delay: 0.2,
+      ease: "circle",
+    })
+    // isVisible ? tl.play() : tl.reverse()
   }, [isVisible]);
 
 
