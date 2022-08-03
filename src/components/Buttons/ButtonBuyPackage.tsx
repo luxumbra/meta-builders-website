@@ -162,8 +162,8 @@ export function BuyPackackagePopUp(
           if (data !== undefined) {
             const { value, displayValue } = data
             const enoughFunds = value.gte(packValue);
+
             if (enoughFunds) {
-              setHasEnough(enoughFunds)
               apiToast.create({
                 id: uuid(),
                 type: 'success',
@@ -174,6 +174,8 @@ export function BuyPackackagePopUp(
               marketplace
                 .buyoutListing(id, quantityToBuy)
                 .then(tx => {
+                  console.log('buyout tx', tx);
+
                   apiToast.resume()
                   apiToast.create({
                     id: uuid(),
@@ -206,7 +208,6 @@ export function BuyPackackagePopUp(
                 title: `You do not have sufficient ${currencySymbol} to buy this package`,
                 duration: 3000
               })
-              setHasEnough(enoughFunds)
               setIsLoading(false)
             }
           }
@@ -267,7 +268,7 @@ export function BuyPackackagePopUp(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, onOpenBuyCallback])
 
-  useOnClickOutside(popUpReference, () => setIsOpen(false))
+  useOnClickOutside(popUpReference, () => !isLoading && setIsOpen(false))
 
   return (
     <>
