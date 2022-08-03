@@ -2,12 +2,10 @@ import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useCallback, useRef, useState } from 'react'
 
 import { Icon } from '@iconify/react';
-import { useAddress, useBalance, useMetamask, useNetwork, useNetworkMismatch, useToken } from '@thirdweb-dev/react'
+import { useAddress, useMetamask, useNetwork, useNetworkMismatch } from '@thirdweb-dev/react'
 import type { Marketplace} from '@thirdweb-dev/sdk';
-import { ChainId, CurrencyValue, Token } from '@thirdweb-dev/sdk';
 import { useMachine, normalizeProps } from '@zag-js/react'
 import * as toast from '@zag-js/toast'
-import accounting from 'accounting'
 import { BigNumber, utils } from 'ethers';
 import gsap from 'gsap'
 import { useOnClickOutside, useCopyToClipboard } from 'usehooks-ts'
