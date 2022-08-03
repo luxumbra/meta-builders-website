@@ -31,21 +31,10 @@ function App(): ReactElement {
 
   useEventListener('scroll', () => {
     if (typeof window === 'undefined') return;
-    const tl = gsap.timeline({paused: true, reversed: true});
+    // const tl = gsap.timeline({paused: true, reversed: true});
     const page = document.documentElement;
     const offset = page.scrollTop;
     const backToTop = document.querySelector('.back-to-top') as HTMLElement;
-    // gsap.set(backToTop, {opacity: 0, xPercent: 125});
-    // tl.from(backToTop, {
-    //   opacity: 0,
-    //   xPercent: 125,
-    //   duration: 0.4,
-    //   ease: 'elastic',
-    // }).to(backToTop, {
-    //   opacity: 1,
-    //   xPercent: 0,
-    //   duration: 0.4,
-    // })
 
     if (offset > 1200) {
       backToTop.classList.remove('invisible');
@@ -57,13 +46,13 @@ function App(): ReactElement {
 
 
   function onLocation(): void {
+    console.log('onLocation', location.hash);
+
     if (typeof window === 'undefined') return;
     if (location.hash === '') return;
     const tl = gsap.timeline({ paused: true, reversed: true });
     const fallback = document.documentElement;
     const element = document.querySelector(location.hash);
-    // eslint-disable-next-line no-debugger
-    // debugger;
 
     if (element !== null) {
       tl.to(

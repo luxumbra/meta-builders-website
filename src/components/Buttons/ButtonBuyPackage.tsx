@@ -1,8 +1,10 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useCallback, useRef, useState } from 'react'
 
+import { Icon } from '@iconify/react';
 import { useAddress, useBalance, useMetamask, useNetwork, useNetworkMismatch, useToken } from '@thirdweb-dev/react'
-import { ChainId, CurrencyValue, Marketplace, Token } from '@thirdweb-dev/sdk';
+import type { Marketplace} from '@thirdweb-dev/sdk';
+import { ChainId, CurrencyValue, Token } from '@thirdweb-dev/sdk';
 import { useMachine, normalizeProps } from '@zag-js/react'
 import * as toast from '@zag-js/toast'
 import accounting from 'accounting'
@@ -12,15 +14,16 @@ import { useOnClickOutside, useCopyToClipboard } from 'usehooks-ts'
 import { v4 as uuid } from 'uuid'
 
 import LoadingOrError from '../LoadingOrError'
+import { PriceDisplay } from '../PriceDisplay';
 
 import { ButtonWeb3Connect } from './ButtonWeb3Connect'
 
 import { Portal } from '~mb/components/Portal'
 import Toast from '~mb/components/Toast'
-import { shortenAddress } from '~mb/lib/helpers'
-import { Icon } from '@iconify/react';
 import { polygonScanApiEndpoint } from '~mb/lib/constants';
-import PriceDisplay from '../PriceDisplay';
+import { shortenAddress } from '~mb/lib/helpers'
+
+
 export type BuyPackOptions = {
   name: string
   currencySymbol: string
@@ -100,6 +103,7 @@ export function BuyPackackagePopUp(
         `${polygonScanApiEndpoint}&module=account&action=tokenbalance&contractaddress=${tokenToCheck}&address=${address}`)
       const data = await balanceResponse.json()
       const balance = {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         displayValue: utils.formatUnits(data.result, chain?.nativeCurrency?.decimals),
         value: BigNumber.from(data.result)
       } as UserBalance
@@ -171,22 +175,21 @@ export function BuyPackackagePopUp(
 
               marketplace
                 .buyoutListing(id, quantityToBuy)
-                .then(data => {
+                .then(tx => {
                   apiToast.resume()
                   apiToast.create({
                     id: uuid(),
                     type: 'success',
-                    title: `W00t! You bought ${name}! Your receipt: ${data.receipt.transactionHash}`,
-                    description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${data.receipt.transactionHash}`,
+                    title: `W00t! You bought ${name}! Your receipt: ${tx.receipt.transactionHash}`,
+                    description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${tx.receipt.transactionHash}`,
                     duration: 7000
                   })
 
                   setIsLoading(false)
                 })
-                .catch((error: any) => {
+                .catch((error: Error) => {
                   console.log('buyPackage error', { error })
-                  const errorMessage =
-                    (error.message as string) || (error.toString() as string)
+                  const errorMessage = error.message
                   const errorToastId = apiToast.create({
                     id: uuid(),
                     type: 'error',
@@ -223,7 +226,8 @@ export function BuyPackackagePopUp(
       }
 
     },
-    [forAddress, packValue, quantityToBuy, apiToast, currency, currencySymbol, marketplace, name, price, getTokenBalance]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [forAddress, packValue, quantityToBuy, apiToast, currency, currencySymbol, marketplace, name, price]
   )
 
   const onOpenBuyCallback = useCallback((open: boolean) => {

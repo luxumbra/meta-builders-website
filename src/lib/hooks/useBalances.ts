@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+
 import {useQuery } from "@tanstack/react-query"
 
 export default function useBalances(address: string): Error {
