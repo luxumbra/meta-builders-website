@@ -9,6 +9,8 @@ import { Starfield } from "../Starfield";
 import { HeroImage } from "~mb/components/HeroImage";
 import { useSplashContentAnimation } from "~mb/hooks/animation";
 
+
+
 export default function SplashSection(): JSX.Element {
   const sectionReference = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLDivElement>(null)
@@ -18,7 +20,7 @@ export default function SplashSection(): JSX.Element {
   const elementSelector = ".leadIn";
   const triggerSelector = sectionReference;
   // const charSelector = "#splash-character .leadIn";
-
+  const cityImg = new URL('/assets/images/mv-002.jpg', import.meta.url).href;
   useSplashContentAnimation(elementSelector, triggerSelector);
   // useSplashCharacterAnimation(charSelector, triggerSelector);
 
@@ -44,8 +46,10 @@ export default function SplashSection(): JSX.Element {
   useEffect(() => {
     if (maskRef.current) {
       // maskRef.current.style.setProperty('--up-height', `${document.body.offsetHeight}`)
+      maskRef.current.style.setProperty('--mask-image', `url(${cityImg})`)
     }
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [maskRef])
 
 
   return (
