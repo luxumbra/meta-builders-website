@@ -26,18 +26,43 @@
     black var(--maskSize3, 0%),
     rgba(0 0 0 10%) calc(var(--maskSize3, 0%) + 0.1%),
     transparent 0);
+    --shadow-mask: linear-gradient(#fff 0 0) right 10% top 50%/30% 80%;
 
     mask-image: var(--circle);
     mask-clip: border-box;
-    background-image: url('/assets/images/mv-002.jpg');
+    background-image: url('./assets/images/mv-002.jpg');
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
 
     @apply hidden lg:block motion-safe:block motion-reduce:hidden fixed top-0 left-0 w-full min-h-full z-[9] pointer-events-none;
     @apply   bg-slate-900 backdrop-blur-xl backdrop-opacity-100;
 
-    box-shadow: inset 0 0 8px 10px rgba(0 0 0 80%);
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      mask: var(--shadow-mask), linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      mask-repeat: no-repeat;
+    }
 
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 10px 20px rgba(0 0 0 80%));
+    }
   }
 
   .floating {
