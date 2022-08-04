@@ -118,7 +118,9 @@ export default function Header(): JSX.Element {
 
     const target = e.target as HTMLElement;
     if (target.tagName === "A") {
-      _.debounce(() => onToggleMobileMenu(), 200);
+      setTimeout(() => {
+        onToggleMobileMenu();
+      }, 500);
     }
   }, mobileMenu)
 
