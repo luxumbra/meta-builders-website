@@ -74,7 +74,7 @@
   }
 
   .package-card {
-    @apply rounded-t-2xl rounded-b-md dark:bg-violet-900;
+    @apply rounded-t-2xl rounded-b-md dark:bg-glass-primary-800;
 
     .buy-popup {
       @apply rounded-t-2xl rounded-b-md bg-glass-secondary-900 dark:bg-glass-primary-900 overflow-hidden;
