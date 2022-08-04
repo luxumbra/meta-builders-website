@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 
 import gsap from 'gsap';
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import _ from 'lodash';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEventListener } from 'usehooks-ts';
 
@@ -29,7 +30,9 @@ function App(): ReactElement {
     }
   });
 
-  useEventListener('scroll', () => {
+  useEventListener('scroll', _.throttle(() => {
+    console.log('scroll');
+
     if (typeof window === 'undefined') return;
     // const tl = gsap.timeline({paused: true, reversed: true});
     const page = document.documentElement;
@@ -42,7 +45,7 @@ function App(): ReactElement {
       backToTop.classList.add('invisible');
     }
     // tl.play();
-  });
+  }, 200));
 
 
   function onLocation(): void {

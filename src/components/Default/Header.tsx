@@ -2,6 +2,7 @@ import { RefObject, useEffect, useRef, useState } from "react";
 
 import { Icon } from "@iconify/react";
 import gsap from "gsap";
+import _ from "lodash";
 import { HashLink } from "react-router-hash-link";
 import {useEventListener, useMediaQuery, useIntersectionObserver, useLockedBody } from 'usehooks-ts'
 import { v4 as uuid } from "uuid";
@@ -121,7 +122,8 @@ export default function Header(): JSX.Element {
   }, mobileMenu)
 
   // Listen for the scroll events for the header 👆
-  useEventListener("scroll", onScroll);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  useEventListener("scroll", _.throttle(onScroll, 100));
 
 
   return (

@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 
 import gsap from "gsap";
+import _ from "lodash";
 import { useEventListener } from "usehooks-ts";
 
 import { Starfield } from "../Starfield";
@@ -25,23 +26,23 @@ export default function SplashSection(): JSX.Element {
   // useSplashCharacterAnimation(charSelector, triggerSelector);
 
 
-  useEventListener('mousemove', (e: MouseEvent) => {
+  useEventListener('mousemove', _.throttle((e: MouseEvent) => {
+    console.log(e.clientX, e.clientY);
+
     const { clientX, clientY } = e;
     const x = Math.round((clientX / window.innerWidth) * 100);
     const y = Math.round((clientY / window.innerHeight) * 100);
-
     if (maskRef.current) {
       gsap.to(maskRef.current, {
         '--x': `${x}%`,
         '--y': `${y}%`,
-        duration: 0.3,
+        duration: 0.2,
         ease: "sine.out",
       })
 
     }
 
-
-  })
+  }, 100))
 
   useEffect(() => {
     if (maskRef.current) {
@@ -97,10 +98,10 @@ export default function SplashSection(): JSX.Element {
       <div ref={maskRef} className="underpage" aria-hidden="true">
         <div className="relative h-screen w-full">
           <div className="relative grid h-full grid-cols-1 sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-32 lg:pb-0 z-50">
-            <div id="splash-content" className="leadIn invisible justify-self-center self-end lg:self-center">
+            <div  className="leadIn invisible justify-self-center self-end lg:self-center">
               <h1 className="flex flex-col self-start lg:self-end gap-2 sm:gap-4 xl:self-auto xl:justify-self-end">
                 <div className="shadow-font-heading font-black tracking-tighter text-center text-5xl 2xl:text-8xl gradient-text text-shadow-alt-4xl-teal">
-                  Meta-Verse 💜
+                  Metaverse 💜
                 </div>
               </h1>
               <p className="font-bold text-xl 2xl:text-3xl gradient-text-alt text-fill tracking-tight text-center xl:text-right -translate-y-4 lg:-translate-y-6 2xl:-translate-y-8 text-shadow">
