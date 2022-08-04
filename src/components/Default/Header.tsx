@@ -44,6 +44,7 @@ export default function Header(): JSX.Element {
   /** Handle the open/close button event also adds the `aria-hidden` attribute to the menu wrapper for accessibility */
   function onToggleMobileMenu(): void {
     if (typeof window === "undefined") return;
+    if (!isMobile) return;
     setLocked(!locked);
     setIsOpen(!isOpen)
     // if (body) body.classList.toggle("menu-open", !isOpen);
@@ -56,7 +57,7 @@ export default function Header(): JSX.Element {
   useEffect(() => {
     if (mobileMenuWrapper.current) {
       menuTimeline.current = gsap.timeline({ paused: true, reversed: true });
-      gsap.set(mobileMenuWrapper.current, { opacity: 0, yPercent: 10, zIndex: -100, pointerEvents:
+      gsap.set(mobileMenuWrapper.current, { opacity: 0, yPercent: 100, zIndex: -100, pointerEvents:
         "none"
       });
       menuTimeline.current.to(mobileMenuWrapper.current, {
@@ -117,7 +118,7 @@ export default function Header(): JSX.Element {
 
     const target = e.target as HTMLElement;
     if (target.tagName === "A") {
-      onToggleMobileMenu();
+      _.debounce(() => onToggleMobileMenu(), 200);
     }
   }, mobileMenu)
 
@@ -167,7 +168,7 @@ export default function Header(): JSX.Element {
 
         <div
           ref={mobileMenuWrapper}
-          className="mobile-menu fixed inset-0 md:hidden h-screen w-screen  bg-gradient-to-bl dark:from-glass-primary-700 dark:to-glass-primary-900 filter backdrop-blur-lg"
+          className="mobile-menu fixed inset-0 md:hidden h-screen w-screen  bg-gradient-to-bl dark:from-glass-primary-700 dark:to-glass-primary-900 filter backdrop-blur-lg origin-center"
           aria-hidden="true"
         >
           <div className="fixed flex flex-col items-center justify-between w-full h-full inset-0 px-3 pt-0">
