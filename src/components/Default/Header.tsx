@@ -3,7 +3,7 @@ import { RefObject, useEffect, useRef, useState } from "react";
 import { Icon } from "@iconify/react";
 import gsap from "gsap";
 import { HashLink } from "react-router-hash-link";
-import {useEventListener, useMediaQuery, useIntersectionObserver } from 'usehooks-ts'
+import {useEventListener, useMediaQuery, useIntersectionObserver, useLockedBody } from 'usehooks-ts'
 import { v4 as uuid } from "uuid";
 
 import { ButtonWeb3Connect, ButtonDarkMode } from "~mb/components/Buttons";
@@ -31,6 +31,7 @@ export default function Header(): JSX.Element {
   const wrapper = mobileMenuWrapper.current;
   const menuTimeline = useRef<GSAPTimeline | null>(null);
   const menuItemsTimeline = useRef<GSAPTimeline | null>(null);
+  const [locked, setLocked] = useLockedBody();
   mobileMenuItems.current = []
 
   const addToRefs = (el: HTMLLIElement | null): void => {
@@ -42,9 +43,9 @@ export default function Header(): JSX.Element {
   /** Handle the open/close button event also adds the `aria-hidden` attribute to the menu wrapper for accessibility */
   function onToggleMobileMenu(): void {
     if (typeof window === "undefined") return;
-    const body = document.querySelector("body");
+    setLocked(!locked);
     setIsOpen(!isOpen)
-    if (body) body.classList.toggle("menu-open", !isOpen);
+    // if (body) body.classList.toggle("menu-open", !isOpen);
     if (wrapper) wrapper.ariaHidden = isOpen ? "true" : "false";
   }
 
@@ -146,7 +147,7 @@ export default function Header(): JSX.Element {
               {navItems.map(({ title, url }) => (
                 <li key={uuid()}>
                   <HashLink
-                    className="text-md 2xl:text-lg font-normal 2xl:font-bold uppercase xl:font-heading "
+                    className="text-md 2xl:text-lg font-normal 2xl:font-bold uppercase xl:font-display "
                     to={`/${url}`}
                   >
                     {title}

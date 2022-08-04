@@ -57,8 +57,8 @@ export function ContentSection({
       overflow-x-hidden
       overflow-y-hidden
       bg-transparent
-      dark:bg-blue-900
       transition-colors duration-300
+      z-10
       `}
     >
       <div
@@ -74,6 +74,7 @@ export function ContentSection({
           2xl:space-y-8
           px-3
           md:px-0
+          z-10
           '
       >
         <div className='flex flex-col items-center'>
