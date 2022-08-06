@@ -1,17 +1,15 @@
-
-
 import type React from 'react';
+import { useEffect, useRef } from 'react';
 
 import { Icon } from '@iconify/react';
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import {Helmet} from 'react-helmet';
 import { HashLink } from 'react-router-hash-link';
+import { useEventListener } from 'usehooks-ts';
 
-import Seo from '~mb/components/Seo';
+
 import Footer from '~mb/default/Footer';
 import Header from '~mb/default/Header';
-import { imgixUrl } from '~mb/lib/constants'
 
 import "~mb/styles/index.css";
 
@@ -24,43 +22,16 @@ export type LayoutProperties = {
   previewImageSrc?: URL;
 };
 
-export function scrollOnLoad(): void {
-  const tl = gsap.timeline();
-  console.log("useScrollOnLoad");
-
-  // useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    if (window.location.hash !== "") {
-      console.log('scroll to hash', window.location.hash);
-
-      const element = document.querySelector(window.location.hash);
-      if (element !== null) {
-        // TODO: not sure why the easing & timing are not working
-        tl.to(
-          window,
-          {
-            duration: 0.4,
-            delay: 0.1,
-            scrollTo: {
-              y: element,
-            },
-            ease: "power3.inOut",
-          },
-        );
-      }
-    }
-}
-
 export function Layout({ children, content }: {children: React.ReactNode, content: LayoutProperties}): JSX.Element {
   const { title, description, previewImageSrc } = content
 
+
   return (
-    <div className="wrapper bg-gradient-to-b dark:from-slate-900 dark:to-slate-800 overflow-x-hidden">
+    <div className="wrapper h-full bg-gradient-to-b dark:from-slate-900 dark:to-slate-800 overflow-x-hidden">
       {/* <Seo title={title} description={description} previewImageSrc={previewImageSrc} /> */}
       <Header />
       {children}
-      <HashLink to="/#home" className="group inline-flex invisible items-center back-to-top py-3 text-sm 2xl:text-lg text-normal motion-safe:animate-pulse-min uppercase font-sans fixed bottom-12 right-2 2xl:bottom-16 2xl:right-16 z-10"><span className="gradient-text text-shadow-alt-md-teal ">Top </span> <Icon icon="emojione-monotone:index-pointing-up" className='h-5 w-5 2xl:h-8 2xl:w-8 text-violet-500 inline '/></HashLink>
+      <HashLink to="/#home" className="group inline-flex invisible items-center back-to-top py-3 text-sm 2xl:text-lg text-normal motion-safe:animate-pulse-min uppercase font-sans fixed bottom-12 right-2 2xl:bottom-16 2xl:right-16 z-40"><span className="gradient-text text-shadow-alt-md-teal ">Top </span> <Icon icon="emojione-monotone:index-pointing-up" className='h-5 w-5 2xl:h-8 2xl:w-8 text-violet-500 inline '/></HashLink>
       <Footer />
     </div>
   );

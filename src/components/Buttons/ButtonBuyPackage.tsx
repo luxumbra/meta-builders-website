@@ -1,26 +1,27 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useCallback, useRef, useState } from 'react'
 
-import { useAddress, useBalance, useMetamask, useNetwork, useNetworkMismatch, useToken } from '@thirdweb-dev/react'
-import { ChainId, CurrencyValue, Marketplace, Token } from '@thirdweb-dev/sdk';
+import { Icon } from '@iconify/react';
+import { useAddress, useMetamask, useNetwork, useNetworkMismatch } from '@thirdweb-dev/react'
+import type { Marketplace} from '@thirdweb-dev/sdk';
 import { useMachine, normalizeProps } from '@zag-js/react'
 import * as toast from '@zag-js/toast'
-import accounting from 'accounting'
 import { BigNumber, utils } from 'ethers';
 import gsap from 'gsap'
 import { useOnClickOutside, useCopyToClipboard } from 'usehooks-ts'
 import { v4 as uuid } from 'uuid'
 
 import LoadingOrError from '../LoadingOrError'
+import { PriceDisplay } from '../PriceDisplay';
 
 import { ButtonWeb3Connect } from './ButtonWeb3Connect'
 
 import { Portal } from '~mb/components/Portal'
 import Toast from '~mb/components/Toast'
-import { shortenAddress } from '~mb/lib/helpers'
-import { Icon } from '@iconify/react';
 import { polygonScanApiEndpoint } from '~mb/lib/constants';
-import PriceDisplay from '../PriceDisplay';
+import { shortenAddress } from '~mb/lib/helpers'
+
+
 export type BuyPackOptions = {
   name: string
   currencySymbol: string
@@ -55,7 +56,6 @@ export function BuyPackackagePopUp(
   const contentReference = useRef<HTMLDivElement>(null)
   const overlayBg1Reference = useRef<HTMLDivElement>(null)
   const isNetworkMismatch = useNetworkMismatch()
-  const [hasEnough, setHasEnough] = useState(false)
   const { forAddress, pack, isOpen, setIsOpen } = properties
   const { marketplace, name, price, currency, quantityToBuy, currencySymbol, listingId, value: packValue } = pack
   const [isLoading, setIsLoading] = useState(false)
@@ -79,17 +79,6 @@ export function BuyPackackagePopUp(
   )
   const apiToast = toast.group.connect(state, send, normalizeProps)
 
-  const popupTween = gsap.to(popUpReference.current, {
-    opacity: 1,
-    y: 0,
-    delay: 0.1,
-    duration: 0.5,
-    ease: 'power2.out',
-    autoAlpha: 1
-  })
-
-
-
   async function getTokenBalance(contract: string, symbol: string,  address: string): Promise<UserBalance | undefined> {
     try {
       // for some reason matic in ThirdWeb uses 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE which isn't a contract address and it doesn't work with balanceOf so I'm getting balances from polygonscan.
@@ -100,6 +89,7 @@ export function BuyPackackagePopUp(
         `${polygonScanApiEndpoint}&module=account&action=tokenbalance&contractaddress=${tokenToCheck}&address=${address}`)
       const data = await balanceResponse.json()
       const balance = {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         displayValue: utils.formatUnits(data.result, chain?.nativeCurrency?.decimals),
         value: BigNumber.from(data.result)
       } as UserBalance
@@ -160,8 +150,8 @@ export function BuyPackackagePopUp(
           if (data !== undefined) {
             const { value, displayValue } = data
             const enoughFunds = value.gte(packValue);
+
             if (enoughFunds) {
-              setHasEnough(enoughFunds)
               apiToast.create({
                 id: uuid(),
                 type: 'success',
@@ -171,22 +161,23 @@ export function BuyPackackagePopUp(
 
               marketplace
                 .buyoutListing(id, quantityToBuy)
-                .then(data => {
+                .then(tx => {
+                  console.log('buyout tx', tx);
+
                   apiToast.resume()
                   apiToast.create({
                     id: uuid(),
                     type: 'success',
-                    title: `W00t! You bought ${name}! Your receipt: ${data.receipt.transactionHash}`,
-                    description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${data.receipt.transactionHash}`,
+                    title: `W00t! You bought ${name}! Your receipt: ${tx.receipt.transactionHash}`,
+                    description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${tx.receipt.transactionHash}`,
                     duration: 7000
                   })
 
                   setIsLoading(false)
                 })
-                .catch((error: any) => {
+                .catch((error: Error) => {
                   console.log('buyPackage error', { error })
-                  const errorMessage =
-                    (error.message as string) || (error.toString() as string)
+                  const errorMessage = error.message
                   const errorToastId = apiToast.create({
                     id: uuid(),
                     type: 'error',
@@ -205,7 +196,6 @@ export function BuyPackackagePopUp(
                 title: `You do not have sufficient ${currencySymbol} to buy this package`,
                 duration: 3000
               })
-              setHasEnough(enoughFunds)
               setIsLoading(false)
             }
           }
@@ -223,40 +213,42 @@ export function BuyPackackagePopUp(
       }
 
     },
-    [forAddress, hasEnough, packValue, quantityToBuy, apiToast, currency, currencySymbol, isNetworkMismatch, marketplace, name, price]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [forAddress, packValue, quantityToBuy, apiToast, currency, currencySymbol, marketplace, name, price]
   )
 
   const onOpenBuyCallback = useCallback((open: boolean) => {
     // gsap.set(popUpReference.current, { yPercent: 100, opacity: 0 });
     // gsap.set(contentReference.current, { opacity: 0, scale: 0.8 });
     // gsap.set(overlayBg1Reference.current, { opacity: 0, yPercent: -100, xPercent: -100 });
-
-    const tl = gsap.timeline({ paused: true, reversed: true })
-    gsap.set(popUpReference.current, { yPercent: 101, opacity: 0 })
-    tl.to(
-      popUpReference.current,
-      {
-        opacity: 1,
-        display: 'flex',
-        yPercent: 0,
-        duration: 0.3,
-        ease: 'power3',
+    if (popUpReference.current) {
+      const tl = gsap.timeline({ paused: true, reversed: true })
+      gsap.set(popUpReference.current, { yPercent: 101, opacity: 0 })
+      tl.to(
+        popUpReference.current,
+        {
+          opacity: 1,
+          display: 'flex',
+          yPercent: 0,
+          duration: 0.3,
+          ease: 'power3',
+        }
+      )
+        .to(contentReference.current, {
+          opacity: 1,
+          scale: 1,
+          delay: 0.05,
+          duration: 0.7
+        })
+        .to(overlayBg1Reference.current, {
+          opacity: 1
+        })
+      if (tl.reversed()) {
+        if (open) tl.play()
+      } else {
+        if (!open) tl.reverse()
+        setTimeout(() => { console.log('close') }, 300)
       }
-    )
-      .to(contentReference.current, {
-        opacity: 1,
-        scale: 1,
-        delay: 0.05,
-        duration: 0.7
-      })
-      .to(overlayBg1Reference.current, {
-        opacity: 1
-      })
-    if (tl.reversed()) {
-      if (open) tl.play()
-    } else {
-      if (!open) tl.reverse()
-      setTimeout(() => { console.log('close') }, 300)
     }
   }, [])
 
@@ -265,7 +257,7 @@ export function BuyPackackagePopUp(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, onOpenBuyCallback])
 
-  useOnClickOutside(popUpReference, () => setIsOpen(false))
+  useOnClickOutside(popUpReference, () => !isLoading && setIsOpen(false))
 
   return (
     <>

@@ -36,7 +36,7 @@ export function Footer(): JSX.Element {
 
 
   return (
-    <footer id="footer" className="hidden lg:flex relative overflow-y-hidden  flex-col items-center justify-center h-32 lg:h-64 w-full">
+    <footer id="footer" className="hidden lg:flex relative overflow-y-hidden  flex-col items-center justify-center h-32 lg:h-64 w-full z-10">
       <div className="footer-main w-3/4  leadIn invisible">
         <h5 className="font-black text-lg text-shadow-alt gradient-text">Meta-Builders</h5>
       </div>

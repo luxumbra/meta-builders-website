@@ -114,10 +114,10 @@ module.exports = {
         }
       },
       fontFamily: {
-        'sans': ['Exo\\ 2', 'Ubuntu'],
-        'display': ['Alegreya\\ Sans', 'Ubuntu', 'sans-serif'],
-        'heading': ['Exo\\ 2', 'Ubuntu'],
-        'body': ['Ubuntu'],
+        'sans': ['Exo\\ 2', 'Ubuntu', 'Roboto', 'sans-serif'],
+        'display': ['Exo\\ 2', 'Ubuntu', 'sans-serif'],
+        'heading': ['Exo\\ 2', 'Ubuntu', 'Roboto', 'sans-serif'],
+        'body': ['Ubuntu', 'Roboto', 'sans-serif'],
         'serif': ['serif']
       },
       textColor: {

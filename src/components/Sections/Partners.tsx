@@ -1,10 +1,7 @@
-import { useLayoutEffect } from "react";
-
 import { v4 as uuid } from "uuid";
 
 import { PartnersCard  } from  '~mb/cards/index';
 import partners from "~mb/data/partners/partners.json";
-import { useSectionAnimation } from "~mb/hooks/animation";
 import {ContentSection} from "~mb/sections/index";
 
 

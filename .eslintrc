@@ -197,7 +197,7 @@
     "react/jsx-no-constructed-context-values": "error",
     "react/jsx-no-script-url": "error",
     "react/jsx-no-useless-fragment": "error",
-    "unicorn/prevent-abbreviations": "warn",
+    "unicorn/prevent-abbreviations": "off",
     "unicorn/filename-case": "off",
     "unicorn/no-nested-ternary": ["error"]
   },

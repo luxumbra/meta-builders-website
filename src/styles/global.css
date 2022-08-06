@@ -7,6 +7,7 @@
   body {
     @apply font-body bg-gradient-to-bl dark:from-slate-700 dark:to-slate-900;
 
+
     &.menu-open {
       @apply overflow-y-hidden;
     }
@@ -22,7 +23,7 @@
   }
 
   h1, h2, h3, h4 {
-    @apply font-heading font-black print:font-bold tracking-tighter;
+    @apply font-display font-black print:font-bold tracking-tighter;
   }
 
   h1, h2 {
@@ -36,7 +37,7 @@
 
       nav {
         a {
-          @apply text-slate-500 dark:text-violet-300 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors
+          @apply font-display text-slate-500 dark:text-violet-300 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors
         }
       }
 
@@ -73,7 +74,7 @@
   }
 
   .package-card {
-    @apply rounded-t-2xl rounded-b-md dark:bg-violet-900;
+    @apply rounded-t-2xl rounded-b-md dark:bg-glass-primary-800;
 
     .buy-popup {
       @apply rounded-t-2xl rounded-b-md bg-glass-secondary-900 dark:bg-glass-primary-900 overflow-hidden;

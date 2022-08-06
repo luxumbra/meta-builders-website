@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 
 import { Icon } from "@iconify/react";
 import gsap from "gsap";
+import _ from "lodash";
 import { HashLink } from "react-router-hash-link";
-import {useEventListener, useMediaQuery, useIntersectionObserver } from 'usehooks-ts'
+import {useEventListener, useMediaQuery, useIntersectionObserver, useLockedBody } from 'usehooks-ts'
 import { v4 as uuid } from "uuid";
 
 import { ButtonWeb3Connect, ButtonDarkMode } from "~mb/components/Buttons";
@@ -21,70 +22,71 @@ export default function Header(): JSX.Element {
   const mobileMenuWrapper = useRef<HTMLDivElement>(null);
   const desktopMenuWrapper = useRef<HTMLElement>(null);
   const header = useRef<HTMLElement>(null);
-  const mobileMenu = useRef<HTMLUListElement>(null)
+  const desktopMenu = useRef<HTMLDivElement>(null);
+  const mobileMenu = useRef<HTMLDivElement>(null)
+  const mobileMenuItems = useRef<HTMLLIElement[]>([]);
   const isMobile = useMediaQuery("(max-width: 768px)");
-  // const entry = useIntersectionObserver(header, {});
-  // const isVisible = !!entry?.isIntersecting;
-  // const [isFixed, setIsFixed] = useState(false);
+  const mobileMenuEntry = useIntersectionObserver(mobileMenu, {});
+  const isVisible = !!mobileMenuEntry?.isIntersecting;
   const [isOpen, setIsOpen] = useState(false);
   const wrapper = mobileMenuWrapper.current;
-  // define the default for the timeline
-  const tl = gsap.timeline({ paused: true, reversed: true });
+  const menuTimeline = useRef<GSAPTimeline | null>(null);
+  const menuItemsTimeline = useRef<GSAPTimeline | null>(null);
+  const [locked, setLocked] = useLockedBody();
+  mobileMenuItems.current = []
 
-  // Set defaults for the mobile menu
-  // gsap.set(mobileMenuWrapper.current,
-  //   {
-  //     opacity: 0,
-  //     scale: 0.9,
-  //     yPercent: 100,
-  //   }
-  // )
-
-
-  // gsap.set(header.current,
-  //   {
-  //     position: 'absolute',
-  //   }
-  // )
-  // setup, but don't play the timeline animations
-  // tl.to(mobileMenuWrapper.current,
-  //   {
-  //     opacity: 1,
-  //     scale: 1,
-  //     yPercent: 0,
-  //     duration: 0.5,
-  //     ease: "power3.inOut",
-  //     autoAlpha: 1,
-  //   }
-  // );
-
-  /**
-   * Use GSAP timeline to animate the menu open and closed
-   *
-   * Also adds the `aria-hidden` attribute to the menu wrapper for accessibility
-   */
-  function onToggleMobileMenu(): void {
-    // if (typeof window === "undefined") return;
-    console.log('toggleMobileMenu', { isOpen });
-    setIsOpen(!isOpen);
-    const body = document.querySelector("body") as HTMLElement;
-    body.classList.toggle("menu-open");
-
-    if (wrapper) {
-      wrapper.ariaHidden = wrapper.classList.contains("hidden") ? 'true' : 'false';
+  const addToRefs = (el: HTMLLIElement | null): void => {
+    if (el && !mobileMenuItems.current.includes(el)) {
+      mobileMenuItems.current.push(el);
     }
   }
 
-  /** Show `mobileMenuWrapper` when the `isOpen` const is set to true */
-  useEffect(() => {
+  /** Handle the open/close button event also adds the `aria-hidden` attribute to the menu wrapper for accessibility */
+  function onToggleMobileMenu(): void {
     if (typeof window === "undefined") return;
-    if (wrapper) wrapper.ariaHidden = wrapper.classList.contains("hidden") ? 'false' : 'true';
+    if (!isMobile) return;
+    setLocked(!locked);
+    setIsOpen(!isOpen)
+    // if (body) body.classList.toggle("menu-open", !isOpen);
+    if (wrapper) wrapper.ariaHidden = isOpen ? "true" : "false";
+  }
+
+  /**
+   * Setup timeline to animate the menu open / close
+   */
+  useEffect(() => {
+    if (mobileMenuWrapper.current) {
+      menuTimeline.current = gsap.timeline({ paused: true, reversed: true });
+      gsap.set(mobileMenuWrapper.current, { opacity: 0, yPercent: 100, zIndex: -100, pointerEvents:
+        "none"
+      });
+      menuTimeline.current.to(mobileMenuWrapper.current, {
+        duration: 0.2,
+        delay: 0,
+        opacity: 1,
+        yPercent: 0,
+        zIndex: 99,
+        pointerEvents: "auto",
+        ease: "circle",
+      })
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
+  }, [])
 
 
+  /** Show `mobileMenuWrapper` when the `isOpen` state is set to true */
+  useEffect(() => {
+    if (mobileMenuWrapper.current && menuTimeline.current ) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      if (isOpen) {
+        menuTimeline.current.play()
+      } else {
+        menuTimeline.current.reverse();
+      }
+    }
+  }, [isOpen])
 
-  /** Changes the header from `absolute` to `fixed` when the user first scrolls */
+  /** Change the header from `absolute` to `fixed` when the user first scrolls */
   function onScroll(): void {
     if (typeof window === "undefined") return;
     const page = document.documentElement;
@@ -94,26 +96,21 @@ export default function Header(): JSX.Element {
   }
 
   // Effect to give the header a bounce effect on page load.
-  // useEffect(() => {
-  //   const headerTl = gsap.timeline({ paused: true, reversed: true });
-  //   headerTl.from(header, {
-  //     duration: 1,
-  //     opacity: 0,
-  //     yPercent: -100,
-  //     ease: "bounce",
-  //   });
-  //   // if (headerTl.reversed()) {
-  //   //   headerTl.play()
-  //   // } else {
-  //     //   headerTl.reverse();
-  //     // }
-  //     // }
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   // if (isVisible) {
-  //       headerTl.play()
+  useEffect(() => {
+    if (isMobile) return;
+    const headerTl = gsap.timeline({ paused: true, reversed: true });
+    gsap.set(header.current, { opacity: 0, yPercent: -100 });
+    headerTl.to(header.current, {
+      duration: 1,
+      delay: 0.5,
+      opacity: 1,
+      yPercent: 0,
+      ease: "bounce",
+    });
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    headerTl.reversed() ? headerTl.play() : headerTl.reverse();
 
-  //   // }
-  // }, [isVisible]);
+  }, [header, isMobile]);
 
   // Listener to close the mobile menu when the user clicks a menu item.
   useEventListener("click", (e: MouseEvent) => {
@@ -121,12 +118,15 @@ export default function Header(): JSX.Element {
 
     const target = e.target as HTMLElement;
     if (target.tagName === "A") {
-      onToggleMobileMenu();
+      setTimeout(() => {
+        onToggleMobileMenu();
+      }, 500);
     }
   }, mobileMenu)
 
   // Listen for the scroll events for the header 👆
-  useEventListener("scroll", onScroll);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  useEventListener("scroll", _.throttle(onScroll, 100));
 
 
   return (
@@ -146,13 +146,13 @@ export default function Header(): JSX.Element {
           ><span>Meta-Builders</span></span>
         </HashLink>
 
-        <div className="desktop-menu hidden sm:flex items-center self-end z-10 ">
+        <div ref={desktopMenu} className="desktop-menu hidden sm:flex items-center self-end z-10 ">
           <nav className="hidden sm:block">
             <ul className="flex items-center gap-6">
               {navItems.map(({ title, url }) => (
                 <li key={uuid()}>
                   <HashLink
-                    className="text-md 2xl:text-lg font-normal 2xl:font-bold uppercase xl:font-heading "
+                    className="text-md 2xl:text-lg font-normal 2xl:font-bold uppercase xl:font-display "
                     to={`/${url}`}
                   >
                     {title}
@@ -170,19 +170,21 @@ export default function Header(): JSX.Element {
 
         <div
           ref={mobileMenuWrapper}
-          className={`mobile-menu inset-0 top-0 fixed transition-all ${isOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-full opacity-0 scale-70'} md:hidden h-screen w-screen  bg-gradient-to-bl dark:from-glass-primary-700 dark:to-glass-primary-900 filter backdrop-blur-lg !z-100`}
+          className="mobile-menu fixed inset-0 md:hidden h-screen w-screen  bg-gradient-to-bl dark:from-glass-primary-700 dark:to-glass-primary-900 filter backdrop-blur-lg origin-center"
           aria-hidden="true"
         >
           <div className="fixed flex flex-col items-center justify-between w-full h-full inset-0 px-3 pt-0">
             <div
+              id="mobile-menu-dialog"
+              aria-label="Mobile menu dialog"
               className="flex flex-col justify-center space-y-4 w-full h-2/3"
               role="dialog"
               aria-modal="true"
             >
-              <nav className="flex flex-row flex-grow items-center justify-center">
-                <ul ref={mobileMenu} className="flex flex-col items-center justify-center gap-6">
+              <nav ref={mobileMenu} className="flex flex-row flex-grow items-center justify-center">
+                <ul className="flex flex-col items-center justify-center gap-6">
                   {navItems.map(({ title, url }) => (
-                    <li key={uuid()}>
+                    <li key={uuid()} ref={addToRefs}>
                       <HashLink
                         className="text-lg font-bold font-heading text-slate-500 dark:text-violet-300 hover:text-slate-700 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors"
                         smooth
@@ -222,8 +224,8 @@ export default function Header(): JSX.Element {
         <button
           type="button"
           className="open-nav-button btn btn-link sm:hidden p-0 text-slate-600 hover:text-slate-700 dark:text-violet-300 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal"
-          aria-label="Open navigation"
-          onClick={onToggleMobileMenu}
+          aria-label={`${isOpen ? "Close" : "Open"} mobile menu`}
+          onClick={(): void => onToggleMobileMenu()}
         >
           <Icon
             icon={isOpen ? 'mdi:close' : 'heroicons-solid:menu'}
