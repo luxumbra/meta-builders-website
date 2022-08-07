@@ -8,6 +8,7 @@ import { HashLink } from 'react-router-hash-link';
 import { useEventListener } from 'usehooks-ts';
 
 
+import Seo from '~mb/components/Seo';
 import Footer from '~mb/default/Footer';
 import Header from '~mb/default/Header';
 
@@ -28,7 +29,7 @@ export function Layout({ children, content }: {children: React.ReactNode, conten
 
   return (
     <div className="wrapper h-full bg-gradient-to-b dark:from-slate-900 dark:to-slate-800 overflow-x-hidden">
-      {/* <Seo title={title} description={description} previewImageSrc={previewImageSrc} /> */}
+      <Seo title={title} description={description} previewImageSrc={previewImageSrc} />
       <Header />
       {children}
       <HashLink to="/#home" className="group inline-flex invisible items-center back-to-top py-3 text-sm 2xl:text-lg text-normal motion-safe:animate-pulse-min uppercase font-sans fixed bottom-12 right-2 2xl:bottom-16 2xl:right-16 z-40"><span className="gradient-text text-shadow-alt-md-teal ">Top </span> <Icon icon="emojione-monotone:index-pointing-up" className='h-5 w-5 2xl:h-8 2xl:w-8 text-violet-500 inline '/></HashLink>
