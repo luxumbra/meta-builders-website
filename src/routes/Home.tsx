@@ -25,7 +25,7 @@ import TeamSection from "~mb/sections/Team";
 
 export function Home(): JSX.Element {
   const meta = {
-    title: 'Welcome to the Metaverse',
+    title: 'Home: Welcome to the Metaverse',
     description:
       'We the Meta-Builders will help you navigate this new paradigm, and take your brand to new heights',
     previewImageSrc: new URL('social.png', imgixUrl)

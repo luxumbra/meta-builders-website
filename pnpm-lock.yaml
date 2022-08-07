@@ -61,6 +61,7 @@ specifiers:
   react-dom: ^18.1.0
   react-gsap: ^3.2.1
   react-helmet: ^6.1.0
+  react-helmet-async: ^1.3.0
   react-icons: ^4.4.0
   react-imgix: ^9.5.1
   react-router-dom: ^6.3.0
@@ -122,6 +123,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-gsap: 3.2.1_kscv7c6wxwdpmd3emwcoxmkscq
   react-helmet: 6.1.0_react@18.2.0
+  react-helmet-async: 1.3.0_biqbaboplfbrettd7655fr4n2y
   react-icons: 4.4.0_react@18.2.0
   react-imgix: 9.5.2_biqbaboplfbrettd7655fr4n2y
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
@@ -1943,6 +1945,40 @@ packages:
 
   /@react-three/fiber/8.2.2_f72olm6mn3unzgg4exeiaoxanm:
     resolution: {integrity: sha512-NO/tOCYK8SQ2vuM2y2r98054X4SMGYIlHgiVRNaSo6JiXyoT3FN0aIH1nDzhDFJ5N/2C/PKa+yeg2M2/8YDFJg==}
+    peerDependencies:
+      expo: '>=43.0'
+      expo-asset: '>=8.4'
+      expo-gl: '>=11.0'
+      react: '>=18.0'
+      react-dom: '>=18.0'
+      react-native: '>=0.64'
+      three: '>=0.133'
+    peerDependenciesMeta:
+      expo:
+        optional: true
+      expo-asset:
+        optional: true
+      expo-gl:
+        optional: true
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.18.9
+      '@types/react-reconciler': 0.26.7
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-reconciler: 0.27.0_react@18.2.0
+      react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
+      scheduler: 0.21.0
+      suspend-react: 0.0.8_react@18.2.0
+      three: 0.143.0
+      zustand: 3.7.2_react@18.2.0
+    dev: false
+
+  /@react-three/fiber/8.3.0_f72olm6mn3unzgg4exeiaoxanm:
+    resolution: {integrity: sha512-K7EHV7hUzgfK5CXeZ43A3TQaXVzqdAq6TA8NTSXgFJvDLS12WCqAKRt+evg9qOthlJsa6CnyuEsLGqSFUAmG/w==}
     peerDependencies:
       expo: '>=43.0'
       expo-asset: '>=8.4'
@@ -5283,6 +5319,12 @@ packages:
       has: 1.0.3
       side-channel: 1.0.4
 
+  /invariant/2.2.4:
+    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
+
   /is-arguments/1.1.1:
     resolution: {integrity: sha512-8Q7EARjzEnKpt/PCD7e1cgUS0a6X8u5tdSiMqXhojOdoV9TsMsiO+9VLC5vAmO8N7/GmXn7yjR8qnA6bVAEzfA==}
     engines: {node: '>= 0.4'}
@@ -6658,6 +6700,21 @@ packages:
       react-is: 16.13.1
     dev: false
 
+  /react-helmet-async/1.3.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-9jZ57/dAn9t3q6hneQS0wukqC2ENOBgMNVEhb/ZG9ZSxUetzVIw4iAmEU38IaVg3QGYauQPhSeUTuIUtFglWpg==}
+    peerDependencies:
+      react: ^16.6.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.18.9
+      invariant: 2.2.4
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-fast-compare: 3.2.0
+      shallowequal: 1.1.0
+    dev: false
+
   /react-helmet/6.1.0_react@18.2.0:
     resolution: {integrity: sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==}
     peerDependencies:
@@ -6817,7 +6874,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@react-three/fiber': 8.2.2_f72olm6mn3unzgg4exeiaoxanm
+      '@react-three/fiber': 8.3.0_f72olm6mn3unzgg4exeiaoxanm
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       three: 0.143.0

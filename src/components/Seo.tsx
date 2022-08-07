@@ -1,5 +1,5 @@
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 export interface SeoProperties {
   title?: string;
@@ -14,7 +14,7 @@ export default function Seo({ title, description, permalink, previewImageSrc }: 
   const metaDescription = description ?? Seo.defaultProps.description
 
   return (
-    <Helmet>
+    <Helmet prioritizeSeoTags>
       <link rel="canonical" href={metaLink} />
 
       <title>{metaTitle}</title>
@@ -36,7 +36,7 @@ export default function Seo({ title, description, permalink, previewImageSrc }: 
 }
 
 Seo.defaultProps = {
-  title: 'Welcome to the Metaverse',
+  title: 'Welcome to the Metaverseee',
   description: 'Meta-Builders is a community of builders who build in the Metaverse.',
   permalink: 'https://metabuilders.luxumbra.dev/',
   previewImageSrc: new URL('social.png', 'https://metabuilders.luxumbra.dev'),
