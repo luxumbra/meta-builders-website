@@ -29,8 +29,6 @@ export default function SplashSection(): JSX.Element {
 
 
   useEventListener('mousemove', _.throttle((e: MouseEvent) => {
-    console.log(e.clientX, e.clientY);
-
     const { clientX, clientY } = e;
     const x = Math.round((clientX / window.innerWidth) * 100);
     const y = Math.round((clientY / window.innerHeight) * 100);
@@ -57,10 +55,11 @@ export default function SplashSection(): JSX.Element {
 
   return (
     <section
-      ref={sectionReference}
-      id="home"
-      className="splash-wrapper relative h-screen w-full dark:bg-slate-900 overflow-x-hidden"
+    ref={sectionReference}
+    id="home"
+    className="splash-wrapper relative h-screen w-full dark:bg-slate-900 overflow-x-hidden"
     >
+    <Rain blur />
       {/* <Starfield /> */}
       <div
         id="splash-bg-fallback"
@@ -99,7 +98,7 @@ export default function SplashSection(): JSX.Element {
         {/* )} */}
         {/* </picture> */}
       </div>
-      <div ref={maskRef} className="underpage" aria-hidden="true">
+      <div ref={maskRef} className="underpage hidden dark:block" aria-hidden="true">
         <div className="relative h-screen w-full">
           <div className="relative grid h-full grid-cols-1 sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-32 lg:pb-0 z-50">
             <div  className="leadIn invisible justify-self-center self-end lg:self-center">
@@ -112,10 +111,9 @@ export default function SplashSection(): JSX.Element {
                 Come build with us!</p>
             </div>
           </div>
+            <Rain />
         </div>
-        <Rain />
       </div>
-        <Rain blur />
     </section>
   )
 }

@@ -32,13 +32,14 @@
 
     mask-image: var(--circle);
     mask-clip: border-box;
+    background-image: var(--mask-image);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
 
     @apply hidden xl:block motion-reduce:hidden fixed top-0 left-0 w-full min-h-full z-[9] pointer-events-none;
-    @apply   bg-slate-900 backdrop-blur-none backdrop-opacity-100 opacity-30 bg-blend-overlay;
+    @apply bg-white dark:bg-slate-900 backdrop-opacity-100 bg-blend-overlay opacity-20 bg-opacity-0 grayscale dark:grayscale-0;
   }
 
   .floating {
@@ -59,10 +60,6 @@
     @media (prefers-reduced-motion: reduce) {
         @apply animate-none;
     }
-  }
-
-  #splash-bg-fallback {
-    @apply block opacity-20 dark:opacity-100 -backdrop-hue-rotate-0;
   }
 }
 

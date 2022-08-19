@@ -66,6 +66,8 @@
   }
 
   #splash-bg-fallback {
+    @apply block opacity-100;
+
     video {
       @apply absolute z-0 object-cover object-center;
     }

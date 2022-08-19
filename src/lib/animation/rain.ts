@@ -1,9 +1,6 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
-import _ from "lodash";
-
-
 class RainSymbol {
   characters: string;
 
@@ -22,8 +19,8 @@ class RainSymbol {
     const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const ukranian = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
     const nums = '0123456789';
-    const emojis = '🌞🌝🌚🌑🌒🌓🌔🌕🌖🌗🌘🌙🌛🌜🌚🌙🌘🌗🌖🌕🌔🌓🌒🌑🌐🌒🌓🌔🌕🌖🌗🌘🌙🌚🌛🌜🌝🌞';
-    this.characters = katakana + latin + nums + escape(emojis) + ukranian;
+    // const emojis = '🌞🌝🌚🌑🌒🌓🌔🌕🌖🌗🌘🌙🌛🌜🌚🌙🌘🌗🌖🌕🌔🌓🌒🌑🌐🌒🌓🌔🌕🌖🌗🌘🌙🌚🌛🌜🌝🌞';
+    this.characters = katakana + latin + nums + ukranian;
     this.x = x;
     this.y = y;
     this.fontSize = fontSize;
@@ -58,7 +55,7 @@ class RainEffect {
   constructor(canvasWidth: number, canvasHeight: number) {
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
-    this.fontSize = 16;
+    this.fontSize = 30;
     this.columns = this.canvasWidth / this.fontSize;
     this.symbols = [];
     this.#initialize();
@@ -83,9 +80,9 @@ class RainEffect {
 
 }
 
-export function rain(): void {
+export function rain(isDark?: boolean): void {
   if (typeof window !== 'undefined') {
-    const canvas = document.querySelector('#rain-canvas') as HTMLCanvasElement;
+    const canvas = document.querySelector('[data-id="rain-canvas"]') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
@@ -96,8 +93,9 @@ export function rain(): void {
     let timer = 0;
     const gradient = ctx?.createLinearGradient(0, 0, canvas.width, canvas.height);
     gradient?.addColorStop(0, '#CA09F6');
-    gradient?.addColorStop(1, '#0ff');
+    gradient?.addColorStop(0.5, '#0ff');
     gradient?.addColorStop(1, '#7c3aed');
+    const fill = isDark ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)';
 
     // eslint-disable-next-line no-inner-declarations
     function animate(timestamp: number): void {
@@ -107,7 +105,7 @@ export function rain(): void {
         lastTime = timestamp;
         if (timer > nextFrame) {
           // console.log(lastTime);
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+          ctx.fillStyle = fill;
           ctx.textAlign = 'center';
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.fillStyle = gradient ?? '#000';

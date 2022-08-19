@@ -3,8 +3,6 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { useIntersectionObserver } from 'usehooks-ts'
 
-import { Rain } from '../Rain'
-
 export interface IContentSectionProperties {
   title?: string
   id?: string
@@ -89,7 +87,6 @@ export function ContentSection({
         </p>
         {children}
       </div>
-      {/* <Rain /> */}
     </section>
   )
 }
