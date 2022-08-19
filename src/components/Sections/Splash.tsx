@@ -46,13 +46,13 @@ export default function SplashSection(): JSX.Element {
 
   }, 100))
 
-  useEffect(() => {
-    if (maskRef.current) {
-      // maskRef.current.style.setProperty('--up-height', `${document.body.offsetHeight}`)
-      maskRef.current.style.setProperty('--mask-image', `url(${cityImg})`)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [maskRef])
+  // useEffect(() => {
+  //   if (maskRef.current) {
+  //     // maskRef.current.style.setProperty('--up-height', `${document.body.offsetHeight}`)
+  //     maskRef.current.style.setProperty('--mask-image', `url(${cityImg})`)
+  //   }
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [maskRef])
 
 
   return (
@@ -115,6 +115,7 @@ export default function SplashSection(): JSX.Element {
         </div>
         <Rain />
       </div>
+        <Rain blur />
     </section>
   )
 }
