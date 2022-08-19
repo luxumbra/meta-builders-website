@@ -2,9 +2,7 @@ import { v4 as uuid } from "uuid";
 
 import { TeamMemberCard } from '~mb/cards/index';
 import members from "~mb/data/team/members.json";
-import { useSectionAnimation } from '~mb/hooks/animation';
 import {ContentSection} from "~mb/sections/index";
-import { ITeamMember } from "~mb/types";
 
 export function TeamSectionLead(): JSX.Element {
   return (
@@ -27,6 +25,5 @@ export default function TeamSection(): JSX.Element {
         </div>
       </div>
     </ContentSection>
-
   )
 }

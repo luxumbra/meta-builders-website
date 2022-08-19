@@ -33,7 +33,7 @@ export function ButtonDarkMode(): JSX.Element {
       variant='link'
       className='border-0 bg-transparent hover:border-0 hover:bg-transparent'
     >
-      <Icon icon={modeIcon} className='delay-0 text-2xl animate-spin scale-100 transition-all origin-[right_center] duration-500  text-teal-200 hover:text-orange-400 dark:text-violet-300 dark:hover:text-blue-500' />
+      <Icon icon={modeIcon} className='delay-0 text-2xl animate-spin scale-100 transition-all origin-[right_center] duration-500  text-slate-600 hover:text-orange-400 dark:text-violet-300 dark:hover:text-blue-500 text-shadow-alt-teal dark:hover:text-shadow-alt-teal' />
       </Button>
       </div>
   )

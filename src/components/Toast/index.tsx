@@ -16,6 +16,8 @@ function Toast({actor, id}: {actor: toast.Service, id: string}): JSX.Element {
   const [state, send] = useActor(actor)
   const toastApi = toast.connect<PropTypes>(state, send, normalizeProps)
 
+  console.log(toastApi.description);
+
   function onToastDismiss(): void {
     toastApi.dismiss()
   }
@@ -27,16 +29,18 @@ function Toast({actor, id}: {actor: toast.Service, id: string}): JSX.Element {
         <span>{toastApi.type === "loading" ? <Icon icon="mdi:spinner" className="animate-spin" /> : undefined}</span>
         <button
           type="button"
-          className="group btn btn-link self-start -mr-3 p-0 hover:text-violet-500"
+          className="group btn btn-link absolute self-start -mr-3 min-h-0 p-0 hover:text-violet-500"
           onClick={onToastDismiss}>
           <Icon icon="mdi:close" className="text-lg group-hover:text-violet-500 transition-colors"/>
           <span className="sr-only">Dismiss</span>
         </button>
       </div>
+      <div className="toast-body px-5">
+        <p {...toastApi.descriptionProps}>{toastApi.description}</p>
+        </div>
       <div {...toastApi.progressbarProps} />
-        {/* {toastApi.description ? <p>{toastApi.description}</p> : undefined} */}
 
-        <div className="toast-bg" />
+      <div className="toast-bg" />
     </div>
   )
 }

@@ -1,12 +1,9 @@
 import type React from 'react';
-import { useEffect, useRef } from 'react';
 
 import { Icon } from '@iconify/react';
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { HashLink } from 'react-router-hash-link';
-import { useEventListener } from 'usehooks-ts';
-
 
 import Seo from '~mb/components/Seo';
 import Footer from '~mb/default/Footer';
@@ -28,7 +25,7 @@ export function Layout({ children, content }: {children: React.ReactNode, conten
 
 
   return (
-    <div className="wrapper h-full bg-gradient-to-b dark:from-slate-900 dark:to-slate-800 overflow-x-hidden">
+    <div className="wrapper h-full w-full bg-gradient-to-b dark:from-slate-900 dark:to-slate-800 overflow-x-hidden">
       <Seo title={title} description={description} previewImageSrc={previewImageSrc} />
       <Header />
       {children}
