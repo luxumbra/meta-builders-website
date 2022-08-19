@@ -80,7 +80,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
               aria-label='Web3 wallet disconnect'
               onClick={onClickDisconnect}
             >
-          <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address && !isNetworkMismatch ? 'text-green-500 text-shadow-alt' : (isNetworkMismatch ? 'text-orange-500 font-sans' : 'text-teal-200 dark:text-violet-300')}`} />
+          <Icon icon="tabler:wallet" className={`${size ?? 'text-2xl lg:text-2xl'} transition-colors duration-200  ${address && !isNetworkMismatch ? 'text-green-600 dark:text-green-500 text-shadow-alt-teal dark:hover:text-shadow-alt-teal' : (isNetworkMismatch ? 'text-orange-500 font-sans' : 'text-teal-200 dark:text-violet-300')}`} />
               <span className="sr-only">Disconnect</span>
               </button>
               {isNetworkMismatch ? (
@@ -88,7 +88,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
                   <span className='text-orange-500 font-sans text-xs lg:text-md'>Switch to Mumbai network</span>
                 </div>
               ) : (
-                <span className='text-xs lg:text-md text-green-500 text-shadow-alt inline'>{shortenAddress(address)}</span>
+                <span className='text-xs lg:text-md text-green-600 dark:text-green-500 text-shadow-alt-teal dark:hover:text-shadow-alt-teal inline'>{shortenAddress(address)}</span>
               )}
           {/* </>
         )
