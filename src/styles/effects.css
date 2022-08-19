@@ -39,7 +39,7 @@
 
 
     @apply hidden xl:block motion-reduce:hidden fixed top-0 left-0 w-full min-h-full z-[9] pointer-events-none;
-    @apply bg-white dark:bg-slate-900 backdrop-opacity-100 bg-blend-overlay opacity-20 bg-opacity-0 grayscale dark:grayscale-0;
+    @apply bg-white dark:bg-slate-900 backdrop-opacity-100 bg-blend-overlay opacity-50 bg-opacity-0 grayscale dark:grayscale-0;
   }
 
   .floating {
