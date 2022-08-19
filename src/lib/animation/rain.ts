@@ -88,7 +88,7 @@ export function rain(isDark?: boolean): void {
     canvas.width = window.innerWidth;
     const effect = new RainEffect(canvas.width, canvas.height);
     let lastTime = 0;
-    const fps = 30;
+    const fps = 20;
     const nextFrame = 1000 / fps;
     let timer = 0;
     const gradient = ctx?.createLinearGradient(0, 0, canvas.width, canvas.height);
@@ -107,8 +107,9 @@ export function rain(isDark?: boolean): void {
           // console.log(lastTime);
           ctx.fillStyle = fill;
           ctx.textAlign = 'center';
+
           ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.fillStyle = gradient ?? '#000';
+          ctx.fillStyle = gradient ?? 'transparent';
           ctx.font = `${effect.fontSize}px monospace`;
           // eslint-disable-next-line unicorn/no-array-for-each
           effect.symbols.forEach((symbol) => {

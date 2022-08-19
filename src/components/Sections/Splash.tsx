@@ -5,25 +5,23 @@ import gsap from "gsap";
 import _ from "lodash";
 import { useEventListener } from "usehooks-ts";
 
-// import { Starfield } from "../Starfield";
-import { HeroImage } from "~mb/components/HeroImage";
 import HeroVideo from "~mb/components/HeroVideo";
 import { Rain } from "~mb/components/Rain";
 import { useSplashContentAnimation } from "~mb/hooks/animation";
 
 
-
 export default function SplashSection(): JSX.Element {
   const sectionReference = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLDivElement>(null)
+  const maskInner = useRef<HTMLDivElement>(null)
   const heroVideo = new URL('/assets/video/mbanim0.webm', import.meta.url).href;
   // const widths = [450, 800];
-  const isDevelopment = import.meta.env.VITE_NODE_ENV === "development"; // this doesn't work
 
   const elementSelector = ".leadIn";
   const triggerSelector = sectionReference;
   // const charSelector = "#splash-character .leadIn";
-  const cityImg = new URL('/assets/images/mv-002.jpg', import.meta.url).href;
+  const maskImg = new URL('/assets/images/mv-002.jpg', import.meta.url).href;
+
   useSplashContentAnimation(elementSelector, triggerSelector);
   // useSplashCharacterAnimation(charSelector, triggerSelector);
 
@@ -47,11 +45,47 @@ export default function SplashSection(): JSX.Element {
   // useEffect(() => {
   //   if (maskRef.current) {
   //     // maskRef.current.style.setProperty('--up-height', `${document.body.offsetHeight}`)
-  //     maskRef.current.style.setProperty('--mask-image', `url(${cityImg})`)
+  //     maskRef.current.style.setProperty('--mask-image', `url(${maskImg})`)
   //   }
   // // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [maskRef])
 
+  useEffect(() => {
+      if (typeof window !== 'undefined' && maskInner.current) {
+        const tl = gsap.timeline({ paused: true, reversed: true, defaults: { ease: "bounce", yPercent: 0, xPercent: -200, opacity: 0 } });
+        // sroll into view with gsap scrollTrigger plugin
+        tl.to('.scrollIn', {
+          yPercent: 0,
+          xPercent: 0,
+          opacity: 1,
+          autoAlpha: 1,
+          scrollTrigger: {
+            trigger: '#intro h2',
+            start: 'top center',
+            end: 'bottom center',
+            scrub: true,
+            // pin: true,
+            // markers: true,
+          }
+        })
+          .to('.scrollIn', {
+            yPercent: -400,
+            xPercent: 0,
+            opacity: 0,
+            duration: 2,
+            autoAlpha: 0,
+            scrollTrigger: {
+              trigger: '#services h2',
+              start: 'top center',
+              end: '+=250',
+              scrub: true,
+            }
+          })
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        tl.reversed() ? tl.play() : tl.reverse();
+      }
+  } , [maskInner])
 
   return (
     <section
@@ -59,13 +93,11 @@ export default function SplashSection(): JSX.Element {
     id="home"
     className="splash-wrapper relative h-screen w-full dark:bg-slate-900 overflow-x-hidden"
     >
-    <Rain blur />
-      {/* <Starfield /> */}
+    {/* <Rain blur /> */}
       <div
         id="splash-bg-fallback"
         className="absolute inset-0 w-full h-full z-10 "
       >
-        {/* <HeroImage /> */}
         <HeroVideo source={heroVideo} />
       </div>
 
@@ -79,29 +111,12 @@ export default function SplashSection(): JSX.Element {
           <p className="font-bold text-xl 2xl:text-3xl gradient-text-alt text-fill tracking-tight text-center xl:text-right -translate-y-4 lg:-translate-y-6 2xl:-translate-y-8 text-shadow">
             Welcome to The Metaverse.</p>
         </div>
-
-        {/* <picture id="splash-character" className="floating self-start w-2/3 max-w-3xl sm:w-10/12 sm:self-auto sm:justify-self-start"> */}
-        {/* {!isDevelopment ? (
-          <Imgix
-            className="object-cover w-full h-full invisible leadIn"
-            src={buildImgUrl('astronaut2.png', 'assets/images')}
-            width={450}
-            htmlAttributes={{
-              alt: "A floating astronaut in a space suit",
-              sizes
-            }}
-            />
-          ) : ( */}
-        {/* <img src="assets/images/astronaut2.png" alt="A floating astronaut in a space suit" width={450}
-                className="object-cover w-full h-full invisible leadIn"
-              /> */}
-        {/* )} */}
-        {/* </picture> */}
       </div>
+
       <div ref={maskRef} className="underpage hidden xl:dark:block" aria-hidden="true">
         <div className="relative h-screen w-full">
-          <div className="relative grid h-full grid-cols-1 sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-32 lg:pb-0 z-50">
-            <div  className="leadIn invisible justify-self-center self-end lg:self-center">
+          <div ref={maskInner} className="relative grid h-full grid-cols-1 sm:grid-cols-1 place-items-end lg:place-items-center splash-main pb-32 lg:pb-0 z-50">
+            <div  className="scrollIn invisible justify-self-center self-end lg:self-center">
               <h1 className="flex flex-col self-start lg:self-end gap-2 sm:gap-4 xl:self-auto xl:justify-self-end">
                 <div className="shadow-font-heading font-black tracking-tighter text-center text-5xl 2xl:text-8xl gradient-text text-shadow-alt-4xl-teal">
                   Meta-Verse 💜
