@@ -116,7 +116,7 @@ export default function SplashSection(): JSX.Element {
       <div ref={maskRef} className="underpage hidden xl:dark:block" aria-hidden="true">
         <div className="relative h-screen w-full">
           <div ref={maskInner} className="relative grid h-full grid-cols-1 sm:grid-cols-1 place-items-end lg:place-items-center splash-main pb-32 lg:pb-0 z-50">
-            <div  className="scrollIn invisible justify-self-center self-end lg:self-center">
+            <div  className="scrollIn invisible justify-self-center self-end lg:self-center pointer-events-auto">
               <h1 className="flex flex-col self-start lg:self-end gap-2 sm:gap-4 xl:self-auto xl:justify-self-end">
                 <div className="shadow-font-heading font-black tracking-tighter text-center text-5xl 2xl:text-8xl gradient-text text-shadow-alt-4xl-teal">
                   Meta-Verse 💜
