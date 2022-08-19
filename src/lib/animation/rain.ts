@@ -88,7 +88,7 @@ export function rain(isDark?: boolean): void {
     canvas.width = window.innerWidth;
     const effect = new RainEffect(canvas.width, canvas.height);
     let lastTime = 0;
-    const fps = 30;
+    const fps = 20;
     const nextFrame = 1000 / fps;
     let timer = 0;
     const gradient = ctx?.createLinearGradient(0, 0, canvas.width, canvas.height);

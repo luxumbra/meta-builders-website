@@ -108,7 +108,7 @@ export function BuyPackackagePopUp(
 
       const copyToastId = apiToast.upsert({
         id: uuid(),
-        type: 'loading',
+        type: 'success',
         title: 'Copied to clipboard',
         description: toCopy,
         placement: 'bottom-start',
