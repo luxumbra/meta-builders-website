@@ -98,7 +98,7 @@ export default function SplashSection(): JSX.Element {
         {/* )} */}
         {/* </picture> */}
       </div>
-      <div ref={maskRef} className="underpage hidden dark:block" aria-hidden="true">
+      <div ref={maskRef} className="underpage hidden xl:dark:block" aria-hidden="true">
         <div className="relative h-screen w-full">
           <div className="relative grid h-full grid-cols-1 sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-32 lg:pb-0 z-50">
             <div  className="leadIn invisible justify-self-center self-end lg:self-center">
