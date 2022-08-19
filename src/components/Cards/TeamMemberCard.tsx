@@ -13,7 +13,7 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
   // const siteUrl = import.meta.env.VITE_SITE_URL as string;
   // const avatar = new URL(image ?? 'missing-image.png', `${siteUrl}/assets/team/images`);
   const avatar = image !== '' ? image : 'missing-image.png';
-
+  const shouldCenter = !!(bio && bio.length <= 50);
 
   return (
     <div className="group relative hover:cursor-pointer pt-0">
@@ -56,8 +56,8 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
         </figcaption>
         <div className="absolute rounded-lg bottom-0 flex flex-col items-start text-left justify-start content-center min-w-full md:w-[135%] flex-grow min-h-[120%] h-auto gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100 scale-50 group-hover:scale-100 group-focus:scale-100 group-hover:-translate-y-[0%] group-focus:translate-y-0 translate-y-10 origin-center z-50  filter backdrop-blur-xl ">
           <div className="relative bio-content flex flex-col gap-y-2 p-3 flex-grow-0 z-10 w-full">
-            <h4 className='text-lg font-bold gradient-text tracking-normal'>{name}</h4>
-            {bio ? <p className="text-xs text-slate-500 dark:text-white leading-tight ">{bio}</p> : undefined}
+            <h4 className="text-lg font-bold gradient-text tracking-normal text-center">{name}</h4>
+            {bio ? <p className={`text-xs text-slate-500 dark:text-white leading-tight ${shouldCenter ? 'text-center' : 'text-left'}  `}>{bio}</p> : undefined}
 
             <div className="flex gap-2 flex-row justify-self-end items-center flex-shrink-0 translate-y-5 transition-transform  group-hover:translate-y-0 -translate-x-6 group-hover:translate-x-0 scale-0 group-hover:scale-100">
               {twitter ? <a href={twitter} title={`${name} on Twitter`} className="text-xs text-violet-700 dark:text-white badge badge-link">Twitter</a> : undefined}
