@@ -52,7 +52,7 @@ export default function SplashSection(): JSX.Element {
 
   useEffect(() => {
       if (typeof window !== 'undefined' && maskInner.current) {
-        const tl = gsap.timeline({ paused: true, reversed: true, defaults: { ease: "bounce", yPercent: 0, xPercent: -200, opacity: 0 } });
+        const tl = gsap.timeline({ paused: true, reversed: true, defaults: { ease: 'power4.out', yPercent: 0, xPercent: 0, opacity: 0 } });
         // sroll into view with gsap scrollTrigger plugin
         tl.to('.scrollIn', {
           yPercent: 0,
@@ -61,7 +61,7 @@ export default function SplashSection(): JSX.Element {
           autoAlpha: 1,
           scrollTrigger: {
             trigger: '#intro h2',
-            start: 'top center',
+            start: 'bottom 18%',
             end: 'bottom center',
             scrub: true,
             // pin: true,
@@ -69,15 +69,16 @@ export default function SplashSection(): JSX.Element {
           }
         })
           .to('.scrollIn', {
-            yPercent: -400,
+            yPercent: -300,
             xPercent: 0,
+            scale: 0.8,
             opacity: 0,
             duration: 2,
             autoAlpha: 0,
             scrollTrigger: {
               trigger: '#services h2',
-              start: 'top center',
-              end: '+=250',
+              start: 'top 53%',
+              end: '+=500',
               scrub: true,
             }
           })
