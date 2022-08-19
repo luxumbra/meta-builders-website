@@ -22,9 +22,9 @@ export function Rain({blur, masked}: {blur?: boolean, masked?: boolean}): JSX.El
   } , [isDarkMode])
 
   return (
-    <div data-id="rain" className="rain fixed inset-0 w-full h-full z-0 opacity-50 motion-reduce:hidden">
-      {blur ? <div className="absolute inset-0 w-full h-full z-10 bg-white bg-opacity-20 dark:bg-opacity-100 dark:bg-glass-primary-900 backdrop-blur-md dark:backdrop-blur-md" /> : undefined}
-      <canvas data-id="rain-canvas" className={`rain-canvas absolute ${!masked ? 'z-0' : 'z-10'} opacity-50`}/>
+    <div data-id="rain" className="rain fixed inset-0 w-full h-full z-0 opacity-50 motion-reduce:hidden pointer-events-none">
+      {blur ? <div className="absolute inset-0 w-full h-full z-10 bg-white bg-opacity-20 dark:bg-opacity-100 dark:bg-glass-primary-900 backdrop-blur-md dark:backdrop-blur-md pointer-events-none" /> : undefined}
+      <canvas data-id="rain-canvas" className={`rain-canvas absolute ${!masked ? 'z-0' : 'z-10'} opacity-50 pointer-events-none`}/>
     </div>
   )
 }
