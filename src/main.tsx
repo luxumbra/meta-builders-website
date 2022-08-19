@@ -1,9 +1,11 @@
 import { StrictMode } from "react";
 
-import { QueryClient, QueryClientProvider} from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter } from 'react-router-dom'
+
 
 import App from "./App";
 
@@ -11,28 +13,51 @@ import { ThemeProvider } from "~mb/contexts";
 
 
 import './styles/index.css'
-// import { registerSW } from 'virtual:pwa-register'
-// This is the chainId your dApp will work on.
+
 const queryClient = new QueryClient()
 
+// This is the chainId your dApp will work on.
 const activeChainId = ChainId.Mumbai;
-const alchemyRpc = "https://polygon-mumbai.g.alchemy.com/v2/N6I1vMx2hiWVsQa7tsg68OqmvejSmj0m"
 
-const container = document.querySelector("#root");
+// eslint-disable-next-line unicorn/prefer-query-selector
+const container = document.getElementById("root");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
-root.render(
-  <StrictMode>
-    <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-      <ThirdwebProvider
-        desiredChainId={activeChainId}
-      >
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-        </ThirdwebProvider>
+if (container?.hasChildNodes()) {
+  hydrateRoot(
+    container,
+    <StrictMode>
+      <ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThirdwebProvider
+            desiredChainId={activeChainId}
+          >
+            <BrowserRouter>
+              <HelmetProvider>
+                <App />
+              </HelmetProvider>
+            </BrowserRouter>
+          </ThirdwebProvider>
         </QueryClientProvider>
-    </ThemeProvider>
-  </StrictMode>
-);
+      </ThemeProvider>
+    </StrictMode>
+  );
+} else {
+  root.render(
+    <StrictMode>
+      <ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThirdwebProvider
+            desiredChainId={activeChainId}
+          >
+            <BrowserRouter>
+              <HelmetProvider>
+                <App />
+              </HelmetProvider>
+            </BrowserRouter>
+          </ThirdwebProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </StrictMode>
+  );
+}

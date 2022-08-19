@@ -37,7 +37,7 @@
 
       nav {
         a {
-          @apply font-display text-slate-500 dark:text-violet-300 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors
+          @apply font-display text-violet-100 dark:text-violet-100 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt-teal dark:hover:text-shadow-alt-teal transition-colors
         }
       }
 
@@ -58,13 +58,20 @@
 
       nav {
         a {
-          @apply text-slate-500 dark:text-violet-300
+          @apply text-slate-600 dark:text-violet-300
         }
       }
 
     }
   }
 
+  #splash-bg-fallback {
+    @apply block opacity-100;
+
+    video {
+      @apply absolute z-0 object-cover object-center;
+    }
+  }
 
 }
 

@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from 'vite-tsconfig-paths';
 import eslintPlugin from '@nabla/vite-plugin-eslint'
+import reactRefresh from '@vitejs/plugin-react-refresh'
 import { imagetools } from 'vite-imagetools'
 import imagePresets, { widthPreset } from 'vite-plugin-image-presets'
 import alias from '@rollup/plugin-alias'
@@ -16,17 +17,6 @@ const defaultConfig = {
   plugins: [
     tsconfigPaths(),
     react(),
-    imagePresets({
-      thumbnail: widthPreset({
-        class: 'img thumb',
-        loading: 'lazy',
-        widths: [48, 96],
-        formats: {
-          webp: { quality: 50 },
-          jpg: { quality: 70 },
-        },
-      }),
-    }),
     eslintPlugin()],
   resolve: {
     alias: [
