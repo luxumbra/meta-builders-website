@@ -14,7 +14,7 @@
     --circle: radial-gradient( circle at var(--x, 70%) var(--y, 50%), black 25%, transparent 0);
     --cogs: url('/assets/images/cogsbg.jpg');
     --splatter: url('/assets/images/masks/hole-splatter.webp');
-    --mask-image:  url('/assets/images/mv-002.jpg');
+    --mask-image:  url('https://images8.alphacoders.com/559/559128.jpg');
     --hole-inset: url('/assets/images/masks/hole.svg');
     --mask: radial-gradient(
     circle at var(--x, 50%) var(--y, 50%),
@@ -32,10 +32,10 @@
 
     mask-image: var(--circle);
     mask-clip: border-box;
-    background-image: var(--mask-image);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
 
     @apply hidden xl:block motion-reduce:hidden fixed top-0 left-0 w-full min-h-full z-[9] pointer-events-none;
     @apply   bg-slate-900 backdrop-blur-xl backdrop-opacity-100;

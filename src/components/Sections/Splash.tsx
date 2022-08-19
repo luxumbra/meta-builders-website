@@ -5,9 +5,10 @@ import gsap from "gsap";
 import _ from "lodash";
 import { useEventListener } from "usehooks-ts";
 
-import { Starfield } from "../Starfield";
-
+// import { Starfield } from "../Starfield";
 import { HeroImage } from "~mb/components/HeroImage";
+import HeroVideo from "~mb/components/HeroVideo";
+import { Rain } from "~mb/components/Rain";
 import { useSplashContentAnimation } from "~mb/hooks/animation";
 
 
@@ -15,6 +16,7 @@ import { useSplashContentAnimation } from "~mb/hooks/animation";
 export default function SplashSection(): JSX.Element {
   const sectionReference = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLDivElement>(null)
+  const heroVideo = new URL('/assets/video/mbanim0.webm', import.meta.url).href;
   // const widths = [450, 800];
   const isDevelopment = import.meta.env.VITE_NODE_ENV === "development"; // this doesn't work
 
@@ -62,11 +64,13 @@ export default function SplashSection(): JSX.Element {
       {/* <Starfield /> */}
       <div
         id="splash-bg-fallback"
-        className="absolute inset-0 w-screen h-screen z-0 "
+        className="absolute inset-0 w-full h-full z-10 "
       >
-        <HeroImage />
+        {/* <HeroImage /> */}
+        <HeroVideo source={heroVideo} />
       </div>
-      <div className="relative grid h-full grid-cols-1 sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-32 lg:pb-0">
+
+      <div className="relative grid h-full grid-cols-1 sm:grid-cols-2 place-items-end lg:place-items-center splash-main pb-32 lg:pb-0 z-20">
         <div id="splash-content" className="leadIn invisible justify-self-center self-end lg:self-center">
           <h1 className="flex flex-col self-start lg:self-end gap-2 sm:gap-4 xl:self-auto xl:justify-self-end">
             <div className="shadow-font-heading font-black tracking-tighter text-center text-5xl 2xl:text-8xl gradient-text text-shadow-alt-4xl-teal">
@@ -101,7 +105,7 @@ export default function SplashSection(): JSX.Element {
             <div  className="leadIn invisible justify-self-center self-end lg:self-center">
               <h1 className="flex flex-col self-start lg:self-end gap-2 sm:gap-4 xl:self-auto xl:justify-self-end">
                 <div className="shadow-font-heading font-black tracking-tighter text-center text-5xl 2xl:text-8xl gradient-text text-shadow-alt-4xl-teal">
-                  Metaverse 💜
+                  Meta-Verse 💜
                 </div>
               </h1>
               <p className="font-bold text-xl 2xl:text-3xl gradient-text-alt text-fill tracking-tight text-center xl:text-right -translate-y-4 lg:-translate-y-6 2xl:-translate-y-8 text-shadow">
@@ -109,7 +113,7 @@ export default function SplashSection(): JSX.Element {
             </div>
           </div>
         </div>
-        <Starfield />
+        <Rain />
       </div>
     </section>
   )

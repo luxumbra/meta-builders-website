@@ -65,6 +65,11 @@
     }
   }
 
+  #splash-bg-fallback {
+    video {
+      @apply absolute z-0 object-cover object-center;
+    }
+  }
 
 }
 

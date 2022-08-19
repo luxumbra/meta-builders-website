@@ -21,7 +21,7 @@
     }
 
     .btn {
-      @apply p-0 text-slate-800 ;
+      @apply p-0 text-slate-800 min-h-0 top-1 right-5;
     }
 
     &[data-part="root"] {
@@ -36,6 +36,10 @@
 
       .btn {
         @apply text-inherit;
+      }
+
+      [data-part="description"] {
+        @apply text-xs;
       }
 
       [data-part="progressbar"] {

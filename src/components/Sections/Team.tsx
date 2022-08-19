@@ -1,5 +1,7 @@
 import { v4 as uuid } from "uuid";
 
+import { Rain } from "../Rain";
+
 import { TeamMemberCard } from '~mb/cards/index';
 import members from "~mb/data/team/members.json";
 import { useSectionAnimation } from '~mb/hooks/animation';
@@ -27,6 +29,5 @@ export default function TeamSection(): JSX.Element {
         </div>
       </div>
     </ContentSection>
-
   )
 }

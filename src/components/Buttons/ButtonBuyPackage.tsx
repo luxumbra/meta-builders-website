@@ -108,8 +108,9 @@ export function BuyPackackagePopUp(
 
       const copyToastId = apiToast.upsert({
         id: uuid(),
-        type: 'success',
-        title: `Copied to clipboard: ${toCopy}`,
+        type: 'loading',
+        title: 'Copied to clipboard',
+        description: toCopy,
         placement: 'bottom-start',
         duration: 3000,
       })
@@ -133,8 +134,8 @@ export function BuyPackackagePopUp(
         const buyToastId = apiToast.create({
           id: uuid(),
           type: 'info',
-          title: `Buying ${name} package for ${price} ${currencySymbol} - Please wait...`,
-          description: 'Please sign the transaction in your wallet.',
+          title: 'Buying Services',
+          description: `${name}, ${price} ${currencySymbol}. Please sign the transaction in your wallet.`,
           placement: 'bottom-end',
           duration: 7000
         })
@@ -168,8 +169,8 @@ export function BuyPackackagePopUp(
                   apiToast.create({
                     id: uuid(),
                     type: 'success',
-                    title: `W00t! You bought ${name}! Your receipt: ${tx.receipt.transactionHash}`,
-                    description: `You have successfully bought ${name} for ${price} ${currencySymbol}. \n\n Your receipt: ${tx.receipt.transactionHash}`,
+                    title: `W00t! You bought ${name}!`,
+                    description: `You have successfully bought ${name} for ${price} ${currencySymbol}. Your receipt: ${tx.receipt.transactionHash}`,
                     duration: 7000
                   })
 
@@ -181,7 +182,8 @@ export function BuyPackackagePopUp(
                   const errorToastId = apiToast.create({
                     id: uuid(),
                     type: 'error',
-                    title: `Something went wrong!\n ${errorMessage}`,
+                    title: 'Something went wrong!\n',
+                    description:  `${errorMessage}`,
                     duration: 7000
                   })
                   setIsLoading(false)
@@ -193,7 +195,8 @@ export function BuyPackackagePopUp(
               apiToast.create({
                 id: uuid(),
                 type: 'error',
-                title: `You do not have sufficient ${currencySymbol} to buy this package`,
+                title: `Not enough funds`,
+                description: `You need at least ${price} ${currencySymbol} to buy ${name}`,
                 duration: 3000
               })
               setIsLoading(false)
