@@ -82,19 +82,19 @@
     @apply bg-slate-900;
 
     border-radius: 2px;
-    box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+    box-shadow: inset 0 0 5px rgb(0 0 0 / 70%);
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    @apply bg-violet-600 bg-gradient-to-b from-slate-600 via-teal-500 to-slate-700 transition-colors duration-300 ease-in-out ;
+    @apply bg-violet-500 transition-colors duration-300 ease-in-out ;
 
     border-radius: 2px;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-violet-800 bg-gradient-to-b from-slate-700 via-teal-600 to-slate-800
+    @apply bg-violet-700
   }
 
 }

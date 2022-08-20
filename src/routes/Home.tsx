@@ -1,19 +1,9 @@
 import { lazy, Suspense } from 'react'
 
-import { useLocation } from 'react-router-dom'
-
-import { imgixUrl } from '~mb/lib/constants'
-import Layout from '~mb/layouts/Default'
 import LoadingOrError from '~mb/components/LoadingOrError'
-
+import Layout from '~mb/layouts/Default'
+import { imgixUrl } from '~mb/lib/constants'
 import '~mb/styles/index.css'
-// const IntroSection = lazy(async () => import('~mb/sections/Intro'))
-// const SplashSection = lazy(async () => import('~mb/sections/Splash'))
-// const PartnersSection = lazy(async () => import('~mb/sections/Partners'))
-// const TeamSection = lazy(async () => import('~mb/sections/Team'))
-// const ServicesSection = lazy(async () => import('~mb/sections/Services'))
-
-// import BuySection from "~mb/sections/Buy";
 import IntroSection from "~mb/sections/Intro";
 import PartnersSection from "~mb/sections/Partners";
 import ServicesSection from "~mb/sections/Services";
@@ -38,7 +28,7 @@ export function Home(): JSX.Element {
       <ServicesSection />
       <PartnersSection />
       <TeamSection />
-      <Suspense fallback={<LoadingOrError message='Loading packages' />}>
+      <Suspense fallback={<LoadingOrError message='Loading...' />}>
         <BuySection />
       </Suspense>
     </Layout>
