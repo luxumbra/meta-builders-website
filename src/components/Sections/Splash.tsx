@@ -97,18 +97,18 @@ export default function SplashSection(): JSX.Element {
           scrub: true,
         }
       })
-      .to('.scroll-in3', {
-        yPercent: 0,
-        xPercent: 0,
-        rotate: 20,
-        autoAlpha: 1,
-        scrollTrigger: {
-          trigger: '#pricing > div',
-          start: 'top 15%',
-          end: '+=1500',
-          scrub: true,
-        }
-      })
+      // .to('.scroll-in3', {
+      //   yPercent: 0,
+      //   xPercent: 0,
+      //   rotate: 20,
+      //   autoAlpha: 1,
+      //   scrollTrigger: {
+      //     trigger: '#pricing > div',
+      //     start: 'top 15%',
+      //     end: '+=1500',
+      //     scrub: true,
+      //   }
+      // })
 
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       tl.reversed() ? tl.play() : tl.reverse();
@@ -169,12 +169,12 @@ export default function SplashSection(): JSX.Element {
                   </span>
                 </h2>
                 <p className="font-bold text-xl 2xl:text-6xl gradient-text-alt text-fill tracking-tighter text-center xl:text-right -translate-y-4 lg:-translate-y-6 2xl:-translate-y-12 text-shadow">
-                  <HashLink to="/#pricing">Book us now!</HashLink></p>
+                  <HashLink to="#pricing">Book us now!</HashLink></p>
               </div>
             </div>
 
 
-            <div className="flex absolute inset-x-0 inset-y-1/4 h-1/2 w-full items-center justify-end pr-20">
+            {/* <div className="flex absolute inset-x-0 inset-y-1/4 h-1/2 w-full items-center justify-end pr-20">
               <div className="scroll-in3 relative invisible justify-self-center self-end lg:self-center pointer-events-auto">
                 <h2 className="flex flex-col">
                   <span className="shadow-font-heading font-black tracking-tighter text-center text-4xl 2xl:text-6xl gradient-text text-shadow-alt-4xl-teal">
@@ -184,7 +184,7 @@ export default function SplashSection(): JSX.Element {
                 <p className="font-black text-xl 2xl:text-5xl gradient-text-alt text-fill text-center xl:text-center -translate-y-4 lg:-translate-y-6 2xl:-translate-y-8 text-shadow uppercase tracking-tighter">
                   Connect to buy! 👈</p>
               </div>
-            </div>
+            </div> */}
           </div>
           <Rain />
         </div>
