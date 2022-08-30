@@ -48,7 +48,8 @@ export default function SplashSection(): JSX.Element {
   useEffect(() => {
     if (typeof window !== 'undefined' && maskInner.current) {
       const tl = gsap.timeline({ paused: true, reversed: true, defaults: { ease: 'power4.out', yPercent: 0, xPercent: 0, opacity: 0 } });
-
+      const scroll3InitValues = gsap.set('.scroll-in3', { yPercent: 0, xPercent: 0, opacity: 0 });
+      tl.add(scroll3InitValues);
       // sroll into view with gsap scrollTrigger plugin
       tl.to('.scroll-in', {
         yPercent: 0,
@@ -103,8 +104,8 @@ export default function SplashSection(): JSX.Element {
         autoAlpha: 1,
         scrollTrigger: {
           trigger: '#pricing > div',
-          start: 'top 55%',
-          end: '+=1000',
+          start: 'top 15%',
+          end: '+=1500',
           scrub: true,
         }
       })
