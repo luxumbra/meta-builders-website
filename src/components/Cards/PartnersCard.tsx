@@ -9,13 +9,13 @@ import type { IPartner } from '~mb/types';
 export type PartnersCardProperties = IPartner
 
 export function PartnersCard({ partner }: {partner: PartnersCardProperties}): JSX.Element {
-  const { name, bio, image, url } = partner;
-  const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
+  const { name, image } = partner;
+  // const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
   // eslint-disable-next-line unicorn/no-null
   const partnerImage = image !== '' ? image : 'missing-image.png';
 
   return (
-    <a className="partners-card group aspect-video leadIn flex-shrink" href={url} title={`Visit ${name}`}>
+    <div className="partners-card group aspect-video leadIn flex-shrink" title={name}>
     <figure className="relative w-full h-full items-center text-center flex flex-row content-center justify-center">
         <picture
           className={`
@@ -51,7 +51,7 @@ export function PartnersCard({ partner }: {partner: PartnersCardProperties}): JS
           <div className='absolute inset-0 bg-slate-200 dark:bg-slate-900 opacity-80 filter backdrop-blur-xl  rounded-lg shadow-lg p-4 w-full h-full z-0'/>
         </figcaption> */}
     </figure>
-    </a>
+    </div>
   )
 }
 

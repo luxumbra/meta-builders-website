@@ -2,7 +2,6 @@
 import { Icon } from "@iconify/react";
 import type { ButtonProps } from "react-daisyui";
 import { Button } from "react-daisyui"
-import { MdDarkMode, MdLightMode } from "react-icons/md"
 
 import type { UseDarkModeType } from "~mb/lib/hooks";
 import { useDarkMode } from "~mb/lib/hooks"

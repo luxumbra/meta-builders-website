@@ -52,7 +52,6 @@ function App(): ReactElement {
     if (typeof window === 'undefined') return;
     if (location.hash === '') return;
     const tl = gsap.timeline({ paused: true, reversed: true });
-    const fallback = document.documentElement;
     const element = document.querySelector(location.hash);
 
     if (element !== null) {

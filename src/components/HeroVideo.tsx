@@ -1,9 +1,7 @@
 import MuxVideo from "@mux/mux-video-react";
 
-import { useDarkMode } from "~mb/lib/hooks";
 
 export default function HeroVideo({ source }: { source: string }): JSX.Element {
-  const { isDarkMode } = useDarkMode();
 
   return (
     <MuxVideo

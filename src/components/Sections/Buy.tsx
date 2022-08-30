@@ -3,10 +3,12 @@ import {MarketplaceListings} from "~mb/marketplace/index";
 import { ContentSection } from "~mb/sections/index";
 
 export function SectionIntro(): JSX.Element {
-  return <>
-    Wherever you are with your project, <span className="text-primary">our packages will help you</span> get to your desired goal and <span
-  className="text-primary">exceed your expectations</span>.
-  </>
+  return (
+    <>
+      <p><span className="text-primary">Your project is what&apos;s important here.</span></p>
+      <p>Choose the right package and our industry leading team will do the rest.</p >
+    </>
+  )
 }
 
 export default function BuySection(): JSX.Element {

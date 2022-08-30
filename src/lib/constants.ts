@@ -1,5 +1,3 @@
-import type { Marketplace } from "@thirdweb-dev/sdk"
-
 export const tokenId = 'ethereum'
 export const coingeckoApiUrl = 'https://api.coingecko.com/api/v3/'
 export const tokenQuery = '?localization=false&tickers=true&market_data=true'

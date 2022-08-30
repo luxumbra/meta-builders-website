@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Icon } from "@iconify/react";
 import gsap from "gsap";
@@ -7,7 +7,7 @@ import { HashLink } from "react-router-hash-link";
 import {useEventListener, useMediaQuery, useIntersectionObserver, useLockedBody } from 'usehooks-ts'
 import { v4 as uuid } from "uuid";
 
-import { ButtonWeb3Connect, ButtonDarkMode } from "~mb/components/Buttons";
+import { ButtonWeb3Connect } from "~mb/components/Buttons";
 import {links} from "~mb/components/Default/Footer";
 
 const navItems = [
@@ -19,19 +19,15 @@ const navItems = [
 ];
 
 export default function Header(): JSX.Element {
-  const mobileMenuWrapper = useRef<HTMLDivElement>(null);
-  const desktopMenuWrapper = useRef<HTMLElement>(null);
   const header = useRef<HTMLElement>(null);
   const desktopMenu = useRef<HTMLDivElement>(null);
   const mobileMenu = useRef<HTMLDivElement>(null)
+  const mobileMenuWrapper = useRef<HTMLDivElement>(null);
   const mobileMenuItems = useRef<HTMLLIElement[]>([]);
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const mobileMenuEntry = useIntersectionObserver(mobileMenu, {});
-  const isVisible = !!mobileMenuEntry?.isIntersecting;
   const [isOpen, setIsOpen] = useState(false);
   const wrapper = mobileMenuWrapper.current;
   const menuTimeline = useRef<GSAPTimeline | null>(null);
-  const menuItemsTimeline = useRef<GSAPTimeline | null>(null);
   const [locked, setLocked] = useLockedBody();
   mobileMenuItems.current = []
 
@@ -161,8 +157,8 @@ export default function Header(): JSX.Element {
               ))}
             </ul>
           </nav>
-          <div className="flex items-center gap-0 px-0">
-            <ButtonDarkMode />
+          <div className="flex items-center gap-0 px-0 ml-3">
+            {/* <ButtonDarkMode /> */}
             <ButtonWeb3Connect />
           </div>
         </div>
@@ -220,7 +216,7 @@ export default function Header(): JSX.Element {
         className="mobile-tools w-full h-12 fixed bottom-0 right-2 py-3 flex flex-row items-center justify-end gap-1 lg:gap-1 lg:hidden z-[1000]"
       >
         <ButtonWeb3Connect size="text-2xl lg:text-3xl" />
-        <ButtonDarkMode />
+        {/* <ButtonDarkMode /> */}
         <button
           type="button"
           className="open-nav-button btn btn-link sm:hidden p-0 text-slate-600 hover:text-slate-700 dark:text-violet-300 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal"

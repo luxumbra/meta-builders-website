@@ -6,9 +6,9 @@ import {ContentSection} from "~mb/sections/index";
 
 export function TeamSectionLead(): JSX.Element {
   return (
-    <>
-      We are the <span className="text-primary">Meta-Builders</span>! We have <span className="text-primary">everything you need</span> to keep <span className="text-primary">your content</span> afloat in this ever changing digital world
-    </>
+    <p>
+      The <span className="gradient-text">Meta-Builders</span> have <span className="text-primary">EVERYTHING you need to bring your Web2 Brand into Web3</span>. We can help you <span className="text-primary">build trustless, transparent architecture</span> to take your brand into the future - thanks to the talents of this group.
+    </p>
   )
 }
 

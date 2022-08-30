@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react"
-
-import {useQuery } from "@tanstack/react-query"
 
 export default function useBalances(address: string): Error {
+  console.log('useBalance', address);
+
   throw new Error("Method not implemented.");
 
   // // const [balances, setBalances] = useState<Balance[]>([])

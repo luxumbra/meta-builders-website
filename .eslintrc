@@ -68,7 +68,7 @@
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/prefer-regexp-exec": "off",
     "@typescript-eslint/no-magic-numbers": [
-      "warn",
+      "off",
       {
         "ignoreEnums": true,
         "ignore": [0],

@@ -1,10 +1,8 @@
-import type React from 'react'
-
 import usePortal from 'react-useportal'
 
 
 export function Portal({ children }: { children: JSX.Element }): JSX.Element {
-  const { openPortal, closePortal, isOpen, Portal: ZagPortal, ref } = usePortal({
+  const { Portal: ZagPortal, ref } = usePortal({
     bindTo: document.querySelector('#portal-root') as HTMLElement,
     closeOnOutsideClick: true,
   })

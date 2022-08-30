@@ -1,18 +1,14 @@
-import { useEffect, useLayoutEffect } from "react";
-
 import { Icon } from "@iconify/react";
-import {useIsClient} from "usehooks-ts"
 
-import { useSectionAnimation } from '~mb/hooks/animation'
-import {ContentSection} from "~mb/sections/index";
+import { ContentSection } from "~mb/sections/index";
 
 
 export function IntroSectionLead(): JSX.Element {
   return (
-    <>
-      <span className="text-primary text-shadow">Our services help you</span> navigate this new paradigm
-      and <span className="text-primary text-shadow">take your brand to new heights</span>.
-    </>
+    <p>
+      <span className="text-primary text-shadow">We are the Sherpas of the Web3 ecosystem.</span> <br />
+        Our mission: to grow Web3 by making it easy for Web2 Brands to access the tools they need to compete in the new market.
+    </p>
   )
 }
 
@@ -45,7 +41,7 @@ export default function IntroSection(): JSX.Element {
             icon="mdi:rocket"
             className="text-6xl"
           />
-          <span className="gradient-text-alt text-md md:text-2xl group-hover:text-teal-500 transition-colors">Services</span>
+          <span className="gradient-text-alt text-md md:text-2xl group-hover:text-teal-500 transition-colors">Packages</span>
         </a>
       </div>
     </ContentSection>

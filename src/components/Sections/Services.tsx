@@ -2,14 +2,13 @@ import { Icon } from '@iconify/react'
 import { v4 as uuid } from "uuid";
 
 import services from "~mb/data/services/services.json";
-import { useSectionAnimation } from '~mb/hooks/animation';
 import { ContentSection } from "~mb/sections/index";
 
 export function ServicesLead(): JSX.Element {
   return (
-    <>
-      We provide <span className="text-primary">end to end services</span> for curating <span className="text-primary">Web3</span> and <span className="text-primary">Metaverse </span> environments.
-    </>
+    <p>
+      We build <span className="text-primary text-shadow">complete solutions</span> for <span className="text-primary text-shadow">Web3 upgrades</span> and new <span className="text-primary text-shadow">Metaverse environments</span> in-house.
+    </p>
   )
 }
 

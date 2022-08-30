@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { useMarketplace, useNetwork } from "@thirdweb-dev/react";
+import { useMarketplace } from "@thirdweb-dev/react";
 import type { AuctionListing, DirectListing } from "@thirdweb-dev/sdk";
 import { v4 as uuid } from "uuid";
 

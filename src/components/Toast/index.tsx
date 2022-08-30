@@ -1,13 +1,12 @@
 
 /* eslint-disable react/jsx-props-no-spreading */
 
-import { useEffect } from "react";
-
 import { Icon } from "@iconify/react"
 import { normalizeProps, useActor } from "@zag-js/react"
 import * as toast from '@zag-js/toast'
 import type { PropTypes } from '@zag-js/types'
-import  "~mb/styles/toast.css";
+import "~mb/styles/toast.css";
+
 /**
  * Toast component for displaying messages to the user
  */

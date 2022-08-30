@@ -4,13 +4,6 @@ export function starfield(): void {
   const COUNT = 800;
   const SPEED = 0.1;
 
-  type IStar = {
-    x: number;
-    y: number;
-    z: number;
-    xPrev: number;
-    yPrev: number;
-  }
   class Star {
     x: number;
 

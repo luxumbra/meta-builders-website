@@ -65,6 +65,10 @@
     }
   }
 
+  section > div {
+    @apply border-0 border-red-300;
+  }
+
   #splash-bg-fallback {
     @apply block opacity-100;
 
@@ -139,6 +143,12 @@
   .badge {
     &-link {
       @apply badge border-none text-teal-200 dark:text-violet-200 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors
+    }
+  }
+
+  .content-section {
+    .section-lead {
+      @apply  text-center font-extrabold text-xl 2xl:text-2xl dark:text-slate-50;
     }
   }
 

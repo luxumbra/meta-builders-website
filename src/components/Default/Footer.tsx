@@ -16,7 +16,7 @@ export const links = [
     icon: "mdi:github-circle",
   },
   {
-    url: "/",
+    url: "https://discord.gg/metabuilders",
     description: "Meta-Builders on Discord",
     icon: "mdi:discord",
   },
@@ -42,7 +42,7 @@ export function Footer(): JSX.Element {
       </div>
       <div className="footer-aside w-3/4 flex flex-col lg:flex-row items-center justify-between">
         <p className="text-xs leadIn invisible self-end">Copyright &copy; 2022 Meta-Builders</p>
-        <div>
+        {/* <div>
           <ul className="hidden lg:grid lg:leadIn invisible  grid-cols-3 gap-x-6 gap-y-1">
             <li className=""><a href="/#">Link to somewhere</a></li>
             <li className=""><a href="/#">Link to somewhere</a></li>
@@ -54,7 +54,7 @@ export function Footer(): JSX.Element {
             <li className=""><a href="/#">Link to somewhere</a></li>
             <li className=""><a href="/#">Link to somewhere</a></li>
           </ul>
-        </div>
+        </div> */}
         <ul className="mb-urls relative grid grid-cols-4 w-full gap-4 lg:w-1/4">
           {links.map((link) => (
             <li key={uuid()} className="leadIn invisible">

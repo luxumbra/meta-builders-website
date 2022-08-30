@@ -1,7 +1,6 @@
 
 import { Icon } from "@iconify/react";
-import { useMarketplace, useNetwork } from "@thirdweb-dev/react";
-import type { Json } from "@thirdweb-dev/sdk";
+import { useMarketplace } from "@thirdweb-dev/react";
 import Imgix from "react-imgix";
 import { v4 as uuid } from "uuid";
 
@@ -43,7 +42,7 @@ const includedServices = (traits: IPackage['attributes']):
 
 export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const { pack } = properties;
-  const { id, name, description, displayPrice, currency, currencySymbol, image, type, attributes, value } = pack;
+  const { id, name, description, displayPrice, currency, currencySymbol, image, attributes, value } = pack;
   const marketplace = useMarketplace(marketPlaceContract);
   const services = includedServices(attributes);
   // const attributeJson = JSON.parse(attributes);

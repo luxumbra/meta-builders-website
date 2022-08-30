@@ -28,7 +28,6 @@ export function ContentSection({
   const isVisible = !!entry?.isIntersecting
 
   useEffect(() => {
-    const tl = gsap.timeline()
     // gsap.set(animatedElementReference.current, { opacity: 0, xPercent: -10 })
     if (!animatedElementReference.current) return
     gsap.to(animatedElementReference.current, {
@@ -47,6 +46,7 @@ export function ContentSection({
       id={id}
       ref={sectionReference}
       className={`
+      content-section
       flex
       flex-col
       items-center
@@ -70,7 +70,8 @@ export function ContentSection({
           flex
           w-full
           flex-col
-          items-center space-y-7
+          items-center
+          space-y-7
           2xl:space-y-8
           px-3
           md:px-0
@@ -82,9 +83,9 @@ export function ContentSection({
             {title}
           </h2>
         </div>
-        <p className='max-w-xl 2xl:max-w-3xl text-center font-extrabold text-xl 2xl:text-2xl dark:text-slate-50'>
+        <div className='section-lead max-w-xl 2xl:max-w-3xl'>
           {lead}
-        </p>
+        </div>
         {children}
       </div>
     </section>

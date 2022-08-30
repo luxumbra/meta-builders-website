@@ -44,6 +44,27 @@
     h1, p {
       @apply pointer-events-auto;
     }
+
+    .scroll-in, .scroll-in2 {
+      h2 {
+        @apply relative overflow-y-visible;
+
+        &::before, &::after {
+          content: '';
+          @apply absolute inline-flex items-center justify-center -inset-y-10 text-8xl z-0 gradient-text overflow-visible;
+        }
+
+        &::before {
+          content: '👷‍♂️';
+          @apply hidden -left-0 -top-20;
+        }
+
+        &::after {
+          content: '💜';
+          @apply -right-32 -bottom-12 rotate-12 ;
+        }
+      }
+    }
   }
 
   .floating {

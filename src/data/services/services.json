@@ -2,37 +2,37 @@
   {
     "name": "Metaverse",
     "title": "Metaverse",
-    "description": "The metaverse is the social digital experience which is quickly reframing how we engage and interact with brands, products and services.",
+    "description": "The term Metaverse refers to a new social digital experience currently reshaping how brands engage with their consumer base online.",
     "icon": "mdi:globe"
   },
   {
     "name": "NFTs",
     "title": "Non-Fungible Tokens",
-    "description": "Data ownership is the cornerstone of web3 and the metaverse. NFTs fully represent a participants ownership of membership, digital assets, physical assets, access, priviledges, voting rights and more.",
+    "description": "In Web3, the backbone of the Metaverse, users own their own data. NFTs fully represent a participant's ownership of membership rights, digital assets, physical access, privileges, voting rights, and more, all in a public and trustless blockchain environment.",
     "icon": "mdi:dna"
   },
   {
-    "name": "Payments",
-    "title": "Payments",
-    "description": "Digital payments enables a broader access to your content and products. We have very in depth knowledge of the payment rails for engaging and interacting on multiple dimensions of digital commerce.",
+    "name": "Easy Payments",
+    "title": "Easy Payments",
+    "description": "Blockchain technology has brought to the internet a base money layer, enabling easy digital payments. Our background in Digital Payments has allowed us to create easy on-ramps for multiple dimensions of digital commerce.",
     "icon": "mdi:payment"
   },
   {
-    "name": "Web3",
-    "title": "Web3",
-    "description": "The multi faceted emergent digital experience - the comibination of metaverse, nfts, tokenomics, daos, and everything inbetween. If it talks to the blockchain, our team can integrate it as a feature for your project.",
+    "name": "Composable Web3",
+    "title": "Composable Web3",
+    "description": "Web3's modular nature enables us to create solutions for clients involving any blockchain in service of almost any imaginable application. If it can be made to talk to the blockchain, our team can integrate it as a feature for your product.",
     "icon": "clarity:blocks-group-solid"
   },
   {
     "name": "Smart Contracts",
     "title": "Smart Contracts",
-    "description": "Self executing applications on the blockchain, defined by the parameters in the code. Building custom smart contracts is an art in itself, Our team of builders can create, audit, and deploy smart contracts based on the requirements of your project.",
+    "description": "Smart Contracts are reliable self-executing applications that exist on-chain, defined by the rules of the chain and the parameters programmed into their code. Building custom smart contracts is an art in and of itself, but our experienced team of builders has you covered. We can create, audit, and deploy custom smart contracts as needed in your project.",
     "icon": "mdi:code"
   },
   {
-    "name": "Community",
-    "title": "Community",
-    "description": "Community engagement is the critical mass for any project and organization. With the right integrations and tooling, your community engagement and management can scale with the growth of the ecosystem.",
+    "name": "Community Management",
+    "title": "Community Management",
+    "description": "An engaged community is a critical component of any successful Web3 project or organization. With our team of expert developers at your side, a quality structure to facilitate organic community growth is within your grasp. This will allow your project to grow as the ecosystem does.",
     "icon": "mdi:account-group"
   }
 ]
