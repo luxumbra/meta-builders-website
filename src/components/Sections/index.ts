@@ -1,5 +1,5 @@
 export * from "./ContentSection";
-export * from "./Intro";
+export * from "./Mission";
 export * from "./Partners";
 export * from "./Services";
 export * from "./Splash";

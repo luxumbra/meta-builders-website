@@ -11,7 +11,7 @@ import { ButtonWeb3Connect } from "~mb/components/Buttons";
 import {links} from "~mb/components/Default/Footer";
 
 const navItems = [
-  { title: "Home", url: "#home" },
+  { title: "Mission", url: "#mission" },
   { title: "Services", url: "#services" },
   { title: "Partners", url: "#partners" },
   { title: "Team", url: "#team" },
@@ -138,17 +138,17 @@ export default function Header(): JSX.Element {
         >
           <h1 className="sr-only">Meta-Builders</h1>
           <span
-            className="brand font-heading inline-flex items-center text-md 2xl:text-lg text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
+            className="brand font-display inline-flex items-center text-xs 2xl:text-sm text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
           ><span>Meta-Builders</span></span>
         </HashLink>
 
-        <div ref={desktopMenu} className="desktop-menu hidden sm:flex items-center self-end z-10 ">
+        <div ref={desktopMenu} className="desktop-menu font-sans hidden sm:flex items-center self-end z-10 ">
           <nav className="hidden sm:block">
             <ul className="flex items-center gap-6">
               {navItems.map(({ title, url }) => (
                 <li key={uuid()}>
                   <HashLink
-                    className="text-md 2xl:text-lg font-normal 2xl:font-bold uppercase xl:font-display "
+                    className="text-xs 2xl:text-sm font-normal 2xl:font-bold uppercase xl:font-display "
                     to={`/${url}`}
                   >
                     {title}

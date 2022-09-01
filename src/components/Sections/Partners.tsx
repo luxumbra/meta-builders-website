@@ -9,7 +9,7 @@ import {ContentSection} from "~mb/sections/index";
 export function PartnerSectionLead(): JSX.Element {
   return (
     <p>
-      <span className="gradient-text">Meta-Builders</span> is <span className="text-primary">a passionate community</span> of developers and designers <span className="text-primary">who build software as others create art</span>.
+      <strong className="gradient-text">Meta-Builders</strong> is a <strong> passionate community</strong> of <strong>industry partners</strong> building in <strong>Web3 and the Metaverse</strong>.
     </p>
   )
 }

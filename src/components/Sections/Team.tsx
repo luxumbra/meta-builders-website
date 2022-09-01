@@ -1,3 +1,4 @@
+import { HashLink } from "react-router-hash-link";
 import { v4 as uuid } from "uuid";
 
 import { TeamMemberCard } from '~mb/cards/index';
@@ -7,7 +8,7 @@ import {ContentSection} from "~mb/sections/index";
 export function TeamSectionLead(): JSX.Element {
   return (
     <p>
-      The <span className="gradient-text">Meta-Builders</span> have <span className="text-primary">EVERYTHING you need to bring your Web2 Brand into Web3</span>. We can help you <span className="text-primary">build trustless, transparent architecture</span> to take your brand into the future - thanks to the talents of this group.
+      Join us in <a href="https://discord.gg/metabuilders" target="_blank" rel="noreferrer" className="text-violet-500 underline">our Discord</a>, we&apos;d love to meet you!
     </p>
   )
 }
@@ -16,7 +17,7 @@ export default function TeamSection(): JSX.Element {
   const sectionId = 'team';
 
   return (
-    <ContentSection title="Meet your team" id={sectionId} lead={<TeamSectionLead />}>
+    <ContentSection title="Meet your team" id={sectionId} lead={<TeamSectionLead />} >
       <div className="max-w-6xl space-y-2">
         <div className="grid grid-cols-2 gap-6 space-y-0 md:gap-5 md:grid-cols-2 lg:grid-cols-5">
           {members.map((member) => (

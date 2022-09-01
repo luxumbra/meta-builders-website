@@ -29,7 +29,7 @@ const includedServices = (traits: IPackage['attributes']):
 
   if (traits) {
     for (const element of traits) {
-      if (element.trait_type.includes('service')) {
+      if (element.trait_type.includes('Service')) {
         services.push(element as PackageService);
       }
     }

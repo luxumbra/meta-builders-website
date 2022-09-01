@@ -42,9 +42,21 @@
     "url": "https://soon.tm/"
   },
   {
-    "name": "Masters Of The Bitcoin",
+    "name": "RaidGuild",
     "bio": "Some bio text about this partner...",
-    "image": "masters.png",
+    "image": "raidguild.png",
+    "url": "https://soon.tm/"
+  },
+  {
+    "name": "PageDAO",
+    "bio": "Some bio text about this partner...",
+    "image": "pagedao.png",
+    "url": "https://soon.tm/"
+  },
+  {
+    "name": "MetaGame",
+    "bio": "Some bio text about this partner...",
+    "image": "metagame.png",
     "url": "https://soon.tm/"
   }
 ]

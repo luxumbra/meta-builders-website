@@ -84,7 +84,7 @@ export function BuyPackackagePopUp(
     try {
       // for some reason matic in ThirdWeb uses 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE which isn't a contract address and it doesn't work with balanceOf so I'm getting balances from polygonscan.
       // const balance = symbol !== 'MATIC' ? await tokenData.balanceOf(address) : undefined
-      const nativeToken = '0x0000000000000000000000000000000000001010'
+      const nativeToken = '0xD76b5c2A23ef78368d8E34288B5b65D616B746aE'
       const tokenToCheck = symbol === 'MATIC' ? nativeToken : contract
       const balanceResponse = await fetch(
         `${polygonScanApiEndpoint}&module=account&action=tokenbalance&contractaddress=${tokenToCheck}&address=${address}`)
@@ -128,7 +128,7 @@ export function BuyPackackagePopUp(
   const onBuyPackage = useCallback(
     (id: string) => {
       // if (isNetworkMismatch) return
-      // console.log('buying package', { id, forAddress });
+      console.log('buying package', { id, forAddress });
       setIsLoading(true)
 
       if (forAddress) {
@@ -278,7 +278,7 @@ export function BuyPackackagePopUp(
               <span className='badge badge-outline text-xs leading-3 uppercase text-violet-400 font-normal'>Edition {`#${listingId}`}</span>
               <strong className='text-lg leading-3'>{name}</strong>
             </h3>
-            <p>Let&apos;s do this! Hit &apos;Confirm&apos; below to buy this NFT, and the <span className='gradient-text font-bold'>Meta-Builders</span> services locked up inside it.</p>
+            <p>Let&apos;s do this! Hit &apos;Confirm&apos; below to buy this NFT chest and the <span className='gradient-text font-bold'>Meta-Builders</span> services locked up inside it.</p>
             <div className='flex flex-col items-start justify-center space-y-2 my-3'>
               <p className='inline-flex flex-col gap-0 space-0'>
                 <span className='text-sm'>Price:</span> <PriceDisplay price={price} currency={currencySymbol} />
@@ -302,7 +302,7 @@ export function BuyPackackagePopUp(
             {forAddress ? (
               Number.parseFloat(price) > 0 ? (
                 <>
-                  <span className={`text-md text-orange-500 ${isNetworkMismatch ? 'block' : 'hidden'}`}>Switch to <strong>Polygon Mumbai</strong>.</span>
+                  <span className={`text-md text-orange-500 ${isNetworkMismatch ? 'block' : 'hidden'}`}>Switch to <strong className="text-inherit">Polygon Mumbai</strong>.</span>
                   <button
                     type='button'
                     className='btn btn-primary disabled:btn-disabled disabled:overflow-visible disabled:bg-transparent flex-grow overflow-hidden text-center transition-all duration-200 ease-in-out'
@@ -386,6 +386,7 @@ export function ButtonBuyPackage(properties: IButtonBuyPackage): JSX.Element {
           : 'bg-teal-400 text-slate-900'
           }  flex-grow transition-all duration-200 ease-in-out`}
         data-package={pack.listingId}
+        // eslint-disable-next-line react/jsx-handler-names
         onClick={!address ? onConnectMetamask : onToggleOpen}
       >
         <Icon icon="emojione-monotone:rocket" className="absolute text-teal-200 mr-2 h-20 w-20 opacity-10 -translate-x-8" />

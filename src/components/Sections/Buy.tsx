@@ -5,7 +5,7 @@ import { ContentSection } from "~mb/sections/index";
 export function SectionIntro(): JSX.Element {
   return (
     <>
-      <p><span className="text-primary">Your project is what&apos;s important here.</span></p>
+      <p><strong>Your project is what&apos;s important here.</strong></p>
       <p>Choose the right package and our industry leading team will do the rest.</p >
     </>
   )

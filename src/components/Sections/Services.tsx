@@ -7,7 +7,7 @@ import { ContentSection } from "~mb/sections/index";
 export function ServicesLead(): JSX.Element {
   return (
     <p>
-      We build <span className="text-primary text-shadow">complete solutions</span> for <span className="text-primary text-shadow">Web3 upgrades</span> and new <span className="text-primary text-shadow">Metaverse environments</span> in-house.
+      We build <span className="text-primary text-shadow">complete solutions</span> for <span className="text-primary text-shadow">Web3 upgrades</span> and new <span className="text-primary text-shadow">Metaverse environments</span>.
     </p>
   )
 }
@@ -24,7 +24,7 @@ export default function ServicesSection(): JSX.Element {
               <Icon icon={icon} className="text-6xl text-teal-300 " />
             </div>
             <h3 className="text-xl font-extrabold text-center text-teal-300">{title}</h3>
-            <p className="text-sm text-center text-offset">{description}</p>
+            <p className="text-xs text-center text-offset">{description}</p>
           </li>
         ))}
       </ul>

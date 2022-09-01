@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useMarketplace } from "@thirdweb-dev/react";
 import type { AuctionListing, DirectListing } from "@thirdweb-dev/sdk";
+import { utils } from "ethers";
+import { formatEther } from "ethers/lib/utils";
 import { v4 as uuid } from "uuid";
 
 import { PackageCard } from "../Cards";
@@ -17,19 +19,22 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
   const [marketplaceListings, setMarketplaceListings] = useState<AuctionListing[] | DirectListing[] | undefined>();
   const marketplace = useMarketplace(address);
   const [isLoading, setIsLoading] = useState(true);
+  console.log('MarketplaceListings', { address, marketplace });
 
   /** A callback function  to `getActiveListings` from the `marketplace` and then store them in `marketplaceListings` */
   const fetchListingsCallback = useCallback(async ():Promise<(AuctionListing | DirectListing)[] | undefined>  => {
     try {
-      const listings = await marketplace?.getActiveListings();
+      if (marketplace === undefined) throw new Error('Marketplace is undefined');
+      const listings = await marketplace.getActiveListings();
       console.log('listings', listings);
 
-      if (listings === undefined) {
+      if (listings.length === 0) {
         setIsLoading(false);
         throw new Error("Error fetching listings");
       }
       setIsLoading(false);
       listings.sort((a, b) => Number.parseFloat(a.buyoutCurrencyValuePerToken.displayValue) - Number.parseFloat(b.buyoutCurrencyValuePerToken.displayValue));
+      // listings.filter((listing) => listing.id >= '3')
       return listings;
     } catch (error) {
       console.error("Error fetching listings", error);
@@ -54,7 +59,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
     <div className="flex flex-col space-y-5 items-stretch justify-items-stretch sm:space-y-0 sm:grid sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
       {(marketplaceListings && marketplaceListings.length > 0) ? (
         marketplaceListings.map((listing: AuctionListing | DirectListing) => {
-          const {asset, id, assetContractAddress, buyoutCurrencyValuePerToken, currencyContractAddress} = listing;
+          const { asset, id, assetContractAddress, buyoutCurrencyValuePerToken, currencyContractAddress } = listing;
           const cardKey = uuid();
           const pack = {
             id,

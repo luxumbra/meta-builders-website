@@ -54,6 +54,7 @@ export function ContentSection({
       min-h-screen
       w-full
       scroll-mt-24
+      2xl:scroll-mt-32
       overflow-x-hidden
       overflow-y-hidden
       bg-transparent
@@ -65,7 +66,7 @@ export function ContentSection({
         ref={animatedElementReference}
         className='
           relative
-          my-20
+          py-20
           xl:my-24
           flex
           w-full
@@ -79,11 +80,11 @@ export function ContentSection({
           '
       >
         <div className='flex flex-col items-center'>
-          <h2 className='gradient-text text-shadow dark:text-shadow-alt text-center font-extrabold tracking-tight text-4xl 2xl:text-6xl'>
+          <h2 className='gradient-text text-shadow dark:text-shadow-alt text-center font-extrabold tracking-tight text-4xl 2xl:text-4xl'>
             {title}
           </h2>
         </div>
-        <div className='section-lead max-w-xl 2xl:max-w-3xl'>
+        <div className='section-lead max-w-xl 2xl:max-w-4xl'>
           {lead}
         </div>
         {children}

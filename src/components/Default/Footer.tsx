@@ -1,5 +1,6 @@
 
 import { Icon } from "@iconify/react";
+import { HashLink } from "react-router-hash-link";
 import { v4 as uuid } from "uuid";
 
 import { useScrollReveal } from "~mb/hooks/animation";
@@ -11,9 +12,9 @@ export const links = [
     icon: "mdi:home",
   },
   {
-    url: "/",
+    url: "https://www.youtube.com/channel/UCEnYtm1vjjbFajROeIsRofA",
     description: "Meta-Builders on GitHub",
-    icon: "mdi:github-circle",
+    icon: "mdi:youtube",
   },
   {
     url: "https://discord.gg/metabuilders",
@@ -38,7 +39,7 @@ export function Footer(): JSX.Element {
   return (
     <footer id="footer" className="hidden lg:flex relative overflow-y-hidden  flex-col items-center justify-center h-32 lg:h-64 w-full z-10">
       <div className="footer-main w-3/4  leadIn invisible">
-        <h5 className="font-black text-lg text-shadow-alt gradient-text">Meta-Builders</h5>
+        <HashLink to="/#home" className="font-black font-display text-sm text-shadow-alt"><strong className="gradient-text">Meta-Builders</strong></HashLink>
       </div>
       <div className="footer-aside w-3/4 flex flex-col lg:flex-row items-center justify-between">
         <p className="text-xs leadIn invisible self-end">Copyright &copy; 2022 Meta-Builders</p>
@@ -61,6 +62,8 @@ export function Footer(): JSX.Element {
               <a
                 className="group w-12 2xl:w-16 h-12 2xl:h-16 p-2 2xl:p-3 border-2 border-violet-800 dark:border-teal-200 rounded-full inline-flex items-center justify-center text-shadow-alt-sm dark:text-shadow-alt-sm-teal hover:animate-pulse"
                 href={link.url}
+                target="_blank"
+                rel="noreferrer"
               >
                 <span className="sr-only">{link.description}</span>
                 <Icon className="w-full h-full text-violet-800  transition-colors text-6xl dark:text-teal-300 " icon={link.icon} />
