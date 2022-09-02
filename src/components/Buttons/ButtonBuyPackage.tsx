@@ -274,18 +274,18 @@ export function BuyPackackagePopUp(
           className='relative flex flex-col items-center justify-center text-left z-[100]'
         >
           <div className='flex-grow'>
-            <h3 className='text-teal-400 uppercase font-bold text-md text-left inline-flex flex-wrap flex-col space-0 gap-0 mb-3'>
-              <span className='badge badge-outline text-xs leading-3 uppercase text-violet-400 font-normal'>Edition {`#${listingId}`}</span>
-              <strong className='text-lg leading-3'>{name}</strong>
+            <h3 className='text-teal-400 uppercase font-bold  text-left inline-flex flex-wrap flex-col space-0 gap-0 mb-1 2xl:mb-3'>
+              <span className='badge badge-outline text-xxs 2xl:text-xs leading-3 uppercase text-violet-400 font-normal'>Edition {`#${listingId}`}</span>
+              <strong className='text-base 2xl:text-lg leading-3'>{name}</strong>
             </h3>
-            <p>Let&apos;s do this! Hit &apos;Confirm&apos; below to buy this NFT chest and the <span className='gradient-text font-bold'>Meta-Builders</span> services locked up inside it.</p>
+            <p className="text-xs 3xl:text-sm">Let&apos;s do this! Hit &apos;Confirm&apos; below to buy this NFT chest and the <span className='gradient-text font-bold'>Meta-Builders</span> services locked up inside it.</p>
             <div className='flex flex-col items-start justify-center space-y-2 my-3'>
               <p className='inline-flex flex-col gap-0 space-0'>
-                <span className='text-sm'>Price:</span> <PriceDisplay price={price} currency={currencySymbol} />
+                <span className='text-xs 2xl:text-sm'>Price:</span> <PriceDisplay price={price} currency={currencySymbol} />
               </p>
               {forAddress ? (
-                <p className='mb-3 text-sm'>
-                    <span className='text-md'>Active wallet</span>
+                <p className='mb-3 text-xs 2xl:text-sm'>
+                    <span>Active wallet</span>
                   <span className='tooltip tooltip-primary' data-tip='Click to copy'>
                     <span className='text-violet-400 ml-3'
                       tabIndex={0}
@@ -302,7 +302,7 @@ export function BuyPackackagePopUp(
             {forAddress ? (
               Number.parseFloat(price) > 0 ? (
                 <>
-                  <span className={`text-md text-orange-500 ${isNetworkMismatch ? 'block' : 'hidden'}`}>Switch to <strong className="text-inherit">Polygon Mumbai</strong>.</span>
+                  <span className={`text-md text-orange-500 ${isNetworkMismatch ? 'block' : 'hidden'}`}>Switch to <strong className="text-inherit">Ethereum mainnet</strong>.</span>
                   <button
                     type='button'
                     className='btn btn-primary disabled:btn-disabled disabled:overflow-visible disabled:bg-transparent flex-grow overflow-hidden text-center transition-all duration-200 ease-in-out'

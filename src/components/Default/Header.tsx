@@ -138,7 +138,7 @@ export default function Header(): JSX.Element {
         >
           <h1 className="sr-only">Meta-Builders</h1>
           <span
-            className="brand font-display inline-flex items-center text-xs 2xl:text-sm text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
+            className="brand font-display inline-flex items-center text-xxs xl:text-xs 2xl:text-sm text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
           ><span>Meta-Builders</span></span>
         </HashLink>
 
@@ -148,7 +148,7 @@ export default function Header(): JSX.Element {
               {navItems.map(({ title, url }) => (
                 <li key={uuid()}>
                   <HashLink
-                    className="text-xs 2xl:text-sm font-normal 2xl:font-bold uppercase xl:font-display "
+                    className="text-xxs xl:text-xs 2xl:text-sm font-normal 2xl:font-bold uppercase xl:font-display "
                     to={`/${url}`}
                   >
                     {title}
@@ -182,7 +182,7 @@ export default function Header(): JSX.Element {
                   {navItems.map(({ title, url }) => (
                     <li key={uuid()} ref={addToRefs}>
                       <HashLink
-                        className="text-lg font-bold font-heading text-slate-500 dark:text-violet-300 hover:text-slate-700 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors"
+                        className="text-xs font-bold font-display text-slate-500 dark:text-violet-300 hover:text-slate-700 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors"
                         smooth
                         to={`/${url}`}
                       >

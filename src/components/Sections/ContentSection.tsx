@@ -67,12 +67,13 @@ export function ContentSection({
         className='
           relative
           py-20
-          xl:my-24
+          xl:py-32
+          2xl:py-36
           flex
           w-full
           flex-col
           items-center
-          space-y-7
+          space-y-5
           2xl:space-y-8
           px-3
           md:px-0
@@ -80,11 +81,11 @@ export function ContentSection({
           '
       >
         <div className='flex flex-col items-center'>
-          <h2 className='gradient-text text-shadow dark:text-shadow-alt text-center font-extrabold tracking-tight text-4xl 2xl:text-4xl'>
+          <h2 className='gradient-text text-shadow dark:text-shadow-alt text-center font-extrabold tracking-tight text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl'>
             {title}
           </h2>
         </div>
-        <div className='section-lead max-w-xl 2xl:max-w-4xl'>
+        <div className='section-lead max-w-2xl xl:max-w-3xl 2xl:max-w-4xl'>
           {lead}
         </div>
         {children}

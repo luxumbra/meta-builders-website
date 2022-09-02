@@ -8,6 +8,7 @@ import reactRefresh from '@vitejs/plugin-react-refresh'
 import { imagetools } from 'vite-imagetools'
 import imagePresets, { widthPreset } from 'vite-plugin-image-presets'
 import alias from '@rollup/plugin-alias'
+import { VitePluginFonts } from 'vite-plugin-fonts'
 
 const root = path.resolve(__dirname, 'src')
 const outdir = path.resolve(__dirname, 'dist')
@@ -17,6 +18,26 @@ const defaultConfig = {
   plugins: [
     tsconfigPaths(),
     react(),
+    // VitePluginFonts({
+    //   google: {
+    //     families: [
+    //       {
+    //         name: 'Exo 2',
+    //         styles: 'wght@100;300;500;800',
+    //       },
+    //     ],
+    //   },
+    //   custom: {
+    //     families: [
+    //       {
+    //         name: 'Arizone Unicase Regular',
+    //         local: 'Arizone Unicase Regular',
+    //         src: '/assets/fonts/arizone-unicase.ttf',
+    //       }
+    //     ],
+    //     preload: true,
+    //   }
+    // }),
     eslintPlugin()],
   resolve: {
     alias: [

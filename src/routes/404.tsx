@@ -16,7 +16,7 @@ export default function PageNotFound(): JSX.Element {
   return (
     <Layout content={meta}>
       <ContentSection>
-        <h2 className='gradient-text text-shadow-alt text-center font-extrabold tracking-tight text-6xl'>
+        <h2 className='gradient-text text-shadow-alt text-center font-extrabold tracking-tight text-xl 2xl:text-3xl'>
           Eeesh, 404 error
         </h2>
         <p>

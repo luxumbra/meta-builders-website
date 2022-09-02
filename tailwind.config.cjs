@@ -115,10 +115,13 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['Exo\\ 2', 'Ubuntu', 'Roboto', 'sans-serif'],
-        'display': ['"Arizone Unicase Regular"', 'Ubuntu', 'sans-serif'],
+        'display': ['"Arizone Unicase Regular"', 'Exo\\ 2', 'Ubuntu', 'sans-serif'],
         'heading': ['Exo\\ 2', 'Ubuntu', 'Roboto', 'sans-serif'],
         'body': ['Ubuntu', 'Roboto', 'sans-serif'],
         'serif': ['serif']
+      },
+      fontSize: {
+        'xxs': '.625rem',
       },
       textColor: {
         default: "var(--color-text)",
@@ -135,7 +138,11 @@ module.exports = {
         'ping-once': 'ping 0.5s cubic-bezier(0, 0, 0.2, 1) 2',
         'pulse-min': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 3',
         'bounce-min': 'bounce 1s 3'
-      }
+      },
+      screens: {
+        '3xl': '1920px',
+        '4xl': '2560px',
+      },
     },
   },
   experimental: { optimizeUniversalDefaults: true },

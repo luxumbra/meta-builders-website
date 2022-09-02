@@ -53,7 +53,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
 
 
   if (isLoading) {
-    return <LoadingOrError isInline message="Loading NFTs..." />;
+    return <LoadingOrError isInline message="Loading packages..." />;
   }
   return (
     <div className="flex flex-col space-y-5 items-stretch justify-items-stretch sm:space-y-0 sm:grid sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -81,7 +81,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
         })
         ) : (
           <div className="flex flex-col items-center justify-center">
-            <p>No listings</p>
+            <p className="text-xl text-teal-600">No listings</p>
           </div>
       )}
     </div>

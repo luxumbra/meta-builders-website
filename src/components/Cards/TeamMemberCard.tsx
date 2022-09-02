@@ -23,19 +23,21 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
             className={`
             relative
             rounded-full
-            w-3/4
-            lg:w-1/2
+            w-1/2
+            2xl:w-1/2
             h-auto
             lg:h-auto
-            overflow-hidden box-shadow-[0_0_10px_5px_rgba(0,0,0,0.8)_inset] text-center
+            overflow-hidden
+            box-shadow-[0_0_10px_5px_rgba(0,0,0,0.8)_inset]
+            text-center
           `}
           >
-            <img src={`/assets/team/images/${avatar}`} alt={`${name}'s avatar`} className="object-cover w-full h-full transition-all duration-200 bg-cover group-hover:scale-110 group-hover:blur-0 group-focus:scale-110 group-focus:hue-rotate-0 self-center" />
+            <img src={`/assets/team/images/${avatar}`} alt={`${name}'s avatar`} className="object-cover w-full h-full transition-all duration-200 bg-cover group-hover:scale-110 group-hover:blur-0 group-focus:scale-110 group-focus:hue-rotate-0 self-center" loading="eager" />
           </picture>
         </div>
         <figcaption className="text-center flex flex-col gap-0">
-          <h3 className="text-sm 2xl:text-lg font-bold 2xl:font-normal text-slate-600 dark:text-slate-400 leadIn">{name}</h3>
-          <p className="text-xs 2xl:text-sm ">{role}</p>
+          <h3 className="text-sm 2xl:text-base font-normal text-slate-600 dark:text-slate-400">{name}</h3>
+          <p className="text-xxs 2xl:text-xs ">{role}</p>
         </figcaption>
         {/* <div className="absolute rounded-lg bottom-0 flex flex-col items-start text-left justify-start content-center min-w-full md:w-[135%] flex-grow min-h-[120%] h-auto gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100 scale-50 group-hover:scale-100 group-focus:scale-100 group-hover:-translate-y-[0%] group-focus:translate-y-0 translate-y-10 origin-center z-50  filter backdrop-blur-xl ">
           <div className="relative bio-content flex flex-col gap-y-2 p-3 flex-grow-0 z-10 w-full">

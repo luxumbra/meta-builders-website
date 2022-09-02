@@ -60,7 +60,7 @@ export default function LoadingOrError({ error, isInline, message }: Properties)
       ) : (
         <div className='flex flex-col flex-wrap items-center gap-3'>
           <LoadingGrid />
-          <p className='text-6xl font-bold text-teal-500 dark:text-teal-500 opacity-50 animate-pulse'>
+          <p className='text-xl xl:text-3xl font-display font-bold text-teal-500 dark:text-teal-500 opacity-50 animate-pulse'>
               {message}
           </p>
         </div>

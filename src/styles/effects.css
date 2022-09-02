@@ -48,11 +48,11 @@
 
     .scroll-in, .scroll-in2 {
       h2 {
-        @apply relative overflow-y-visible;
+        @apply relative overflow-y-visible z-10;
 
         &::before, &::after {
           content: '';
-          @apply absolute inline-flex items-center justify-center -inset-y-10 text-8xl z-0 gradient-text overflow-visible;
+          @apply absolute inline-flex items-center justify-center -inset-y-10 text-8xl gradient-text overflow-visible -z-10;
         }
 
         &::before {
@@ -62,10 +62,24 @@
 
         &::after {
           content: '💜';
-          @apply -right-32 -bottom-12 rotate-12 ;
+          @apply -right-24 -bottom-8 rotate-12 text-white;
         }
       }
     }
+
+    .scroll-in2 {
+      h2 {
+        &::after {
+          content: '🤔';
+          @apply -right-24 -bottom-8 rotate-12 text-white;
+        }
+      }
+    }
+
+    p {
+      @apply relative z-10;
+    }
+
   }
 
   .floating {
