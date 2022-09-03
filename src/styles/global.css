@@ -172,7 +172,7 @@
   }
 
   .ribbon-button {
-    @apply absolute shadow-lg -top-4 -right-3;
+    @apply absolute shadow-lg -top-4 -right-3 focus:shadow-none;
   }
 
   footer {
