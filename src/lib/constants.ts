@@ -7,4 +7,6 @@ export const officialUrl = import.meta.env.VITE_METABUILDERS_OFFICIAL_URL as str
 export const isDevelopment = import.meta.env.DEV
 export const imgixUrl = 'https://meta-builders.com/'
 export const polygonscanApiKey = import.meta.env.VITE_POLYGONSCAN_API_KEY as string
-export const polygonScanApiEndpoint = `https://api-testnet.polygonscan.com/api?apikey=${polygonscanApiKey}&tag=latest`
+export const polygonscanApiEndpoint = `https://api-testnet.polygonscan.com/api?apikey=${polygonscanApiKey}&tag=latest`
+export const etherscanApiKey = import.meta.env.VITE_ETHERSCAN_API_KEY as string
+export const etherscanApiEndpoint = `https://api.etherscan.io/api?apikey=${etherscanApiKey}&tag=latest`

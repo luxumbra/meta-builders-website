@@ -62,7 +62,7 @@ const includedServices = (traits: IPackage['attributes']):
 
 export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const { pack } = properties;
-  const { id, name, description, displayPrice, currency, currencySymbol, image, animation_url, attributes, value } = pack;
+  const { id, name, description, displayPrice, currency, currencySymbol, image, animation_url: animationURL, attributes, value } = pack;
   const marketplace = useMarketplace(marketPlaceContract);
   const {services, consultingHours } = includedServices(attributes);
   // const attributeJson = JSON.parse(attributes);
@@ -78,6 +78,8 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
     quantityToBuy: qty,
     contract: marketPlaceContract,
   } as BuyPackOptions
+  const animationId = uuid();
+
 
   // console.log('buyPackInfo', buyPackInfo);
 
@@ -85,14 +87,17 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
     <div
       className="package-card group relative flex flex-col flex-1 items-center justify-start h-full space-y-2 2xl:space-y-5 p-3 2xl:p-5 min-h-[400px]  overflow-hidden  z-10"
     >
-      {animation_url ? (
+      {animationURL ? (
         <MuxVideo
-          className="absolute inset-0 w-full h-full z-0 grayscale dark:grayscale-0"
-          src={animation_url}
+          className="absolute inset-0 w-full h-full z-0 object-cover"
+          src={animationURL}
           autoPlay
-          loop
           muted
           streamType="on-demand"
+          metadata={{
+            video_id: animationId,
+            video_title: name,
+          }}
         />
       ) : (
       <Imgix
@@ -113,7 +118,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
         }}
       />
       )}
-      <div className="absolute inset-0 bg-slate-800 opacity-[97%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />
+      <div className="absolute inset-0 bg-slate-800 opacity-[80%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />
       <div className="relative flex flex-col space-x-2 2xl:space-x-5 space-y-2 2xl:space-y-3 flex-grow w-full px-0 text-violet-50 mb-5 z-[1]">
         <h3 className="text-md xl:text-lg font-extrabold text-center uppercase text-violet-50">
           {name}
@@ -122,7 +127,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
         <p className="text-xs 4xl:text-sm leading-tight">{description}</p>
         <ul className="flex flex-col space-y-3">
           {consultingHours.length > 0 ? consultingHours.map(hours => (
-              <li key={uuid()} className="flex items-center space-x-2 ">
+              <li key={uuid()} className="inline-flex items-center space-x-2 ">
               <Icon icon="lucide:calendar-clock" className="text-teal-400 text-xs 2xl:text-sm w-5 h-5" />
               <span className="text-violet-100 font-normal text-sm 3xl:text-sm text-left uppercase">
               {hours.trait_type}:</span> <span className="text-violet-200 text-lg">{hours.value}</span>
