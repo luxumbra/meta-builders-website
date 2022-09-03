@@ -171,7 +171,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
       {animationURL ? (
         <>
           <button type="button" aria-label="Toggle video" onClick={onToggleVideo} className="ribbon-button w-auto btn btn-ghost shadow-none hover:bg-transparent bg-transparent z-[100] flex items-center justify-center">
-            <div className="tooltip tooltip-left tooltip-primary font-normal" data-tip={`${videoIsOpen ? 'Close' : 'Open'} NFT viewer`}>
+            <div className="tooltip tooltip-left tooltip-primary font-normal normal-case" data-tip={`${videoIsOpen ? 'Close' : 'Open'} NFT viewer`}>
               <Icon icon="bx:movie-play" className={`${videoIsOpen ? 'text-teal-600' : 'text-violet-600'} transition-colors duration-300 text-3xl`} />
             </div>
           </button>
