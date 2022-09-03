@@ -1,6 +1,22 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import type { ITeamMember } from '~mb/types';
 
 export type TeamMember = ITeamMember
+
+function extractHostname(url: string): string {
+  let hostname;
+
+  // eslint-disable-next-line unicorn/prefer-includes
+  hostname = url.indexOf("//") > -1 ? url.split('/')[2] : url.split('/')[0];
+
+  // find & remove port number
+  hostname = hostname.split(':')[0];
+  // find & remove "?"
+  hostname = hostname.split('?')[0];
+
+  return hostname ;
+}
 
 export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element {
   const { image, name, role, twitter, linkedin, bio, email } = member;
@@ -9,8 +25,8 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
   // const avatar = new URL(image ?? 'missing-image.png', `${siteUrl}/assets/team/images`);
   const avatar = image !== '' ? image : 'missing-image.png';
   const shouldCenter = !!(bio && bio.length <= 50);
-  const url = new URL(linkedin ?? '', import.meta.url);
-  const isMyMeta = url.hostname === 'metagame.wtf';
+
+  const isMyMeta = extractHostname(linkedin ?? '') === 'metagame.wtf';
 
   return (
     <div className="group relative pt-0">

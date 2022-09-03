@@ -124,7 +124,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
           {consultingHours.length > 0 ? consultingHours.map(hours => (
               <li key={uuid()} className="flex items-center space-x-2 ">
               <Icon icon="lucide:calendar-clock" className="text-teal-400 text-xs 2xl:text-sm w-5 h-5" />
-              <span className="text-violet-100 font-normal text-sm 3xl:text-base text-left uppercase">
+              <span className="text-violet-100 font-normal text-sm 3xl:text-sm text-left uppercase">
               {hours.trait_type}:</span> <span className="text-violet-200 text-lg">{hours.value}</span>
 
               </li>

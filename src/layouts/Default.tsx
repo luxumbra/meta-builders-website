@@ -43,7 +43,7 @@ Layout.defaultProps = {
   title: "Meta-Builders",
   description: "Meta-Builders builds complete solutions for Web3 upgrades and new Metaverse environments. We are a passionate community of industry partners.",
   permalink: "/",
-  previewImageSrc: 'https://metabuilders.luxumbra.dev/social.png',
+  previewImageSrc: 'https://meta-builders.com/social.png',
 }
 /* <script>
 import gsap from "gsap";

@@ -38,6 +38,6 @@ export default function Seo({ title, description, permalink, previewImageSrc }: 
 Seo.defaultProps = {
   title: 'Welcome to the Metaverseee',
   description: 'Meta-Builders is a community of builders who build in the Metaverse.',
-  permalink: 'https://metabuilders.luxumbra.dev/',
-  previewImageSrc: new URL('social.png', 'https://metabuilders.luxumbra.dev'),
+  permalink: 'https://meta-builders.com/',
+  previewImageSrc: new URL('social.png', 'https://meta-builders.com'),
 }
