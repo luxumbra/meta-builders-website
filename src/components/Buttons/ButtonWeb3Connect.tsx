@@ -85,7 +85,7 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
               </button>
               {isNetworkMismatch ? (
                 <div className='tooltip tooltip-bottom tooltip-warning' data-tip="Testnet only rn">
-                  <span className='text-orange-500 font-sans text-xs lg:text-md'>Switch to Mumbai network</span>
+                  <span className='text-orange-500 font-sans text-xs lg:text-md'>Switch to Ethereum mainnet</span>
                 </div>
               ) : (
                 <span className='text-xs lg:text-md text-green-600 dark:text-green-500 text-shadow-alt-teal dark:hover:text-shadow-alt-teal inline'>{shortenAddress(address)}</span>

@@ -42,6 +42,7 @@
     "ethers": "^5.6.8",
     "gsap": "^3.10.4",
     "lodash": "^4.17.21",
+    "luxon": "^3.0.3",
     "postcss-nesting": "^10.1.10",
     "prettier-plugin-tailwindcss": "^0.1.12",
     "prop-types": "^15.8.1",
@@ -71,6 +72,7 @@
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/typography": "^0.5.4",
     "@types/accounting": "^0.4.2",
+    "@types/luxon": "^3.0.1",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.5",
     "@types/react-imgix": "^9.4.0",
@@ -110,6 +112,7 @@
     "typescript": "^4.7.2",
     "vite": "^2.9.9",
     "vite-imagetools": "^4.0.4",
+    "vite-plugin-fonts": "^0.6.0",
     "vite-plugin-image-presets": "^0.3.2",
     "vite-plugin-pwa": "^0.12.3",
     "vite-tsconfig-paths": "^3.5.0"

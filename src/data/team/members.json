@@ -5,16 +5,16 @@
     "image": "smartdigitalpayments.jpg",
     "linkedin": "https://www.linkedin.com/in/mike-smart-a3b037176",
     "twitter": "https://twitter.com/system_payment",
-    "role": "Founder/CEO",
+    "role": "Founder",
     "email": "mailto:hello@meta-builders.com"
   },
   {
-    "name": "koH",
+    "name": "Ben Dempsey",
     "bio": "I can haz bio?",
-    "image": "koh.jpg",
+    "image": "",
     "linkedin": "",
-    "twitter": "https://twitter.com/Crypto_koH",
-    "role": "Project Manager",
+    "twitter": "",
+    "role": "Founding Partner",
     "email": ""
   },
   {
@@ -23,16 +23,16 @@
     "image": "musashi.jpg",
     "linkedin": "",
     "twitter": "https://twitter.com/Musashi14790940",
-    "role": "Co-Founder",
+    "role": "Executive Operations Manager",
     "email": ""
   },
   {
-    "name": "luxumbra",
-    "bio": "Many years working as a front-end developer, lux has been full-on Web3 for 2 years. Loves working with TypeScript, React, Three.js, and other fun things.",
-    "image": "luxumbra.webp",
+    "name": "koH",
+    "bio": "I can haz bio?",
+    "image": "koh.jpg",
     "linkedin": "",
-    "twitter": "https://twitter.com/bdgrdev",
-    "role": "Front-End Developer / Designer",
+    "twitter": "https://twitter.com/Crypto_koH",
+    "role": "Executive POAP Master",
     "email": ""
   },
   {
@@ -41,16 +41,52 @@
     "image": "b0gie.png",
     "linkedin": "",
     "twitter": "",
-    "role": "3D Artist / Designer / Developer",
+    "role": "Executive Tech Shaman",
+    "email": ""
+  },
+  {
+    "name": "bobcat",
+    "bio": "I can haz bio?",
+    "image": "bobcat.png",
+    "linkedin": "",
+    "twitter": "",
+    "role": "Executive Operations Assistant",
+    "email": ""
+  },
+  {
+    "name": "PlanetBinx",
+    "bio": "I can haz bio?",
+    "image": "",
+    "linkedin": "",
+    "twitter": "",
+    "role": "Executive Producer",
+    "email": ""
+  },
+  {
+    "name": "Girlboxer",
+    "bio": "I can haz bio?",
+    "image": "",
+    "linkedin": "",
+    "twitter": "",
+    "role": "Executive Marketing Manager",
     "email": ""
   },
   {
     "name": "Aperion",
     "bio": "I can haz bio?",
+    "image": "aperion.jpg",
+    "linkedin": "",
+    "twitter": "",
+    "role": "Executive Project Manager",
+    "email": ""
+  },
+  {
+    "name": "KittySlasher",
+    "bio": "I can haz bio?",
     "image": "",
     "linkedin": "",
     "twitter": "",
-    "role": "Wears many hats",
+    "role": "Executive Project Manager",
     "email": ""
   },
   {
@@ -59,34 +95,25 @@
     "image": "",
     "linkedin": "",
     "twitter": "",
-    "role": "Designer",
+    "role": "Executive Project Manager",
     "email": ""
   },
   {
-    "name": "The_Elzz",
+    "name": "epicdylan",
     "bio": "I can haz bio?",
     "image": "",
     "linkedin": "",
     "twitter": "",
-    "role": "Designer",
+    "role": "Executive Editor",
     "email": ""
   },
   {
-    "name": "bobcat",
-    "bio": "I can haz bio?",
-    "image": "",
-    "linkedin": "",
-    "twitter": "",
-    "role": "Designer",
-    "email": ""
-  },
-  {
-    "name": "The others",
-    "bio": "Who else is on the rosta? What are their roles?",
-    "image": "",
-    "linkedin": "",
-    "twitter": "",
-    "role": "Designer",
+    "name": "luxumbra",
+    "bio": "Many years working as a front-end developer and also worked in traditional construction, lux has been full-on Web3 for 2 years. Loves working with TypeScript, React, Three.js, and other fun things.",
+    "image": "luxumbra.gif",
+    "linkedIn": "",
+    "twitter": "https://twitter.com/bdgrdev",
+    "role": "Executive Development Manager",
     "email": ""
   }
 ]

@@ -15,6 +15,7 @@ specifiers:
   '@typechain/ethers-v5': ^10.1.0
   '@types/accounting': ^0.4.2
   '@types/lodash': ^4.14.182
+  '@types/luxon': ^3.0.1
   '@types/prop-types': ^15.7.5
   '@types/react': ^18.0.9
   '@types/react-dom': ^18.0.5
@@ -53,6 +54,7 @@ specifiers:
   gsap: ^3.10.4
   jsdom: ^20.0.0
   lodash: ^4.17.21
+  luxon: ^3.0.3
   postcss: ^8.4.14
   postcss-import: ^14.1.0
   postcss-nesting: ^10.1.10
@@ -88,6 +90,7 @@ specifiers:
   uuid: ^8.3.2
   vite: ^2.9.9
   vite-imagetools: ^4.0.4
+  vite-plugin-fonts: ^0.6.0
   vite-plugin-html: ^3.2.0
   vite-plugin-image-presets: ^0.3.2
   vite-plugin-pwa: ^0.12.3
@@ -122,6 +125,7 @@ dependencies:
   ethers: 5.6.9
   gsap: 3.10.4
   lodash: 4.17.21
+  luxon: 3.0.3
   postcss-nesting: 10.1.10_postcss@8.4.16
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
   prop-types: 15.8.1
@@ -151,6 +155,7 @@ devDependencies:
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
   '@types/accounting': 0.4.2
+  '@types/luxon': 3.0.1
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
   '@types/react-imgix': 9.5.0
@@ -183,15 +188,16 @@ devDependencies:
   stylelint-config-prettier: 9.0.3_stylelint@14.10.0
   stylelint-config-recommended: 8.0.0_stylelint@14.10.0
   stylelint-config-standard: 26.0.0_stylelint@14.10.0
-  tailwindcss: 3.1.8_ts-node@10.9.1
+  tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
   tailwindcss-fluid-type: 1.3.3_tailwindcss@3.1.8
   ts-node: 10.9.1_tyvfw3xlkeib37wbsln4bvkpbm
   typechain: 8.1.0_typescript@4.7.4
   typescript: 4.7.4
   vite: 2.9.15
   vite-imagetools: 4.0.4
+  vite-plugin-fonts: 0.6.0_vite@2.9.15
   vite-plugin-image-presets: 0.3.2
-  vite-plugin-pwa: 0.12.3_vite@2.9.15
+  vite-plugin-pwa: 0.12.3_mzzo5qdcantp6obyzixnpsysz4
   vite-tsconfig-paths: 3.5.0_vite@2.9.15
 
 packages:
@@ -2034,6 +2040,40 @@ packages:
       zustand: 3.7.2_react@18.2.0
     dev: false
 
+  /@react-three/fiber/8.6.2_f72olm6mn3unzgg4exeiaoxanm:
+    resolution: {integrity: sha512-M9Ghgg+YBrHHPqPqCHvehzIyI8TM3uLcQ9AOpFr0x5S9k13qw+aoIkd0gLyU3d5JDh/UWdx7tdP+ZiZNL3kTyA==}
+    peerDependencies:
+      expo: '>=43.0'
+      expo-asset: '>=8.4'
+      expo-gl: '>=11.0'
+      react: '>=18.0'
+      react-dom: '>=18.0'
+      react-native: '>=0.64'
+      three: '>=0.133'
+    peerDependenciesMeta:
+      expo:
+        optional: true
+      expo-asset:
+        optional: true
+      expo-gl:
+        optional: true
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.18.9
+      '@types/react-reconciler': 0.26.7
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-reconciler: 0.27.0_react@18.2.0
+      react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
+      scheduler: 0.21.0
+      suspend-react: 0.0.8_react@18.2.0
+      three: 0.143.0
+      zustand: 3.7.2_react@18.2.0
+    dev: false
+
   /@rollup/plugin-alias/3.1.9_rollup@2.77.3:
     resolution: {integrity: sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==}
     engines: {node: '>=8.0.0'}
@@ -2120,7 +2160,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
     dev: true
 
   /@tailwindcss/typography/0.5.4_tailwindcss@3.1.8:
@@ -2131,7 +2171,7 @@ packages:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
     dev: true
 
   /@tanstack/query-core/4.1.2:
@@ -2286,6 +2326,10 @@ packages:
   /@types/lodash/4.14.182:
     resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
     dev: false
+
+  /@types/luxon/3.0.1:
+    resolution: {integrity: sha512-/LAvk1cMOJt0ghzMFrZEvByUhsiEfeeT2IF53Le+Ki3A538yEL9pRZ7a6MuCxdrYK+YNqNIDmrKU/r2nnw04zQ==}
+    dev: true
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
@@ -3870,7 +3914,7 @@ packages:
       css-selector-tokenizer: 0.8.0
       postcss: 8.4.16
       postcss-js: 4.0.0_postcss@8.4.16
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
     transitivePeerDependencies:
       - ts-node
     dev: false
@@ -6273,6 +6317,11 @@ packages:
       yallist: 4.0.0
     dev: true
 
+  /luxon/3.0.3:
+    resolution: {integrity: sha512-+EfHWnF+UT7GgTnq5zXg3ldnTKL2zdv7QJgsU5bjjpbH17E3qi/puMhQyJVYuCq+FRkogvB5WB6iVvUr+E4a7w==}
+    engines: {node: '>=12'}
+    dev: false
+
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
@@ -7280,7 +7329,7 @@ packages:
       daisyui: 2.22.0_ywsstkkounrjlah5ti55snp2aq
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:
@@ -7510,7 +7559,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@react-three/fiber': 8.3.1_f72olm6mn3unzgg4exeiaoxanm
+      '@react-three/fiber': 8.6.2_f72olm6mn3unzgg4exeiaoxanm
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       three: 0.143.0
@@ -8371,13 +8420,15 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
     dev: true
 
-  /tailwindcss/3.1.8_ts-node@10.9.1:
+  /tailwindcss/3.1.8_57znarxsqwmnneadci5z5fd5gu:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -8888,6 +8939,15 @@ packages:
       magic-string: 0.26.2
     dev: true
 
+  /vite-plugin-fonts/0.6.0_vite@2.9.15:
+    resolution: {integrity: sha512-dV6nnLEju8k5EmvlBH6egxkVZ+rgc5zWsJr9+cNRXBMEDnpRGHcZPI260UEDNg2yB99wSTNER2eduEvZFbMIGw==}
+    peerDependencies:
+      vite: ^2.0.0 || ^3.0.0
+    dependencies:
+      fast-glob: 3.2.11
+      vite: 2.9.15
+    dev: true
+
   /vite-plugin-html/3.2.0_vite@2.9.15:
     resolution: {integrity: sha512-2VLCeDiHmV/BqqNn5h2V+4280KRgQzCFN47cst3WiNK848klESPQnzuC3okH5XHtgwHH/6s1Ho/YV6yIO0pgoQ==}
     peerDependencies:
@@ -8919,10 +8979,12 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.12.3_vite@2.9.15:
+  /vite-plugin-pwa/0.12.3_mzzo5qdcantp6obyzixnpsysz4:
     resolution: {integrity: sha512-gmYdIVXpmBuNjzbJFPZFzxWYrX4lHqwMAlOtjmXBbxApiHjx9QPXKQPJjSpeTeosLKvVbNcKSAAhfxMda0QVNQ==}
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0-0
+      workbox-build: ^6.4.0
+      workbox-window: ^6.4.0
     dependencies:
       debug: 4.3.4
       fast-glob: 3.2.11
@@ -8932,7 +8994,6 @@ packages:
       workbox-build: 6.5.4
       workbox-window: 6.5.4
     transitivePeerDependencies:
-      - '@types/babel__core'
       - supports-color
     dev: true
 

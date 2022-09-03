@@ -17,7 +17,7 @@ import './styles/index.css'
 const queryClient = new QueryClient()
 
 // This is the chainId your dApp will work on.
-const activeChainId = ChainId.Mumbai;
+const activeChainId = ChainId.Mainnet;
 
 // eslint-disable-next-line unicorn/prefer-query-selector
 const container = document.getElementById("root");

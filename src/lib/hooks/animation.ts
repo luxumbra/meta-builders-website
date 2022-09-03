@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import type { MutableRefObject, RefObject} from 'react';
-import { useEffect, useRef } from 'react'
+import type { RefObject} from 'react';
+import { useEffect } from 'react'
 
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useIntersectionObserver, useIsClient, useSsr } from 'usehooks-ts'
+import { useIntersectionObserver, useSsr } from 'usehooks-ts'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -198,7 +198,6 @@ export function useSplashContentAnimation(
   triggerReference: RefObject<HTMLElement>,
 ): void {
   const {isBrowser} = useSsr()
-  const trigger = triggerReference.current
   const entry = useIntersectionObserver(triggerReference, {})
   const isVisible = !!entry?.isIntersecting
 

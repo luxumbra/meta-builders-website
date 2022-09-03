@@ -17,17 +17,18 @@
     --mask-image:  url('https://images8.alphacoders.com/559/559128.jpg');
     --hole-inset: url('/assets/images/masks/hole.svg');
     --mask: radial-gradient(
-    circle at var(--x, 50%) var(--y, 50%),
-    black var(--maskSize1, 0%) 0,
-    rgba(0 0 0 10%) calc(var(--maskSize1, 0%) + 0.1%),
-    transparent 0,
-    transparent var(--maskSize2, 0%),
-    rgba(0 0 0 10%) calc(var(--maskSize2, 0%) + 0.1%),
-    black var(--maskSize2, 0%),
-    rgba(0 0 0 10%) calc(var(--maskSize3, 0%) - 0.1%),
-    black var(--maskSize3, 0%),
-    rgba(0 0 0 10%) calc(var(--maskSize3, 0%) + 0.1%),
-    transparent 0);
+      circle at var(--x, 50%) var(--y, 50%),
+      black var(--maskSize1, 0%) 0,
+      rgba(0 0 0 10%) calc(var(--maskSize1, 0%) + 0.1%),
+      transparent 0,
+      transparent var(--maskSize2, 0%),
+      rgba(0 0 0 10%) calc(var(--maskSize2, 0%) + 0.1%),
+      black var(--maskSize2, 0%),
+      rgba(0 0 0 10%) calc(var(--maskSize3, 0%) - 0.1%),
+      black var(--maskSize3, 0%),
+      rgba(0 0 0 10%) calc(var(--maskSize3, 0%) + 0.1%),
+      transparent 0
+    );
     --shadow-mask: linear-gradient(#fff 0 0) right 10% top 50%/30% 80%;
 
     mask-image: var(--circle);
@@ -44,6 +45,67 @@
     h1, p {
       @apply pointer-events-auto;
     }
+
+    .scroll-in, .scroll-in2 {
+      h2 {
+        @apply relative overflow-y-visible z-10;
+
+        &::before, &::after {
+          content: '';
+          @apply absolute inline-flex items-center justify-center -inset-y-10 text-8xl gradient-text overflow-visible -z-10;
+        }
+
+        &::before {
+          content: '👷‍♂️';
+          @apply hidden -left-0 -top-20;
+        }
+
+        &::after {
+          content: '💜';
+          @apply -right-24 -bottom-8 rotate-12 text-white;
+        }
+      }
+    }
+
+    .scroll-in2 {
+      h2 {
+        &::after {
+          content: '🤔';
+          @apply -right-24 -bottom-8 rotate-12 text-white;
+        }
+      }
+    }
+
+    p {
+      @apply relative z-10;
+    }
+
+    a {
+      &.emoji-wrapped {
+        @apply relative z-10 gradient-text-alt text-shadow;
+
+        &:hover {
+          @apply gradient-text;
+        }
+
+        &::before, &::after {
+          content: '';
+          @apply absolute inline-flex items-center justify-center -inset-y-10;
+          @apply text-5xl gradient-text overflow-visible -z-10;
+        }
+
+        &::before {
+          content: '👆';
+          @apply -left-20 -bottom-20 -rotate-12 -scale-x-100;
+        }
+
+        &::after {
+          content: '👆';
+          @apply -right-20 -bottom-20 rotate-12;
+        }
+      }
+    }
+
   }
 
   .floating {

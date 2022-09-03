@@ -4,7 +4,7 @@ import LoadingOrError from '~mb/components/LoadingOrError'
 import Layout from '~mb/layouts/Default'
 import { imgixUrl } from '~mb/lib/constants'
 import '~mb/styles/index.css'
-import IntroSection from "~mb/sections/Intro";
+import MissionSection from "~mb/sections/Mission";
 import PartnersSection from "~mb/sections/Partners";
 import ServicesSection from "~mb/sections/Services";
 import SplashSection from "~mb/sections/Splash";
@@ -24,7 +24,7 @@ export function Home(): JSX.Element {
   return (
     <Layout content={meta}>
       <SplashSection />
-      <IntroSection />
+      <MissionSection />
       <ServicesSection />
       <PartnersSection />
       <TeamSection />

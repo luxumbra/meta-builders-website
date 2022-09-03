@@ -1,5 +1,4 @@
-import type { Json, Marketplace } from "@thirdweb-dev/sdk";
-import { JsonObject } from "@thirdweb-dev/sdk";
+import type { Marketplace } from "@thirdweb-dev/sdk";
 import type { BigNumber } from "ethers"
 
 export interface ITeamMember {
@@ -36,6 +35,7 @@ export interface IPackage {
   currency: string;
   currencySymbol: string;
   image: string;
+  animation_url: string;
   type: string;
   attributes: any;
   marketplace: Marketplace;
@@ -44,4 +44,12 @@ export interface IPackage {
 export interface IPackAttribute {
   value: string;
   trait_type: string;
+}
+
+export type IStar = {
+  x: number;
+  y: number;
+  z: number;
+  xPrev: number;
+  yPrev: number;
 }
