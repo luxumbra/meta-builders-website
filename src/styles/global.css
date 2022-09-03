@@ -171,6 +171,10 @@
     }
   }
 
+  .ribbon-button {
+    @apply absolute shadow-lg -top-4 -right-3;
+  }
+
   footer {
     @apply bg-transparent dark:bg-transparent;
 
