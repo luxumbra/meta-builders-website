@@ -1,4 +1,12 @@
 /* @font-face kit by Fonts2u (https://fonts2u.com) */
+
+/*
+* When in local dev, use the path `./assets/fonts/<font-file>`
+* instead of `./fonts/<font-file>`.
+* This is because Vite is adding `assets`
+* to the path when it builds the site and it breaks the fonts.
+*/
+
 @font-face {
   font-family:"Arizone Unicase Regular";
   src: url("./fonts/arizone-unicase.eot?") format("eot"),

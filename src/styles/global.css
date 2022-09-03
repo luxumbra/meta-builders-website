@@ -48,16 +48,16 @@
 
 
     &.fixed-header {
-      @apply bg-transparent !fixed top-0 bottom-auto;
+      @apply bg-transparent !fixed top-0 left-0 right-0 bottom-auto pt-8 xl:pt-4 ;
 
       &::after {
         content: '';
-        @apply absolute invisible dark:visible inset-0 bg-transparent md:dark:bg-glass-primary-900 z-0;
+        @apply absolute invisible dark:visible inset-0 dark:bg-glass-primary-900 z-0;
         @apply md:filter md:backdrop-blur-md
       }
 
       .brand {
-        @apply opacity-100 scale-100
+        @apply opacity-100 scale-100 -translate-y-1 xl:transform-none;
       }
 
 
@@ -163,6 +163,12 @@
     .section-lead {
       @apply  text-center font-extrabold text-xl 2xl:text-2xl dark:text-slate-50;
     }
+
+    & > div {
+      * {
+        @apply pointer-events-auto;
+      }
+    }
   }
 
   footer {
@@ -194,6 +200,21 @@
     background-clip: text;
 
     --webkit-text-fill-color: transparent;
+  }
+
+  .brand {
+    @apply font-display inline-flex items-center;
+    @apply gradient-text text-shadow  text-shadow-alt gradient-text tracking-tight font-bold capitalize;
+
+    span:last-child {
+      @apply hidden;
+    }
+
+    &--logo {
+      span:last-child {
+        @apply inline-block -translate-x-4 -translate-y-2 xl:-translate-y-3  2xl:-translate-x-6 2xl:-translate-y-3 w-12 h-12 xl:w-14 xl:h-14 2xl:w-20 2xl:h-20;
+      }
+    }
   }
 
   .text-shadow-alt {

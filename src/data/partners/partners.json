@@ -3,60 +3,72 @@
     "name": "Moloch Digital",
     "bio": "Some bio text about this partner...",
     "image": "molochdigital.png",
-    "url": "https://soon.tm/"
+    "url": "https://twitter.com/MolochDigital"
   },
   {
     "name": "Bolt",
     "bio": "Some bio text about this partner...",
     "image": "bolt.png",
-    "url": "https://soon.tm/"
+    "url": "https://www.boltevm.com/"
   },
   {
     "name": "NFT: The Movie™️",
     "bio": "Some bio text about this partner...",
     "image": "nftmovie.svg",
-    "url": "https://soon.tm/"
+    "url": "https://nftthemovie.com/"
   },
   {
     "name": "Bitcoin Consultants Worldwide",
     "bio": "Some bio text about this partner...",
     "image": "btcconsultants.svg",
-    "url": "https://soon.tm/"
-  },
-  {
-    "name": "Metaverse Realtor",
-    "bio": "Some bio text about this partner...",
-    "image": "mverserealtor.svg",
-    "url": "https://soon.tm/"
+    "url": "https://www.bitcoinconsultants.world/"
   },
   {
     "name": "MetaJax",
     "bio": "Some bio text about this partner...",
     "image": "metajax.svg",
-    "url": "https://soon.tm/"
+    "url": "https://metajaxjazzfest.com/"
   },
   {
     "name": "The Uplift",
     "bio": "Some bio text about this partner...",
     "image": "uplift-logo.png",
-    "url": "https://soon.tm/"
+    "url": "https://www.youtube.com/c/theUpLifters"
+  },
+  {
+    "name": "Third Planet Studio",
+    "bio": "Some bio text about this partner...",
+    "image": "thirdplanet.png",
+    "url": "https://thirdplanet.studio/"
   },
   {
     "name": "RaidGuild",
     "bio": "Some bio text about this partner...",
     "image": "raidguild.png",
-    "url": "https://soon.tm/"
+    "url": "https://www.raidguild.org/"
   },
   {
     "name": "PageDAO",
     "bio": "Some bio text about this partner...",
-    "image": "pagedao.png",
-    "url": "https://soon.tm/"
+    "image": "pagedao.svg",
+    "url": "https://pagedao.org/"
   },
   {
-    "name": "MetaGame",
+    "name": "Firefly",
     "bio": "Some bio text about this partner...",
-    "image": "metagame.png",
-    "url": "https://soon.tm/"
+    "image": "firefly.png",
+    "url": "https://fireflyedu.org/"
+  },
+  {
+    "name": "Hip Hop Heads",
+    "bio": "Some bio text about this partner...",
+    "image": "hiphopheads.png",
+    "url": "https://www.hiphopheads.io/"
+  },
+  {
+    "name": "Meta-Builders Core",
+    "bio": "Some bio text about this partner...",
+    "image": "metabuilderscore.png",
+    "url": ""
   }
 ]

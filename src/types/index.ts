@@ -35,6 +35,7 @@ export interface IPackage {
   currency: string;
   currencySymbol: string;
   image: string;
+  animation_url: string;
   type: string;
   attributes: any;
   marketplace: Marketplace;

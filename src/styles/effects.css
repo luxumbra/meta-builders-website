@@ -80,6 +80,32 @@
       @apply relative z-10;
     }
 
+    a {
+      &.emoji-wrapped {
+        @apply relative z-10 gradient-text-alt text-shadow;
+
+        &:hover {
+          @apply gradient-text;
+        }
+
+        &::before, &::after {
+          content: '';
+          @apply absolute inline-flex items-center justify-center -inset-y-10;
+          @apply text-5xl gradient-text overflow-visible -z-10;
+        }
+
+        &::before {
+          content: '👆';
+          @apply -left-20 -bottom-20 -rotate-12 -scale-x-100;
+        }
+
+        &::after {
+          content: '👆';
+          @apply -right-20 -bottom-20 rotate-12;
+        }
+      }
+    }
+
   }
 
   .floating {

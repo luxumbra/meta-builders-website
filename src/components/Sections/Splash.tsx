@@ -188,8 +188,8 @@ export default function SplashSection(): JSX.Element {
                     You want this! Start today!
                   </span>
                 </h2>
-                <p className="font-black text-xl 2xl:text-3xl gradient-text-alt text-fill text-center xl:text-center -translate-y-4 lg:-translate-y-6 2xl:-translate-y-0 text-shadow uppercase tracking-tighter">
-                 👆 Connect to buy! 👆</p>
+                <p className="relative font-extrabold text-xl 2xl:text-5xl gradient-text-alt text-fill text-center xl:text-center -translate-y-4 lg:-translate-y-6 2xl:-translate-y-4 text-shadow tracking-tighter">
+                <HashLink to="#pricing" className="emoji-wrapped">Connect to buy!</HashLink></p>
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ import {useEventListener, useMediaQuery, useIntersectionObserver, useLockedBody 
 import { v4 as uuid } from "uuid";
 
 import { ButtonWeb3Connect } from "~mb/components/Buttons";
-import {links} from "~mb/components/Default/Footer";
+import {CopyrightNotice, links} from "~mb/components/Default/Footer";
 
 const navItems = [
   { title: "Mission", url: "#mission" },
@@ -138,8 +138,13 @@ export default function Header(): JSX.Element {
         >
           <h1 className="sr-only">Meta-Builders</h1>
           <span
-            className="brand font-display inline-flex items-center text-xxs xl:text-xs 2xl:text-sm text-shadow-alt gradient-text tracking-tight font-bold hover:gradient-text capitalize dark:hover:text-shadow-alt-teal z-[100]"
-          ><span>Meta-Builders</span></span>
+            className="brand brand--logo text-xxs xl:text-xs 2xl:text-sm dark:hover:text-shadow-alt-teal z-[100]"
+          >
+            <span>Meta-Builders</span>
+            <span>
+              <img src="assets/images/logo.svg" width="20px" height="20px" className="w-auto h-full object-contain" alt="Meta-Builders logo" />
+            </span>
+          </span>
         </HashLink>
 
         <div ref={desktopMenu} className="desktop-menu font-sans hidden sm:flex items-center self-end z-10 ">
@@ -207,7 +212,7 @@ export default function Header(): JSX.Element {
                 </li>
               ))}
             </ul>
-
+              <CopyrightNotice />
             </div>
           </div>
         </div>

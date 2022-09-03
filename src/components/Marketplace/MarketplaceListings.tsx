@@ -2,8 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useMarketplace } from "@thirdweb-dev/react";
 import type { AuctionListing, DirectListing } from "@thirdweb-dev/sdk";
-import { utils } from "ethers";
-import { formatEther } from "ethers/lib/utils";
 import { v4 as uuid } from "uuid";
 
 import { PackageCard } from "../Cards";
@@ -71,6 +69,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
             currency: currencyContractAddress,
             currencySymbol: buyoutCurrencyValuePerToken.symbol,
             image: asset.image,
+            animation_url: asset.animation_url,
             type: asset.type,
             attributes: asset.attributes,
             marketplace,
@@ -81,7 +80,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
         })
         ) : (
           <div className="flex flex-col items-center justify-center">
-            <p className="text-xl text-teal-600">No listings</p>
+            <p className="text-5xl text-teal-600 font-sans font-extrabold">No listings</p>
           </div>
       )}
     </div>

@@ -78,6 +78,7 @@ export function ContentSection({
           px-3
           md:px-0
           z-10
+          pointer-events-none
           '
       >
         <div className='flex flex-col items-center'>

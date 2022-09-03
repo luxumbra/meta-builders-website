@@ -1,5 +1,6 @@
 
 import { Icon } from "@iconify/react";
+import { DateTime } from "luxon";
 import { HashLink } from "react-router-hash-link";
 import { v4 as uuid } from "uuid";
 
@@ -28,34 +29,27 @@ export const links = [
   },
 ];
 
+export function CopyrightNotice(): JSX.Element {
+  const dt = DateTime.local();
+  const currentYear = dt.year;
+
+  return <p className="text-xs leadIn invisible xl:self-end gradient-text">Copyright &copy; {currentYear} Meta-Builders</p>
+}
+
 export function Footer(): JSX.Element {
   const elementId = ".leadIn";
   const triggerId = "#footer";
 
   useScrollReveal(elementId, triggerId);
 
-
-
   return (
-    <footer id="footer" className="hidden lg:flex relative overflow-y-hidden  flex-col items-center justify-center h-32 lg:h-64 w-full z-10">
-      <div className="footer-main w-3/4  leadIn invisible">
+    <footer id="footer" className="hidden lg:flex relative overflow-y-hidden  flex-col items-center justify-center h-32 lg:h-64 w-full pointer-events-none z-10">
+      <div className="footer-main w-3/4  leadIn invisible pointer-events-auto">
         <HashLink to="/#home" className="font-black font-display text-sm text-shadow-alt"><strong className="gradient-text">Meta-Builders</strong></HashLink>
       </div>
-      <div className="footer-aside w-3/4 flex flex-col lg:flex-row items-center justify-between">
-        <p className="text-xs leadIn invisible self-end">Copyright &copy; 2022 Meta-Builders</p>
-        {/* <div>
-          <ul className="hidden lg:grid lg:leadIn invisible  grid-cols-3 gap-x-6 gap-y-1">
-            <li className=""><a href="/#">Link to somewhere</a></li>
-            <li className=""><a href="/#">Link to somewhere</a></li>
-            <li className=""><a href="/#">Link to somewhere</a></li>
-            <li className=""><a href="/#">Link to somewhere</a></li>
-            <li className=""><a href="/#">Link to somewhere</a></li>
-            <li className=""><a href="/#">Link to somewhere</a></li>
-            <li className=""><a href="/#">Link to somewhere</a></li>
-            <li className=""><a href="/#">Link to somewhere</a></li>
-            <li className=""><a href="/#">Link to somewhere</a></li>
-          </ul>
-        </div> */}
+      <div className="footer-aside w-3/4 flex flex-col lg:flex-row items-center justify-between pointer-events-auto">
+        <CopyrightNotice />
+
         <ul className="mb-urls relative grid grid-cols-4 w-full gap-4 lg:w-1/4">
           {links.map((link) => (
             <li key={uuid()} className="leadIn invisible">
