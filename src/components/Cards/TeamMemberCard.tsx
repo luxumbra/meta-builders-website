@@ -67,9 +67,9 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
          </div>
         <div className="inline-flex gap-2 flex-row justify-self-end items-center flex-shrink-0 translate-y-5 transition-transform  group-hover:translate-y-0 -translate-x-6 group-hover:translate-x-0 scale-0 group-hover:scale-100">
 
-              {twitter ? <a href={twitter} title={`${name} on Twitter`} className="text-xs text-violet-700 dark:text-white badge badge-link">Twitter</a> : undefined}
+              {twitter ? <a href={twitter} title={`${name} on Twitter`} className="text-xs text-violet-700 dark:text-white badge badge-link"target="_blank" rel="noopener noreferrer">Twitter</a> : undefined}
 
-              {linkedin ? <a href={linkedin} title={`${name} on ${isMyMeta ? 'MyMeta Profile' : 'LinkedIn'}`} className="text-xs text-violet-700 dark:text-white badge badge-link">{isMyMeta ? 'MyMeta Profile' : 'LinkedIn'}</a> : undefined}
+              {linkedin ? <a href={linkedin} title={`${name} on ${isMyMeta ? 'MyMeta Profile' : 'LinkedIn'}`} className="text-xs text-violet-700 dark:text-white badge badge-link" target="_blank" rel="noopener noreferrer">{isMyMeta ? 'MyMeta Profile' : 'LinkedIn'}</a> : undefined}
 
               {email ? <a href={email} title={`${name} on Email`} className="text-xs text-violet-700 dark:text-white badge badge-link">Email</a> : undefined}
 
