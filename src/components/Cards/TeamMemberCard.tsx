@@ -69,7 +69,7 @@ export function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element 
 
               {twitter ? <a href={twitter} title={`${name} on Twitter`} className="text-xxs 2xl:text-xs text-violet-700 dark:text-white badge badge-link"target="_blank" rel="noopener noreferrer">Twitter</a> : undefined}
 
-              {linkedin ? <a href={linkedin} title={`${name} on ${isMyMeta ? 'MyMeta Profile' : 'LinkedIn'}`} className="text-xxs 2xl:text-xs text-violet-700 dark:text-white badge badge-link" target="_blank" rel="noopener noreferrer">{isMyMeta ? 'MyMeta Profile' : 'LinkedIn'}</a> : undefined}
+              {linkedin ? <a href={linkedin} title={`${name} on ${isMyMeta ? 'MyMeta' : 'LinkedIn'}`} className="text-xxs 2xl:text-xs text-violet-700 dark:text-white badge badge-link" target="_blank" rel="noopener noreferrer">{isMyMeta ? 'MyMeta Profile' : 'LinkedIn'}</a> : undefined}
 
               {email ? <a href={email} title={`${name} on Email`} className="text-xxs 2xl:text-xs text-violet-700 dark:text-white badge badge-link">Email</a> : undefined}
 

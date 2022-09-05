@@ -1,16 +1,13 @@
-import { lazy, Suspense } from 'react'
-
-import LoadingOrError from '~mb/components/LoadingOrError'
 import Layout from '~mb/layouts/Default'
 import { imgixUrl } from '~mb/lib/constants'
 import '~mb/styles/index.css'
+import BuySection from '~mb/sections/Buy'
 import MissionSection from "~mb/sections/Mission";
 import PartnersSection from "~mb/sections/Partners";
 import ServicesSection from "~mb/sections/Services";
 import SplashSection from "~mb/sections/Splash";
 import TeamSection from "~mb/sections/Team";
 
-const BuySection = lazy(async () => import('~mb/sections/Buy'))
 
 
 export function Home(): JSX.Element {
@@ -28,9 +25,7 @@ export function Home(): JSX.Element {
       <ServicesSection />
       <PartnersSection />
       <TeamSection />
-      <Suspense fallback={<LoadingOrError message='Loading...' />}>
-        <BuySection />
-      </Suspense>
+      <BuySection />
     </Layout>
   )
 }
