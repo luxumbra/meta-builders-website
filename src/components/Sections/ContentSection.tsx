@@ -26,17 +26,18 @@ export function ContentSection({
   const animatedElementReference = useRef<HTMLDivElement>(null)
   const entry = useIntersectionObserver(animatedElementReference, {})
   const isVisible = !!entry?.isIntersecting
+  console.log({ id, isVisible, el: animatedElementReference.current });
 
-  useEffect(() => {
-    // gsap.set(animatedElementReference.current, { opacity: 0, xPercent: -10 })
-    if (!animatedElementReference.current) return
-    gsap.to(animatedElementReference.current, {
-      opacity: isVisible ? 1 : 0,
-      duration: 0.2,
-      delay: 0.2,
-      ease: "power4.inOut",
-    })
-  }, [isVisible]);
+  // useEffect(() => {
+  //   // gsap.set(animatedElementReference.current, { opacity: 0, xPercent: -10 })
+  //   if (!animatedElementReference.current) return
+  //   gsap.to(animatedElementReference.current, {
+  //     opacity: isVisible ? 1 : 0,
+  //     duration: 0.2,
+  //     delay: 0.2,
+  //     ease: "power4.inOut",
+  //   })
+  // }, [isVisible]);
 
 
 
@@ -64,7 +65,7 @@ export function ContentSection({
     >
       <div
         ref={animatedElementReference}
-        className='
+        className={`
           relative
           py-20
           xl:py-32
@@ -79,7 +80,7 @@ export function ContentSection({
           md:px-0
           z-10
           pointer-events-none
-          '
+          `}
       >
         <div className='flex flex-col items-center'>
           <h2 className='gradient-text text-shadow dark:text-shadow-alt text-center font-extrabold tracking-tight text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl'>

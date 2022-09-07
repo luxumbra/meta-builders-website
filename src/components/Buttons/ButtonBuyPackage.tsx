@@ -19,7 +19,7 @@ import { ButtonWeb3Connect } from './ButtonWeb3Connect'
 
 import { Portal } from '~mb/components/Portal'
 import Toast from '~mb/components/Toast'
-import { polygonScanApiEndpoint } from '~mb/lib/constants';
+import { etherscanApiEndpoint } from '~mb/lib/constants';
 import { shortenAddress } from '~mb/lib/helpers'
 
 
@@ -85,15 +85,18 @@ export function BuyPackackagePopUp(
       // for some reason matic in ThirdWeb uses 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE which isn't a contract address and it doesn't work with balanceOf so I'm getting balances from polygonscan.
       // const balance = symbol !== 'MATIC' ? await tokenData.balanceOf(address) : undefined
       const nativeToken = '0xD76b5c2A23ef78368d8E34288B5b65D616B746aE'
-      const tokenToCheck = symbol === 'MATIC' ? nativeToken : contract
+      const tokenToCheck = symbol === 'ETH' ? nativeToken : contract
+      console.log('tokenToCheck', tokenToCheck);
+
       const balanceResponse = await fetch(
-        `${polygonScanApiEndpoint}&module=account&action=tokenbalance&contractaddress=${tokenToCheck}&address=${address}`)
+        `${etherscanApiEndpoint}&module=account&action=tokenbalance&contractaddress=${tokenToCheck}&address=${address}`)
       const data = await balanceResponse.json()
       const balance = {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         displayValue: utils.formatUnits(data.result, chain?.nativeCurrency?.decimals),
         value: BigNumber.from(data.result)
       } as UserBalance
+      console.log('balance', {data, balance});
 
       return balance
 
@@ -197,12 +200,13 @@ export function BuyPackackagePopUp(
                 id: uuid(),
                 type: 'error',
                 title: `Not enough funds`,
-                description: `You need at least ${price} ${currencySymbol} to buy ${name}`,
+                description: `You need at least ${price} ${currencySymbol} to buy ${name}. You have ${displayValue} ${currencySymbol}.`,
                 duration: 3000
               })
               setIsLoading(false)
             }
           }
+          setIsLoading(false)
 
         }).catch((error: Error) => {
           console.error('tokenBalance error', error);

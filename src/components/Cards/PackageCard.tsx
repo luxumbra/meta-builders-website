@@ -1,4 +1,7 @@
 
+import type { Dispatch, SetStateAction } from "react";
+import { useState } from "react";
+
 import { Icon } from "@iconify/react";
 import MuxVideo from "@mux/mux-video-react";
 import { useMarketplace } from "@thirdweb-dev/react";
@@ -59,12 +62,33 @@ const includedServices = (traits: IPackage['attributes']):
   }
 }
 
+export function PackageVideo({ url, name, isOpen }: { url: string, name: string, isOpen: boolean }): JSX.Element {
+  const animationId = uuid();
+
+  return (
+    <div className={`absolute ${isOpen ? 'translate-y-0 opacity-100 z-50' : 'translate-y-32 opacity-0 -z-10'} inset-0 transition-all duration-500 pt-0 !mt-0 flex flex-col items-center justify-center w-full h-full package-video`}>
+      <MuxVideo
+        className="absolute inset-0 w-full h-full z-0 object-cover mt-0"
+        controls
+        src={url}
+        autoPlay={isOpen}
+        loop={false}
+        muted
+        streamType="on-demand"
+        metadata={{
+          video_id: animationId,
+          video_title: name,
+        }}
+      />
+    </div>
+  );
+}
 
 export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const { pack } = properties;
-  const { id, name, description, displayPrice, currency, currencySymbol, image, animation_url, attributes, value } = pack;
+  const { id, name, description, displayPrice, currency, currencySymbol, image, animation_url: animationURL, attributes, value } = pack;
   const marketplace = useMarketplace(marketPlaceContract);
-  const {services, consultingHours } = includedServices(attributes);
+  const { services, consultingHours } = includedServices(attributes);
   // const attributeJson = JSON.parse(attributes);
   const qty = 1
   const buyPackInfo = {
@@ -78,23 +102,17 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
     quantityToBuy: qty,
     contract: marketPlaceContract,
   } as BuyPackOptions
+  const [videoIsOpen, setVideoIsOpen] = useState(false);
 
+  const onToggleVideo = (): void => {
+    setVideoIsOpen(!videoIsOpen);
+  }
   // console.log('buyPackInfo', buyPackInfo);
 
   return (
     <div
       className="package-card group relative flex flex-col flex-1 items-center justify-start h-full space-y-2 2xl:space-y-5 p-3 2xl:p-5 min-h-[400px]  overflow-hidden  z-10"
     >
-      {animation_url ? (
-        <MuxVideo
-          className="absolute inset-0 w-full h-full z-0 grayscale dark:grayscale-0"
-          src={animation_url}
-          autoPlay
-          loop
-          muted
-          streamType="on-demand"
-        />
-      ) : (
       <Imgix
         src={image}
         width={300}
@@ -104,39 +122,39 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
           fit: "crop",
           crop: "edges",
           auto: "format",
-          "blend-mode": "burn",
-          q: "80",
+          // "blend-mode": "burn",
+          q: "100",
         }}
         htmlAttributes={{
           alt: name,
           loading: "lazy",
         }}
       />
-      )}
-      <div className="absolute inset-0 bg-slate-800 opacity-[97%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />
+
+      <div className="absolute inset-0 bg-slate-800 opacity-[90%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />
       <div className="relative flex flex-col space-x-2 2xl:space-x-5 space-y-2 2xl:space-y-3 flex-grow w-full px-0 text-violet-50 mb-5 z-[1]">
         <h3 className="text-md xl:text-lg font-extrabold text-center uppercase text-violet-50">
           {name}
         </h3>
         <PriceDisplay price={displayPrice} currency={currencySymbol} />
         <p className="text-xs 4xl:text-sm leading-tight">{description}</p>
-        <ul className="flex flex-col space-y-3">
+        <ul className="flex flex-col space-y-1">
           {consultingHours.length > 0 ? consultingHours.map(hours => (
-              <li key={uuid()} className="flex items-center space-x-2 ">
+            <li key={uuid()} className="inline-flex items-center space-x-2 space-y-0">
               <Icon icon="lucide:calendar-clock" className="text-teal-400 text-xs 2xl:text-sm w-5 h-5" />
-              <span className="text-violet-100 font-normal text-sm 3xl:text-base text-left uppercase">
-              {hours.trait_type}:</span> <span className="text-violet-200 text-lg">{hours.value}</span>
+              <span className="text-violet-100 font-normal text-sm 3xl:text-sm text-left uppercase">
+                {hours.trait_type}:</span> <span className="text-violet-50 text-base">{hours.value}</span>
 
-              </li>
+            </li>
           )) : undefined}
           {services.length > 0 ? services.map(service => (
-              <li key={uuid()} className="flex items-center space-x-2 space-y-0">
+            <li key={uuid()} className="inline-flex items-center space-x-2 space-y-0">
               <Icon icon="ic:baseline-check" className="text-teal-400 text-xs 2xl:text-sm w-5 h-5" />
               <span className="text-violet-100 font-normal text-left">
-              {service.value}
+                {service.value}
               </span>
-              </li>
-            )) : undefined}
+            </li>
+          )) : undefined}
         </ul>
       </div>
       <div className="items-center justify-center flex-shrink min-w-full w-full text-center z-10">
@@ -150,6 +168,18 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
           <ButtonBuyPackage pack={buyPackInfo} />
         </div>
       </div>
+      {animationURL ? (
+        <>
+          <button type="button" aria-label="Toggle video" onClick={onToggleVideo} className="ribbon-button w-auto btn btn-ghost shadow-none hover:bg-transparent bg-transparent z-[100] flex items-center justify-center">
+            <div className="tooltip tooltip-left tooltip-primary font-normal normal-case" data-tip={`${videoIsOpen ? 'Close' : 'Open'} NFT viewer`}>
+              <Icon icon="bx:movie-play" className={`${videoIsOpen ? 'text-teal-600' : 'text-violet-600'} transition-colors duration-300 text-3xl`} />
+            </div>
+          </button>
+
+          <PackageVideo url={animationURL} name={name} isOpen={videoIsOpen} />
+        </>
+      ) : undefined}
     </div>
   )
 }
+

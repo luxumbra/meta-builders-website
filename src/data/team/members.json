@@ -6,11 +6,11 @@
     "linkedin": "https://www.linkedin.com/in/mike-smart-a3b037176",
     "twitter": "https://twitter.com/system_payment",
     "role": "Founder",
-    "email": "mailto:hello@meta-builders.com"
+    "email": ""
   },
   {
     "name": "Ben Dempsey",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "",
     "linkedin": "",
     "twitter": "",
@@ -19,16 +19,16 @@
   },
   {
     "name": "Musashi",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "musashi.jpg",
-    "linkedin": "",
+    "linkedin": "https://metagame.wtf/player/musashi13",
     "twitter": "https://twitter.com/Musashi14790940",
     "role": "Executive Operations Manager",
     "email": ""
   },
   {
     "name": "koH",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "koh.jpg",
     "linkedin": "",
     "twitter": "https://twitter.com/Crypto_koH",
@@ -37,16 +37,16 @@
   },
   {
     "name": "b0gie",
-    "bio": "I can haz bio?",
+    "bio": "𝐢 𝐫 🆂🅸🅼🅿🅻🅴😅， Ⓜ️🅸🅽🅸🅼🅰🅻🅸🆂🆃🅸🅲， 3️⃣🆃🅷🅸🅽🅺🅴🆁🧠. 𝐢 𝐫 𝐭𝐞𝐜𝐡🧞𝐬𝐡𝐚𝐦𝐚𝐧 横も，𝐧𝐢𝐜𝐞𝐬𝐭𝟎𝐧𝐍𝐞𝐭。ॐ ｗｅ　ａｒｅ　ｏｎｅ ϟ",
     "image": "b0gie.png",
-    "linkedin": "",
-    "twitter": "",
-    "role": "Executive Tech Shaman",
+    "linkedin": "https://metagame.wtf/player/b0gie",
+    "twitter": "https://twitter.com/mcjb0gie",
+    "role": "Tech Shaman",
     "email": ""
   },
   {
     "name": "bobcat",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "bobcat.png",
     "linkedin": "",
     "twitter": "",
@@ -55,7 +55,7 @@
   },
   {
     "name": "PlanetBinx",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "",
     "linkedin": "",
     "twitter": "",
@@ -64,7 +64,7 @@
   },
   {
     "name": "Girlboxer",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "",
     "linkedin": "",
     "twitter": "",
@@ -73,34 +73,34 @@
   },
   {
     "name": "Aperion",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "aperion.jpg",
     "linkedin": "",
     "twitter": "",
-    "role": "Executive Project Manager",
+    "role": "Project Manager",
     "email": ""
   },
   {
     "name": "KittySlasher",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "",
     "linkedin": "",
     "twitter": "",
-    "role": "Executive Project Manager",
+    "role": "Project Manager",
     "email": ""
   },
   {
     "name": "Misanth",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "",
-    "linkedin": "",
+    "linkedin": "https://metagame.wtf/player/misanth",
     "twitter": "",
-    "role": "Executive Project Manager",
+    "role": "Project Manager",
     "email": ""
   },
   {
     "name": "epicdylan",
-    "bio": "I can haz bio?",
+    "bio": "",
     "image": "",
     "linkedin": "",
     "twitter": "",
@@ -111,9 +111,9 @@
     "name": "luxumbra",
     "bio": "Many years working as a front-end developer and also worked in traditional construction, lux has been full-on Web3 for 2 years. Loves working with TypeScript, React, Three.js, and other fun things.",
     "image": "luxumbra.gif",
-    "linkedIn": "",
+    "linkedin": "https://metagame.wtf/player/luxumbra",
     "twitter": "https://twitter.com/bdgrdev",
-    "role": "Executive Development Manager",
+    "role": "Front-end developer / Designer",
     "email": ""
   }
 ]
