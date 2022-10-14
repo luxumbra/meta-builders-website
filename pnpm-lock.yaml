@@ -94,6 +94,7 @@ specifiers:
   vite-plugin-html: ^3.2.0
   vite-plugin-image-presets: ^0.3.2
   vite-plugin-pwa: ^0.12.3
+  vite-plugin-radar: ^0.5.0
   vite-tsconfig-paths: ^3.5.0
   wagmi: ^0.5.11
   zod: ^3.17.9
@@ -198,6 +199,7 @@ devDependencies:
   vite-plugin-fonts: 0.6.0_vite@2.9.15
   vite-plugin-image-presets: 0.3.2
   vite-plugin-pwa: 0.12.3_mzzo5qdcantp6obyzixnpsysz4
+  vite-plugin-radar: 0.5.0_vite@2.9.15
   vite-tsconfig-paths: 3.5.0_vite@2.9.15
 
 packages:
@@ -2040,8 +2042,8 @@ packages:
       zustand: 3.7.2_react@18.2.0
     dev: false
 
-  /@react-three/fiber/8.6.2_f72olm6mn3unzgg4exeiaoxanm:
-    resolution: {integrity: sha512-M9Ghgg+YBrHHPqPqCHvehzIyI8TM3uLcQ9AOpFr0x5S9k13qw+aoIkd0gLyU3d5JDh/UWdx7tdP+ZiZNL3kTyA==}
+  /@react-three/fiber/8.8.10_f72olm6mn3unzgg4exeiaoxanm:
+    resolution: {integrity: sha512-4Uxo4wxWkIPGFsRVkdILi/ANV/161KBSmqeMhaTpPjbjL+gNpC7z1vTUs7BI45iKcS+EhwUPUcFUxLnxelQbGw==}
     peerDependencies:
       expo: '>=43.0'
       expo-asset: '>=8.4'
@@ -2064,6 +2066,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.18.9
       '@types/react-reconciler': 0.26.7
+      its-fine: 1.0.6_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-reconciler: 0.27.0_react@18.2.0
@@ -2388,6 +2391,12 @@ packages:
 
   /@types/react-reconciler/0.26.7:
     resolution: {integrity: sha512-mBDYl8x+oyPX/VBb3E638N0B7xG+SPk/EAMcVPeexqus/5aTpTphQi0curhhshOqRrc9t6OPoJfEUkbymse/lQ==}
+    dependencies:
+      '@types/react': 18.0.17
+    dev: false
+
+  /@types/react-reconciler/0.28.0:
+    resolution: {integrity: sha512-5cjk9ottZAj7eaTsqzPUIlrVbh3hBAO2YaEL1rkjHKB3xNAId7oU8GhzvAX+gfmlfoxTwJnBjPxEHyxkEA1Ffg==}
     dependencies:
       '@types/react': 18.0.17
     dev: false
@@ -5994,6 +6003,15 @@ packages:
       whatwg-fetch: 3.6.2
     dev: true
 
+  /its-fine/1.0.6_react@18.2.0:
+    resolution: {integrity: sha512-VZJZPwVT2kxe5KQv+TxCjojfLiUIut8zXDNLTxcM7gJ/xQ/bSPk5M0neZ+j3myy45KKkltY1mm1jyJgx3Fxsdg==}
+    peerDependencies:
+      react: '>=18.0'
+    dependencies:
+      '@types/react-reconciler': 0.28.0
+      react: 18.2.0
+    dev: false
+
   /jake/10.8.5:
     resolution: {integrity: sha512-sVpxYeuAhWt0OTWITwT98oyV0GsXyMlXCF+3L1SuafBVUIr/uILGRB+NqwkzhgXKvoJpDIpQvqkUALgdmQsQxw==}
     engines: {node: '>=10'}
@@ -7559,7 +7577,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@react-three/fiber': 8.6.2_f72olm6mn3unzgg4exeiaoxanm
+      '@react-three/fiber': 8.8.10_f72olm6mn3unzgg4exeiaoxanm
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       three: 0.143.0
@@ -8995,6 +9013,14 @@ packages:
       workbox-window: 6.5.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vite-plugin-radar/0.5.0_vite@2.9.15:
+    resolution: {integrity: sha512-3QiXReftTGeDd9o6o+z4q+bTEb1xJr9O5IE/YbcrTcZtaiDwQuZkXb0v3XwhFVcODd2HqEcwLYTmz0n+xqrspQ==}
+    peerDependencies:
+      vite: ^2.0.0 || ^3.0.0
+    dependencies:
+      vite: 2.9.15
     dev: true
 
   /vite-tsconfig-paths/3.5.0_vite@2.9.15:

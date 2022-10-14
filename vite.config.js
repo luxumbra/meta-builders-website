@@ -9,6 +9,7 @@ import { imagetools } from 'vite-imagetools'
 import imagePresets, { widthPreset } from 'vite-plugin-image-presets'
 import alias from '@rollup/plugin-alias'
 import { VitePluginFonts } from 'vite-plugin-fonts'
+import ViteRadar from 'vite-plugin-radar'
 
 const root = path.resolve(__dirname, 'src')
 const outdir = path.resolve(__dirname, 'dist')
@@ -38,6 +39,12 @@ const defaultConfig = {
     //     preload: true,
     //   }
     // }),
+    ViteRadar({
+      // Google Analytics tag injection
+      analytics: {
+        id: 'G-36FWMBEFZR',
+      },
+    }),
     eslintPlugin()],
   resolve: {
     alias: [
