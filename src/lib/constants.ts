@@ -10,3 +10,5 @@ export const polygonscanApiKey = import.meta.env.VITE_POLYGONSCAN_API_KEY as str
 export const polygonscanApiEndpoint = `https://api-testnet.polygonscan.com/api?apikey=${polygonscanApiKey}&tag=latest`
 export const etherscanApiKey = import.meta.env.VITE_ETHERSCAN_API_KEY as string
 export const etherscanApiEndpoint = `https://api.etherscan.io/api?apikey=${etherscanApiKey}&tag=latest`
+export const userbackToken = import.meta.env.VITE_USERBACK_TOKEN as string
+// export const sentryAuthToken = import.meta.env.VITE_SENTRY_AUTH_TOKEN as string
