@@ -1,18 +1,19 @@
+/* eslint-disable unicorn/prefer-module */
 /** @type {import('vite').UserConfig} */
 import * as path from 'node:path'
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tsconfigPaths from 'vite-tsconfig-paths';
+
 import eslintPlugin from '@nabla/vite-plugin-eslint'
-import reactRefresh from '@vitejs/plugin-react-refresh'
-import { imagetools } from 'vite-imagetools'
-import imagePresets, { widthPreset } from 'vite-plugin-image-presets'
 import alias from '@rollup/plugin-alias'
-import { VitePluginFonts } from 'vite-plugin-fonts'
+import react from "@vitejs/plugin-react";
+import reactRefresh from '@vitejs/plugin-react-refresh'
+import { defineConfig } from "vite";
 import ViteRadar from 'vite-plugin-radar'
+import tsconfigPaths from 'vite-tsconfig-paths';
+
 
 const root = path.resolve(__dirname, 'src')
 const outdir = path.resolve(__dirname, 'dist')
+
 
 const defaultConfig = {
   base: './',
@@ -65,7 +66,7 @@ const defaultConfig = {
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
   if (command === "serve") {
-    //dev config
+    // dev config
     return {
       ...defaultConfig,
       define: {
@@ -77,6 +78,6 @@ export default defineConfig(({ command }) => {
     };
   }
 
-  //prod config
+  // prod config
   return { ...defaultConfig, define: { global: "globalThis" } };
 });

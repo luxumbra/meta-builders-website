@@ -114,9 +114,9 @@ module.exports = {
         }
       },
       fontFamily: {
-        'sans': ['Exo\\ 2', 'Ubuntu', 'Roboto', 'sans-serif'],
-        'display': ['"Arizone Unicase Regular"', 'Exo\\ 2', 'Ubuntu', 'sans-serif'],
-        'heading': ['Exo\\ 2', 'Ubuntu', 'Roboto', 'sans-serif'],
+        'sans': ['Exo\\ 2', 'sans-serif'],
+        'display': ['"Arizone Unicase Regular"', 'Exo\\ 2', 'sans-serif'],
+        'heading': ['Exo\\ 2', 'sans-serif'],
         'body': ['Ubuntu', 'Roboto', 'sans-serif'],
         'serif': ['serif']
       },
