@@ -33,8 +33,6 @@ const container = document.getElementById("root");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 if (container?.hasChildNodes()) {
-  console.log('hydrateRoot', {config});
-
   hydrateRoot(
     container,
     <StrictMode>
@@ -58,7 +56,6 @@ if (container?.hasChildNodes()) {
     </StrictMode>
   );
 } else {
-  console.log('render', {config});
   root.render(
     <StrictMode>
       <HoneybadgerErrorBoundary honeybadger={honeybadger}>

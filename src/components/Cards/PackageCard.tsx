@@ -104,12 +104,13 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const onToggleVideo = (): void => {
     setVideoIsOpen(!videoIsOpen);
   }
-  // console.log('buyPackInfo', buyPackInfo);
+  console.log('buyPackInfo', {pack, buyPackInfo});
 
   return (
     <div
       className="package-card group relative flex flex-col flex-1 items-center justify-start h-full space-y-2 2xl:space-y-5 p-3 2xl:p-5 min-h-[400px]  overflow-hidden  z-10"
     >
+      {image && image !== '' ? (
       <Imgix
         src={image}
         width={300}
@@ -127,7 +128,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
           loading: "lazy",
         }}
       />
-
+      ) : undefined}
       <div className="absolute inset-0 bg-slate-800 opacity-[90%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />
       <div className="relative flex flex-col space-x-2 2xl:space-x-5 space-y-2 2xl:space-y-3 flex-grow w-full px-0 text-violet-50 mb-5 z-[1]">
         <h3 className="text-md xl:text-lg font-extrabold text-center uppercase text-violet-50">

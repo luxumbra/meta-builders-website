@@ -1,4 +1,3 @@
-import { HashLink } from "react-router-hash-link";
 import { v4 as uuid } from "uuid";
 
 import { TeamMemberCard } from '~mb/cards/index';
