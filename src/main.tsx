@@ -22,7 +22,7 @@ const activeChainId = ChainId.Mainnet;
 const config = {
   apiKey: import.meta.env.VITE_HONEYBADGER_API_KEY,
   environment: 'production',
-  debug: true,
+  // debug: true,
 }
 
 const honeybadger = Honeybadger.configure(config)
