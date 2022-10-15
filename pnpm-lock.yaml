@@ -7,6 +7,8 @@ specifiers:
   '@nabla/vite-plugin-eslint': ^1.4.1
   '@react-three/fiber': ^8.2.2
   '@rollup/plugin-alias': ^3.1.9
+  '@sentry/react': ^7.15.0
+  '@sentry/tracing': ^7.15.0
   '@tailwindcss/forms': ^0.5.2
   '@tailwindcss/typography': ^0.5.4
   '@tanstack/react-query': ^4.0.10
@@ -106,6 +108,8 @@ dependencies:
   '@mux/mux-video-react': 0.5.1_76am3hp3mjvgy3cckgdecixdi4
   '@react-three/fiber': 8.3.1_f72olm6mn3unzgg4exeiaoxanm
   '@rollup/plugin-alias': 3.1.9_rollup@2.77.3
+  '@sentry/react': 7.15.0_react@18.2.0
+  '@sentry/tracing': 7.15.0
   '@tanstack/react-query': 4.1.0_biqbaboplfbrettd7655fr4n2y
   '@thirdweb-dev/react': 2.4.1_v5474lwuehpuqht7ucrxxnmoui
   '@thirdweb-dev/sdk': 2.3.35_ethers@5.6.9
@@ -2147,6 +2151,62 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+
+  /@sentry/browser/7.15.0:
+    resolution: {integrity: sha512-vZYr8L2JmniV8cns4yGOpX32moazz6tsllB1uv7XmmELW98sIuuugVFX0k6cBi89R8pyhdqULFCf9CL8CRguRg==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/core': 7.15.0
+      '@sentry/types': 7.15.0
+      '@sentry/utils': 7.15.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/core/7.15.0:
+    resolution: {integrity: sha512-W8d44g04GShBn4Z9VBTUhf1T9LTMfzUnETEx237zzUucv0kkyj3LsWQsJapWchMbmwr1V/CdnNDN+lGDm8iXQA==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/types': 7.15.0
+      '@sentry/utils': 7.15.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/react/7.15.0_react@18.2.0:
+    resolution: {integrity: sha512-a+5+Og93YPtWSCmOFYa/qzrbvfgIZXShJk1bsIaEI0KdltTOVJBdwvLQc8OiIOBe/CMDVCmK1t2DqiWfOWj41w==}
+    engines: {node: '>=8'}
+    peerDependencies:
+      react: 15.x || 16.x || 17.x || 18.x
+    dependencies:
+      '@sentry/browser': 7.15.0
+      '@sentry/types': 7.15.0
+      '@sentry/utils': 7.15.0
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/tracing/7.15.0:
+    resolution: {integrity: sha512-c0Y3+z6EWsc+EJsfBcRtc58ugkWYa6+6KTu3ceMkx2ZgZTCmRUuzAb7yodMt/gwezBsxzq706fnQivx1lQgzlQ==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/core': 7.15.0
+      '@sentry/types': 7.15.0
+      '@sentry/utils': 7.15.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/types/7.15.0:
+    resolution: {integrity: sha512-MN9haDRh9ZOsTotoDTHu2BT3sT8Vs1F0alhizUpDyjN2YgBCqR6JV+AbAE1XNHwS2+5zbppch1PwJUVeE58URQ==}
+    engines: {node: '>=8'}
+    dev: false
+
+  /@sentry/utils/7.15.0:
+    resolution: {integrity: sha512-akic22/6xa/RG5Mj7UN6pLc23VnX9zQlKM53L/q3yIr0juckSVthJiiFNdgdqrX03S1tHYlBgPeShKFFTHpkjA==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/types': 7.15.0
+      tslib: 1.14.1
+    dev: false
 
   /@surma/rollup-plugin-off-main-thread/2.2.3:
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
@@ -5600,6 +5660,12 @@ packages:
       hash.js: 1.1.7
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
+    dev: false
+
+  /hoist-non-react-statics/3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+    dependencies:
+      react-is: 16.13.1
     dev: false
 
   /hosted-git-info/2.8.9:
