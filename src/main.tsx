@@ -1,11 +1,12 @@
 import { StrictMode } from "react";
 
+import * as Sentry from "@sentry/react";
+import { BrowserTracing } from "@sentry/tracing";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter } from 'react-router-dom'
-
 
 import App from "./App";
 
@@ -18,6 +19,16 @@ const queryClient = new QueryClient()
 
 // This is the chainId your dApp will work on.
 const activeChainId = ChainId.Mainnet;
+
+Sentry.init({
+  dsn: import.meta.env.VITE_SENTRY_DSN,
+  integrations: [new BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1,
+});
 
 // eslint-disable-next-line unicorn/prefer-query-selector
 const container = document.getElementById("root");
