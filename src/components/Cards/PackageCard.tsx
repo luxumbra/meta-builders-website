@@ -39,8 +39,6 @@ const includedServices = (traits: IPackage['attributes']):
 
   if (traits) {
     for (const element of traits) {
-      console.log(element);
-
       if (element.trait_type.includes('Service')) {
         services.push(element as PackageService);
       }
@@ -49,7 +47,6 @@ const includedServices = (traits: IPackage['attributes']):
         consultingHours.push(element as PackageService);
       }
     }
-    console.log({ services, consultingHours });
 
     return {
       services,

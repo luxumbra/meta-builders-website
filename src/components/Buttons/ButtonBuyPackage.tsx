@@ -2,6 +2,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useCallback, useRef, useState } from 'react'
 
+import Honeybadger from '@honeybadger-io/js';
 import { Icon } from '@iconify/react';
 import { useAddress, useMetamask, useNetwork, useNetworkMismatch } from '@thirdweb-dev/react'
 import type { Marketplace} from '@thirdweb-dev/sdk';
@@ -86,8 +87,6 @@ export function BuyPackackagePopUp(
       // const balance = symbol !== 'MATIC' ? await tokenData.balanceOf(address) : undefined
       const nativeToken = '0xD76b5c2A23ef78368d8E34288B5b65D616B746aE'
       const tokenToCheck = symbol === 'ETH' ? nativeToken : contract
-      console.log('tokenToCheck', tokenToCheck);
-
       const balanceResponse = await fetch(
         `${etherscanApiEndpoint}&module=account&action=tokenbalance&contractaddress=${tokenToCheck}&address=${address}`)
       const data = await balanceResponse.json()
@@ -96,13 +95,12 @@ export function BuyPackackagePopUp(
         displayValue: utils.formatUnits(data.result, chain?.nativeCurrency?.decimals),
         value: BigNumber.from(data.result)
       } as UserBalance
-      console.log('balance', {data, balance});
 
       return balance
 
 
     } catch (error) {
-      console.log('Balance error', { error });
+      Honeybadger.notify(error as Error)
       return undefined
     }
   }
@@ -131,7 +129,6 @@ export function BuyPackackagePopUp(
   const onBuyPackage = useCallback(
     (id: string) => {
       // if (isNetworkMismatch) return
-      console.log('buying package', { id, forAddress });
       setIsLoading(true)
 
       if (forAddress) {
@@ -167,8 +164,6 @@ export function BuyPackackagePopUp(
               marketplace
                 .buyoutListing(id, quantityToBuy)
                 .then(tx => {
-                  console.log('buyout tx', tx);
-
                   apiToast.resume()
                   apiToast.create({
                     id: uuid(),
@@ -181,7 +176,7 @@ export function BuyPackackagePopUp(
                   setIsLoading(false)
                 })
                 .catch((error: Error) => {
-                  console.log('buyPackage error', { error })
+                  Honeybadger.notify(error)
                   const errorMessage = error.message
                   const errorToastId = apiToast.create({
                     id: uuid(),
@@ -255,7 +250,7 @@ export function BuyPackackagePopUp(
         if (open) tl.play()
       } else {
         if (!open) tl.reverse()
-        setTimeout(() => { console.log('close') }, 300)
+        setTimeout(() => {}, 300)
       }
     }
   }, [])
@@ -368,10 +363,10 @@ export function ButtonBuyPackage(properties: IButtonBuyPackage): JSX.Element {
   function onConnectMetamask(): void {
     connectMetamaskWallet()
       .then(() => {
-        console.log('connectMetamaskWallet', address)
+        // console.log('connectMetamaskWallet', address)
       })
       .catch(error => {
-        console.log('connectMetamaskWallet error', { error })
+        Honeybadger.notify(error as Error)
       })
   }
 

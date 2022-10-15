@@ -21,8 +21,9 @@ const activeChainId = ChainId.Mainnet;
 
 const config = {
   apiKey: import.meta.env.VITE_HONEYBADGER_API_KEY,
-  environment: 'production',
-  // debug: true,
+  environment: import.meta.env.VITE_NODE_ENV || 'production',
+  reportData: import.meta.env.VITE_HONEYBADGER_REPORT_DATA === 'true',
+  debug: import.meta.env.VITE_HONEYBADGER_DEBUG === 'true',
 }
 
 const honeybadger = Honeybadger.configure(config)
@@ -32,6 +33,8 @@ const container = document.getElementById("root");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 if (container?.hasChildNodes()) {
+  console.log('hydrateRoot', {config});
+
   hydrateRoot(
     container,
     <StrictMode>
@@ -55,6 +58,7 @@ if (container?.hasChildNodes()) {
     </StrictMode>
   );
 } else {
+  console.log('render', {config});
   root.render(
     <StrictMode>
       <HoneybadgerErrorBoundary honeybadger={honeybadger}>

@@ -110,8 +110,6 @@ export default function Header(): JSX.Element {
 
   // Listener to close the mobile menu when the user clicks a menu item.
   useEventListener("click", (e: MouseEvent) => {
-    console.log('click');
-
     const target = e.target as HTMLElement;
     if (target.tagName === "A") {
       setTimeout(() => {

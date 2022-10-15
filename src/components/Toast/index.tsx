@@ -15,8 +15,6 @@ function Toast({actor, id}: {actor: toast.Service, id: string}): JSX.Element {
   const [state, send] = useActor(actor)
   const toastApi = toast.connect<PropTypes>(state, send, normalizeProps)
 
-  console.log(toastApi.description);
-
   function onToastDismiss(): void {
     toastApi.dismiss()
   }

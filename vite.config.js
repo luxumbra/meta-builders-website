@@ -40,12 +40,12 @@ const defaultConfig = {
     //     preload: true,
     //   }
     // }),
-    ViteRadar({
-      // Google Analytics tag injection
-      analytics: {
-        id: 'G-36FWMBEFZR',
-      },
-    }),
+    // ViteRadar({
+    //   // Google Analytics tag injection
+    //   analytics: {
+    //     id: 'G-36FWMBEFZR',
+    //   },
+    // }),
     eslintPlugin()],
   resolve: {
     alias: [

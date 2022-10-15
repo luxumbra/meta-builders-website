@@ -31,8 +31,6 @@ function App(): ReactElement {
   });
 
   useEventListener('scroll', _.throttle(() => {
-    console.log('scroll');
-
     if (typeof window === 'undefined') return;
     // const tl = gsap.timeline({paused: true, reversed: true});
     const page = document.documentElement;

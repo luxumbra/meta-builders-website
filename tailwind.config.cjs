@@ -117,7 +117,7 @@ module.exports = {
         'sans': ['Exo\\ 2', 'sans-serif'],
         'display': ['"Arizone Unicase Regular"', 'Exo\\ 2', 'sans-serif'],
         'heading': ['Exo\\ 2', 'sans-serif'],
-        'body': ['Ubuntu', 'Roboto', 'sans-serif'],
+        'body': ['Exo\\ 2', 'Verdana', 'sans-serif'],
         'serif': ['serif']
       },
       fontSize: {
