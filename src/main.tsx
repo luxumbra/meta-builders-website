@@ -21,8 +21,9 @@ const activeChainId = ChainId.Mainnet;
 
 const config = {
   apiKey: import.meta.env.VITE_HONEYBADGER_API_KEY,
-  environment: 'production',
-  // debug: true,
+  environment: import.meta.env.VITE_NODE_ENV || 'production',
+  reportData: import.meta.env.VITE_HONEYBADGER_REPORT_DATA === 'true',
+  debug: import.meta.env.VITE_HONEYBADGER_DEBUG === 'true',
 }
 
 const honeybadger = Honeybadger.configure(config)

@@ -26,7 +26,6 @@ export function ContentSection({
   const animatedElementReference = useRef<HTMLDivElement>(null)
   const entry = useIntersectionObserver(animatedElementReference, {})
   const isVisible = !!entry?.isIntersecting
-  console.log({ id, isVisible, el: animatedElementReference.current });
 
   // useEffect(() => {
   //   // gsap.set(animatedElementReference.current, { opacity: 0, xPercent: -10 })

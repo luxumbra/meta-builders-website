@@ -20,8 +20,6 @@ export function useSectionAnimation(
 
 
   const wrapper = document.querySelector(section)
-  console.log('useSectionAnimation', wrapper);
-
   // const entry = useIntersectionObserver(section, {})
   const tl = gsap.timeline({
     paused: true,
@@ -321,7 +319,6 @@ export function useHeaderAnimation(): void {
   ) as HTMLButtonElement
 
   const openMenu = (): void => {
-    console.log('openMenu')
     mobileMenuWrapper.classList.remove('hidden')
     gsap.to(mobileMenuWrapper, {
       duration: 0.5,

@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 
+import Honeybadger from "@honeybadger-io/js";
 import { useMarketplace } from "@thirdweb-dev/react";
-import type { AuctionListing, DirectListing } from "@thirdweb-dev/sdk";
+import type { AuctionListing, DirectListing, Marketplace } from "@thirdweb-dev/sdk";
 import { v4 as uuid } from "uuid";
 
 import { PackageCard } from "../Cards";
@@ -15,27 +16,26 @@ type MarketplaceProperties = {
 }
 export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Element {
   const [marketplaceListings, setMarketplaceListings] = useState<AuctionListing[] | DirectListing[] | undefined>();
-  const marketplace = useMarketplace(address);
+  const marketplace: Marketplace | undefined = useMarketplace(address);
   const [isLoading, setIsLoading] = useState(true);
-  console.log('MarketplaceListings', { address, marketplace });
 
   /** A callback function  to `getActiveListings` from the `marketplace` and then store them in `marketplaceListings` */
   const fetchListingsCallback = useCallback(async ():Promise<(AuctionListing | DirectListing)[] | undefined>  => {
     try {
       if (marketplace === undefined) throw new Error('Marketplace is undefined');
-      const listings = await marketplace.getActiveListings();
-      console.log('listings', listings);
+      const listings: (AuctionListing | DirectListing)[] = await marketplace.getActiveListings();
 
       if (listings.length === 0) {
         setIsLoading(false);
         throw new Error("Error fetching listings");
       }
       setIsLoading(false);
-      listings.sort((a, b) => Number.parseFloat(a.buyoutCurrencyValuePerToken.displayValue) - Number.parseFloat(b.buyoutCurrencyValuePerToken.displayValue));
+      listings.sort((a: AuctionListing | DirectListing, b: AuctionListing | DirectListing) => Number.parseFloat(a.buyoutCurrencyValuePerToken.displayValue) - Number.parseFloat(b.buyoutCurrencyValuePerToken.displayValue));
       // listings.filter((listing) => listing.id >= '3')
       return listings;
     } catch (error) {
-      console.error("Error fetching listings", error);
+      Honeybadger.notify(error as Error);
+      // console.error("Error fetching listings", error);
       return undefined;
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,7 +46,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
       (listings) => {
         setMarketplaceListings(listings as AuctionListing[] | DirectListing[]);
       }
-    ).catch(error => console.error(error));
+    ).catch(error => Honeybadger.notify(error as Error));
   }, [fetchListingsCallback]);
 
 

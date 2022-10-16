@@ -1,5 +1,6 @@
 
 
+import Honeybadger from '@honeybadger-io/js';
 import { Icon } from '@iconify/react';
 import {
   useMetamask,
@@ -25,9 +26,10 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
   const isNetworkMismatch = useNetworkMismatch();
   function onClickDisconnect(): void {
     disconnectWallet().then(() => {
-      console.log('disconnectWallet');
+      // console.log('disconnectWallet');
     }).catch(error => {
-      console.log('disconnectWallet error', { error });
+      Honeybadger.notify(error as Error);
+      // console.log('disconnectWallet error', { error });
     });
   }
 
@@ -41,15 +43,15 @@ export function ButtonWeb3Connect(properties: ButtonWeb3ConnectProps): JSX.Eleme
 
   function onClickConnectMetamask(): void {
     connectMetamaskWallet().then(() => {
-      console.log('connectMetamaskWallet', address, network);
       if (isNetworkMismatch) {
-        console.log('connectMetamaskWallet isNetworkMismatch', network);
+        console.error('connectMetamaskWallet isNetworkMismatch', network); // eslint-disable-line no-console
         // TODO: show network mismatch toast and-or network switcher
       }
 
 
     }).catch(error => {
-      console.log('connectMetamaskWallet error', { error });
+      Honeybadger.notify(error as Error);
+      // console.log('connectMetamaskWallet error', { error });
     });
   }
 
