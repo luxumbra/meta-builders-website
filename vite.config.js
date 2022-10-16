@@ -20,32 +20,12 @@ const defaultConfig = {
   plugins: [
     tsconfigPaths(),
     react(),
-    // VitePluginFonts({
-    //   google: {
-    //     families: [
-    //       {
-    //         name: 'Exo 2',
-    //         styles: 'wght@100;300;500;800',
-    //       },
-    //     ],
-    //   },
-    //   custom: {
-    //     families: [
-    //       {
-    //         name: 'Arizone Unicase Regular',
-    //         local: 'Arizone Unicase Regular',
-    //         src: '/assets/fonts/arizone-unicase.ttf',
-    //       }
-    //     ],
-    //     preload: true,
-    //   }
-    // }),
-    // ViteRadar({
-    //   // Google Analytics tag injection
-    //   analytics: {
-    //     id: 'G-36FWMBEFZR',
-    //   },
-    // }),
+    ViteRadar({
+      // Google Analytics tag injection
+      analytics: {
+        id: 'G-36FWMBEFZR',
+      },
+    }),
     eslintPlugin()],
   resolve: {
     alias: [
