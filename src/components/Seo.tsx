@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 
 import { Helmet } from 'react-helmet-async';
 
@@ -16,7 +17,18 @@ export default function Seo({ title, description, permalink, previewImageSrc }: 
   return (
     <Helmet prioritizeSeoTags>
       <link rel="canonical" href={metaLink} />
-
+      <script
+        dangerouslySetInnerHTML={
+          {
+            __html: `
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "e2zzfb0rlh");`
+          }
+      }
+      />
       <title>{metaTitle}</title>
       <meta name="description" content={metaDescription} />
       <meta property="og:title" content={metaTitle} />

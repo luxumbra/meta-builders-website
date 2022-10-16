@@ -104,7 +104,7 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const onToggleVideo = (): void => {
     setVideoIsOpen(!videoIsOpen);
   }
-  console.log('buyPackInfo', {pack, buyPackInfo});
+  // console.log('buyPackInfo', {pack, buyPackInfo});
 
   return (
     <div
