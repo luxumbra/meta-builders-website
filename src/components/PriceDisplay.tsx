@@ -11,15 +11,7 @@ export function PriceDisplay({ price, currency }: IPriceDisplayProperties): JSX.
   const cost = Number.parseFloat(price);
   const formatted = accounting.formatMoney(price, '', 2)
   const symbol = currency.toLowerCase();
-  // switch (currency) {
-  //   case "USDC":
-  //     symbol = currency.toLowerCase();
 
-  //     break;
-
-  //   default:
-  //     break;
-  // }
   return (
       <span className="price inline-flex items-center gap-2 text-lg 2xl:text-xl font-normal relative">
       <Icon icon={`cryptocurrency:${symbol}`} className="h-8 w-8 text-violet-400 opacity-80" />

@@ -16,7 +16,7 @@ import { honeybadgerApiKey, isDevelopment, userbackToken } from "~mb/lib/constan
 
 const queryClient = new QueryClient()
 
-// This is the chainId your dApp will work on.
+// This is the chainId the dApp will work on.
 const activeChainId = ChainId.Mainnet;
 
 
@@ -32,15 +32,12 @@ const honeybadgerBrowserConfig = {
   environment: isDevelopment ? 'development' : 'production',
   enableUncaught: true,
   maxErrors: 5,
-  reportData: isDevelopment,
+  reportData: !isDevelopment,
   debug: isDevelopment,
 }
 const honeybadger = typeof window === 'undefined' ?
   Honeybadger.configure(honeybadgerNodeConfig) :
   Honeybadger.configure(honeybadgerBrowserConfig)
-
-console.log({honeybadgerBrowserConfig, honeybadgerNodeConfig});
-
 
 // eslint-disable-next-line unicorn/prefer-query-selector
 const container = document.getElementById("root");
