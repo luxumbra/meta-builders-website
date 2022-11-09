@@ -12,21 +12,32 @@ import App from "./App";
 
 import { ThemeProvider } from "~mb/contexts";
 import './styles/index.css'
-import { userbackToken } from "~mb/lib/constants";
+import { honeybadgerApiKey, isDevelopment, userbackToken } from "~mb/lib/constants";
 
 const queryClient = new QueryClient()
 
-// This is the chainId your dApp will work on.
+// This is the chainId the dApp will work on.
 const activeChainId = ChainId.Mainnet;
 
-const config = {
+
+const honeybadgerNodeConfig = {
   apiKey: import.meta.env.VITE_HONEYBADGER_API_KEY,
   environment: import.meta.env.VITE_NODE_ENV || 'production',
+  enableUncaught: true,
   reportData: import.meta.env.VITE_HONEYBADGER_REPORT_DATA === 'true',
   debug: import.meta.env.VITE_HONEYBADGER_DEBUG === 'true',
 }
-
-const honeybadger = Honeybadger.configure(config)
+const honeybadgerBrowserConfig = {
+  apiKey: honeybadgerApiKey,
+  environment: isDevelopment ? 'development' : 'production',
+  enableUncaught: true,
+  maxErrors: 5,
+  reportData: !isDevelopment,
+  debug: isDevelopment,
+}
+const honeybadger = typeof window === 'undefined' ?
+  Honeybadger.configure(honeybadgerNodeConfig) :
+  Honeybadger.configure(honeybadgerBrowserConfig)
 
 // eslint-disable-next-line unicorn/prefer-query-selector
 const container = document.getElementById("root");

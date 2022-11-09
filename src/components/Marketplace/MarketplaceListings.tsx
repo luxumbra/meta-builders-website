@@ -80,7 +80,7 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
         })
         ) : (
           <div className="flex flex-col items-center justify-center">
-            <p className="text-5xl text-teal-600 font-sans font-extrabold">No listings</p>
+            <p className="text-3xl text-teal-500 font-sans font-extrabold">No listings</p>
           </div>
       )}
     </div>
