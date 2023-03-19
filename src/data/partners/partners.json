@@ -88,5 +88,11 @@
     "bio": "Some bio text about this partner...",
     "image": "blockchain-valley.png",
     "url": "https://blockchainvalleyvirtual.io/"
+  },
+  {
+    "name": "Foresite.",
+    "bio": "Some bio text about this partner...",
+    "image": "foresite.svg",
+    "url": "https://foresite.rocks/"
   }
 ]
