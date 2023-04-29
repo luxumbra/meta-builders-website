@@ -17,6 +17,10 @@ const outdir = path.resolve(__dirname, 'dist')
 
 const defaultConfig = {
   base: './',
+  server: {
+    host: 'meta-builders.local',
+    port: 1169,
+  },
   plugins: [
     tsconfigPaths(),
     react(),

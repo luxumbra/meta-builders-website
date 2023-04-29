@@ -72,6 +72,12 @@
     "url": ""
   },
   {
+    "name": "MetaGame",
+    "bio": "Some bio text about this partner...",
+    "image": "metagame.png",
+    "url": "https://metagame.wtf/"
+  },
+  {
     "name": "The One Network",
     "bio": "Some bio text about this partner...",
     "image": "one-network.png",
@@ -94,5 +100,17 @@
     "bio": "Some bio text about this partner...",
     "image": "foresite.svg",
     "url": "https://foresite.rocks/"
+  },
+  {
+    "name": "Hangry Animals™️",
+    "bio": "Some bio text about this partner...",
+    "image": "hangry-animals.png",
+    "url": "https://hangryanimals.com/"
+  },
+  {
+    "name": "Webacy",
+    "bio": "Some bio text about this partner...",
+    "image": "webacy.png",
+    "url": "https://www.webacy.com/"
   }
 ]
