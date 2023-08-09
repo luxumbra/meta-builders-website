@@ -32,7 +32,7 @@ export function PartnersCard({ partner }: {partner: PartnersCardProperties}): JS
           lg:h-full
         `}
         >
-            <img src={`/assets/partners/images/${partnerImage}`} alt={`${name}'s logo`} className=' object-contain w-auto h-full transition-all duration-300 bg-cover opacity-70 group-hover:scale-110 group-hover:opacity-100 group-focus:scale-110 group-focus:opacity-100 filter grayscale invert dark:invert-0 shadow-teal-400' loading="lazy" />
+            <img src={`/assets/partners/images/${partnerImage}`} alt={`${name}'s logo`} className=' object-contain w-auto h-full transition-all duration-300 bg-cover opacity-70 group-hover:scale-110 group-hover:opacity-100 group-focus:scale-110 group-focus:opacity-100 filter grayscale group-hover:grayscale-0 invert dark:invert-0 shadow-teal-400' loading="lazy" />
 
       </picture>
     </figure>

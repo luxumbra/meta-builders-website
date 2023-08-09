@@ -112,5 +112,17 @@
     "bio": "Some bio text about this partner...",
     "image": "webacy.png",
     "url": "https://www.webacy.com/"
+  },
+  {
+    "name": "QuestChains",
+    "bio": "Some bio text about this partner...",
+    "image": "questchains.png",
+    "url": "https://twitter.com/questchainz"
+  },
+  {
+    "name": "+DCWB Network",
+    "bio": "Some bio text about this partner...",
+    "image": "dcwb.png",
+    "url": "https://twitter.com/DCWBnetwork"
   }
 ]
