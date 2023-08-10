@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Icon } from "@iconify/react";
 import MuxVideo from "@mux/mux-video-react";
-import { useMarketplace } from "@thirdweb-dev/react";
+import { useContract, useMarketplace } from "@thirdweb-dev/react";
 import Imgix from "react-imgix";
 import { v4 as uuid } from "uuid";
 
@@ -83,7 +83,7 @@ export function PackageVideo({ url, name, isOpen }: { url: string, name: string,
 export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const { pack } = properties;
   const { id, name, description, displayPrice, currency, currencySymbol, image, animation_url: animationURL, attributes, value } = pack;
-  const marketplace = useMarketplace(marketPlaceContract);
+  const {contract: marketplace} = useContract(marketPlaceContract, "marketplace");
   const { services, consultingHours } = includedServices(attributes);
   // const attributeJson = JSON.parse(attributes);
   const qty = 1
