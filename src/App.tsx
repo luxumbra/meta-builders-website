@@ -24,11 +24,11 @@ function App(): ReactElement {
    * Effect to set the Buffer global variable due to a Coinbase Wallet bug (a dep of ThirdWeb sdk)
    * See: https://stackoverflow.com/a/71953677/5721585
     */
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.Buffer = Buffer;
-    }
-  });
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     window.Buffer = Buffer;
+  //   }
+  // });
 
   useEventListener('scroll', _.throttle(() => {
     if (typeof window === 'undefined') return;
