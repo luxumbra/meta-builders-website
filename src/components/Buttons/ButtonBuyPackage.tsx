@@ -4,7 +4,7 @@ import { useEffect, useCallback, useRef, useState } from 'react'
 
 import Honeybadger from '@honeybadger-io/js';
 import { Icon } from '@iconify/react';
-import { useAddress, useMetamask, useNetwork, useNetworkMismatch } from '@thirdweb-dev/react'
+import { useAddress, useChain, useMetamask, useNetwork, useNetworkMismatch } from '@thirdweb-dev/react'
 import type { Marketplace} from '@thirdweb-dev/sdk';
 import { useMachine, normalizeProps } from '@zag-js/react'
 import * as toast from '@zag-js/toast'
@@ -61,8 +61,7 @@ export function BuyPackackagePopUp(
   const { forAddress, pack, isOpen, setIsOpen } = properties
   const { marketplace, name, price, currency, quantityToBuy, currencySymbol, listingId, value: packValue } = pack
   const [isLoading, setIsLoading] = useState(false)
-  const network = useNetwork();
-  const { chain } = network[0].data;
+  const chain = useChain();
   // const { data: balance, isLoading: balanceLoading, error: balanceError } = useTokenBalance(currency, forAddress);
   const [copyValue, copy] = useCopyToClipboard()
   const [state, send] = useMachine(
@@ -92,7 +91,7 @@ export function BuyPackackagePopUp(
       const data = await balanceResponse.json()
       const balance = {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        displayValue: utils.formatUnits(data.result, chain?.nativeCurrency?.decimals),
+        displayValue: utils.formatUnits(data.result, chain?.nativeCurrency.decimals),
         value: BigNumber.from(data.result)
       } as UserBalance
 
