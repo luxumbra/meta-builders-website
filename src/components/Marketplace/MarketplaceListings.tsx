@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import Honeybadger from "@honeybadger-io/js";
-import { useMarketplace } from "@thirdweb-dev/react";
+import { useContract } from "@thirdweb-dev/react";
 import type { AuctionListing, DirectListing, Marketplace } from "@thirdweb-dev/sdk";
 import { v4 as uuid } from "uuid";
 
@@ -16,11 +16,15 @@ type MarketplaceProperties = {
 }
 export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Element {
   const [marketplaceListings, setMarketplaceListings] = useState<AuctionListing[] | DirectListing[] | undefined>();
-  const marketplace: Marketplace | undefined = useMarketplace(address);
+  const { contract: marketplace } = useContract(address, "marketplace");
+  console.log("MarketplaceListings", {address, marketplace});
+
   const [isLoading, setIsLoading] = useState(true);
 
   /** A callback function  to `getActiveListings` from the `marketplace` and then store them in `marketplaceListings` */
-  const fetchListingsCallback = useCallback(async ():Promise<(AuctionListing | DirectListing)[] | undefined>  => {
+  const fetchListingsCallback = useCallback(async (): Promise<(AuctionListing | DirectListing)[] | undefined> => {
+    console.log("fetchListingsCallback", {address, marketplace});
+
     try {
       if (marketplace === undefined) throw new Error('Marketplace is undefined');
       const listings: (AuctionListing | DirectListing)[] = await marketplace.getActiveListings();

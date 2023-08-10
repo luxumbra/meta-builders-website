@@ -1,4 +1,6 @@
 export const tokenId = 'ethereum'
+export const thirdwebAppID = import.meta.env.VITE_THIRDWEB_APP_ID as string
+export const thirdwebAppSecret = import.meta.env.VITE_THIRDWEB_APP_SECRET as string
 export const coingeckoApiUrl = 'https://api.coingecko.com/api/v3/'
 export const tokenQuery = '?localization=false&tickers=true&market_data=true'
 // export const marketPlaceContract = '0x98Cd691f8533359782B83BD3231348e39c553050' // mumbai
