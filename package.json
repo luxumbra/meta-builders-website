@@ -17,7 +17,7 @@
     "source": "dist"
   },
   "engines": {
-    "node": ">=16.0.0 <17.0.0"
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@honeybadger-io/js": "^4.3.1",
