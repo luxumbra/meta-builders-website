@@ -12,7 +12,7 @@ import App from "./App";
 
 import { ThemeProvider } from "~mb/contexts";
 import './styles/index.css'
-import { honeybadgerApiKey, isDevelopment, userbackToken } from "~mb/lib/constants";
+import { honeybadgerApiKey, isDevelopment, thirdwebAppID, userbackToken } from "~mb/lib/constants";
 
 const queryClient = new QueryClient()
 
@@ -52,7 +52,8 @@ if (container?.hasChildNodes()) {
           <ThemeProvider>
             <QueryClientProvider client={queryClient}>
               <ThirdwebProvider
-                desiredChainId={activeChainId}
+                activeChain={activeChainId}
+                clientId={thirdwebAppID}
               >
                 <BrowserRouter>
                   <HelmetProvider>
@@ -74,7 +75,8 @@ if (container?.hasChildNodes()) {
           <ThemeProvider>
             <QueryClientProvider client={queryClient}>
               <ThirdwebProvider
-                desiredChainId={activeChainId}
+                activeChain={activeChainId}
+                clientId={thirdwebAppID}
               >
                 <BrowserRouter>
                   <HelmetProvider>
