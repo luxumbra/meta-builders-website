@@ -82,6 +82,8 @@ export function PackageVideo({ url, name, isOpen }: { url: string, name: string,
 
 export function PackageCard(properties: PackageCardProperties): JSX.Element {
   const { pack } = properties;
+  console.log('PackageCard', {pack});
+
   const { id, name, description, displayPrice, currency, currencySymbol, image, animation_url: animationURL, attributes, value } = pack;
   const { contract: marketplace } = useContract(marketPlaceContract, "marketplace");
   const { services, consultingHours } = includedServices(attributes);

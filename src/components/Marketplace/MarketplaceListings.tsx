@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 
 import Honeybadger from "@honeybadger-io/js";
-import { useContract } from "@thirdweb-dev/react";
+import { useContract, useMetadata, useActiveListings } from "@thirdweb-dev/react";
 import type { AuctionListing, DirectListing, Marketplace } from "@thirdweb-dev/sdk";
 import { v4 as uuid } from "uuid";
 
 import { PackageCard } from "../Cards";
 import LoadingOrError from "../LoadingOrError";
 
+import { marketPlaceContract } from "~mb/lib/constants";
 import type { IPackage } from "~mb/types";
 
 
@@ -17,6 +18,8 @@ type MarketplaceProperties = {
 export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Element {
   const [marketplaceListings, setMarketplaceListings] = useState<AuctionListing[] | DirectListing[] | undefined>();
   const { contract: marketplace } = useContract(address, "marketplace");
+  const { data: activeListings, isLoading: isActiveListingsLoading } = useActiveListings(marketplace);
+  console.log("validDirectListings", activeListings);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,6 +38,8 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
       setIsLoading(false);
       listings.sort((a: AuctionListing | DirectListing, b: AuctionListing | DirectListing) => Number.parseFloat(a.buyoutCurrencyValuePerToken.displayValue) - Number.parseFloat(b.buyoutCurrencyValuePerToken.displayValue));
       // listings.filter((listing) => listing.id >= '3')
+      console.log("listings", listings);
+
       return listings;
     } catch (error) {
       Honeybadger.notify(error as Error);
@@ -48,6 +53,8 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
     fetchListingsCallback().then(
       (listings) => {
         setMarketplaceListings(listings as AuctionListing[] | DirectListing[]);
+        console.log("metadata", metadata);
+
       }
     ).catch(error => Honeybadger.notify(error as Error));
   }, [fetchListingsCallback]);

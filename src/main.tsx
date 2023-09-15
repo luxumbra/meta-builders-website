@@ -24,7 +24,7 @@ const honeybadgerNodeConfig = {
   apiKey: import.meta.env.VITE_HONEYBADGER_API_KEY,
   environment: import.meta.env.VITE_NODE_ENV || 'production',
   enableUncaught: true,
-  reportData: import.meta.env.VITE_HONEYBADGER_REPORT_DATA === 'true',
+  reportData: false,
   debug: import.meta.env.VITE_HONEYBADGER_DEBUG === 'true',
 }
 const honeybadgerBrowserConfig = {
@@ -32,7 +32,7 @@ const honeybadgerBrowserConfig = {
   environment: isDevelopment ? 'development' : 'production',
   enableUncaught: true,
   maxErrors: 5,
-  reportData: !isDevelopment,
+  reportData: false,
   debug: isDevelopment,
 }
 const honeybadger = typeof window === 'undefined' ?
