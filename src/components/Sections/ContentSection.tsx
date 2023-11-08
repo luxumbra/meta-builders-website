@@ -1,7 +1,4 @@
-import { useEffect, useRef } from 'react'
-
-import gsap from 'gsap'
-import { useIntersectionObserver } from 'usehooks-ts'
+import { useRef } from 'react'
 
 export interface IContentSectionProperties {
   title?: string
@@ -10,6 +7,7 @@ export interface IContentSectionProperties {
   children: React.ReactNode
   lead?: React.ReactNode
 }
+
 /**
  * **ContentSection** - Wraps each page section in a `section` element
  * @param param0 {title: string, id: string, justify?: string, children: React.ReactNode, lead: React.ReactNode}
@@ -24,8 +22,6 @@ export function ContentSection({
 }: IContentSectionProperties): JSX.Element {
   const sectionReference = useRef<HTMLDivElement>(null)
   const animatedElementReference = useRef<HTMLDivElement>(null)
-  const entry = useIntersectionObserver(animatedElementReference, {})
-  const isVisible = !!entry?.isIntersecting
 
   // useEffect(() => {
   //   // gsap.set(animatedElementReference.current, { opacity: 0, xPercent: -10 })
@@ -38,9 +34,6 @@ export function ContentSection({
   //   })
   // }, [isVisible]);
 
-
-
-
   return (
     <section
       id={id}
@@ -51,34 +44,34 @@ export function ContentSection({
       flex-col
       items-center
       justify-${justify ?? 'start'}
+      z-10
       min-h-screen
       w-full
       scroll-mt-24
-      2xl:scroll-mt-32
       overflow-x-hidden
       overflow-y-hidden
       bg-transparent
       transition-colors duration-300
-      z-10
+      2xl:scroll-mt-32
       `}
     >
       <div
         ref={animatedElementReference}
         className={`
+          pointer-events-none
           relative
-          py-20
-          xl:py-32
-          2xl:py-36
+          z-10
           flex
           w-full
           flex-col
           items-center
           space-y-5
-          2xl:space-y-8
+          py-20
           px-3
           md:px-0
-          z-10
-          pointer-events-none
+          xl:py-32
+          2xl:space-y-8
+          2xl:py-36
           `}
       >
         <div className='flex flex-col items-center'>

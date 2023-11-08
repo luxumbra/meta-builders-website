@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --config vite.config.build.js",
+    "build": "tsc && vite build --config vite.config.prod.js",
     "preview": "vite preview",
     "format": "prettier -uw --ignore-path .gitignore .",
     "run-tsc": "tsc",
@@ -71,6 +71,7 @@
   },
   "devDependencies": {
     "@nabla/vite-plugin-eslint": "^1.4.1",
+    "@rollup/plugin-commonjs": "^25.0.7",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/typography": "^0.5.4",
     "@types/accounting": "^0.4.2",

@@ -8,7 +8,7 @@ import type { IPartner } from '~mb/types';
 
 export type PartnersCardProperties = IPartner
 
-export function PartnersCard({ partner }: {partner: PartnersCardProperties}): JSX.Element {
+export function PartnersCard({ partner }: { partner: PartnersCardProperties }): JSX.Element {
   const { name, image, url } = partner;
   // const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
   // eslint-disable-next-line unicorn/no-null

@@ -1,74 +1,90 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from 'react'
 
-import Honeybadger from "@honeybadger-io/js";
-import { useContract, useMetadata, useActiveListings } from "@thirdweb-dev/react";
-import type { AuctionListing, DirectListing, Marketplace } from "@thirdweb-dev/sdk";
-import { v4 as uuid } from "uuid";
+import Honeybadger from '@honeybadger-io/js'
+import { useActiveListings, useContract } from '@thirdweb-dev/react'
+import type { AuctionListing, DirectListing } from '@thirdweb-dev/sdk'
+import { v4 as uuid } from 'uuid'
 
-import { PackageCard } from "../Cards";
-import LoadingOrError from "../LoadingOrError";
+import LoadingOrError from '../LoadingOrError'
 
-import { marketPlaceContract } from "~mb/lib/constants";
-import type { IPackage } from "~mb/types";
-
+import { PackageCard } from '~mb/cards/PackageCard'
+import type { IPackage } from '~mb/types'
 
 type MarketplaceProperties = {
-  address: string;
+  address: string
 }
-export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Element {
-  const [marketplaceListings, setMarketplaceListings] = useState<AuctionListing[] | DirectListing[] | undefined>();
-  const { contract: marketplace } = useContract(address, "marketplace");
-  const { data: activeListings, isLoading: isActiveListingsLoading } = useActiveListings(marketplace);
-  console.log("validDirectListings", activeListings);
-
-  const [isLoading, setIsLoading] = useState(true);
+export function MarketplaceListings({
+  address
+}: MarketplaceProperties): JSX.Element {
+  const { contract: marketplace } = useContract(address, 'marketplace')
+  // const { data: metadata, isLoading: isMetadataLoading, error: metadataError } = useMetadata(marketplace);
+  const {
+    data: activeListings,
+    isLoading: isActiveListingsLoading,
+    error: activeListingsError
+  } = useActiveListings(marketplace)
+  console.log('validDirectListings', activeListings)
 
   /** A callback function  to `getActiveListings` from the `marketplace` and then store them in `marketplaceListings` */
-  const fetchListingsCallback = useCallback(async (): Promise<(AuctionListing | DirectListing)[] | undefined> => {
-    console.log("fetchListingsCallback", {address, marketplace});
+  const fetchListingsCallback = useCallback(async (): Promise<
+    (AuctionListing | DirectListing)[] | undefined
+  > => {
+    console.log('fetchListingsCallback', { address, marketplace })
 
     try {
-      if (marketplace === undefined) throw new Error('Marketplace is undefined');
-      const listings: (AuctionListing | DirectListing)[] = await marketplace.getActiveListings();
-
-      if (listings.length === 0) {
-        setIsLoading(false);
-        throw new Error("Error fetching listings");
+      if (marketplace === undefined) throw new Error('Marketplace is undefined')
+      if (activeListingsError) {
+        const listingsError = activeListingsError as Error
+        throw new Error(listingsError.message)
       }
-      setIsLoading(false);
-      listings.sort((a: AuctionListing | DirectListing, b: AuctionListing | DirectListing) => Number.parseFloat(a.buyoutCurrencyValuePerToken.displayValue) - Number.parseFloat(b.buyoutCurrencyValuePerToken.displayValue));
-      // listings.filter((listing) => listing.id >= '3')
-      console.log("listings", listings);
+      if (!activeListings) {
+        throw new Error('Error fetching listings')
+      }
 
-      return listings;
+      activeListings.sort(
+        (
+          a: AuctionListing | DirectListing,
+          b: AuctionListing | DirectListing
+        ) =>
+          Number.parseFloat(a.buyoutCurrencyValuePerToken.displayValue) -
+          Number.parseFloat(b.buyoutCurrencyValuePerToken.displayValue)
+      )
+      // listings.filter((listing) => listing.id >= '3')
+
+      return activeListings
     } catch (error) {
-      Honeybadger.notify(error as Error);
+      Honeybadger.notify(error as Error)
       // console.error("Error fetching listings", error);
-      return undefined;
+      return undefined
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [marketplace]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [marketplace])
 
   useEffect(() => {
-    fetchListingsCallback().then(
-      (listings) => {
-        setMarketplaceListings(listings as AuctionListing[] | DirectListing[]);
-        console.log("metadata", metadata);
+    fetchListingsCallback()
+      .then(listings => {
+        console.log('listings', listings)
+      })
+      .catch(error => Honeybadger.notify(error as Error))
+  }, [fetchListingsCallback])
 
-      }
-    ).catch(error => Honeybadger.notify(error as Error));
-  }, [fetchListingsCallback]);
-
-
-  if (isLoading) {
-    return <LoadingOrError isInline message="Loading packages..." />;
+  if (isActiveListingsLoading) {
+    return <LoadingOrError isInline message='Loading packages...' />
   }
   return (
-    <div className="flex flex-col space-y-5 items-stretch justify-items-stretch sm:space-y-0 sm:grid sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {(marketplaceListings && marketplaceListings.length > 0) ? (
-        marketplaceListings.map((listing: AuctionListing | DirectListing) => {
-          const { asset, id, assetContractAddress, buyoutCurrencyValuePerToken, currencyContractAddress } = listing;
-          const cardKey = uuid();
+    <div className='flex flex-col items-stretch justify-items-stretch space-y-5 sm:grid sm:gap-4 sm:space-y-0 md:grid-cols-2 lg:grid-cols-3'>
+      {activeListings && activeListings.length > 0 ? (
+        activeListings.map((listing: AuctionListing | DirectListing) => {
+          const {
+            asset,
+            id,
+            assetContractAddress,
+            buyoutCurrencyValuePerToken,
+            currencyContractAddress
+          } = listing
+          console.log('asset', asset)
+
+          const cardKey = uuid()
           const pack = {
             id,
             name: asset.name,
@@ -82,18 +98,18 @@ export function MarketplaceListings({ address }: MarketplaceProperties): JSX.Ele
             animation_url: asset.animation_url,
             type: asset.type,
             attributes: asset.attributes,
-            marketplace,
+            marketplace
           } as IPackage
 
           return <PackageCard key={cardKey} pack={pack} />
-
         })
-        ) : (
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-3xl text-teal-500 font-sans font-extrabold">No listings</p>
-          </div>
+      ) : (
+        <div className='flex flex-col items-center justify-center'>
+          <p className='font-sans font-extrabold text-teal-500 text-3xl'>
+            No listings
+          </p>
+        </div>
       )}
     </div>
   )
 }
-
