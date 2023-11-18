@@ -35,7 +35,7 @@ export default function BuySection(): JSX.Element {
 
   return (
     <ContentSection title='Pricing' id={sectionId} lead={<SectionIntro />}>
-      <div className='max-w-full text-center md:max-w-6xl'>
+      <div className='max-w-full self-center justify-self-center text-center md:max-w-6xl'>
         {/* <MarketplaceListings address={marketPlaceContract}  /> */}
         {/* <div className='max-w-3xl text-center'>
           <p>

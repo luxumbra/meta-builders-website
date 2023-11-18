@@ -3,11 +3,9 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
 @layer base {
   body {
-    @apply font-body bg-gradient-to-bl dark:from-slate-700 dark:to-slate-900;
-
+    @apply bg-gradient-to-bl font-body dark:from-slate-700 dark:to-slate-900;
 
     &.menu-open {
       @apply overflow-y-hidden;
@@ -16,54 +14,54 @@
     strong {
       @apply text-primary;
     }
-
   }
-
 
   a,
   .btn {
     @apply transition-colors duration-200;
     @apply hover:text-secondary;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-inherit;
+    @apply focus:outline-none focus:ring-2 focus:ring-inherit focus:ring-offset-2 focus:ring-offset-transparent;
   }
 
-  h1, h2, h3, h4 {
-    @apply font-sans font-extrabold print:font-bold tracking-tighter;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-sans font-extrabold tracking-tighter print:font-bold;
   }
 
-  h1, h2 {
-    @apply uppercase font-display;
+  h1,
+  h2 {
+    @apply font-display uppercase;
   }
 
   header {
     .brand {
-      @apply opacity-0 transition-all duration-200 ease-in-out scale-0;
+      @apply scale-0 opacity-0 transition-all duration-200 ease-in-out;
     }
 
-      nav {
-        a {
-          @apply font-sans text-violet-100 dark:text-violet-100 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt-teal dark:hover:text-shadow-alt-teal transition-colors
-        }
+    nav {
+      a {
+        @apply text-shadow-alt-teal dark:hover:text-shadow-alt-teal font-sans text-violet-100 transition-colors hover:text-teal-400 dark:text-violet-100 dark:hover:text-teal-400;
       }
-
+    }
 
     &.fixed-header {
-      @apply bg-transparent !fixed top-0 left-0 right-0 bottom-auto pt-8 xl:pt-4 ;
+      @apply !fixed top-0 left-0 right-0 bottom-auto bg-transparent pt-8 backdrop-blur-xl  xl:pt-4;
 
       &::after {
         content: '';
-        @apply absolute invisible dark:visible inset-0 dark:bg-glass-primary-900 z-0;
-        @apply md:filter md:backdrop-blur-md
+        @apply invisible absolute inset-0 z-0 dark:visible dark:bg-glass-primary-900;
+        @apply md:filter md:backdrop-blur-md;
       }
 
       .brand {
-        @apply opacity-100 scale-100 -translate-y-1 xl:transform-none;
+        @apply -translate-y-1 scale-100 opacity-100 xl:transform-none;
       }
-
 
       nav {
         a {
-          @apply text-slate-600 dark:text-violet-300 hover:text-teal-400 dark:hover:text-teal-400
+          @apply text-slate-600 hover:text-teal-400 dark:text-violet-300 dark:hover:text-teal-400;
         }
       }
     }
@@ -71,14 +69,15 @@
 
   .splash-wrapper {
     .splash-content {
-        &::after {
-          content: '';
-          @apply absolute inset-0 z-0 rounded-full blur-xl bg-slate-900;
-        }
+      &::after {
+        content: '';
+        @apply absolute inset-0 z-0 rounded-full bg-slate-900 blur-xl;
+      }
 
-        h1, p {
-          @apply relative z-10;
-        }
+      h1,
+      p {
+        @apply relative z-10;
+      }
     }
   }
 
@@ -104,7 +103,7 @@
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    @apply bg-violet-600 transition-colors duration-300 ease-in-out ;
+    @apply bg-violet-600 transition-colors duration-300 ease-in-out;
 
     border-radius: 2px;
     box-shadow: 0 0 5px rgb(0 0 0 / 70%);
@@ -112,21 +111,20 @@
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-violet-800
+    @apply bg-violet-800;
   }
-
 }
 
 @layer components {
   #portal-root {
-    @apply bg-transparent -z-10;
+    @apply -z-10 bg-transparent;
   }
 
   .package-card {
     @apply rounded-t-2xl rounded-b-md dark:bg-glass-primary-800;
 
     .buy-popup {
-      @apply rounded-t-2xl rounded-b-md bg-glass-secondary-900 dark:bg-glass-primary-900 overflow-hidden;
+      @apply overflow-hidden rounded-t-2xl rounded-b-md bg-glass-secondary-900 dark:bg-glass-primary-900;
     }
   }
 
@@ -144,24 +142,24 @@
     picture {
       @apply z-0;
 
-      filter: drop-shadow(0 0 2px rgba(255 255 255 / 1%))
+      filter: drop-shadow(0 0 2px rgba(255 255 255 / 1%));
     }
 
     &::after {
       content: '';
-      @apply absolute invisible  inset-0 bg-transparent dark:bg-teal-400 opacity-20 filter bg-blend-overlay  blur-none rounded-full z-10 group-hover:animate-ping;
+      @apply invisible absolute  inset-0 z-10 rounded-full bg-transparent opacity-20 bg-blend-overlay  blur-none filter group-hover:animate-ping dark:bg-teal-400;
     }
   }
 
   .badge {
     &-link {
-      @apply badge border-none text-teal-200 dark:text-violet-200 hover:text-teal-400 dark:hover:text-teal-400 text-shadow-alt dark:hover:text-shadow-alt-teal transition-colors
+      @apply text-shadow-alt dark:hover:text-shadow-alt-teal badge border-none text-teal-200 transition-colors hover:text-teal-400 dark:text-violet-200 dark:hover:text-teal-400;
     }
   }
 
   .content-section {
     .section-lead {
-      @apply  text-center font-extrabold text-xl 2xl:text-2xl dark:text-slate-50;
+      @apply text-center font-extrabold text-xl dark:text-slate-50 2xl:text-2xl;
     }
 
     & > div {
@@ -169,31 +167,33 @@
         @apply pointer-events-auto;
       }
     }
+
+    &#pricing {
+      @apply h-full max-h-[66vh] min-h-[50vh] flex-row items-center;
+    }
   }
 
   .ribbon-button {
-    @apply absolute shadow-lg -top-4 -right-3 focus:shadow-none;
+    @apply absolute -top-4 -right-3 shadow-lg focus:shadow-none;
   }
 
   footer {
     @apply bg-transparent dark:bg-transparent;
 
     a {
-      @apply text-violet-800 dark:text-teal-300 opacity-70 font-bold;
+      @apply font-bold text-violet-800 opacity-70 dark:text-teal-300;
     }
-
   }
-
 }
 
 @layer utilities {
   .gradient-text {
-    @apply text-transparent bg-clip-text;
+    @apply bg-clip-text text-transparent;
     @apply bg-gradient-to-br from-pink-300 via-teal-300 to-violet-700;
   }
 
   .gradient-text-alt {
-    @apply text-transparent bg-clip-text;
+    @apply bg-clip-text text-transparent;
     @apply bg-gradient-to-br from-slate-600 via-slate-400 to-slate-500 dark:from-slate-400 dark:via-slate-200 dark:to-slate-400;
   }
 
@@ -207,8 +207,8 @@
   }
 
   .brand {
-    @apply font-display inline-flex items-center;
-    @apply gradient-text text-shadow  text-shadow-alt gradient-text tracking-tight font-bold capitalize;
+    @apply inline-flex items-center font-display;
+    @apply gradient-text text-shadow  text-shadow-alt gradient-text font-bold capitalize tracking-tight;
 
     span:last-child {
       @apply hidden;
@@ -216,7 +216,7 @@
 
     &--logo {
       span:last-child {
-        @apply inline-block -translate-x-4 -translate-y-2 xl:-translate-y-3  2xl:-translate-x-6 2xl:-translate-y-3 w-12 h-12 xl:w-14 xl:h-14 2xl:w-20 2xl:h-20;
+        @apply inline-block h-12 w-12 -translate-x-4  -translate-y-2 xl:h-14 xl:w-14 xl:-translate-y-3 2xl:h-20 2xl:w-20 2xl:-translate-x-6 2xl:-translate-y-3;
       }
     }
   }
@@ -273,7 +273,8 @@
       }
 
       &-combo {
-        filter: drop-shadow(0 0 30px var(--color-shadow-teal)), drop-shadow(0 0 30px var(--color-shadow-alt));
+        filter: drop-shadow(0 0 30px var(--color-shadow-teal)),
+          drop-shadow(0 0 30px var(--color-shadow-alt));
       }
     }
 
@@ -317,5 +318,4 @@
     text-shadow: none;
     filter: none;
   }
-
 }
