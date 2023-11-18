@@ -9,6 +9,7 @@ export type UseDarkModeType = {
   theme: string
   toggleTheme: () => void
 }
+
 /**
  * Dark Mode Toggle
  *

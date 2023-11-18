@@ -1,56 +1,55 @@
+import { useState } from 'react'
 
-import { useState } from "react";
+import { Icon } from '@iconify/react'
+import MuxVideo from '@mux/mux-video-react'
+import { useContract } from '@thirdweb-dev/react'
+import Imgix from 'react-imgix'
+import { v4 as uuid } from 'uuid'
 
-import { Icon } from "@iconify/react";
-import MuxVideo from "@mux/mux-video-react";
-import { useContract } from "@thirdweb-dev/react";
-import Imgix from "react-imgix";
-import { v4 as uuid } from "uuid";
-
-import type { BuyPackOptions } from "~mb/buttons/index";
-import { ButtonBuyPackage } from "~mb/buttons/index";
-import { PriceDisplay } from "~mb/components/PriceDisplay"
-import { marketPlaceContract } from "~mb/lib/constants";
-import type { IPackage } from "~mb/types";
+import type { BuyPackOptions } from '~mb/buttons/index'
+import { ButtonBuyPackage } from '~mb/buttons/index'
+import { PriceDisplay } from '~mb/components/PriceDisplay'
+import { marketPlaceContract } from '~mb/lib/constants'
+import type { IPackage } from '~mb/types'
 
 export interface PackageCardProperties {
-  pack: IPackage;
+  pack: IPackage
 }
 export interface PackTrait {
-  value: string;
-  trait_type: string;
+  value: string
+  trait_type: string
 }
 
 export type PackageService = {
-  value: number | string;
-  trait_type: string;
+  value: number | string
+  trait_type: string
 }
 
 export interface IIncludedServices {
-  services: PackageService[];
-  consultingHours: PackageService[];
+  services: PackageService[]
+  consultingHours: PackageService[]
 }
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-const includedServices = (traits: IPackage['attributes']):
-  IIncludedServices => {
-  const services: PackageService[] = [];
-  const consultingHours: PackageService[] = [];
-
+const includedServices = (
+  traits: IPackage['attributes']
+): IIncludedServices => {
+  const services: PackageService[] = []
+  const consultingHours: PackageService[] = []
   if (traits) {
     for (const element of traits) {
       if (element.trait_type.includes('Service')) {
-        services.push(element as PackageService);
+        services.push(element as PackageService)
       }
 
       if (element.trait_type.includes('Consulting Hours')) {
-        consultingHours.push(element as PackageService);
+        consultingHours.push(element as PackageService)
       }
     }
 
     return {
       services,
       consultingHours
-    };
+    }
   }
   return {
     services,
@@ -58,33 +57,61 @@ const includedServices = (traits: IPackage['attributes']):
   }
 }
 
-export function PackageVideo({ url, name, isOpen }: { url: string, name: string, isOpen: boolean }): JSX.Element {
-  const animationId = uuid();
+export function PackageVideo({
+  url,
+  name,
+  isOpen
+}: {
+  url: string
+  name: string
+  isOpen: boolean
+}): JSX.Element {
+  const animationId = uuid()
 
   return (
-    <div className={`absolute ${isOpen ? 'translate-y-0 opacity-100 z-50' : 'translate-y-32 opacity-0 -z-10'} inset-0 transition-all duration-500 pt-0 !mt-0 flex flex-col items-center justify-center w-full h-full package-video`}>
+    <div
+      className={`absolute ${
+        isOpen
+          ? 'z-50 translate-y-0 opacity-100'
+          : '-z-10 translate-y-32 opacity-0'
+      } package-video inset-0 !mt-0 flex h-full w-full flex-col items-center justify-center pt-0 transition-all duration-500`}
+    >
       <MuxVideo
-        className="absolute inset-0 w-full h-full z-0 object-cover mt-0"
+        className='absolute inset-0 z-0 mt-0 h-full w-full object-cover'
         controls
         src={url}
         autoPlay={isOpen}
         loop={false}
         muted
-        streamType="on-demand"
+        streamType='on-demand'
         metadata={{
           video_id: animationId,
-          video_title: name,
+          video_title: name
         }}
       />
     </div>
-  );
+  )
 }
 
 export function PackageCard(properties: PackageCardProperties): JSX.Element {
-  const { pack } = properties;
-  const { id, name, description, displayPrice, currency, currencySymbol, image, animation_url: animationURL, attributes, value } = pack;
-  const { contract: marketplace } = useContract(marketPlaceContract, "marketplace");
-  const { services, consultingHours } = includedServices(attributes);
+  const { pack } = properties
+  const {
+    id,
+    name,
+    description,
+    displayPrice,
+    currency,
+    currencySymbol,
+    image,
+    animation_url: animationURL,
+    attributes,
+    value
+  } = pack
+  const { contract: marketplace } = useContract(
+    marketPlaceContract,
+    'marketplace'
+  )
+  const { services, consultingHours } = includedServices(attributes)
   // const attributeJson = JSON.parse(attributes);
   const qty = 1
   const buyPackInfo = {
@@ -96,80 +123,116 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
     currencySymbol,
     marketplace,
     quantityToBuy: qty,
-    contract: marketPlaceContract,
+    contract: marketPlaceContract
   } as BuyPackOptions
-  const [videoIsOpen, setVideoIsOpen] = useState(false);
+  const [videoIsOpen, setVideoIsOpen] = useState(false)
 
   const onToggleVideo = (): void => {
-    setVideoIsOpen(!videoIsOpen);
+    setVideoIsOpen(!videoIsOpen)
   }
   // console.log('buyPackInfo', {pack, buyPackInfo});
 
   return (
-    <div
-      className="package-card group relative flex flex-col flex-1 items-center justify-start h-full space-y-2 2xl:space-y-5 p-3 2xl:p-5 min-h-[400px]  overflow-hidden  z-10"
-    >
+    <div className='package-card group relative z-10 flex h-full min-h-[400px] flex-1 flex-col items-center justify-start space-y-2 overflow-hidden p-3  2xl:space-y-5  2xl:p-5'>
       {image && image !== '' ? (
-      <Imgix
-        src={image}
-        width={300}
-        height={300}
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        imgixParams={{
-          fit: "crop",
-          crop: "edges",
-          auto: "format",
-          // "blend-mode": "burn",
-          q: "100",
-        }}
-        htmlAttributes={{
-          alt: name,
-          loading: "lazy",
-        }}
-      />
+        <Imgix
+          src={image}
+          width={300}
+          height={300}
+          className='absolute top-0 left-0 z-0 h-full w-full object-cover'
+          imgixParams={{
+            fit: 'crop',
+            crop: 'edges',
+            auto: 'format',
+            // "blend-mode": "burn",
+            q: '100'
+          }}
+          htmlAttributes={{
+            alt: name,
+            loading: 'lazy'
+          }}
+        />
       ) : undefined}
-      <div className="absolute inset-0 bg-slate-800 opacity-[90%] border-violet-500 border-2 rounded-t-2xl rounded-b-md backdrop-blur-lg !mt-0 pt-0 z-0" />
-      <div className="relative flex flex-col space-x-2 2xl:space-x-5 space-y-2 2xl:space-y-3 flex-grow w-full px-0 text-violet-50 mb-5 z-[1]">
-        <h3 className="text-md xl:text-lg font-extrabold text-center uppercase text-violet-50">
+      <div className='absolute inset-0 z-0 !mt-0 rounded-t-2xl rounded-b-md border-2 border-violet-500 bg-slate-800 pt-0 opacity-[90%] backdrop-blur-lg' />
+      <div className='relative z-[1] mb-5 flex w-full flex-grow flex-col space-x-2 space-y-2 px-0 text-violet-50 2xl:space-x-5 2xl:space-y-3'>
+        <h3 className='text-md text-center font-extrabold uppercase text-violet-50 xl:text-lg'>
           {name}
         </h3>
         <PriceDisplay price={displayPrice} currency={currencySymbol} />
-        <p className="text-xs 4xl:text-sm leading-tight">{description}</p>
-        <ul className="flex flex-col space-y-1">
-          {consultingHours.length > 0 ? consultingHours.map(hours => (
-            <li key={uuid()} className="inline-flex items-center space-x-2 space-y-0">
-              <Icon icon="lucide:calendar-clock" className="text-teal-400 text-xs 2xl:text-sm w-5 h-5" />
-              <span className="text-violet-100 font-normal text-sm 3xl:text-sm text-left uppercase">
-                {hours.trait_type}:</span> <span className="text-violet-50 text-base">{hours.value}</span>
-
-            </li>
-          )) : undefined}
-          {services.length > 0 ? services.map(service => (
-            <li key={uuid()} className="inline-flex items-center space-x-2 space-y-0">
-              <Icon icon="ic:baseline-check" className="text-teal-400 text-xs 2xl:text-sm w-5 h-5" />
-              <span className="text-violet-100 font-normal text-left">
-                {service.value}
-              </span>
-            </li>
-          )) : undefined}
+        <p className='leading-tight text-xs 4xl:text-sm'>{description}</p>
+        <ul className='flex flex-col space-y-1'>
+          {consultingHours.length > 0
+            ? consultingHours.map(hours => (
+                <li
+                  key={uuid()}
+                  className='inline-flex items-center space-x-2 space-y-0'
+                >
+                  <Icon
+                    icon='lucide:calendar-clock'
+                    className='h-5 w-5 text-teal-400 text-xs 2xl:text-sm'
+                  />
+                  <span className='text-left font-normal uppercase text-violet-100 text-sm 3xl:text-sm'>
+                    {hours.trait_type}:
+                  </span>{' '}
+                  <span className='text-violet-50 text-base'>
+                    {hours.value}
+                  </span>
+                </li>
+              ))
+            : undefined}
+          {services.length > 0
+            ? services.map(service => (
+                <li
+                  key={uuid()}
+                  className='inline-flex items-center space-x-2 space-y-0'
+                >
+                  <Icon
+                    icon='ic:baseline-check'
+                    className='h-5 w-5 text-teal-400 text-xs 2xl:text-sm'
+                  />
+                  <span className='text-left font-normal text-violet-100'>
+                    {service.value}
+                  </span>
+                </li>
+              ))
+            : undefined}
         </ul>
       </div>
-      <div className="items-center justify-center flex-shrink min-w-full w-full text-center z-10">
-        <div className="flex justify-between gap-3">
+      <div className='z-10 w-full min-w-full flex-shrink items-center justify-center text-center'>
+        <div className='flex justify-between gap-3'>
           <a
-            href="https://discord.gg/MetaBuilders"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative btn bg-violet-700 text-white flex-grow transition-all duration-200 ease-in-out"
-          ><Icon icon="line-md:discord" className="absolute mr-2 h-20 w-20 opacity-10 -rotate-45 -translate-x-6 z-0" />Talk to us</a>
+            href='https://discord.gg/MetaBuilders'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='btn relative flex-grow bg-violet-700 text-white transition-all duration-200 ease-in-out'
+          >
+            <Icon
+              icon='line-md:discord'
+              className='absolute z-0 mr-2 h-20 w-20 -translate-x-6 -rotate-45 opacity-10'
+            />
+            Talk to us
+          </a>
           <ButtonBuyPackage pack={buyPackInfo} />
         </div>
       </div>
       {animationURL ? (
         <>
-          <button type="button" aria-label="Toggle video" onClick={onToggleVideo} className="ribbon-button w-auto btn btn-ghost shadow-none hover:bg-transparent bg-transparent z-[100] flex items-center justify-center">
-            <div className="tooltip tooltip-left tooltip-primary font-normal normal-case" data-tip={`${videoIsOpen ? 'Close' : 'Open'} NFT viewer`}>
-              <Icon icon="bx:movie-play" className={`${videoIsOpen ? 'text-teal-600' : 'text-violet-600'} transition-colors duration-300 text-3xl`} />
+          <button
+            type='button'
+            aria-label='Toggle video'
+            onClick={onToggleVideo}
+            className='ribbon-button btn btn-ghost z-[100] flex w-auto items-center justify-center bg-transparent shadow-none hover:bg-transparent'
+          >
+            <div
+              className='tooltip tooltip-left tooltip-primary font-normal normal-case'
+              data-tip={`${videoIsOpen ? 'Close' : 'Open'} NFT viewer`}
+            >
+              <Icon
+                icon='bx:movie-play'
+                className={`${
+                  videoIsOpen ? 'text-teal-600' : 'text-violet-600'
+                } transition-colors duration-300 text-3xl`}
+              />
             </div>
           </button>
 
@@ -179,4 +242,3 @@ export function PackageCard(properties: PackageCardProperties): JSX.Element {
     </div>
   )
 }
-

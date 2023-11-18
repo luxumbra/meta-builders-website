@@ -20,7 +20,7 @@ export type LayoutProperties = {
   previewImageSrc?: URL;
 };
 
-export function Layout({ children, content }: {children: React.ReactNode, content: LayoutProperties}): JSX.Element {
+export function Layout({ children, content }: { children: React.ReactNode, content: LayoutProperties }): JSX.Element {
   const { title, description, previewImageSrc } = content
 
 
@@ -45,6 +45,7 @@ Layout.defaultProps = {
   permalink: "/",
   previewImageSrc: 'https://meta-builders.com/social.png',
 }
+
 /* <script>
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";

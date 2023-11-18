@@ -2,13 +2,13 @@ import Layout from '~mb/layouts/Default'
 import { imgixUrl } from '~mb/lib/constants'
 import '~mb/styles/index.css'
 import BuySection from '~mb/sections/Buy'
-import MissionSection from "~mb/sections/Mission";
-import PartnersSection from "~mb/sections/Partners";
-import ServicesSection from "~mb/sections/Services";
-import SplashSection from "~mb/sections/Splash";
-import TeamSection from "~mb/sections/Team";
+import MissionSection from '~mb/sections/Mission'
+import PartnersSection from '~mb/sections/Partners'
+import ServicesSection from '~mb/sections/Services'
+import SplashSection from '~mb/sections/Splash'
+import TeamSection from '~mb/sections/Team'
 
-
+// dynamic imports
 
 export function Home(): JSX.Element {
   const meta = {
