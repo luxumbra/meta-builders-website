@@ -210,7 +210,7 @@ export default function SplashSection(): JSX.Element {
                 ref={scrollIn3Ref}
                 className='scroll-in3 pointer-events-auto invisible relative h-full w-full'
               >
-                <div className='relative h-screen w-auto translate-y-8 opacity-50'>
+                <div className='relative h-screen w-auto translate-y-8 opacity-60 grayscale'>
                   <HeroVideo source={heroVideo} />
                 </div>
               </div>
