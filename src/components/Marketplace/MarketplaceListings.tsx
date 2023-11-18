@@ -13,24 +13,23 @@ import type { IPackage } from '~mb/types'
 type MarketplaceProperties = {
   address: string
 }
+
 export function MarketplaceListings({
   address
 }: MarketplaceProperties): JSX.Element {
   const { contract: marketplace } = useContract(address, 'marketplace')
-  // const { data: metadata, isLoading: isMetadataLoading, error: metadataError } = useMetadata(marketplace);
+
   const {
     data: activeListings,
     isLoading: isActiveListingsLoading,
     error: activeListingsError
   } = useActiveListings(marketplace)
-  console.log('validDirectListings', activeListings)
+  console.log('validDirectListings', { activeListings })
 
   /** A callback function  to `getActiveListings` from the `marketplace` and then store them in `marketplaceListings` */
   const fetchListingsCallback = useCallback(async (): Promise<
     (AuctionListing | DirectListing)[] | undefined
   > => {
-    console.log('fetchListingsCallback', { address, marketplace })
-
     try {
       if (marketplace === undefined) throw new Error('Marketplace is undefined')
       if (activeListingsError) {
@@ -82,7 +81,6 @@ export function MarketplaceListings({
             buyoutCurrencyValuePerToken,
             currencyContractAddress
           } = listing
-          console.log('asset', asset)
 
           const cardKey = uuid()
           const pack = {
